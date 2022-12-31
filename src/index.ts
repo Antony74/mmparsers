@@ -1,14 +1,11 @@
 import fs from 'fs/promises';
 import path from 'path';
 import nearley from 'nearley';
-import { lexer } from './mmParser/lexer';
 
 const grammar = require('./mmParser/mmParser');
 
 const main = async () => {
-    const parser = new nearley.Parser(nearley.Grammar.fromCompiled(grammar), {
-        lexer,
-    });
+    const parser = new nearley.Parser(nearley.Grammar.fromCompiled(grammar));
 
     const filename = path.join(__dirname, '..', 'examples', 'demo0.mm');
     const text = await fs.readFile(filename, { encoding: 'utf-8' });
