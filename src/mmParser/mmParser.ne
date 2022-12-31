@@ -1,3 +1,7 @@
+@{%
+const { lexer } = require('./lexer');
+%}
+
 @lexer lexer
 
-mmFile -> ( %wh | %comment ):*
+mmFile -> ( %ws | %comment ):*
