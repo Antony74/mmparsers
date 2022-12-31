@@ -1,11 +1,12 @@
 import fs from 'fs/promises';
 import path from 'path';
 import moo from 'moo';
-import { RegexLiteral } from './fluent-regex/src';
+import { RegexLiteral, RegexSequence } from './fluent-regex/src';
+import Not from './fluent-regex/src/Not';
 
 const main = async () => {
     const openComment = new RegexLiteral('$(');
-    const closeComment = /\$\)/;
+    const closeComment = new RegexLiteral('$)');
 
     const mooLexerRules: moo.Rules = {
         wh: {
@@ -13,10 +14,16 @@ const main = async () => {
             lineBreaks: true,
         },
         comment: {
-            match: openComment.toRegex(),
+            match: new RegexSequence(
+                openComment,
+                new Not(closeComment).zeroOrMore(),
+                closeComment
+            ).toRegex(),
             lineBreaks: true,
         },
     };
+
+    console.log(mooLexerRules);
 
     const lexer = moo.compile(mooLexerRules);
 
