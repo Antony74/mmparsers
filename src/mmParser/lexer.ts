@@ -5,7 +5,7 @@ const openComment = new RegexLiteral('$(');
 const closeComment = new RegexLiteral('$)');
 
 const rules: moo.Rules = {
-    wh: {
+    ws: {
         match: RegexLiteral.anyWhitespace().onceOrMore().toRegex(),
         lineBreaks: true,
     },

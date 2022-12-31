@@ -2,6 +2,8 @@
     "name": "mmparsers",
     "version": "1.0.0",
     "scripts": {
+        "generate": "npm run generate-mm",
+        "generate-mm": "cd src/mmParser && nearleyc mmParser.ne -o mmParser.js && nearley-railroad mmParser.ne -o mmParser.html",
         "prettier": "prettier --write **/*.ts",
         "start": "ts-node src/index.ts"
     },
@@ -23,6 +25,7 @@
     },
     "dependencies": {
         "@types/moo": "^0.5.5",
-        "moo": "^0.5.2"
+        "moo": "^0.5.2",
+        "nearley": "^2.20.1"
     }
 }
