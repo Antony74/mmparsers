@@ -9,6 +9,6 @@ export default class Not extends RegexComponent {
     }
 
     toRegexString = () => {
-        return `[^${this.regex.toRegexString()}]`;
+        return `[^${this.regex.toRegexString()}]${this.regexQuantifier}`;
     };
 }
