@@ -1,7 +1,7 @@
 import { RegexFlags } from './RegexFlags';
 
 export default abstract class RegexComponent {
-    protected regexQuantifier: string;
+    protected regexQuantifier: string = '';
 
     private assertSingleQuantifier() {
         if (this.regexQuantifier)
@@ -43,28 +43,28 @@ export default abstract class RegexComponent {
         return this.rangeAmount(1, amount);
     }
 
-    protected needsWrapping = function (regexString: string) {
-        if (this.regexString.length === 1) return false;
+    protected needsWrapping = (regexString: string) => {
+        if (regexString.length === 1) return false;
 
         // This will catch strings that are wrapped in squared brackets
         // it will catch [xxxx] and fail on this [xxx][xxx]
         // but it will also fail on this: [xxx[x]xxx] // TODO: fix this!
         if (
-            this.regexString.startsWith('[') &&
-            this.regexString.endsWith(']') &&
-            this.regexString.indexOf(']') === this.regexString.length - 1
+            regexString.startsWith('[') &&
+            regexString.endsWith(']') &&
+            regexString.indexOf(']') === regexString.length - 1
         )
             return false;
 
         // Comment above, applies here as well! // TODO: fix this!
         if (
-            this.regexString.startsWith('(') &&
-            this.regexString.endsWith(')') &&
-            this.regexString.indexOf(')') === this.regexString.length - 1
+            regexString.startsWith('(') &&
+            regexString.endsWith(')') &&
+            regexString.indexOf(')') === regexString.length - 1
         )
             return false;
 
-        if (this.regexString.startsWith('\\') && this.regexString.length === 2)
+        if (regexString.startsWith('\\') && regexString.length === 2)
             return false;
 
         if (!this.regexQuantifier) return false;

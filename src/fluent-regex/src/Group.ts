@@ -2,7 +2,7 @@ import RegexComponent from './RegexComponent';
 import Or from './Or';
 
 export default class Group extends RegexComponent {
-    private name: string;
+    private name: string = '';
     private regex: RegexComponent;
 
     private groupNameValidator = /^[a-zA-Z][a-zA-Z0-9]*$/; // Yo Dawg, I heard you like regexes in your regex framework, so I put a regex in the regex framework so you can validate the regex your regex framework creates

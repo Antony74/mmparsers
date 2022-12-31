@@ -3,7 +3,7 @@ import RegexLiteral from './RegexLiteral';
 
 export default class Or extends RegexComponent {
     private regexComponents: RegexComponent[];
-    private groupName: string;
+    private groupName: string = '';
 
     constructor(...components: (RegexComponent | string)[]) {
         super();
