@@ -1,16 +1,10 @@
-import 'mocha';
-import * as chai from 'chai';
-
 import { regexLiteral } from '../src/RegexLiteral';
 import { RegexFlags } from '../src/RegexFlags';
-
-const expect = chai.expect;
-const assert = chai.assert;
 
 describe('Flags', () => {
     it('no flags', () => {
         const r = regexLiteral('gilly');
-        expect(r.toRegex().flags).to.equal('');
+        expect(r.toRegex().flags).toEqual('');
     });
 
     it('has some flags', () => {
@@ -19,10 +13,10 @@ describe('Flags', () => {
             RegexFlags.GLOBAL,
             RegexFlags.UNICODE
         );
-        expect(r.ignoreCase).true;
-        expect(r.global).true;
-        expect(r.unicode).true;
-        expect(r.sticky).false;
-        expect(r.multiline).false;
+        expect(r.ignoreCase).toEqual(true);
+        expect(r.global).toEqual(true);
+        expect(r.unicode).toEqual(true);
+        expect(r.sticky).toEqual(false);
+        expect(r.multiline).toEqual(false);
     });
 });

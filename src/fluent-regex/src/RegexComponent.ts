@@ -100,10 +100,13 @@ const regexComponentWithState = (state: RegexComponentState) => {
             return true;
         },
         toRegex: (...flags: RegexFlags[]) => {
-            return new RegExp(state.regexStringCallback(component), flags.join(''));
+            return new RegExp(
+                state.regexStringCallback(component),
+                flags.join('')
+            );
         },
         toRegexString: () => {
-            return state.regexStringCallback(component)
+            return state.regexStringCallback(component);
         },
     };
 

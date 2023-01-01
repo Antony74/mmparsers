@@ -1,17 +1,8 @@
-import * as mocha from 'mocha';
-import * as chai from 'chai';
-
 import * as R from '../src/Regex';
 import * as RegexLiteral from '../src/RegexLiteral';
-import { optional } from '../src/Optional';
-import { or } from '../src/Or';
 import { regexSequence } from '../src/RegexSequence';
 import * as Group from '../src/Group';
 import { RegexFlags } from '../src/RegexFlags';
-import { isJSDocOptionalType } from 'typescript';
-
-const expect = chai.expect;
-const assert = chai.assert;
 
 /**
  * This file is just to check some actual real life examples
@@ -32,7 +23,7 @@ describe('Real life examples', () => {
             '-',
             RegexLiteral.anyDigit().exactAmount(4)
         );
-        expect(r.toRegexString()).to.equal('(\\(\\d{3}\\)-)?\\d{3}-\\d{4}');
+        expect(r.toRegexString()).toEqual('(\\(\\d{3}\\)-)?\\d{3}-\\d{4}');
     });
 
     it('simple email validation', () => {
@@ -49,7 +40,7 @@ describe('Real life examples', () => {
             R.letter().atLeastAmount(2),
             R.sequence('.', R.letter().atLeastAmount(2)).optional()
         );
-        expect(r.toRegexString()).to.equal(
+        expect(r.toRegexString()).toEqual(
             '(\\d|[a-zA-Z]|\\.|\\+|\\(|\\)){2,}@(\\d|[a-zA-Z]|\\.|\\+|\\(|\\)){2,}\\.[a-zA-Z]{2,}(\\.[a-zA-Z]{2,})?'
         );
     });
@@ -64,7 +55,7 @@ describe('Real life examples', () => {
             '.',
             R.digit().upToAmount(3)
         );
-        expect(r.toRegexString()).to.equal(
+        expect(r.toRegexString()).toEqual(
             '\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}'
         );
     });
@@ -75,10 +66,10 @@ describe('Real life examples', () => {
         const r1 = R.sequence('gilly', R.optional(' barr')).toRegex(
             RegexFlags.IGNORE_CASE
         );
-        expect(r1.toString()).to.equal('/gilly( barr)?/i');
+        expect(r1.toString()).toEqual('/gilly( barr)?/i');
 
         // search for 3 digits in parentheses
         const r2 = R.sequence('(', RegexLiteral.anyDigit().exactAmount(3), ')');
-        expect(r2.toRegexString()).to.equal('\\(\\d{3}\\)');
+        expect(r2.toRegexString()).toEqual('\\(\\d{3}\\)');
     });
 });

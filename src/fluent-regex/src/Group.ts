@@ -24,7 +24,9 @@ const groupWithState = (
             throw `Invalid group name \'${groupName}\'.\nA group name can contain letters and numbers but must start with a letter.`;
     }
 
-    const regexStringCallback: RegexStringCallback = (baseComponent: RegexComponent): string => {
+    const regexStringCallback: RegexStringCallback = (
+        baseComponent: RegexComponent
+    ): string => {
         const regexString = regex.toRegexString();
         const quantifier = baseComponent.getRegexQuantifier();
 
