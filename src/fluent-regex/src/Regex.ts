@@ -16,11 +16,12 @@ import { or as importedOr } from './Or';
  * These are some comfortable shorthands for nicer coding :)
  */
 
-export const literal = (
-    regexString: string,
-    options?: RegexLiteralConfiguration
-) => {
-    return regexLiteral(regexString, options);
+export const literal = (regexString: string) => {
+    return regexLiteral(regexString, { escapeSpecialCharacters: true });
+};
+
+export const unescapedLiteral = (regexString: string) => {
+    return regexLiteral(regexString, { escapeSpecialCharacters: false });
 };
 
 export const sequence = (...components: (string | RegexComponent)[]) => {

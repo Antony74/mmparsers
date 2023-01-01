@@ -14,14 +14,13 @@ import {
     literal,
     nonCapturingGroup,
     sequence,
+    unescapedLiteral,
 } from '../fluent-regex/src/Regex';
 import { not } from '../fluent-regex/src';
 
 /* ASCII non-whitespace printable characters */
 const _PRINTABLE_CHARACTER = nonCapturingGroup(
-    literal('[\\x21-\\x7e]', {
-        escapeSpecialCharacters: false,
-    })
+    unescapedLiteral('[\\x21-\\x7e]')
 );
 
 const PRINTABLE_SEQUENCE = _PRINTABLE_CHARACTER.onceOrMore();
@@ -33,9 +32,7 @@ const PRINTABLE_SEQUENCE = _PRINTABLE_CHARACTER.onceOrMore();
 // COMPRESSED-PROOF-BLOCK ::= ([A-Z] | '?')+
 
 /* Whitespace: (' ' | '\t' | '\r' | '\n' | '\f') */
-const _WHITECHAR = literal('[\\x20\\x09\\x0d\\x0a\\x0c]', {
-    escapeSpecialCharacters: false,
-});
+const _WHITECHAR = unescapedLiteral('[\\x20\\x09\\x0d\\x0a\\x0c]');
 
 export const mooLexerRules: moo.Rules = {
     $c: '$c',
