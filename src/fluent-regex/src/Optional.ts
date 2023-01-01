@@ -1,17 +1,13 @@
-import RegexComponent from './RegexComponent';
-import RegexLiteral from './RegexLiteral';
+import { RegexComponent } from './RegexComponent';
+import { regexLiteral } from './RegexLiteral';
 
-export default class Optional extends RegexComponent {
-    private innerRegex: RegexComponent;
+export const optional = (regex: RegexComponent | string) => {
+    const innerRegex: RegexComponent =
+        typeof regex === 'string' ? regexLiteral(regex) : regex;
 
-    constructor(regex: RegexComponent | string) {
-        super();
-        if (typeof regex === 'string')
-            this.innerRegex = new RegexLiteral(regex);
-        else this.innerRegex = regex;
-    }
-
-    toRegexString = () => {
-        return `(${this.innerRegex.toRegexString()})?`;
+    const component = {
+        toRegexString: () => {
+            return `(${innerRegex.toRegexString()})?`;
+        },
     };
-}
+};

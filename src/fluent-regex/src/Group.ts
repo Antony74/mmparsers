@@ -1,43 +1,48 @@
-import RegexComponent from './RegexComponent';
-import Or from './Or';
+import { regexComponent, RegexComponent } from './RegexComponent';
+import { or as importedOr } from './Or';
 
-export default class Group extends RegexComponent {
-    private name: string = '';
-    private regex: RegexComponent;
+interface GroupState {
+    nonCapturing: boolean;
+}
 
-    private groupNameValidator = /^[a-zA-Z][a-zA-Z0-9]*$/; // Yo Dawg, I heard you like regexes in your regex framework, so I put a regex in the regex framework so you can validate the regex your regex framework creates
+export const group = (regex: RegexComponent, groupName?: string) =>
+    groupWithState({ nonCapturing: false }, regex, groupName);
 
-    nonCapturing: boolean = false;
+const groupWithState = (
+    state: GroupState,
+    regex: RegexComponent,
+    groupName?: string
+) => {
+    const groupNameValidator = /^[a-zA-Z][a-zA-Z0-9]*$/; // Yo Dawg, I heard you like regexes in your regex framework, so I put a regex in the regex framework so you can validate the regex your regex framework creates
 
-    constructor(regex: RegexComponent, groupName?: string) {
-        super();
-        this.regex = regex;
-        if (groupName) {
-            if (!this.groupNameValidator.test(groupName))
-                throw `Invalid group name \'${groupName}\'.\nA group name can contain letters and numbers but must start with a letter.`;
-            this.name = groupName;
-        }
-        return this;
+    if (groupName) {
+        if (!groupNameValidator.test(groupName))
+            throw `Invalid group name \'${groupName}\'.\nA group name can contain letters and numbers but must start with a letter.`;
     }
 
-    static nonCapturing(regex: RegexComponent) {
-        const g = new Group(regex);
-        g.nonCapturing = true;
-        return g;
-    }
+    const toRegexString = (): string => {
+        const regexString = regex.toRegexString();
+        const quantifier = component.getRegexQuantifier();
 
-    static or(...components: (RegexComponent | string)[]) {
-        return new Or(...components);
-    }
+        if (state.nonCapturing) return `(?:${regexString})${quantifier}`;
 
-    toRegexString = () => {
-        const regexString = this.regex.toRegexString();
-        const quantifier = this.regexQuantifier ? this.regexQuantifier : '';
-
-        if (this.nonCapturing) return `(?:${regexString})${quantifier}`;
-
-        if (this.name) return `(?<${this.name}>${regexString})${quantifier}`;
+        if (groupName) return `(?<${groupName}>${regexString})${quantifier}`;
 
         return `(${regexString})${quantifier}`;
     };
-}
+
+    const component = {
+        ...regexComponent({ toRegexString }),
+        toRegexString,
+    };
+
+    return component;
+};
+
+export const nonCapturing = (regex: RegexComponent) => {
+    return groupWithState({ nonCapturing: true }, regex);
+};
+
+export const or = (...components: (RegexComponent | string)[]) => {
+    return importedOr(...components);
+};

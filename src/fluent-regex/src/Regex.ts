@@ -1,44 +1,52 @@
-import { RegexLiteral, Optional, Or } from '.';
-import { RegexLiteralConfiguration } from './RegexLiteral';
-import RegexSequence from './RegexSequence';
-import RegexComponent from './RegexComponent';
-import Group from './Group';
+import { RegexComponent } from './RegexComponent';
+
+import {
+    anyDigit,
+    anyLetter,
+    regexLiteral,
+    RegexLiteralConfiguration,
+} from './RegexLiteral';
+
+import { regexSequence } from './RegexSequence';
+import { group as importedGroup, nonCapturing } from './Group';
+import { optional as importedOptional } from './Optional';
+import { or as importedOr } from './Or';
 
 /**
  * These are some comfortable shorthands for nicer coding :)
  */
-export class Regex {
-    static literal(
-        regexString: string,
-        options?: RegexLiteralConfiguration
-    ): RegexLiteral {
-        return new RegexLiteral(regexString, options);
-    }
 
-    static sequence(...components: (string | RegexComponent)[]): RegexSequence {
-        return new RegexSequence(...components);
-    }
+export const literal = (
+    regexString: string,
+    options?: RegexLiteralConfiguration
+) => {
+    return regexLiteral(regexString, options);
+};
 
-    static group(regex: RegexComponent, groupName?: string): Group {
-        return new Group(regex, groupName);
-    }
-    static nonCapturingGroup(regex: RegexComponent): Group {
-        return Group.nonCapturing(regex);
-    }
+export const sequence = (...components: (string | RegexComponent)[]) => {
+    return regexSequence(...components);
+};
 
-    static optional(regex: RegexComponent | string): Optional {
-        return new Optional(regex);
-    }
+export const group = (regex: RegexComponent, groupName?: string) => {
+    return importedGroup(regex, groupName);
+};
 
-    static or(...components: (RegexComponent | string)[]): Or {
-        return new Or(...components);
-    }
+export const nonCapturingGroup = (regex: RegexComponent) => {
+    return nonCapturing(regex);
+};
 
-    // More specific stuff (might be controversial)
-    static digit(): RegexLiteral {
-        return RegexLiteral.anyDigit();
-    }
-    static letter(): RegexLiteral {
-        return RegexLiteral.anyLetter();
-    }
-}
+export const optional = (regex: RegexComponent | string) => {
+    return importedOptional(regex);
+};
+
+export const or = (...components: (RegexComponent | string)[]) => {
+    return importedOr(...components);
+};
+
+// More specific stuff (might be controversial)
+export const digit = () => {
+    return anyDigit();
+};
+export const letter = () => {
+    return anyLetter();
+};

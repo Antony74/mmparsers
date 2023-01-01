@@ -1,14 +1,11 @@
-import RegexComponent from './RegexComponent';
+import { RegexComponent, regexComponent } from './RegexComponent';
 
-export default class Not extends RegexComponent {
-    private regex: RegexComponent;
-
-    constructor(regex: RegexComponent) {
-        super();
-        this.regex = regex;
-    }
-
-    toRegexString = () => {
-        return `[^${this.regex.toRegexString()}]${this.regexQuantifier}`;
+export const not = (regex: RegexComponent) => {
+    const toRegexString = (): string => {
+        return `[^${regex.toRegexString()}]${component.getRegexQuantifier()}`;
     };
-}
+
+    const component = {...regexComponent({toRegexString}), toRegexString};
+
+    return component;
+};

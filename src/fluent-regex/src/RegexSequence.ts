@@ -1,36 +1,48 @@
-import RegexComponent from './RegexComponent';
-import RegexLiteral from './RegexLiteral';
+import { RegexComponent, regexComponent } from './RegexComponent';
+import { regexLiteral } from './RegexLiteral';
 
-export default class RegexSequence extends RegexComponent {
-    private regexComponents: RegexComponent[];
-    private beginning = false;
-    private end = false;
+interface RegexSequeceState {
+    beginning: boolean;
+    end: boolean;
+}
 
-    constructor(...components: (RegexComponent | string)[]) {
-        super();
-        this.regexComponents = components.map((r) => {
-            if (typeof r === 'string') return new RegexLiteral(r);
-            return r;
-        });
-    }
+export const regexSequence = (...components: (RegexComponent | string)[]) =>
+    regexSequenceWithState({ beginning: false, end: false }, ...components);
 
-    startsWith = () => {
-        this.beginning = true;
-        return this;
-    };
-    endsWith = () => {
-        this.end = true;
-        return this;
-    };
+const regexSequenceWithState = (
+    state: RegexSequeceState,
+    ...components: (RegexComponent | string)[]
+) => {
+    const regexComponents = components.map((r) => {
+        if (typeof r === 'string') return regexLiteral(r);
+        return r;
+    });
 
-    toRegexString = () => {
-        const startsWith = this.beginning ? '^' : '';
-        const endsWith = this.end ? '$' : '';
-        const finalRegex = this.regexComponents
+    const toRegexString = (): string => {
+        const startsWith = state.beginning ? '^' : '';
+        const endsWith = state.end ? '$' : '';
+        const finalRegex = regexComponents
             .map((r) => r.toRegexString())
             .join('');
-        if (!this.regexQuantifier)
-            return `${startsWith}${finalRegex}${endsWith}`;
-        return `${startsWith}(${finalRegex})${this.regexQuantifier}${endsWith}`;
+        return `${startsWith}(${finalRegex})${component.getRegexQuantifier}${endsWith}`;
     };
-}
+
+    const component = {
+        ...regexComponent({ toRegexString }),
+        startsWith: () => {
+            return regexSequenceWithState(
+                { ...state, beginning: true },
+                ...components
+            );
+        },
+        endsWith: () => {
+            return regexSequenceWithState(
+                { ...state, end: true },
+                ...components
+            );
+        },
+        toRegexString,
+    };
+
+    return component;
+};
