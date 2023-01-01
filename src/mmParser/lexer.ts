@@ -34,7 +34,7 @@ const _PRINTABLE_CHARACTER = regexLiteral(`[\x21-\x7e]`, {
 const openComment = regexLiteral('$(');
 const closeComment = regexLiteral('$)');
 
-const rules: moo.Rules = {
+export const mooLexerRules: moo.Rules = {
     ws: {
         match: anyWhitespace().onceOrMore().toRegex(),
         lineBreaks: true,
@@ -49,6 +49,4 @@ const rules: moo.Rules = {
     },
 };
 
-console.log(rules);
-
-export const lexer = moo.compile(rules);
+export const lexer = moo.compile(mooLexerRules);
