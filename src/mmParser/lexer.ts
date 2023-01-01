@@ -10,13 +10,19 @@
 //
 
 import moo from 'moo';
-import { literal, sequence } from '../fluent-regex/src/Regex';
+import {
+    literal,
+    nonCapturingGroup,
+    sequence,
+} from '../fluent-regex/src/Regex';
 import { not } from '../fluent-regex/src';
 
 /* ASCII non-whitespace printable characters */
-const _PRINTABLE_CHARACTER = literal('[\x21-\x7e]', {
-    escapeSpecialCharacters: false,
-});
+const _PRINTABLE_CHARACTER = nonCapturingGroup(
+    literal('[\\x21-\\x7e]', {
+        escapeSpecialCharacters: false,
+    })
+);
 
 const PRINTABLE_SEQUENCE = _PRINTABLE_CHARACTER.onceOrMore();
 
@@ -42,15 +48,14 @@ export const mooLexerRules: moo.Rules = {
     _COMMENT: {
         match: sequence(
             literal('$('),
+            _WHITECHAR.onceOrMore(),
             /*PRINTABLE_SEQUENCE.*/ not(literal('$)')).zeroOrMore(),
             _WHITECHAR.onceOrMore(),
-            literal('$)'),
-            _WHITECHAR
+            literal('$)')
         ).toRegex(),
         lineBreaks: true,
     },
-//    MATH_SYMBOL: `[${_PRINTABLE_CHARACTER.toRegexString()}^\\$]+`,
-    MATH_SYMBOL: _PRINTABLE_CHARACTER.onceOrMore().toRegex(),// `[${_PRINTABLE_CHARACTER.toRegexString()}]+`,
+    MATH_SYMBOL: _PRINTABLE_CHARACTER.not(literal('$')).onceOrMore().toRegex(),
 };
 
 console.log(mooLexerRules);

@@ -4,6 +4,8 @@ import {
     RegexStringCallback,
 } from './RegexComponent';
 import { or as importedOr } from './Or';
+import { sequence } from './Regex';
+import { regexLiteral } from './RegexLiteral';
 
 interface GroupState {
     nonCapturing: boolean;
@@ -39,6 +41,17 @@ const groupWithState = (
 
     const component = {
         ...regexComponent({ regexStringCallback }),
+        not: (negatedComponent: RegexComponent) => {
+            return groupWithState(
+                state,
+                sequence(
+                    regexLiteral('(?!', { escapeSpecialCharacters: false }),
+                    negatedComponent,
+                    regexLiteral(')', { escapeSpecialCharacters: false }),
+                    regex
+                )
+            );
+        },
     };
 
     return component;
