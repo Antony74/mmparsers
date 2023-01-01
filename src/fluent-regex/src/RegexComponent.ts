@@ -6,6 +6,7 @@ export interface RegexComponentProps {
 
 export interface RegexComponentState {
     regexQuantifier: string;
+    toRegexString: () => string;
 }
 
 export interface RegexComponent {
@@ -23,11 +24,10 @@ export interface RegexComponent {
 }
 
 export const regexComponent = (props: RegexComponentProps): RegexComponent =>
-    regexComponentWithState({ regexQuantifier: '' }, props);
+    regexComponentWithState({ ...props, regexQuantifier: '' });
 
 const regexComponentWithState = (
     state: RegexComponentState,
-    props: RegexComponentProps
 ) => {
     const assertSingleQuantifier = () => {
         if (state.regexQuantifier)
@@ -41,32 +41,32 @@ const regexComponentWithState = (
         optional: () => {
             assertSingleQuantifier();
             const regexQuantifier = '?';
-            return regexComponentWithState({ regexQuantifier }, props);
+            return regexComponentWithState({ ...state, regexQuantifier });
         },
         onceOrMore: () => {
             assertSingleQuantifier();
             const regexQuantifier = '+';
-            return regexComponentWithState({ regexQuantifier }, props);
+            return regexComponentWithState({ ...state, regexQuantifier });
         },
         zeroOrMore: () => {
             assertSingleQuantifier();
             const regexQuantifier = '*';
-            return regexComponentWithState({ regexQuantifier }, props);
+            return regexComponentWithState({ ...state, regexQuantifier });
         },
         exactAmount: (amount: number) => {
             assertSingleQuantifier();
             const regexQuantifier = '{' + amount + '}';
-            return regexComponentWithState({ regexQuantifier }, props);
+            return regexComponentWithState({ ...state, regexQuantifier });
         },
         atLeastAmount: (amount: number) => {
             assertSingleQuantifier();
             const regexQuantifier = `{${amount},}`;
-            return regexComponentWithState({ regexQuantifier }, props);
+            return regexComponentWithState({ ...state, regexQuantifier });
         },
         rangeAmount: (min: number, max: number) => {
             assertSingleQuantifier();
             const regexQuantifier = `{${min},${max}}`;
-            return regexComponentWithState({ regexQuantifier }, props);
+            return regexComponentWithState({ ...state, regexQuantifier });
         },
         upToAmount: (amount: number) => {
             return component.rangeAmount(1, amount);
@@ -100,9 +100,9 @@ const regexComponentWithState = (
             return true;
         },
         toRegex: (...flags: RegexFlags[]) => {
-            return new RegExp(props.toRegexString(), flags.join(''));
+            return new RegExp(state.toRegexString(), flags.join(''));
         },
-        toRegexString: props.toRegexString,
+        toRegexString: state.toRegexString,
     };
 
     return component;
