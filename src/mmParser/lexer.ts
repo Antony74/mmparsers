@@ -39,7 +39,6 @@ export const mooLexerRules: moo.Rules = {
         lineBreaks: true,
     },
     /* Comments. $( ... $) and do not nest. */
-    //'$(' (_WHITECHAR+ (PRINTABLE-SEQUENCE - '$)')* _WHITECHAR+ '$)' _WHITECHAR
     _COMMENT: {
         match: sequence(
             literal('$('),
@@ -50,7 +49,8 @@ export const mooLexerRules: moo.Rules = {
         ).toRegex(),
         lineBreaks: true,
     },
-    //    MATH_SYMBOL: `[${_PRINTABLE_CHARACTER.toRegexString()}^\\$]+`,
+//    MATH_SYMBOL: `[${_PRINTABLE_CHARACTER.toRegexString()}^\\$]+`,
+    MATH_SYMBOL: _PRINTABLE_CHARACTER.onceOrMore().toRegex(),// `[${_PRINTABLE_CHARACTER.toRegexString()}]+`,
 };
 
 console.log(mooLexerRules);

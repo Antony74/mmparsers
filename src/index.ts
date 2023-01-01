@@ -9,7 +9,7 @@ const main = async () => {
     const parser = new nearley.Parser(nearley.Grammar.fromCompiled(grammar));
 
     const lex = (text: string) => {
-        console.log(mooLexerRules);
+        // console.log(mooLexerRules);
 
         lexer.reset(text);
 
@@ -20,7 +20,7 @@ const main = async () => {
             tokens.push(token);
         }
 
-//        console.log(tokens);
+        console.log(tokens);
     };
 
     const parse = (text: string) => {
