@@ -52,7 +52,7 @@ describe('RegexSequence', () => {
     it('ends with', () => {
         const r = regexSequence('gilly').startsWith().endsWith();
         expect(r.toRegexString()).to.equal('^gilly$');
-        r.atLeastAmount(3);
-        expect(r.toRegexString()).to.equal('^(gilly){3,}$');
+        const r2 = r.atLeastAmount(3);
+        expect(r2.toRegexString()).to.equal('^(gilly){3,}$');
     });
 });
