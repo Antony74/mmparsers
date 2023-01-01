@@ -20,7 +20,7 @@ const main = async () => {
             tokens.push(token);
         }
 
-        console.log(tokens);
+//        console.log(tokens);
     };
 
     const parse = (text: string) => {

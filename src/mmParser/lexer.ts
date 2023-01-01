@@ -1,26 +1,24 @@
 //
 //                               PUBLIC DOMAIN
-// 
+//
 // This file has been released into the Public Domain per the
 // Creative Commons CC0 1.0 Universal (CC0 1.0) Public Domain Dedication
 // https://creativecommons.org/publicdomain/zero/1.0/
-// 
+//
 // This lexical specification has been ported from the EBNF in the Metamath Book
 // https://github.com/metamath/metamath-book/blob/7f710a34054eb563dc3b34d5a03d723bb2a8e767/metamath.tex#L15572
 //
 
 import moo from 'moo';
-import { not, regexLiteral, regexSequence } from '../fluent-regex/src';
-import { anyWhitespace } from '../fluent-regex/src/RegexLiteral';
+import { literal, sequence } from '../fluent-regex/src/Regex';
+import { not } from '../fluent-regex/src';
 
 /* ASCII non-whitespace printable characters */
-const _PRINTABLE_CHARACTER = regexLiteral(`[\x21-\x7e]`, {
+const _PRINTABLE_CHARACTER = literal('[\x21-\x7e]', {
     escapeSpecialCharacters: false,
 });
 
-// const PRINTABLE_SEQUENCE = _PRINTABLE_CHARACTER.onceOrMore();
-
-// console.log({_PRINTABLE_CHARACTER, PRINTABLE_SEQUENCE});
+const PRINTABLE_SEQUENCE = _PRINTABLE_CHARACTER.onceOrMore();
 
 // MATH-SYMBOL ::= (_PRINTABLE-CHARACTER - '$')+
 
@@ -30,34 +28,44 @@ const _PRINTABLE_CHARACTER = regexLiteral(`[\x21-\x7e]`, {
 
 // COMPRESSED-PROOF-BLOCK ::= ([A-Z] | '?')+
 
-// /* Define whitespace between tokens. The -> SKIP
-//    means that when whitespace is seen, it is
-//    skipped and we simply read again. */
-// WHITESPACE ::= (_WHITECHAR+ | _COMMENT) -> SKIP
+/* Whitespace: (' ' | '\t' | '\r' | '\n' | '\f') */
+const _WHITECHAR = literal('[\\x20 | \\x09 | \\x0d | \\x0a | \\x0c]', {
+    escapeSpecialCharacters: false,
+});
 
-// /* Comments. $( ... $) and do not nest. */
+/* Comments. $( ... $) and do not nest. */
+const _COMMENT = sequence(
+    literal('$('),
+    sequence().zeroOrMore(),
+    _WHITECHAR.onceOrMore(),
+    literal('$)'),
+    _WHITECHAR
+);
+
 // _COMMENT ::= '$(' (_WHITECHAR+ (PRINTABLE-SEQUENCE - '$)')*
 //   _WHITECHAR+ '$)' _WHITECHAR
 
-// /* Whitespace: (' ' | '\t' | '\r' | '\n' | '\f') */
-// _WHITECHAR ::= [#x20#x09#x0d#x0a#x0c]
-
-const openComment = regexLiteral('$(');
-const closeComment = regexLiteral('$)');
-
 export const mooLexerRules: moo.Rules = {
-    ws: {
-        match: anyWhitespace().onceOrMore().toRegex(),
+    $c: '$c',
+    /* Define whitespace between tokens. */
+    WHITESPACE: {
+        match: _WHITECHAR.onceOrMore().toRegex(),
         lineBreaks: true,
     },
-    comment: {
-        match: regexSequence(
-            openComment,
-            not(closeComment).zeroOrMore(),
-            closeComment
+    /* Comments. $( ... $) and do not nest. */
+    //'$(' (_WHITECHAR+ (PRINTABLE-SEQUENCE - '$)')* _WHITECHAR+ '$)' _WHITECHAR
+    _COMMENT: {
+        match: sequence(
+            literal('$('),
+            /*PRINTABLE_SEQUENCE.*/ not(literal('$)')).zeroOrMore(),
+            _WHITECHAR.onceOrMore(),
+            literal('$)'),
+            _WHITECHAR
         ).toRegex(),
         lineBreaks: true,
     },
 };
+
+console.log(mooLexerRules);
 
 export const lexer = moo.compile(mooLexerRules);
