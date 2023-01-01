@@ -24,7 +24,7 @@ const regexSequenceWithState = (
         const finalRegex = regexComponents
             .map((r) => r.toRegexString(component))
             .join('');
-        return `${startsWith}(${finalRegex})${component.getRegexQuantifier}${endsWith}`;
+        return `${startsWith}(${finalRegex})${component.getRegexQuantifier()}${endsWith}`;
     };
 
     const component = {
