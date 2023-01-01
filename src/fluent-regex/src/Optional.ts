@@ -6,8 +6,10 @@ export const optional = (regex: RegexComponent | string) => {
         typeof regex === 'string' ? regexLiteral(regex) : regex;
 
     const component = {
-        toRegexString: () => {
-            return `(${innerRegex.toRegexString()})?`;
+        toRegexString: (baseComponent: RegexComponent) => {
+            return `(${innerRegex.toRegexString(baseComponent)})?`;
         },
     };
+
+    return component;
 };

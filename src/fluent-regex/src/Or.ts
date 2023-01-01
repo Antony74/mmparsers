@@ -17,13 +17,11 @@ const orWithState = (
         return r;
     });
 
-    const toRegexString = (): string => {
+    const toRegexString = (baseComponent: RegexComponent): string => {
         const name = state.groupName ? `?<${state.groupName}>` : '';
         return `(${name}${regexComponents
-            .map((r) => r.toRegexString())
-            .join('|')})${
-            component.getRegexQuantifier()
-        }`;
+            .map((r) => r.toRegexString(baseComponent))
+            .join('|')})${component.getRegexQuantifier()}`;
     };
 
     const component = {

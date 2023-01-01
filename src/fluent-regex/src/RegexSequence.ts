@@ -22,7 +22,7 @@ const regexSequenceWithState = (
         const startsWith = state.beginning ? '^' : '';
         const endsWith = state.end ? '$' : '';
         const finalRegex = regexComponents
-            .map((r) => r.toRegexString())
+            .map((r) => r.toRegexString(component))
             .join('');
         return `${startsWith}(${finalRegex})${component.getRegexQuantifier}${endsWith}`;
     };

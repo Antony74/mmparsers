@@ -1,12 +1,12 @@
 import { RegexFlags } from './RegexFlags';
 
 export interface RegexComponentProps {
-    toRegexString: () => string;
+    toRegexString: (baseComponent: RegexComponent) => string;
 }
 
 export interface RegexComponentState {
     regexQuantifier: string;
-    toRegexString: () => string;
+    toRegexString: (baseComponent: RegexComponent) => string;
 }
 
 export interface RegexComponent {
@@ -20,15 +20,13 @@ export interface RegexComponent {
     upToAmount: (amount: number) => RegexComponent;
     needsWrapping: (regexString: string) => boolean;
     toRegex: (...flags: RegexFlags[]) => RegExp;
-    toRegexString: () => string;
+    toRegexString: (baseComponent: RegexComponent) => string;
 }
 
 export const regexComponent = (props: RegexComponentProps): RegexComponent =>
     regexComponentWithState({ ...props, regexQuantifier: '' });
 
-const regexComponentWithState = (
-    state: RegexComponentState,
-) => {
+const regexComponentWithState = (state: RegexComponentState) => {
     const assertSingleQuantifier = () => {
         if (state.regexQuantifier)
             throw `Only a single quantifier can be used.\nYou already defined a quantifier for this component (${state.regexQuantifier})`;
@@ -100,7 +98,7 @@ const regexComponentWithState = (
             return true;
         },
         toRegex: (...flags: RegexFlags[]) => {
-            return new RegExp(state.toRegexString(), flags.join(''));
+            return new RegExp(state.toRegexString(component), flags.join(''));
         },
         toRegexString: state.toRegexString,
     };

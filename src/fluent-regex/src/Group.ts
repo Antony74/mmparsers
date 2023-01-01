@@ -20,8 +20,8 @@ const groupWithState = (
             throw `Invalid group name \'${groupName}\'.\nA group name can contain letters and numbers but must start with a letter.`;
     }
 
-    const toRegexString = (): string => {
-        const regexString = regex.toRegexString();
+    const toRegexString = (baseComponent: RegexComponent): string => {
+        const regexString = regex.toRegexString(baseComponent);
         const quantifier = component.getRegexQuantifier();
 
         if (state.nonCapturing) return `(?:${regexString})${quantifier}`;
