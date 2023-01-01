@@ -1,3 +1,14 @@
+//
+//                               PUBLIC DOMAIN
+// 
+//  This file has been released into the Public Domain per the
+//  Creative Commons CC0 1.0 Universal (CC0 1.0) Public Domain Dedication
+//  https://creativecommons.org/publicdomain/zero/1.0/
+// 
+// This lexical specification has been ported from the EBNF in the Metamath Book
+// https://github.com/metamath/metamath-book/blob/7f710a34054eb563dc3b34d5a03d723bb2a8e767/metamath.tex#L15572
+//
+
 import moo from 'moo';
 import { not, regexLiteral, regexSequence } from '../fluent-regex/src';
 import { anyWhitespace } from '../fluent-regex/src/RegexLiteral';
