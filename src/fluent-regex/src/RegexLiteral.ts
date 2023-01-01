@@ -34,33 +34,33 @@ export const regexLiteral = (
 };
 
 export const anyDigit = () => {
-    return regexLiteral(`\d`, { escapeSpecialCharacters: false });
+    return regexLiteral('\\d', { escapeSpecialCharacters: false });
 };
 
 export const anyNonDigit = () => {
-    return regexLiteral(`\D`, { escapeSpecialCharacters: false });
+    return regexLiteral('\\D', { escapeSpecialCharacters: false });
 };
 
 export const anyLetter = () => {
-    return regexLiteral(`[a-zA-Z]`, { escapeSpecialCharacters: false });
+    return regexLiteral('[a-zA-Z]', { escapeSpecialCharacters: false });
 };
 
 export const anyWhitespace = () => {
-    return regexLiteral(`\s`, { escapeSpecialCharacters: false });
+    return regexLiteral('\\s', { escapeSpecialCharacters: false });
 };
 
 export const anyNonWhitespace = () => {
-    return regexLiteral(`\S`, { escapeSpecialCharacters: false });
+    return regexLiteral('\\S', { escapeSpecialCharacters: false });
 };
 
 export const anyWordCharacter = () => {
-    return regexLiteral(`\w`, { escapeSpecialCharacters: false });
+    return regexLiteral('\\w', { escapeSpecialCharacters: false });
 };
 
 export const anyNonWordCharacter = () => {
-    return regexLiteral(`\W`, { escapeSpecialCharacters: false });
+    return regexLiteral('\\W', { escapeSpecialCharacters: false });
 };
 
 export const anyCharacterExceptNewline = () => {
-    return regexLiteral(`.`, { escapeSpecialCharacters: false });
+    return regexLiteral('.', { escapeSpecialCharacters: false });
 };
