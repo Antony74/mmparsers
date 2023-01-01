@@ -20,8 +20,6 @@ const _PRINTABLE_CHARACTER = literal('[\x21-\x7e]', {
 
 const PRINTABLE_SEQUENCE = _PRINTABLE_CHARACTER.onceOrMore();
 
-// MATH-SYMBOL ::= (_PRINTABLE-CHARACTER - '$')+
-
 // LABEL ::= ( _LETTER-OR-DIGIT | '.' | '-' | '_' )+
 
 // _LETTER-OR-DIGIT ::= [A-Za-z0-9]
@@ -29,21 +27,9 @@ const PRINTABLE_SEQUENCE = _PRINTABLE_CHARACTER.onceOrMore();
 // COMPRESSED-PROOF-BLOCK ::= ([A-Z] | '?')+
 
 /* Whitespace: (' ' | '\t' | '\r' | '\n' | '\f') */
-const _WHITECHAR = literal('[\\x20 | \\x09 | \\x0d | \\x0a | \\x0c]', {
+const _WHITECHAR = literal('[\\x20\\x09\\x0d\\x0a\\x0c]', {
     escapeSpecialCharacters: false,
 });
-
-/* Comments. $( ... $) and do not nest. */
-const _COMMENT = sequence(
-    literal('$('),
-    sequence().zeroOrMore(),
-    _WHITECHAR.onceOrMore(),
-    literal('$)'),
-    _WHITECHAR
-);
-
-// _COMMENT ::= '$(' (_WHITECHAR+ (PRINTABLE-SEQUENCE - '$)')*
-//   _WHITECHAR+ '$)' _WHITECHAR
 
 export const mooLexerRules: moo.Rules = {
     $c: '$c',
@@ -64,6 +50,7 @@ export const mooLexerRules: moo.Rules = {
         ).toRegex(),
         lineBreaks: true,
     },
+    //    MATH_SYMBOL: `[${_PRINTABLE_CHARACTER.toRegexString()}^\\$]+`,
 };
 
 console.log(mooLexerRules);
