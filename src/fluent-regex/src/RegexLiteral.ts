@@ -1,7 +1,7 @@
 import {
     RegexComponent,
     regexComponent,
-    ToRegexStringFn,
+    RegexStringCallback,
 } from './RegexComponent';
 
 export interface RegexLiteralConfiguration {
@@ -21,8 +21,8 @@ export const regexLiteral = (
     if (escapeSpecialCharacters)
         regexString = regexString.replace(regexEscapeCharacters, '\\$&');
 
-    const toRegexString: ToRegexStringFn = (
-        baseComponent: RegexComponent = component
+    const regexStringCallback: RegexStringCallback = (
+        baseComponent: RegexComponent
     ): string => {
         const q = baseComponent.getRegexQuantifier();
         if (!baseComponent.needsWrapping(regexString))
@@ -32,8 +32,7 @@ export const regexLiteral = (
     };
 
     const component = {
-        ...regexComponent({ toRegexString }),
-        toRegexString,
+        ...regexComponent({ regexStringCallback }),
     };
 
     return component;

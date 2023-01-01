@@ -1,19 +1,17 @@
 import {
     RegexComponent,
     regexComponent,
-    ToRegexStringFn,
+    RegexStringCallback,
 } from './RegexComponent';
 
 export const not = (regex: RegexComponent) => {
-    const toRegexString: ToRegexStringFn = (
-        baseComponent: RegexComponent = component
+    const regexStringCallback: RegexStringCallback = (
+        baseComponent: RegexComponent
     ): string => {
-        return `[^${regex.toRegexString(
-            regex
-        )}]${baseComponent.getRegexQuantifier()}`;
+        return `[^${regex.toRegexString()}]${baseComponent.getRegexQuantifier()}`;
     };
 
-    const component = { ...regexComponent({ toRegexString }), toRegexString };
+    const component = { ...regexComponent({ regexStringCallback }) };
 
     return component;
 };

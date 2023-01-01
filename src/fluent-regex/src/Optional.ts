@@ -5,13 +5,12 @@ export const optional = (regex: RegexComponent | string) => {
     const innerRegex: RegexComponent =
         typeof regex === 'string' ? regexLiteral(regex) : regex;
 
-    const toRegexString = () => {
-        return `(${innerRegex.toRegexString(innerRegex)})?`;
+    const regexStringCallback = () => {
+        return `(${innerRegex.toRegexString()})?`;
     };
 
     const component = {
-        ...regexComponent({ toRegexString }),
-        toRegexString,
+        ...regexComponent({ regexStringCallback }),
     };
 
     return component;

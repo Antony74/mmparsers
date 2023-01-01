@@ -1,7 +1,7 @@
 import {
     RegexComponent,
     regexComponent,
-    ToRegexStringFn,
+    RegexStringCallback,
 } from './RegexComponent';
 import { regexLiteral } from './RegexLiteral';
 
@@ -22,7 +22,7 @@ const regexSequenceWithState = (
         return r;
     });
 
-    const toRegexString: ToRegexStringFn = (
+    const regexStringCallback: RegexStringCallback = (
         baseComponent: RegexComponent = component
     ): string => {
         const startsWith = state.beginning ? '^' : '';
@@ -30,7 +30,7 @@ const regexSequenceWithState = (
 
         const finalRegex = regexComponents
             .map((r) => {
-                return r.toRegexString(r);
+                return r.toRegexString();
             })
             .join('');
 
@@ -41,7 +41,7 @@ const regexSequenceWithState = (
     };
 
     const component = {
-        ...regexComponent({ toRegexString }),
+        ...regexComponent({ regexStringCallback }),
         startsWith: () => {
             return regexSequenceWithState(
                 { ...state, beginning: true },
@@ -54,7 +54,6 @@ const regexSequenceWithState = (
                 ...components
             );
         },
-        toRegexString,
     };
 
     return component;

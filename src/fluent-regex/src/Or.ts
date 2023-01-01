@@ -1,7 +1,7 @@
 import {
     RegexComponent,
     regexComponent,
-    ToRegexStringFn,
+    RegexStringCallback,
 } from './RegexComponent';
 import { regexLiteral } from './RegexLiteral';
 
@@ -21,21 +21,20 @@ const orWithState = (
         return r;
     });
 
-    const toRegexString: ToRegexStringFn = (
-        baseComponent: RegexComponent = component
+    const regexStringCallback: RegexStringCallback = (
+        baseComponent: RegexComponent
     ): string => {
         const name = state.groupName ? `?<${state.groupName}>` : '';
         return `(${name}${regexComponents
-            .map((r) => r.toRegexString(baseComponent))
-            .join('|')})${component.getRegexQuantifier()}`;
+            .map((r) => r.toRegexString())
+            .join('|')})${baseComponent.getRegexQuantifier()}`;
     };
 
     const component = {
-        ...regexComponent({ toRegexString }),
+        ...regexComponent({ regexStringCallback }),
         withGroupName: (groupName: string) => {
             return orWithState({ groupName }, ...components);
         },
-        toRegexString,
     };
 
     return component;

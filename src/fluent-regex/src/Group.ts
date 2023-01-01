@@ -1,7 +1,7 @@
 import {
     regexComponent,
     RegexComponent,
-    ToRegexStringFn,
+    RegexStringCallback,
 } from './RegexComponent';
 import { or as importedOr } from './Or';
 
@@ -24,10 +24,8 @@ const groupWithState = (
             throw `Invalid group name \'${groupName}\'.\nA group name can contain letters and numbers but must start with a letter.`;
     }
 
-    const toRegexString: ToRegexStringFn = (
-        baseComponent: RegexComponent = component
-    ): string => {
-        const regexString = regex.toRegexString(baseComponent);
+    const regexStringCallback: RegexStringCallback = (): string => {
+        const regexString = regex.toRegexString();
         const quantifier = component.getRegexQuantifier();
 
         if (state.nonCapturing) return `(?:${regexString})${quantifier}`;
@@ -38,8 +36,7 @@ const groupWithState = (
     };
 
     const component = {
-        ...regexComponent({ toRegexString }),
-        toRegexString,
+        ...regexComponent({ regexStringCallback }),
     };
 
     return component;

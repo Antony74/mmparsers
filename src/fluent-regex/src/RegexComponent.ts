@@ -1,14 +1,14 @@
 import { RegexFlags } from './RegexFlags';
 
-export type ToRegexStringFn = (baseComponent?: RegexComponent) => string;
+export type RegexStringCallback = (baseComponent: RegexComponent) => string;
 
 export interface RegexComponentProps {
-    toRegexString: ToRegexStringFn;
+    regexStringCallback: RegexStringCallback;
 }
 
 export interface RegexComponentState {
     regexQuantifier: string;
-    toRegexString: ToRegexStringFn;
+    regexStringCallback: RegexStringCallback;
 }
 
 export interface RegexComponent {
@@ -22,7 +22,7 @@ export interface RegexComponent {
     upToAmount: (amount: number) => RegexComponent;
     needsWrapping: (regexString: string) => boolean;
     toRegex: (...flags: RegexFlags[]) => RegExp;
-    toRegexString: ToRegexStringFn;
+    toRegexString: () => string;
 }
 
 export const regexComponent = (props: RegexComponentProps): RegexComponent =>
@@ -100,9 +100,11 @@ const regexComponentWithState = (state: RegexComponentState) => {
             return true;
         },
         toRegex: (...flags: RegexFlags[]) => {
-            return new RegExp(state.toRegexString(component), flags.join(''));
+            return new RegExp(state.regexStringCallback(component), flags.join(''));
         },
-        toRegexString: state.toRegexString,
+        toRegexString: () => {
+            return state.regexStringCallback(component)
+        },
     };
 
     return component;
