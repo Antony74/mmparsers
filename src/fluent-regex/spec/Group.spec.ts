@@ -1,16 +1,12 @@
-import * as mocha from 'mocha';
-import * as chai from 'chai';
+import 'mocha';
+import { expect } from 'chai';
 
-import RegexLiteral from '../src/RegexLiteral';
-import Optional from '../src/Optional';
-import Group from '../src/Group';
-
-const expect = chai.expect;
-const assert = chai.assert;
+import * as RegexLiteral from '../src/RegexLiteral';
+import * as Group from '../src/Group';
 
 describe('Group', () => {
     it('simple named group', () => {
-        const r = new Group(
+        const r = Group.group(
             RegexLiteral.anyDigit().atLeastAmount(2),
             'group1'
         ).optional();

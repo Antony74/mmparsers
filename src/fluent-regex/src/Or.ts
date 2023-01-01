@@ -1,4 +1,8 @@
-import { RegexComponent, regexComponent } from './RegexComponent';
+import {
+    RegexComponent,
+    regexComponent,
+    ToRegexStringFn,
+} from './RegexComponent';
 import { regexLiteral } from './RegexLiteral';
 
 interface OrState {
@@ -6,7 +10,7 @@ interface OrState {
 }
 
 export const or = (...components: (RegexComponent | string)[]) =>
-    orWithState({ groupName: '' });
+    orWithState({ groupName: '' }, ...components);
 
 const orWithState = (
     state: OrState,
@@ -17,7 +21,9 @@ const orWithState = (
         return r;
     });
 
-    const toRegexString = (baseComponent: RegexComponent): string => {
+    const toRegexString: ToRegexStringFn = (
+        baseComponent: RegexComponent = component
+    ): string => {
         const name = state.groupName ? `?<${state.groupName}>` : '';
         return `(${name}${regexComponents
             .map((r) => r.toRegexString(baseComponent))
@@ -29,7 +35,6 @@ const orWithState = (
         withGroupName: (groupName: string) => {
             return orWithState({ groupName }, ...components);
         },
-
         toRegexString,
     };
 

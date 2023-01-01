@@ -1,12 +1,14 @@
 import { RegexFlags } from './RegexFlags';
 
+export type ToRegexStringFn = (baseComponent?: RegexComponent) => string;
+
 export interface RegexComponentProps {
-    toRegexString: (baseComponent: RegexComponent) => string;
+    toRegexString: ToRegexStringFn;
 }
 
 export interface RegexComponentState {
     regexQuantifier: string;
-    toRegexString: (baseComponent: RegexComponent) => string;
+    toRegexString: ToRegexStringFn;
 }
 
 export interface RegexComponent {
@@ -20,7 +22,7 @@ export interface RegexComponent {
     upToAmount: (amount: number) => RegexComponent;
     needsWrapping: (regexString: string) => boolean;
     toRegex: (...flags: RegexFlags[]) => RegExp;
-    toRegexString: (baseComponent: RegexComponent) => string;
+    toRegexString: ToRegexStringFn;
 }
 
 export const regexComponent = (props: RegexComponentProps): RegexComponent =>

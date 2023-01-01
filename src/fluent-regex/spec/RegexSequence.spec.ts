@@ -1,45 +1,44 @@
-import * as mocha from 'mocha';
+import 'mocha';
 import * as chai from 'chai';
 
-import RegexLiteral from '../src/RegexLiteral';
-import RegexSequence from '../src/RegexSequence';
-import Group from '../src/Group';
-import Or from '../src/Or';
-import { decodedTextSpanIntersectsWith } from 'typescript';
+import * as RegexLiteral from '../src/RegexLiteral';
+import { regexSequence } from '../src/RegexSequence';
+import * as Group from '../src/Group';
+import { or } from '../src/Or';
 
 const expect = chai.expect;
 const assert = chai.assert;
 
 describe('RegexSequence', () => {
     it('simple sequence', () => {
-        const r = new RegexSequence(
-            new RegexLiteral('gilly'),
-            new RegexLiteral('b'),
-            new RegexLiteral('@gmail'),
-            new RegexLiteral('.com')
+        const r = regexSequence(
+            RegexLiteral.regexLiteral('gilly'),
+            RegexLiteral.regexLiteral('b'),
+            RegexLiteral.regexLiteral('@gmail'),
+            RegexLiteral.regexLiteral('.com')
         );
         expect(r.toRegexString()).to.equal('gillyb@gmail\\.com');
     });
 
     it('simple sequence with quantifier', () => {
-        const r = new RegexSequence(
-            new RegexLiteral('gillyb'),
+        const r = regexSequence(
+            RegexLiteral.regexLiteral('gillyb'),
             RegexLiteral.anyDigit().optional()
         ).atLeastAmount(3);
         expect(r.toRegexString()).to.equal('(gillyb\\d?){3,}');
     });
 
     it('complex sequence', () => {
-        const r = new RegexSequence(
-            new Group(
-                new Or(
+        const r = regexSequence(
+            Group.group(
+                or(
                     RegexLiteral.anyDigit().exactAmount(3),
                     RegexLiteral.anyDigit().exactAmount(6)
                 ),
                 'group1'
             ),
             RegexLiteral.anyLetter().upToAmount(6),
-            Group.nonCapturing(new RegexLiteral('gillyb').optional())
+            Group.nonCapturing(RegexLiteral.regexLiteral('gillyb').optional())
         );
         expect(r.toRegexString()).to.equal(
             '(?<group1>(\\d{3}|\\d{6}))[a-zA-Z]{1,6}(?:(gillyb)?)'
@@ -47,11 +46,11 @@ describe('RegexSequence', () => {
     });
 
     it('starts with', () => {
-        const r = new RegexSequence('gilly').startsWith();
+        const r = regexSequence('gilly').startsWith();
         expect(r.toRegexString()).to.equal('^gilly');
     });
     it('ends with', () => {
-        const r = new RegexSequence('gilly').startsWith().endsWith();
+        const r = regexSequence('gilly').startsWith().endsWith();
         expect(r.toRegexString()).to.equal('^gilly$');
         r.atLeastAmount(3);
         expect(r.toRegexString()).to.equal('^(gilly){3,}$');

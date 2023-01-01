@@ -1,7 +1,7 @@
-import * as mocha from 'mocha';
+import 'mocha';
 import * as chai from 'chai';
 
-import RegexLiteral from '../src/RegexLiteral';
+import { regexLiteral } from '../src/RegexLiteral';
 import { RegexFlags } from '../src/RegexFlags';
 
 const expect = chai.expect;
@@ -9,12 +9,12 @@ const assert = chai.assert;
 
 describe('Flags', () => {
     it('no flags', () => {
-        const r = new RegexLiteral('gilly');
+        const r = regexLiteral('gilly');
         expect(r.toRegex().flags).to.equal('');
     });
 
     it('has some flags', () => {
-        const r = new RegexLiteral('gilly').toRegex(
+        const r = regexLiteral('gilly').toRegex(
             RegexFlags.IGNORE_CASE,
             RegexFlags.GLOBAL,
             RegexFlags.UNICODE

@@ -1,7 +1,13 @@
-import { RegexComponent, regexComponent } from './RegexComponent';
+import {
+    RegexComponent,
+    regexComponent,
+    ToRegexStringFn,
+} from './RegexComponent';
 
 export const not = (regex: RegexComponent) => {
-    const toRegexString = (baseComponent: RegexComponent): string => {
+    const toRegexString: ToRegexStringFn = (
+        baseComponent: RegexComponent = component
+    ): string => {
         return `[^${regex.toRegexString(
             regex
         )}]${baseComponent.getRegexQuantifier()}`;

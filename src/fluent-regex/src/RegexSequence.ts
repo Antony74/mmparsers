@@ -1,4 +1,8 @@
-import { RegexComponent, regexComponent } from './RegexComponent';
+import {
+    RegexComponent,
+    regexComponent,
+    ToRegexStringFn,
+} from './RegexComponent';
 import { regexLiteral } from './RegexLiteral';
 
 interface RegexSequeceState {
@@ -18,7 +22,9 @@ const regexSequenceWithState = (
         return r;
     });
 
-    const toRegexString = (baseComponent: RegexComponent): string => {
+    const toRegexString: ToRegexStringFn = (
+        baseComponent: RegexComponent = component
+    ): string => {
         const startsWith = state.beginning ? '^' : '';
         const endsWith = state.end ? '$' : '';
 
@@ -30,7 +36,7 @@ const regexSequenceWithState = (
 
         if (!baseComponent.getRegexQuantifier())
             return `${startsWith}${finalRegex}${endsWith}`;
-            
+
         return `${startsWith}(${finalRegex})${baseComponent.getRegexQuantifier()}${endsWith}`;
     };
 

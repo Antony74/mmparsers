@@ -1,4 +1,8 @@
-import { RegexComponent, regexComponent } from './RegexComponent';
+import {
+    RegexComponent,
+    regexComponent,
+    ToRegexStringFn,
+} from './RegexComponent';
 
 export interface RegexLiteralConfiguration {
     escapeSpecialCharacters?: boolean;
@@ -17,7 +21,9 @@ export const regexLiteral = (
     if (escapeSpecialCharacters)
         regexString = regexString.replace(regexEscapeCharacters, '\\$&');
 
-    const toRegexString = (baseComponent: RegexComponent): string => {
+    const toRegexString: ToRegexStringFn = (
+        baseComponent: RegexComponent = component
+    ): string => {
         const q = baseComponent.getRegexQuantifier();
         if (!baseComponent.needsWrapping(regexString))
             return `${regexString}${q}`;

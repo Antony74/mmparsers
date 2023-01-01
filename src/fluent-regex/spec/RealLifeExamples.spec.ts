@@ -1,12 +1,12 @@
 import * as mocha from 'mocha';
 import * as chai from 'chai';
 
-import { Regex as R } from '../src/Regex';
-import RegexLiteral from '../src/RegexLiteral';
-import Optional from '../src/Optional';
-import Or from '../src/Or';
-import RegexSequence from '../src/RegexSequence';
-import Group from '../src/Group';
+import * as R from '../src/Regex';
+import * as RegexLiteral from '../src/RegexLiteral';
+import { optional } from '../src/Optional';
+import { or } from '../src/Or';
+import { regexSequence } from '../src/RegexSequence';
+import * as Group from '../src/Group';
 import { RegexFlags } from '../src/RegexFlags';
 import { isJSDocOptionalType } from 'typescript';
 
@@ -23,7 +23,7 @@ const assert = chai.assert;
 describe('Real life examples', () => {
     it('american phone number', () => {
         const r = R.sequence(
-            new RegexSequence(
+            regexSequence(
                 '(',
                 RegexLiteral.anyDigit().exactAmount(3),
                 ')-'
