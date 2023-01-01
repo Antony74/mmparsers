@@ -1,4 +1,4 @@
-import { regexComponent, RegexComponentProps } from './RegexComponent';
+import { regexComponent } from './RegexComponent';
 
 export interface RegexLiteralConfiguration {
     escapeSpecialCharacters?: boolean;
