@@ -18,13 +18,20 @@ const regexSequenceWithState = (
         return r;
     });
 
-    const toRegexString = (): string => {
+    const toRegexString = (baseComponent: RegexComponent): string => {
         const startsWith = state.beginning ? '^' : '';
         const endsWith = state.end ? '$' : '';
+
         const finalRegex = regexComponents
-            .map((r) => r.toRegexString(component))
+            .map((r) => {
+                return r.toRegexString(r);
+            })
             .join('');
-        return `${startsWith}(${finalRegex})${component.getRegexQuantifier()}${endsWith}`;
+
+        if (!baseComponent.getRegexQuantifier())
+            return `${startsWith}${finalRegex}${endsWith}`;
+            
+        return `${startsWith}(${finalRegex})${baseComponent.getRegexQuantifier()}${endsWith}`;
     };
 
     const component = {
