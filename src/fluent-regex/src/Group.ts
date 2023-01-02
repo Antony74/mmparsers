@@ -6,7 +6,6 @@ import {
 import { or as importedOr } from './Or';
 import { sequence } from './Regex';
 import { regexLiteral } from './RegexLiteral';
-import { not } from './Not';
 
 interface GroupState {
     nonCapturing: boolean;
@@ -42,7 +41,7 @@ const groupWithState = (
 
     const component = {
         ...regexComponent({ regexStringCallback }),
-        not: (negatedComponent: RegexComponent) => {
+        exclude: (negatedComponent: RegexComponent) => {
             return groupWithState(
                 state,
                 sequence(
@@ -58,7 +57,7 @@ const groupWithState = (
     const aggregatedComponent = {
         ...component,
         onceOrMore: () => {
-            return { not: component.not, ...component.onceOrMore() };
+            return { exclude: component.exclude, ...component.onceOrMore() };
         },
     };
 

@@ -55,7 +55,7 @@ export const mooLexerRules: moo.Rules = {
             nonCapturingGroup(
                 sequence(
                     _WHITECHAR.onceOrMore(),
-                    nonCapturingGroup(PRINTABLE_SEQUENCE).not(literal('$)'))
+                    nonCapturingGroup(PRINTABLE_SEQUENCE).exclude(literal('$)'))
                 )
             ).zeroOrMore(),
             _WHITECHAR.onceOrMore(),
@@ -78,7 +78,7 @@ export const mooLexerRules: moo.Rules = {
         .onceOrMore()
         .toRegex(),
     // TEXT3: a MATH_SYMBOL
-    TEXT3: _PRINTABLE_CHARACTER.not(literal('$')).onceOrMore().toRegex(),
+    TEXT3: _PRINTABLE_CHARACTER.exclude(literal('$')).onceOrMore().toRegex(),
 };
 
 console.log(mooLexerRules);
