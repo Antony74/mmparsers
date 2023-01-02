@@ -16,7 +16,6 @@ import {
     sequence,
     unescapedLiteral,
 } from '../fluent-regex/src/Regex';
-import { not } from '../fluent-regex/src';
 
 /* ASCII non-whitespace printable characters */
 const _PRINTABLE_CHARACTER = nonCapturingGroup(
@@ -45,8 +44,12 @@ export const mooLexerRules: moo.Rules = {
     _COMMENT: {
         match: sequence(
             literal('$('),
-            _WHITECHAR.onceOrMore(),
-            /*PRINTABLE_SEQUENCE.*/ not(literal('$)')).zeroOrMore(),
+            nonCapturingGroup(
+                sequence(
+                    _WHITECHAR.onceOrMore(),
+                    nonCapturingGroup(PRINTABLE_SEQUENCE).not(literal('$)'))
+                )
+            ).zeroOrMore(),
             _WHITECHAR.onceOrMore(),
             literal('$)')
         ).toRegex(),
