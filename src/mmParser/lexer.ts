@@ -10,7 +10,6 @@
 //
 
 import moo from 'moo';
-import { or } from '../fluent-regex/src/Or';
 import {
     literal,
     nonCapturingGroup,
@@ -43,6 +42,7 @@ export const mooLexerRules: moo.Rules = {
     '$[': '$]',
     '${': '${',
     '$}': '$}',
+    '?' : '?',
     /* Define whitespace between tokens. */
     WHITESPACE: {
         match: _WHITECHAR.onceOrMore().toRegex(),
