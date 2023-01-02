@@ -10,6 +10,7 @@
 //
 
 import moo from 'moo';
+import { or } from '../fluent-regex/src/Or';
 import {
     literal,
     nonCapturingGroup,
@@ -24,17 +25,24 @@ const _PRINTABLE_CHARACTER = nonCapturingGroup(
 
 const PRINTABLE_SEQUENCE = _PRINTABLE_CHARACTER.onceOrMore();
 
-// LABEL ::= ( _LETTER-OR-DIGIT | '.' | '-' | '_' )+
-
-// _LETTER-OR-DIGIT ::= [A-Za-z0-9]
-
-// COMPRESSED-PROOF-BLOCK ::= ([A-Z] | '?')+
+const _LETTER_OR_DIGIT = unescapedLiteral('[A-Za-z0-9]');
 
 /* Whitespace: (' ' | '\t' | '\r' | '\n' | '\f') */
 const _WHITECHAR = unescapedLiteral('[\\x20\\x09\\x0d\\x0a\\x0c]');
 
 export const mooLexerRules: moo.Rules = {
+    '$.': '$.',
+    '$=': '$=',
+    $a: '$a',
     $c: '$c',
+    $d: '$d',
+    $e: '$e',
+    $f: '$f',
+    $p: '$p',
+    $v: '$v',
+    '$[': '$]',
+    '${': '${',
+    '$}': '$}',
     /* Define whitespace between tokens. */
     WHITESPACE: {
         match: _WHITECHAR.onceOrMore().toRegex(),
@@ -55,7 +63,22 @@ export const mooLexerRules: moo.Rules = {
         ).toRegex(),
         lineBreaks: true,
     },
-    MATH_SYMBOL: _PRINTABLE_CHARACTER.not(literal('$')).onceOrMore().toRegex(),
+    // Note that COMPRESSED_PROOF_BLOCK, LABEL, and MATH_SYMBOL, are not lexically distinct.
+    // Later on in the process the parser will be able to tell them apart by the context in
+    // which they appear, but the lexer can't tell them apart properly.
+    // TEXT1: this is the spec for a COMPRESSED_PROOF_BLOCK, but it might match a LABEL,
+    // or MATH_SYMBOL instead
+    TEXT1: nonCapturingGroup(sequence(unescapedLiteral('[A-Z]'), literal('?')))
+        .onceOrMore()
+        .toRegex(),
+    // TEXT2: this is the spec for LABEL, but it might match a MATH_SYMBOL instead
+    TEXT2: nonCapturingGroup(
+        sequence(_LETTER_OR_DIGIT, literal('.'), literal('-'), literal('_'))
+    )
+        .onceOrMore()
+        .toRegex(),
+    // TEXT3: a MATH_SYMBOL
+    TEXT3: _PRINTABLE_CHARACTER.not(literal('$')).onceOrMore().toRegex(),
 };
 
 console.log(mooLexerRules);
