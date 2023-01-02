@@ -23,10 +23,14 @@ const main = async () => {
         console.log(tokens);
     };
 
-    const parse = (text: string) => {
+    const parse = async (text: string) => {
         parser.feed(text);
 
         if (parser.results.length > 1) {
+            await fs.writeFile(
+                'ambigious.json',
+                JSON.stringify(parser.results, null, 4)
+            );
             throw new Error('Ambigious');
         } else if (parser.results.length < 1) {
             throw new Error('No results');
@@ -36,7 +40,7 @@ const main = async () => {
     };
 
     const filename = path.join(__dirname, '..', 'examples', 'demo0.mm');
-//    const filename = '/set.mm/set.mm';
+    //    const filename = '/set.mm/set.mm';
     const text = await fs.readFile(filename, { encoding: 'utf-8' });
 
     parse(text);
