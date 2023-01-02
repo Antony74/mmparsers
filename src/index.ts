@@ -39,7 +39,7 @@ const main = async () => {
 //    const filename = '/set.mm/set.mm';
     const text = await fs.readFile(filename, { encoding: 'utf-8' });
 
-    lex(text);
+    parse(text);
 };
 
 main();
