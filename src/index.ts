@@ -8,7 +8,7 @@ const grammar = require('./mmParser/mmParser');
 const main = async () => {
     const parser = new nearley.Parser(nearley.Grammar.fromCompiled(grammar));
 
-    const lex = (text: string) => {
+    const lex = async (text: string) => {
         // console.log(mooLexerRules);
 
         lexer.reset(text);
@@ -20,7 +20,8 @@ const main = async () => {
             tokens.push(token);
         }
 
-        console.log(tokens);
+        await fs.writeFile(`${filename}.tokens.json`, JSON.stringify(tokens, null ,4))
+        return tokens;
     };
 
     const parse = async (text: string) => {
@@ -36,12 +37,19 @@ const main = async () => {
             throw new Error('No results');
         }
 
-        console.log(JSON.stringify(parser.results[0], null, 4));
+        const result = parser.results[0];
+        await fs.writeFile(`${filename}.json`, JSON.stringify(result, null ,4))
+        return result;
     };
 
-    const filename = path.join(__dirname, '..', 'examples', 'demo0.mm');
-    //    const filename = '/set.mm/set.mm';
-    const text = await fs.readFile(filename, { encoding: 'utf-8' });
+    const filepath = path.join(__dirname, '..', 'examples', 'demo0.mm');
+    // const filepath = '/set.mm/set.mm';
+    const parsedFilePath = path.parse(filepath);
+    const filename = `${parsedFilePath.name}${parsedFilePath.ext}`;
+    const text = await fs.readFile(filepath, { encoding: 'utf-8' });
+
+    // Note the lexing is built into the parser, we only do both in order to capture the intermediate output
+    lex(text);
 
     parse(text);
 };
