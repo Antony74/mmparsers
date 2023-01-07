@@ -4,24 +4,46 @@
 function id(x) { return x[0]; }
 
 const { lexer } = require('./lexer');
+
+const minToken = (t) => {
+  const {type, text} = t;
+  return {type, text};
+};
+
+const filterNulls = (item) => item !== null;
+
 var grammar = {
     Lexer: lexer,
     ParserRules: [
     {"name": "database$ebnf$1", "symbols": []},
     {"name": "database$ebnf$1$subexpression$1", "symbols": ["outermost_scope_stmt"]},
     {"name": "database$ebnf$1", "symbols": ["database$ebnf$1", "database$ebnf$1$subexpression$1"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
-    {"name": "database", "symbols": ["database$ebnf$1"]},
+    {"name": "database", "symbols": ["database$ebnf$1"], "postprocess": d => {return {type: 'database', children: d.flat(3)}}},
     {"name": "outermost_scope_stmt", "symbols": ["include_stmt"]},
     {"name": "outermost_scope_stmt", "symbols": ["constant_stmt"]},
     {"name": "outermost_scope_stmt", "symbols": ["stmt"]},
-    {"name": "outermost_scope_stmt", "symbols": [(lexer.has("WHITESPACE") ? {type: "WHITESPACE"} : WHITESPACE)]},
-    {"name": "outermost_scope_stmt", "symbols": [(lexer.has("_COMMENT") ? {type: "_COMMENT"} : _COMMENT)]},
+    {"name": "outermost_scope_stmt", "symbols": ["whitespace"]},
+    {"name": "outermost_scope_stmt", "symbols": ["comment"]},
     {"name": "include_stmt", "symbols": [{"literal":"$["}, "filename", {"literal":"$]"}]},
     {"name": "constant_stmt$ebnf$1$subexpression$1", "symbols": ["constant", "_"]},
     {"name": "constant_stmt$ebnf$1", "symbols": ["constant_stmt$ebnf$1$subexpression$1"]},
     {"name": "constant_stmt$ebnf$1$subexpression$2", "symbols": ["constant", "_"]},
     {"name": "constant_stmt$ebnf$1", "symbols": ["constant_stmt$ebnf$1", "constant_stmt$ebnf$1$subexpression$2"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
-    {"name": "constant_stmt", "symbols": [{"literal":"$c"}, "_", "constant_stmt$ebnf$1", {"literal":"$."}]},
+    {"name": "constant_stmt", "symbols": [{"literal":"$c"}, "_", "constant_stmt$ebnf$1", {"literal":"$."}], "postprocess":  d => {
+          d = d.flat(Number.MAX_SAFE_INTEGER);
+          return {
+            type: 'constant_stmt',
+            children: [
+              minToken(d[0]),
+              d[1],
+              {
+                type: 'constants',
+                text: d.slice(2, -1).map(minToken)
+              },
+              minToken(d[d.length - 1])
+           ]
+          };
+        } },
     {"name": "stmt", "symbols": ["block"]},
     {"name": "stmt", "symbols": ["variable_stmt"]},
     {"name": "stmt", "symbols": ["disjoint_stmt"]},
@@ -35,7 +57,21 @@ var grammar = {
     {"name": "variable_stmt$ebnf$1", "symbols": ["variable_stmt$ebnf$1$subexpression$1"]},
     {"name": "variable_stmt$ebnf$1$subexpression$2", "symbols": ["_", "variable"]},
     {"name": "variable_stmt$ebnf$1", "symbols": ["variable_stmt$ebnf$1", "variable_stmt$ebnf$1$subexpression$2"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
-    {"name": "variable_stmt", "symbols": [{"literal":"$v"}, "variable_stmt$ebnf$1", "_", {"literal":"$."}]},
+    {"name": "variable_stmt", "symbols": [{"literal":"$v"}, "variable_stmt$ebnf$1", "_", {"literal":"$."}], "postprocess":  d => {
+          d = d.flat(Number.MAX_SAFE_INTEGER);
+          return {
+            type: 'variable_stmt',
+            children: [
+              minToken(d[0]),
+              d[1],
+              {
+                type: 'variables',
+                text: d.slice(2, -1).map(minToken)
+              },
+              minToken(d[d.length - 1])
+           ]
+          };
+        } },
     {"name": "disjoint_stmt$ebnf$1", "symbols": []},
     {"name": "disjoint_stmt$ebnf$1$subexpression$1", "symbols": ["variable"]},
     {"name": "disjoint_stmt$ebnf$1", "symbols": ["disjoint_stmt$ebnf$1", "disjoint_stmt$ebnf$1$subexpression$1"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
@@ -89,10 +125,12 @@ var grammar = {
     {"name": "MATH_SYMBOL", "symbols": [(lexer.has("TEXT1") ? {type: "TEXT1"} : TEXT1)]},
     {"name": "MATH_SYMBOL", "symbols": [(lexer.has("TEXT2") ? {type: "TEXT2"} : TEXT2)]},
     {"name": "MATH_SYMBOL", "symbols": [(lexer.has("TEXT3") ? {type: "TEXT3"} : TEXT3)]},
-    {"name": "_$ebnf$1$subexpression$1", "symbols": [(lexer.has("_COMMENT") ? {type: "_COMMENT"} : _COMMENT), "_"]},
+    {"name": "_$ebnf$1$subexpression$1", "symbols": ["comment", "_"]},
     {"name": "_$ebnf$1", "symbols": ["_$ebnf$1$subexpression$1"], "postprocess": id},
     {"name": "_$ebnf$1", "symbols": [], "postprocess": function(d) {return null;}},
-    {"name": "_", "symbols": [(lexer.has("WHITESPACE") ? {type: "WHITESPACE"} : WHITESPACE), "_$ebnf$1"]}
+    {"name": "_", "symbols": ["whitespace", "_$ebnf$1"], "postprocess": d => d.filter(filterNulls)},
+    {"name": "whitespace", "symbols": [(lexer.has("WHITESPACE") ? {type: "WHITESPACE"} : WHITESPACE)], "postprocess": d => minToken(d[0])},
+    {"name": "comment", "symbols": [(lexer.has("_COMMENT") ? {type: "_COMMENT"} : _COMMENT)], "postprocess": d => minToken(d[0])}
 ]
   , ParserStart: "database"
 }
