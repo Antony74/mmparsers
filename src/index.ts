@@ -1,6 +1,6 @@
 import fs from 'fs/promises';
 import path from 'path';
-import { lexer, mooLexerRules } from './mmParser/lexer';
+import { lexer } from './mmParser/lexer';
 import nearley from 'nearley';
 
 const grammar = require('./mmParser/mmParser');
@@ -9,8 +9,6 @@ const main = async () => {
     const parser = new nearley.Parser(nearley.Grammar.fromCompiled(grammar));
 
     const lex = async (text: string) => {
-        // console.log(mooLexerRules);
-
         lexer.reset(text);
 
         let token: moo.Token | undefined;
@@ -26,6 +24,7 @@ const main = async () => {
 
     const parse = async (text: string) => {
         parser.feed(text);
+        parser.finish();
 
         if (parser.results.length > 1) {
             await fs.writeFile(
