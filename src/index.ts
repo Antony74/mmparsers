@@ -28,10 +28,10 @@ const main = async () => {
 
         if (parser.results.length > 1) {
             await fs.writeFile(
-                'ambigious.json',
+                'ambiguous.json',
                 JSON.stringify(parser.results, null, 4)
             );
-            throw new Error('Ambigious');
+            throw new Error('Ambiguous');
         } else if (parser.results.length < 1) {
             throw new Error('No results');
         }
