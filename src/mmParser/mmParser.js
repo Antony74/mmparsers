@@ -10,6 +10,8 @@ const minToken = (t) => {
   return {type, text};
 };
 
+const popWhitespace = (item) => item.length === 1 ? item[0] : item
+
 var grammar = {
     Lexer: lexer,
     ParserRules: [
@@ -55,10 +57,16 @@ var grammar = {
             type: 'block',
             children: [
               minToken(d[0]),
-              d[1].flat(),
+              popWhitespace(d[1]),
               {
                 type: 'statements',
-                children: d[2].flat(3)
+                children: d[2].flat(3).map((item, index) => {
+                  if (index % 2) {
+                    return popWhitespace(item);
+                  } else {
+                    return item;
+                  }
+                })
               },
               d[3],
             ]

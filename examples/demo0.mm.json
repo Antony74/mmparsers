@@ -1058,12 +1058,10 @@
                     "type": "${",
                     "text": "${"
                 },
-                [
-                    {
-                        "type": "WHITESPACE",
-                        "text": "\r\n       "
-                    }
-                ],
+                {
+                    "type": "WHITESPACE",
+                    "text": "\r\n       "
+                },
                 {
                     "type": "statements",
                     "children": [
@@ -1203,12 +1201,10 @@
                             "type": "_COMMENT",
                             "text": "$( Define the modus ponens inference rule $)"
                         },
-                        [
-                            {
-                                "type": "WHITESPACE",
-                                "text": "\r\n       "
-                            }
-                        ],
+                        {
+                            "type": "WHITESPACE",
+                            "text": "\r\n       "
+                        },
                         {
                             "type": "axiom_stmt",
                             "children": [
