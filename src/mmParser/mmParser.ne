@@ -45,7 +45,7 @@ stmt -> block
   | variable_stmt
   | disjoint_stmt
   | hypothesis_stmt {% d => d.flat() %}
-  | assert_stmt
+  | assert_stmt {% d => d.flat() %}
 
 # A block. You can have 0 statements in a block.
 block -> "${" _ ( stmt _ ):* "$}"
@@ -98,7 +98,23 @@ essential_stmt -> LABEL _ "$e" _ typecode _ ( MATH_SYMBOL _ ):* "$."
 assert_stmt -> axiom_stmt | provable_stmt
 
 # Axiomatic assertion.
-axiom_stmt -> LABEL _ "$a" _ typecode _ ( MATH_SYMBOL _ ):* "$."
+axiom_stmt -> LABEL _ "$a" _ typecode _ ( MATH_SYMBOL _ ):* "$." {% d => {
+  d = d.flat(Number.MAX_SAFE_INTEGER);
+  return {
+    type: 'axiom_stmt',
+    children: [
+      minToken(d[0]),
+      minToken(d[1]),
+      minToken(d[2]),
+      minToken(d[3]),
+      {
+        type: 'assertion',
+        text: d.slice(4, -1).map(minToken)
+      },
+      minToken(d[d.length - 1])
+    ]
+  }
+} %}
 
 # Provable assertion.
 provable_stmt -> LABEL _ "$p" _ typecode _ ( MATH_SYMBOL _ ):*

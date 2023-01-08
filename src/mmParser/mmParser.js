@@ -10,8 +10,6 @@ const minToken = (t) => {
   return {type, text};
 };
 
-const filterNulls = (item) => item !== null;
-
 var grammar = {
     Lexer: lexer,
     ParserRules: [
@@ -48,7 +46,7 @@ var grammar = {
     {"name": "stmt", "symbols": ["variable_stmt"]},
     {"name": "stmt", "symbols": ["disjoint_stmt"]},
     {"name": "stmt", "symbols": ["hypothesis_stmt"], "postprocess": d => d.flat()},
-    {"name": "stmt", "symbols": ["assert_stmt"]},
+    {"name": "stmt", "symbols": ["assert_stmt"], "postprocess": d => d.flat()},
     {"name": "block$ebnf$1", "symbols": []},
     {"name": "block$ebnf$1$subexpression$1", "symbols": ["stmt", "_"]},
     {"name": "block$ebnf$1", "symbols": ["block$ebnf$1", "block$ebnf$1$subexpression$1"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
@@ -104,7 +102,23 @@ var grammar = {
     {"name": "axiom_stmt$ebnf$1", "symbols": []},
     {"name": "axiom_stmt$ebnf$1$subexpression$1", "symbols": ["MATH_SYMBOL", "_"]},
     {"name": "axiom_stmt$ebnf$1", "symbols": ["axiom_stmt$ebnf$1", "axiom_stmt$ebnf$1$subexpression$1"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
-    {"name": "axiom_stmt", "symbols": ["LABEL", "_", {"literal":"$a"}, "_", "typecode", "_", "axiom_stmt$ebnf$1", {"literal":"$."}]},
+    {"name": "axiom_stmt", "symbols": ["LABEL", "_", {"literal":"$a"}, "_", "typecode", "_", "axiom_stmt$ebnf$1", {"literal":"$."}], "postprocess":  d => {
+          d = d.flat(Number.MAX_SAFE_INTEGER);
+          return {
+            type: 'axiom_stmt',
+            children: [
+              minToken(d[0]),
+              minToken(d[1]),
+              minToken(d[2]),
+              minToken(d[3]),
+              {
+                type: 'assertion',
+                text: d.slice(4, -1).map(minToken)
+              },
+              minToken(d[d.length - 1])
+            ]
+          }
+        } },
     {"name": "provable_stmt$ebnf$1", "symbols": []},
     {"name": "provable_stmt$ebnf$1$subexpression$1", "symbols": ["MATH_SYMBOL", "_"]},
     {"name": "provable_stmt$ebnf$1", "symbols": ["provable_stmt$ebnf$1", "provable_stmt$ebnf$1$subexpression$1"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
@@ -144,7 +158,7 @@ var grammar = {
     {"name": "_$ebnf$1$subexpression$1", "symbols": ["comment", "_"]},
     {"name": "_$ebnf$1", "symbols": ["_$ebnf$1$subexpression$1"], "postprocess": id},
     {"name": "_$ebnf$1", "symbols": [], "postprocess": function(d) {return null;}},
-    {"name": "_", "symbols": ["whitespace", "_$ebnf$1"], "postprocess": d => d.filter(filterNulls)},
+    {"name": "_", "symbols": ["whitespace", "_$ebnf$1"], "postprocess": d => d.filter((item) => item !== null)},
     {"name": "whitespace", "symbols": [(lexer.has("WHITESPACE") ? {type: "WHITESPACE"} : WHITESPACE)], "postprocess": d => minToken(d[0])},
     {"name": "comment", "symbols": [(lexer.has("_COMMENT") ? {type: "_COMMENT"} : _COMMENT)], "postprocess": d => minToken(d[0])}
 ]
