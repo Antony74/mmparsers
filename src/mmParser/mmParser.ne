@@ -71,7 +71,23 @@ variable_stmt -> "$v" ( _ variable ):+ _ "$." {% d => {
 # 2 variables, i.e., "variable*" is empty for them.
 disjoint_stmt -> "$d" variable variable ( variable ):* "$."
 
-hypothesis_stmt -> floating_stmt | essential_stmt
+hypothesis_stmt -> floating_stmt | essential_stmt {% d => {
+  d = d.flat(Number.MAX_SAFE_INTEGER);
+  return {
+    type: 'essential_stmt',
+    children: [
+      minToken(d[0]),
+      minToken(d[1]),
+      minToken(d[2]),
+      minToken(d[3]),
+      {
+        type: 'statement',
+        text: d.slice(4, -1).map(minToken)
+      },
+      minToken(d[d.length - 1])
+    ]
+  }
+} %}
 
 # Floating (variable-type) hypothesis.
 floating_stmt -> LABEL _ "$f" _ typecode _ variable _ "$." {% d => {
