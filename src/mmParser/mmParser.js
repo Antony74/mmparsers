@@ -75,7 +75,23 @@ var grammar = {
     {"name": "disjoint_stmt$ebnf$1", "symbols": ["disjoint_stmt$ebnf$1", "disjoint_stmt$ebnf$1$subexpression$1"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
     {"name": "disjoint_stmt", "symbols": [{"literal":"$d"}, "variable", "variable", "disjoint_stmt$ebnf$1", {"literal":"$."}]},
     {"name": "hypothesis_stmt", "symbols": ["floating_stmt"]},
-    {"name": "hypothesis_stmt", "symbols": ["essential_stmt"]},
+    {"name": "hypothesis_stmt", "symbols": ["essential_stmt"], "postprocess":  d => {
+          d = d.flat(Number.MAX_SAFE_INTEGER);
+          return {
+            type: 'essential_stmt',
+            children: [
+              minToken(d[0]),
+              minToken(d[1]),
+              minToken(d[2]),
+              minToken(d[3]),
+              {
+                type: 'statement',
+                text: d.slice(4, -1).map(minToken)
+              },
+              minToken(d[d.length - 1])
+            ]
+          }
+        } },
     {"name": "floating_stmt", "symbols": ["LABEL", "_", {"literal":"$f"}, "_", "typecode", "_", "variable", "_", {"literal":"$."}], "postprocess":  d => {
           d = d.flat(Number.MAX_SAFE_INTEGER);
           return {

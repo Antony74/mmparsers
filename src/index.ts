@@ -8,20 +8,6 @@ const grammar = require('./mmParser/mmParser');
 const main = async () => {
     const parser = new nearley.Parser(nearley.Grammar.fromCompiled(grammar));
 
-    const lex = async (text: string) => {
-        lexer.reset(text);
-
-        let token: moo.Token | undefined;
-        const tokens: moo.Token[] = [];
-
-        while ((token = lexer.next())) {
-            tokens.push(token);
-        }
-
-        await fs.writeFile(`${filename}.tokens.json`, JSON.stringify(tokens, null ,4))
-        return tokens;
-    };
-
     const parse = async (text: string) => {
         parser.feed(text);
         parser.finish();
@@ -37,7 +23,7 @@ const main = async () => {
         }
 
         const result = parser.results[0];
-        await fs.writeFile(`${filename}.json`, JSON.stringify(result, null ,4))
+        await fs.writeFile(`examples/${filename}.json`, JSON.stringify(result, null ,4))
         return result;
     };
 
@@ -46,9 +32,6 @@ const main = async () => {
     const parsedFilePath = path.parse(filepath);
     const filename = `${parsedFilePath.name}${parsedFilePath.ext}`;
     const text = await fs.readFile(filepath, { encoding: 'utf-8' });
-
-    // Note the lexing is built into the parser, we only do both in order to capture the intermediate output
-    lex(text);
 
     parse(text);
 };
