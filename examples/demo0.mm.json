@@ -1051,25 +1051,22 @@
             "type": "WHITESPACE",
             "text": "\r\n    "
         },
-        [
-            {
-                "type": "${",
-                "value": "${",
-                "text": "${",
-                "offset": 1053,
-                "lineBreaks": 0,
-                "line": 38,
-                "col": 5
-            },
-            [
+        {
+            "type": "block",
+            "children": [
                 {
-                    "type": "WHITESPACE",
-                    "text": "\r\n       "
-                }
-            ],
-            [
+                    "type": "${",
+                    "text": "${"
+                },
                 [
-                    [
+                    {
+                        "type": "WHITESPACE",
+                        "text": "\r\n       "
+                    }
+                ],
+                {
+                    "type": "statements",
+                    "children": [
                         {
                             "type": "essential_stmt",
                             "children": [
@@ -1115,17 +1112,11 @@
                                     "text": "$."
                                 }
                             ]
-                        }
-                    ],
-                    [
+                        },
                         {
                             "type": "WHITESPACE",
                             "text": "\r\n       "
-                        }
-                    ]
-                ],
-                [
-                    [
+                        },
                         {
                             "type": "essential_stmt",
                             "children": [
@@ -1203,29 +1194,21 @@
                                     "text": "$."
                                 }
                             ]
-                        }
-                    ],
-                    [
+                        },
                         {
                             "type": "WHITESPACE",
                             "text": "\r\n"
                         },
+                        {
+                            "type": "_COMMENT",
+                            "text": "$( Define the modus ponens inference rule $)"
+                        },
                         [
                             {
-                                "type": "_COMMENT",
-                                "text": "$( Define the modus ponens inference rule $)"
-                            },
-                            [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": "\r\n       "
-                                }
-                            ]
-                        ]
-                    ]
-                ],
-                [
-                    [
+                                "type": "WHITESPACE",
+                                "text": "\r\n       "
+                            }
+                        ],
                         {
                             "type": "axiom_stmt",
                             "children": [
@@ -1271,26 +1254,24 @@
                                     "text": "$."
                                 }
                             ]
-                        }
-                    ],
-                    [
+                        },
                         {
                             "type": "WHITESPACE",
                             "text": "\r\n    "
                         }
                     ]
-                ]
-            ],
-            {
-                "type": "$}",
-                "value": "$}",
-                "text": "$}",
-                "offset": 1185,
-                "lineBreaks": 0,
-                "line": 43,
-                "col": 5
-            }
-        ],
+                },
+                {
+                    "type": "$}",
+                    "value": "$}",
+                    "text": "$}",
+                    "offset": 1185,
+                    "lineBreaks": 0,
+                    "line": 43,
+                    "col": 5
+                }
+            ]
+        },
         {
             "type": "WHITESPACE",
             "text": "\r\n"

@@ -48,7 +48,20 @@ stmt -> block
   | assert_stmt {% d => d.flat() %}
 
 # A block. You can have 0 statements in a block.
-block -> "${" _ ( stmt _ ):* "$}"
+block -> "${" _ ( stmt _ ):* "$}" {% d => {
+  return {
+    type: 'block',
+    children: [
+      minToken(d[0]),
+      d[1],
+      {
+        type: 'statements',
+        children: d[2].flat(3)
+      },
+      d[3],
+    ]
+  };
+} %}
 
 # Variable symbols declaration.
 variable_stmt -> "$v" ( _ variable ):+ _ "$." {% d => {

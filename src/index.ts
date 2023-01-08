@@ -1,6 +1,5 @@
 import fs from 'fs/promises';
 import path from 'path';
-import { lexer } from './mmParser/lexer';
 import nearley from 'nearley';
 
 const grammar = require('./mmParser/mmParser');
