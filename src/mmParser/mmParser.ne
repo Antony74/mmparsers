@@ -17,7 +17,7 @@ database -> ( outermost_scope_stmt ):* {% d => {return {type: 'database', childr
 outermost_scope_stmt ->
   include_stmt    
   | constant_stmt 
-  | stmt         
+  | stmt {% d => d.flat() %}
   | whitespace   
   | comment 
 
@@ -43,8 +43,11 @@ constant_stmt -> "$c" _ ( constant _ ):+ "$." {% d => {
 } %}
 
 # A normal statement can occur in any scope.
-stmt -> block | variable_stmt | disjoint_stmt |
-  hypothesis_stmt | assert_stmt 
+stmt -> block
+  | variable_stmt
+  | disjoint_stmt
+  | hypothesis_stmt {% d => d.flat() %}
+  | assert_stmt
 
 # A block. You can have 0 statements in a block.
 block -> "${" _ ( stmt _ ):* "$}"
@@ -73,7 +76,23 @@ disjoint_stmt -> "$d" variable variable ( variable ):* "$."
 hypothesis_stmt -> floating_stmt | essential_stmt
 
 # Floating (variable-type) hypothesis.
-floating_stmt -> LABEL _ "$f" _ typecode _ variable _ "$."
+floating_stmt -> LABEL _ "$f" _ typecode _ variable _ "$." {% d => {
+  d = d.flat(Number.MAX_SAFE_INTEGER);
+  return {
+    type: 'floating_stmt',
+    children: [
+      minToken(d[0]),
+      minToken(d[1]),
+      minToken(d[2]),
+      minToken(d[3]),
+      {
+        type: 'statement',
+        text: d.slice(4, -1).map(minToken)
+      },
+      minToken(d[d.length - 1])
+    ]
+  }
+} %}
 
 # Essential (logical) hypothesis.
 essential_stmt -> LABEL _ "$e" _ typecode _ ( MATH_SYMBOL _ ):* "$."

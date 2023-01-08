@@ -21,7 +21,7 @@ var grammar = {
     {"name": "database", "symbols": ["database$ebnf$1"], "postprocess": d => {return {type: 'database', children: d.flat(3)}}},
     {"name": "outermost_scope_stmt", "symbols": ["include_stmt"]},
     {"name": "outermost_scope_stmt", "symbols": ["constant_stmt"]},
-    {"name": "outermost_scope_stmt", "symbols": ["stmt"]},
+    {"name": "outermost_scope_stmt", "symbols": ["stmt"], "postprocess": d => d.flat()},
     {"name": "outermost_scope_stmt", "symbols": ["whitespace"]},
     {"name": "outermost_scope_stmt", "symbols": ["comment"]},
     {"name": "include_stmt", "symbols": [{"literal":"$["}, "filename", {"literal":"$]"}]},
@@ -47,7 +47,7 @@ var grammar = {
     {"name": "stmt", "symbols": ["block"]},
     {"name": "stmt", "symbols": ["variable_stmt"]},
     {"name": "stmt", "symbols": ["disjoint_stmt"]},
-    {"name": "stmt", "symbols": ["hypothesis_stmt"]},
+    {"name": "stmt", "symbols": ["hypothesis_stmt"], "postprocess": d => d.flat()},
     {"name": "stmt", "symbols": ["assert_stmt"]},
     {"name": "block$ebnf$1", "symbols": []},
     {"name": "block$ebnf$1$subexpression$1", "symbols": ["stmt", "_"]},
@@ -78,7 +78,23 @@ var grammar = {
     {"name": "disjoint_stmt", "symbols": [{"literal":"$d"}, "variable", "variable", "disjoint_stmt$ebnf$1", {"literal":"$."}]},
     {"name": "hypothesis_stmt", "symbols": ["floating_stmt"]},
     {"name": "hypothesis_stmt", "symbols": ["essential_stmt"]},
-    {"name": "floating_stmt", "symbols": ["LABEL", "_", {"literal":"$f"}, "_", "typecode", "_", "variable", "_", {"literal":"$."}]},
+    {"name": "floating_stmt", "symbols": ["LABEL", "_", {"literal":"$f"}, "_", "typecode", "_", "variable", "_", {"literal":"$."}], "postprocess":  d => {
+          d = d.flat(Number.MAX_SAFE_INTEGER);
+          return {
+            type: 'floating_stmt',
+            children: [
+              minToken(d[0]),
+              minToken(d[1]),
+              minToken(d[2]),
+              minToken(d[3]),
+              {
+                type: 'statement',
+                text: d.slice(4, -1).map(minToken)
+              },
+              minToken(d[d.length - 1])
+            ]
+          }
+        } },
     {"name": "essential_stmt$ebnf$1", "symbols": []},
     {"name": "essential_stmt$ebnf$1$subexpression$1", "symbols": ["MATH_SYMBOL", "_"]},
     {"name": "essential_stmt$ebnf$1", "symbols": ["essential_stmt$ebnf$1", "essential_stmt$ebnf$1$subexpression$1"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
