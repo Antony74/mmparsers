@@ -6,8 +6,6 @@ const minToken = (t) => {
   return {type, text};
 };
 
-const filterNulls = (item) => item !== null;
-
 %}
 
 @lexer lexer
@@ -122,7 +120,7 @@ COMPRESSED_PROOF_BLOCK -> %TEXT1 | %TEXT2 | %TEXT3
 LABEL ->  %TEXT1 | %TEXT2 | %TEXT3
 MATH_SYMBOL -> %TEXT1 | %TEXT2 | %TEXT3
 
-_ -> whitespace ( comment _ ):? {% d => d.filter(filterNulls) %}
+_ -> whitespace ( comment _ ):? {% d => d.filter((item) => item !== null) %}
 
 whitespace -> %WHITESPACE {% d => minToken(d[0]) %}
 comment -> %_COMMENT {% d => minToken(d[0]) %}
