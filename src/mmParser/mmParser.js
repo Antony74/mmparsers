@@ -68,7 +68,7 @@ var grammar = {
                   }
                 })
               },
-              d[3],
+              minToken(d[3]),
             ]
           };
         } },
@@ -136,30 +136,43 @@ var grammar = {
     {"name": "essential_stmt", "symbols": ["LABEL", "_", {"literal":"$e"}, "_", "typecode", "_", "essential_stmt$ebnf$1", {"literal":"$."}]},
     {"name": "assert_stmt", "symbols": ["axiom_stmt"]},
     {"name": "assert_stmt", "symbols": ["provable_stmt"]},
-    {"name": "axiom_stmt$ebnf$1", "symbols": []},
-    {"name": "axiom_stmt$ebnf$1$subexpression$1", "symbols": ["MATH_SYMBOL", "_"]},
-    {"name": "axiom_stmt$ebnf$1", "symbols": ["axiom_stmt$ebnf$1", "axiom_stmt$ebnf$1$subexpression$1"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
-    {"name": "axiom_stmt", "symbols": ["LABEL", "_", {"literal":"$a"}, "_", "typecode", "_", "axiom_stmt$ebnf$1", {"literal":"$."}], "postprocess":  d => {
-          d = d.flat(Number.MAX_SAFE_INTEGER);
+    {"name": "axiom_stmt", "symbols": ["LABEL", "_", {"literal":"$a"}, "_", "typecode", "_", "assertion", {"literal":"$."}], "postprocess":  d => {
+          d = d.flat(1);
           return {
             type: 'axiom_stmt',
             children: [
-              minToken(d[0]),
-              minToken(d[1]),
-              minToken(d[2]),
-              minToken(d[3]),
-              {
-                type: 'assertion',
-                text: d.slice(4, -1).map(minToken)
-              },
-              minToken(d[d.length - 1])
+              minToken(d[0]), // LABEL
+              d[1],           // _
+              minToken(d[2]), // $a
+              d[3],           // _
+              minToken(d[4].flat(Number.MAX_SAFE_INTEGER)[0]), // typecode
+              d[5],           // _
+              d[6],           // assertion
+              minToken(d[7])  // $.
             ]
           }
         } },
-    {"name": "provable_stmt$ebnf$1", "symbols": []},
-    {"name": "provable_stmt$ebnf$1$subexpression$1", "symbols": ["MATH_SYMBOL", "_"]},
-    {"name": "provable_stmt$ebnf$1", "symbols": ["provable_stmt$ebnf$1", "provable_stmt$ebnf$1$subexpression$1"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
-    {"name": "provable_stmt", "symbols": ["LABEL", "_", {"literal":"$p"}, "_", "typecode", "_", "provable_stmt$ebnf$1", {"literal":"$="}, "_", "proof", {"literal":"$."}]},
+    {"name": "provable_stmt", "symbols": ["LABEL", "_", {"literal":"$p"}, "_", "typecode", "_", "assertion", {"literal":"$="}, "_", "proof", {"literal":"$."}], "postprocess":  d => {
+          return {
+            type: 'provable_stmt',
+            children: [
+              minToken(d[0]), // label
+              d[1],           // _
+              minToken(d[2]), // $p
+              d[3],           // _
+              minToken(d[4].flat(Number.MAX_SAFE_INTEGER)[0]),  // typecode
+              d[5],           // _
+              d[6],           // assertion
+              d[7],           // $=
+              d[8],           // _
+              {
+                type: 'proof',
+                children: d[9].flat(Number.MAX_SAFE_INTEGER).map(minToken)
+              },       
+              minToken(d[10]) // $.
+            ]
+          }
+        } },
     {"name": "proof", "symbols": ["uncompressed_proof"]},
     {"name": "proof", "symbols": ["compressed_proof"]},
     {"name": "uncompressed_proof$ebnf$1$subexpression$1$subexpression$1", "symbols": ["LABEL"]},
@@ -179,6 +192,15 @@ var grammar = {
     {"name": "compressed_proof$ebnf$2$subexpression$2", "symbols": ["COMPRESSED_PROOF_BLOCK", "_"]},
     {"name": "compressed_proof$ebnf$2", "symbols": ["compressed_proof$ebnf$2", "compressed_proof$ebnf$2$subexpression$2"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
     {"name": "compressed_proof", "symbols": [{"literal":"("}, "_", "compressed_proof$ebnf$1", {"literal":")"}, "_", "compressed_proof$ebnf$2"]},
+    {"name": "assertion$ebnf$1", "symbols": []},
+    {"name": "assertion$ebnf$1$subexpression$1", "symbols": ["MATH_SYMBOL", "_"]},
+    {"name": "assertion$ebnf$1", "symbols": ["assertion$ebnf$1", "assertion$ebnf$1$subexpression$1"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
+    {"name": "assertion", "symbols": ["assertion$ebnf$1"], "postprocess":  d => {
+          return {
+            type: 'assertion',
+            children: d.flat(Number.MAX_SAFE_INTEGER).map(minToken)
+          };
+        } },
     {"name": "typecode", "symbols": ["constant"]},
     {"name": "filename", "symbols": ["MATH_SYMBOL"]},
     {"name": "constant", "symbols": ["MATH_SYMBOL"]},

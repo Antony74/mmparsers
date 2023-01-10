@@ -66,7 +66,7 @@ block -> "${" _ ( stmt _ ):* "$}" {% d => {
           }
         })
       },
-      d[3],
+      minToken(d[3]),
     ]
   };
 } %}
@@ -135,33 +135,58 @@ essential_stmt -> LABEL _ "$e" _ typecode _ ( MATH_SYMBOL _ ):* "$."
 assert_stmt -> axiom_stmt | provable_stmt
 
 # Axiomatic assertion.
-axiom_stmt -> LABEL _ "$a" _ typecode _ ( MATH_SYMBOL _ ):* "$." {% d => {
-  d = d.flat(Number.MAX_SAFE_INTEGER);
+axiom_stmt -> LABEL _ "$a" _ typecode _ assertion "$." {% d => {
+  d = d.flat(1);
   return {
     type: 'axiom_stmt',
     children: [
-      minToken(d[0]),
-      minToken(d[1]),
-      minToken(d[2]),
-      minToken(d[3]),
-      {
-        type: 'assertion',
-        text: d.slice(4, -1).map(minToken)
-      },
-      minToken(d[d.length - 1])
+      minToken(d[0]), // LABEL
+      d[1],           // _
+      minToken(d[2]), // $a
+      d[3],           // _
+      minToken(d[4].flat(Number.MAX_SAFE_INTEGER)[0]), // typecode
+      d[5],           // _
+      d[6],           // assertion
+      minToken(d[7])  // $.
     ]
   }
 } %}
 
 # Provable assertion.
-provable_stmt -> LABEL _ "$p" _ typecode _ ( MATH_SYMBOL _ ):*
-  "$=" _ proof "$."
+provable_stmt -> LABEL _ "$p" _ typecode _ assertion "$=" _ proof "$." {% d => {
+  return {
+    type: 'provable_stmt',
+    children: [
+      minToken(d[0]), // label
+      d[1],           // _
+      minToken(d[2]), // $p
+      d[3],           // _
+      minToken(d[4].flat(Number.MAX_SAFE_INTEGER)[0]),  // typecode
+      d[5],           // _
+      d[6],           // assertion
+      d[7],           // $=
+      d[8],           // _
+      {
+        type: 'proof',
+        children: d[9].flat(Number.MAX_SAFE_INTEGER).map(minToken)
+      },       
+      minToken(d[10]) // $.
+    ]
+  }
+} %}
 
 # A proof. Proofs may be interspersed by comments.
 # If '?' is in a proof it's an "incomplete" proof.
 proof -> uncompressed_proof | compressed_proof
 uncompressed_proof -> ( ( LABEL | "?" ) _ ):+
 compressed_proof -> "(" _ ( LABEL _ ):* ")" _ ( COMPRESSED_PROOF_BLOCK _ ):+
+
+assertion -> ( MATH_SYMBOL _ ):* {% d => {
+  return {
+    type: 'assertion',
+    children: d.flat(Number.MAX_SAFE_INTEGER).map(minToken)
+  };
+} %}
 
 typecode -> constant
 

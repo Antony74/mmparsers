@@ -491,16 +491,16 @@
                     "text": " "
                 },
                 {
+                    "type": "TEXT3",
+                    "text": "term"
+                },
+                {
+                    "type": "WHITESPACE",
+                    "text": " "
+                },
+                {
                     "type": "assertion",
-                    "text": [
-                        {
-                            "type": "TEXT3",
-                            "text": "term"
-                        },
-                        {
-                            "type": "WHITESPACE",
-                            "text": " "
-                        },
+                    "children": [
                         {
                             "type": "TEXT3",
                             "text": "0"
@@ -549,16 +549,16 @@
                     "text": " "
                 },
                 {
+                    "type": "TEXT3",
+                    "text": "term"
+                },
+                {
+                    "type": "WHITESPACE",
+                    "text": " "
+                },
+                {
                     "type": "assertion",
-                    "text": [
-                        {
-                            "type": "TEXT3",
-                            "text": "term"
-                        },
-                        {
-                            "type": "WHITESPACE",
-                            "text": " "
-                        },
+                    "children": [
                         {
                             "type": "TEXT3",
                             "text": "("
@@ -639,16 +639,16 @@
                     "text": " "
                 },
                 {
+                    "type": "TEXT3",
+                    "text": "wff"
+                },
+                {
+                    "type": "WHITESPACE",
+                    "text": " "
+                },
+                {
                     "type": "assertion",
-                    "text": [
-                        {
-                            "type": "TEXT3",
-                            "text": "wff"
-                        },
-                        {
-                            "type": "WHITESPACE",
-                            "text": " "
-                        },
+                    "children": [
                         {
                             "type": "TEXT3",
                             "text": "t"
@@ -713,16 +713,16 @@
                     "text": " "
                 },
                 {
+                    "type": "TEXT3",
+                    "text": "wff"
+                },
+                {
+                    "type": "WHITESPACE",
+                    "text": " "
+                },
+                {
                     "type": "assertion",
-                    "text": [
-                        {
-                            "type": "TEXT3",
-                            "text": "wff"
-                        },
-                        {
-                            "type": "WHITESPACE",
-                            "text": " "
-                        },
+                    "children": [
                         {
                             "type": "TEXT3",
                             "text": "("
@@ -803,16 +803,16 @@
                     "text": " "
                 },
                 {
+                    "type": "TEXT3",
+                    "text": "|-"
+                },
+                {
+                    "type": "WHITESPACE",
+                    "text": " "
+                },
+                {
                     "type": "assertion",
-                    "text": [
-                        {
-                            "type": "TEXT3",
-                            "text": "|-"
-                        },
-                        {
-                            "type": "WHITESPACE",
-                            "text": " "
-                        },
+                    "children": [
                         {
                             "type": "TEXT3",
                             "text": "("
@@ -973,16 +973,16 @@
                     "text": " "
                 },
                 {
+                    "type": "TEXT3",
+                    "text": "|-"
+                },
+                {
+                    "type": "WHITESPACE",
+                    "text": " "
+                },
+                {
                     "type": "assertion",
-                    "text": [
-                        {
-                            "type": "TEXT3",
-                            "text": "|-"
-                        },
-                        {
-                            "type": "WHITESPACE",
-                            "text": " "
-                        },
+                    "children": [
                         {
                             "type": "TEXT3",
                             "text": "("
@@ -1225,16 +1225,16 @@
                                     "text": " "
                                 },
                                 {
+                                    "type": "TEXT3",
+                                    "text": "|-"
+                                },
+                                {
+                                    "type": "WHITESPACE",
+                                    "text": " "
+                                },
+                                {
                                     "type": "assertion",
-                                    "text": [
-                                        {
-                                            "type": "TEXT3",
-                                            "text": "|-"
-                                        },
-                                        {
-                                            "type": "WHITESPACE",
-                                            "text": " "
-                                        },
+                                    "children": [
                                         {
                                             "type": "TEXT3",
                                             "text": "Q"
@@ -1259,12 +1259,7 @@
                 },
                 {
                     "type": "$}",
-                    "value": "$}",
-                    "text": "$}",
-                    "offset": 1185,
-                    "lineBreaks": 0,
-                    "line": 43,
-                    "col": 5
+                    "text": "$}"
                 }
             ]
         },
@@ -1280,876 +1275,375 @@
             "type": "WHITESPACE",
             "text": "\r\n    "
         },
-        [
-            [
-                {
-                    "type": "TEXT3",
-                    "value": "th1",
-                    "text": "th1",
-                    "offset": 1216,
-                    "lineBreaks": 0,
-                    "line": 45,
-                    "col": 5
-                }
-            ],
-            [
-                {
-                    "type": "WHITESPACE",
-                    "text": " "
-                }
-            ],
-            {
-                "type": "$p",
-                "value": "$p",
-                "text": "$p",
-                "offset": 1220,
-                "lineBreaks": 0,
-                "line": 45,
-                "col": 9
-            },
-            [
-                {
-                    "type": "WHITESPACE",
-                    "text": " "
-                }
-            ],
-            [
+        {
+            "type": "provable_stmt",
+            "children": [
+                {},
                 [
-                    [
-                        {
-                            "type": "TEXT3",
-                            "value": "|-",
-                            "text": "|-",
-                            "offset": 1223,
-                            "lineBreaks": 0,
-                            "line": 45,
-                            "col": 12
-                        }
-                    ]
-                ]
-            ],
-            [
-                {
-                    "type": "WHITESPACE",
-                    "text": " "
-                }
-            ],
-            [
-                [
-                    [
-                        {
-                            "type": "TEXT3",
-                            "value": "t",
-                            "text": "t",
-                            "offset": 1226,
-                            "lineBreaks": 0,
-                            "line": 45,
-                            "col": 15
-                        }
-                    ],
-                    [
-                        {
-                            "type": "WHITESPACE",
-                            "text": " "
-                        }
-                    ]
+                    {
+                        "type": "WHITESPACE",
+                        "text": " "
+                    }
                 ],
-                [
-                    [
-                        {
-                            "type": "TEXT3",
-                            "value": "=",
-                            "text": "=",
-                            "offset": 1228,
-                            "lineBreaks": 0,
-                            "line": 45,
-                            "col": 17
-                        }
-                    ],
-                    [
-                        {
-                            "type": "WHITESPACE",
-                            "text": " "
-                        }
-                    ]
-                ],
-                [
-                    [
-                        {
-                            "type": "TEXT3",
-                            "value": "t",
-                            "text": "t",
-                            "offset": 1230,
-                            "lineBreaks": 0,
-                            "line": 45,
-                            "col": 19
-                        }
-                    ],
-                    [
-                        {
-                            "type": "WHITESPACE",
-                            "text": " "
-                        }
-                    ]
-                ]
-            ],
-            {
-                "type": "$=",
-                "value": "$=",
-                "text": "$=",
-                "offset": 1232,
-                "lineBreaks": 0,
-                "line": 45,
-                "col": 21
-            },
-            [
                 {
-                    "type": "WHITESPACE",
-                    "text": "\r\n  "
+                    "type": "$p",
+                    "text": "$p"
                 },
                 [
                     {
-                        "type": "_COMMENT",
-                        "text": "$( Here is its proof: $)"
+                        "type": "WHITESPACE",
+                        "text": " "
+                    }
+                ],
+                {
+                    "type": "TEXT3",
+                    "text": "|-"
+                },
+                [
+                    {
+                        "type": "WHITESPACE",
+                        "text": " "
+                    }
+                ],
+                {
+                    "type": "assertion",
+                    "children": [
+                        {
+                            "type": "TEXT3",
+                            "text": "t"
+                        },
+                        {
+                            "type": "WHITESPACE",
+                            "text": " "
+                        },
+                        {
+                            "type": "TEXT3",
+                            "text": "="
+                        },
+                        {
+                            "type": "WHITESPACE",
+                            "text": " "
+                        },
+                        {
+                            "type": "TEXT3",
+                            "text": "t"
+                        },
+                        {
+                            "type": "WHITESPACE",
+                            "text": " "
+                        }
+                    ]
+                },
+                {
+                    "type": "$=",
+                    "value": "$=",
+                    "text": "$=",
+                    "offset": 1232,
+                    "lineBreaks": 0,
+                    "line": 45,
+                    "col": 21
+                },
+                [
+                    {
+                        "type": "WHITESPACE",
+                        "text": "\r\n  "
                     },
                     [
                         {
-                            "type": "WHITESPACE",
-                            "text": "\r\n       "
-                        }
-                    ]
-                ]
-            ],
-            [
-                [
-                    [
+                            "type": "_COMMENT",
+                            "text": "$( Here is its proof: $)"
+                        },
                         [
-                            [
-                                [
-                                    {
-                                        "type": "TEXT3",
-                                        "value": "tt",
-                                        "text": "tt",
-                                        "offset": 1271,
-                                        "lineBreaks": 0,
-                                        "line": 47,
-                                        "col": 8
-                                    }
-                                ]
-                            ],
-                            [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        ],
-                        [
-                            [
-                                [
-                                    {
-                                        "type": "TEXT3",
-                                        "value": "tze",
-                                        "text": "tze",
-                                        "offset": 1274,
-                                        "lineBreaks": 0,
-                                        "line": 47,
-                                        "col": 11
-                                    }
-                                ]
-                            ],
-                            [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        ],
-                        [
-                            [
-                                [
-                                    {
-                                        "type": "TEXT3",
-                                        "value": "tpl",
-                                        "text": "tpl",
-                                        "offset": 1278,
-                                        "lineBreaks": 0,
-                                        "line": 47,
-                                        "col": 15
-                                    }
-                                ]
-                            ],
-                            [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        ],
-                        [
-                            [
-                                [
-                                    {
-                                        "type": "TEXT3",
-                                        "value": "tt",
-                                        "text": "tt",
-                                        "offset": 1282,
-                                        "lineBreaks": 0,
-                                        "line": 47,
-                                        "col": 19
-                                    }
-                                ]
-                            ],
-                            [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        ],
-                        [
-                            [
-                                [
-                                    {
-                                        "type": "TEXT3",
-                                        "value": "weq",
-                                        "text": "weq",
-                                        "offset": 1285,
-                                        "lineBreaks": 0,
-                                        "line": 47,
-                                        "col": 22
-                                    }
-                                ]
-                            ],
-                            [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        ],
-                        [
-                            [
-                                [
-                                    {
-                                        "type": "TEXT3",
-                                        "value": "tt",
-                                        "text": "tt",
-                                        "offset": 1289,
-                                        "lineBreaks": 0,
-                                        "line": 47,
-                                        "col": 26
-                                    }
-                                ]
-                            ],
-                            [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        ],
-                        [
-                            [
-                                [
-                                    {
-                                        "type": "TEXT3",
-                                        "value": "tt",
-                                        "text": "tt",
-                                        "offset": 1292,
-                                        "lineBreaks": 0,
-                                        "line": 47,
-                                        "col": 29
-                                    }
-                                ]
-                            ],
-                            [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        ],
-                        [
-                            [
-                                [
-                                    {
-                                        "type": "TEXT3",
-                                        "value": "weq",
-                                        "text": "weq",
-                                        "offset": 1295,
-                                        "lineBreaks": 0,
-                                        "line": 47,
-                                        "col": 32
-                                    }
-                                ]
-                            ],
-                            [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        ],
-                        [
-                            [
-                                [
-                                    {
-                                        "type": "TEXT3",
-                                        "value": "tt",
-                                        "text": "tt",
-                                        "offset": 1299,
-                                        "lineBreaks": 0,
-                                        "line": 47,
-                                        "col": 36
-                                    }
-                                ]
-                            ],
-                            [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        ],
-                        [
-                            [
-                                [
-                                    {
-                                        "type": "TEXT3",
-                                        "value": "a2",
-                                        "text": "a2",
-                                        "offset": 1302,
-                                        "lineBreaks": 0,
-                                        "line": 47,
-                                        "col": 39
-                                    }
-                                ]
-                            ],
-                            [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        ],
-                        [
-                            [
-                                [
-                                    {
-                                        "type": "TEXT3",
-                                        "value": "tt",
-                                        "text": "tt",
-                                        "offset": 1305,
-                                        "lineBreaks": 0,
-                                        "line": 47,
-                                        "col": 42
-                                    }
-                                ]
-                            ],
-                            [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        ],
-                        [
-                            [
-                                [
-                                    {
-                                        "type": "TEXT3",
-                                        "value": "tze",
-                                        "text": "tze",
-                                        "offset": 1308,
-                                        "lineBreaks": 0,
-                                        "line": 47,
-                                        "col": 45
-                                    }
-                                ]
-                            ],
-                            [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        ],
-                        [
-                            [
-                                [
-                                    {
-                                        "type": "TEXT3",
-                                        "value": "tpl",
-                                        "text": "tpl",
-                                        "offset": 1312,
-                                        "lineBreaks": 0,
-                                        "line": 47,
-                                        "col": 49
-                                    }
-                                ]
-                            ],
-                            [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": "\r\n       "
-                                }
-                            ]
-                        ],
-                        [
-                            [
-                                [
-                                    {
-                                        "type": "TEXT3",
-                                        "value": "tt",
-                                        "text": "tt",
-                                        "offset": 1324,
-                                        "lineBreaks": 0,
-                                        "line": 48,
-                                        "col": 8
-                                    }
-                                ]
-                            ],
-                            [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        ],
-                        [
-                            [
-                                [
-                                    {
-                                        "type": "TEXT3",
-                                        "value": "weq",
-                                        "text": "weq",
-                                        "offset": 1327,
-                                        "lineBreaks": 0,
-                                        "line": 48,
-                                        "col": 11
-                                    }
-                                ]
-                            ],
-                            [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        ],
-                        [
-                            [
-                                [
-                                    {
-                                        "type": "TEXT3",
-                                        "value": "tt",
-                                        "text": "tt",
-                                        "offset": 1331,
-                                        "lineBreaks": 0,
-                                        "line": 48,
-                                        "col": 15
-                                    }
-                                ]
-                            ],
-                            [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        ],
-                        [
-                            [
-                                [
-                                    {
-                                        "type": "TEXT3",
-                                        "value": "tze",
-                                        "text": "tze",
-                                        "offset": 1334,
-                                        "lineBreaks": 0,
-                                        "line": 48,
-                                        "col": 18
-                                    }
-                                ]
-                            ],
-                            [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        ],
-                        [
-                            [
-                                [
-                                    {
-                                        "type": "TEXT3",
-                                        "value": "tpl",
-                                        "text": "tpl",
-                                        "offset": 1338,
-                                        "lineBreaks": 0,
-                                        "line": 48,
-                                        "col": 22
-                                    }
-                                ]
-                            ],
-                            [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        ],
-                        [
-                            [
-                                [
-                                    {
-                                        "type": "TEXT3",
-                                        "value": "tt",
-                                        "text": "tt",
-                                        "offset": 1342,
-                                        "lineBreaks": 0,
-                                        "line": 48,
-                                        "col": 26
-                                    }
-                                ]
-                            ],
-                            [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        ],
-                        [
-                            [
-                                [
-                                    {
-                                        "type": "TEXT3",
-                                        "value": "weq",
-                                        "text": "weq",
-                                        "offset": 1345,
-                                        "lineBreaks": 0,
-                                        "line": 48,
-                                        "col": 29
-                                    }
-                                ]
-                            ],
-                            [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        ],
-                        [
-                            [
-                                [
-                                    {
-                                        "type": "TEXT3",
-                                        "value": "tt",
-                                        "text": "tt",
-                                        "offset": 1349,
-                                        "lineBreaks": 0,
-                                        "line": 48,
-                                        "col": 33
-                                    }
-                                ]
-                            ],
-                            [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        ],
-                        [
-                            [
-                                [
-                                    {
-                                        "type": "TEXT3",
-                                        "value": "tt",
-                                        "text": "tt",
-                                        "offset": 1352,
-                                        "lineBreaks": 0,
-                                        "line": 48,
-                                        "col": 36
-                                    }
-                                ]
-                            ],
-                            [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        ],
-                        [
-                            [
-                                [
-                                    {
-                                        "type": "TEXT3",
-                                        "value": "weq",
-                                        "text": "weq",
-                                        "offset": 1355,
-                                        "lineBreaks": 0,
-                                        "line": 48,
-                                        "col": 39
-                                    }
-                                ]
-                            ],
-                            [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        ],
-                        [
-                            [
-                                [
-                                    {
-                                        "type": "TEXT3",
-                                        "value": "wim",
-                                        "text": "wim",
-                                        "offset": 1359,
-                                        "lineBreaks": 0,
-                                        "line": 48,
-                                        "col": 43
-                                    }
-                                ]
-                            ],
-                            [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        ],
-                        [
-                            [
-                                [
-                                    {
-                                        "type": "TEXT3",
-                                        "value": "tt",
-                                        "text": "tt",
-                                        "offset": 1363,
-                                        "lineBreaks": 0,
-                                        "line": 48,
-                                        "col": 47
-                                    }
-                                ]
-                            ],
-                            [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        ],
-                        [
-                            [
-                                [
-                                    {
-                                        "type": "TEXT3",
-                                        "value": "a2",
-                                        "text": "a2",
-                                        "offset": 1366,
-                                        "lineBreaks": 0,
-                                        "line": 48,
-                                        "col": 50
-                                    }
-                                ]
-                            ],
-                            [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": "\r\n       "
-                                }
-                            ]
-                        ],
-                        [
-                            [
-                                [
-                                    {
-                                        "type": "TEXT3",
-                                        "value": "tt",
-                                        "text": "tt",
-                                        "offset": 1377,
-                                        "lineBreaks": 0,
-                                        "line": 49,
-                                        "col": 8
-                                    }
-                                ]
-                            ],
-                            [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        ],
-                        [
-                            [
-                                [
-                                    {
-                                        "type": "TEXT3",
-                                        "value": "tze",
-                                        "text": "tze",
-                                        "offset": 1380,
-                                        "lineBreaks": 0,
-                                        "line": 49,
-                                        "col": 11
-                                    }
-                                ]
-                            ],
-                            [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        ],
-                        [
-                            [
-                                [
-                                    {
-                                        "type": "TEXT3",
-                                        "value": "tpl",
-                                        "text": "tpl",
-                                        "offset": 1384,
-                                        "lineBreaks": 0,
-                                        "line": 49,
-                                        "col": 15
-                                    }
-                                ]
-                            ],
-                            [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        ],
-                        [
-                            [
-                                [
-                                    {
-                                        "type": "TEXT3",
-                                        "value": "tt",
-                                        "text": "tt",
-                                        "offset": 1388,
-                                        "lineBreaks": 0,
-                                        "line": 49,
-                                        "col": 19
-                                    }
-                                ]
-                            ],
-                            [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        ],
-                        [
-                            [
-                                [
-                                    {
-                                        "type": "TEXT3",
-                                        "value": "tt",
-                                        "text": "tt",
-                                        "offset": 1391,
-                                        "lineBreaks": 0,
-                                        "line": 49,
-                                        "col": 22
-                                    }
-                                ]
-                            ],
-                            [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        ],
-                        [
-                            [
-                                [
-                                    {
-                                        "type": "TEXT3",
-                                        "value": "a1",
-                                        "text": "a1",
-                                        "offset": 1394,
-                                        "lineBreaks": 0,
-                                        "line": 49,
-                                        "col": 25
-                                    }
-                                ]
-                            ],
-                            [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        ],
-                        [
-                            [
-                                [
-                                    {
-                                        "type": "TEXT3",
-                                        "value": "mp",
-                                        "text": "mp",
-                                        "offset": 1397,
-                                        "lineBreaks": 0,
-                                        "line": 49,
-                                        "col": 28
-                                    }
-                                ]
-                            ],
-                            [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        ],
-                        [
-                            [
-                                [
-                                    {
-                                        "type": "TEXT3",
-                                        "value": "mp",
-                                        "text": "mp",
-                                        "offset": 1400,
-                                        "lineBreaks": 0,
-                                        "line": 49,
-                                        "col": 31
-                                    }
-                                ]
-                            ],
-                            [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": "\r\n     "
-                                }
-                            ]
+                            {
+                                "type": "WHITESPACE",
+                                "text": "\r\n       "
+                            }
                         ]
                     ]
-                ]
-            ],
-            {
-                "type": "$.",
-                "value": "$.",
-                "text": "$.",
-                "offset": 1409,
-                "lineBreaks": 0,
-                "line": 50,
-                "col": 6
-            }
-        ],
+                ],
+                {
+                    "type": "proof",
+                    "children": [
+                        {
+                            "type": "TEXT3",
+                            "text": "tt"
+                        },
+                        {
+                            "type": "WHITESPACE",
+                            "text": " "
+                        },
+                        {
+                            "type": "TEXT3",
+                            "text": "tze"
+                        },
+                        {
+                            "type": "WHITESPACE",
+                            "text": " "
+                        },
+                        {
+                            "type": "TEXT3",
+                            "text": "tpl"
+                        },
+                        {
+                            "type": "WHITESPACE",
+                            "text": " "
+                        },
+                        {
+                            "type": "TEXT3",
+                            "text": "tt"
+                        },
+                        {
+                            "type": "WHITESPACE",
+                            "text": " "
+                        },
+                        {
+                            "type": "TEXT3",
+                            "text": "weq"
+                        },
+                        {
+                            "type": "WHITESPACE",
+                            "text": " "
+                        },
+                        {
+                            "type": "TEXT3",
+                            "text": "tt"
+                        },
+                        {
+                            "type": "WHITESPACE",
+                            "text": " "
+                        },
+                        {
+                            "type": "TEXT3",
+                            "text": "tt"
+                        },
+                        {
+                            "type": "WHITESPACE",
+                            "text": " "
+                        },
+                        {
+                            "type": "TEXT3",
+                            "text": "weq"
+                        },
+                        {
+                            "type": "WHITESPACE",
+                            "text": " "
+                        },
+                        {
+                            "type": "TEXT3",
+                            "text": "tt"
+                        },
+                        {
+                            "type": "WHITESPACE",
+                            "text": " "
+                        },
+                        {
+                            "type": "TEXT3",
+                            "text": "a2"
+                        },
+                        {
+                            "type": "WHITESPACE",
+                            "text": " "
+                        },
+                        {
+                            "type": "TEXT3",
+                            "text": "tt"
+                        },
+                        {
+                            "type": "WHITESPACE",
+                            "text": " "
+                        },
+                        {
+                            "type": "TEXT3",
+                            "text": "tze"
+                        },
+                        {
+                            "type": "WHITESPACE",
+                            "text": " "
+                        },
+                        {
+                            "type": "TEXT3",
+                            "text": "tpl"
+                        },
+                        {
+                            "type": "WHITESPACE",
+                            "text": "\r\n       "
+                        },
+                        {
+                            "type": "TEXT3",
+                            "text": "tt"
+                        },
+                        {
+                            "type": "WHITESPACE",
+                            "text": " "
+                        },
+                        {
+                            "type": "TEXT3",
+                            "text": "weq"
+                        },
+                        {
+                            "type": "WHITESPACE",
+                            "text": " "
+                        },
+                        {
+                            "type": "TEXT3",
+                            "text": "tt"
+                        },
+                        {
+                            "type": "WHITESPACE",
+                            "text": " "
+                        },
+                        {
+                            "type": "TEXT3",
+                            "text": "tze"
+                        },
+                        {
+                            "type": "WHITESPACE",
+                            "text": " "
+                        },
+                        {
+                            "type": "TEXT3",
+                            "text": "tpl"
+                        },
+                        {
+                            "type": "WHITESPACE",
+                            "text": " "
+                        },
+                        {
+                            "type": "TEXT3",
+                            "text": "tt"
+                        },
+                        {
+                            "type": "WHITESPACE",
+                            "text": " "
+                        },
+                        {
+                            "type": "TEXT3",
+                            "text": "weq"
+                        },
+                        {
+                            "type": "WHITESPACE",
+                            "text": " "
+                        },
+                        {
+                            "type": "TEXT3",
+                            "text": "tt"
+                        },
+                        {
+                            "type": "WHITESPACE",
+                            "text": " "
+                        },
+                        {
+                            "type": "TEXT3",
+                            "text": "tt"
+                        },
+                        {
+                            "type": "WHITESPACE",
+                            "text": " "
+                        },
+                        {
+                            "type": "TEXT3",
+                            "text": "weq"
+                        },
+                        {
+                            "type": "WHITESPACE",
+                            "text": " "
+                        },
+                        {
+                            "type": "TEXT3",
+                            "text": "wim"
+                        },
+                        {
+                            "type": "WHITESPACE",
+                            "text": " "
+                        },
+                        {
+                            "type": "TEXT3",
+                            "text": "tt"
+                        },
+                        {
+                            "type": "WHITESPACE",
+                            "text": " "
+                        },
+                        {
+                            "type": "TEXT3",
+                            "text": "a2"
+                        },
+                        {
+                            "type": "WHITESPACE",
+                            "text": "\r\n       "
+                        },
+                        {
+                            "type": "TEXT3",
+                            "text": "tt"
+                        },
+                        {
+                            "type": "WHITESPACE",
+                            "text": " "
+                        },
+                        {
+                            "type": "TEXT3",
+                            "text": "tze"
+                        },
+                        {
+                            "type": "WHITESPACE",
+                            "text": " "
+                        },
+                        {
+                            "type": "TEXT3",
+                            "text": "tpl"
+                        },
+                        {
+                            "type": "WHITESPACE",
+                            "text": " "
+                        },
+                        {
+                            "type": "TEXT3",
+                            "text": "tt"
+                        },
+                        {
+                            "type": "WHITESPACE",
+                            "text": " "
+                        },
+                        {
+                            "type": "TEXT3",
+                            "text": "tt"
+                        },
+                        {
+                            "type": "WHITESPACE",
+                            "text": " "
+                        },
+                        {
+                            "type": "TEXT3",
+                            "text": "a1"
+                        },
+                        {
+                            "type": "WHITESPACE",
+                            "text": " "
+                        },
+                        {
+                            "type": "TEXT3",
+                            "text": "mp"
+                        },
+                        {
+                            "type": "WHITESPACE",
+                            "text": " "
+                        },
+                        {
+                            "type": "TEXT3",
+                            "text": "mp"
+                        },
+                        {
+                            "type": "WHITESPACE",
+                            "text": "\r\n     "
+                        }
+                    ]
+                },
+                {
+                    "type": "$.",
+                    "text": "$."
+                }
+            ]
+        },
         {
             "type": "WHITESPACE",
             "text": "\r\n\r\n"
