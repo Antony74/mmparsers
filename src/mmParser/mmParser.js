@@ -4,6 +4,7 @@
 function id(x) { return x[0]; }
 
 const { lexer } = require('./lexer');
+const h = require('./mmParseTreeHelpers');
 
 const minToken = (t) => {
   const {type, text} = t;
@@ -195,12 +196,7 @@ var grammar = {
     {"name": "assertion$ebnf$1", "symbols": []},
     {"name": "assertion$ebnf$1$subexpression$1", "symbols": ["MATH_SYMBOL", "_"]},
     {"name": "assertion$ebnf$1", "symbols": ["assertion$ebnf$1", "assertion$ebnf$1$subexpression$1"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
-    {"name": "assertion", "symbols": ["assertion$ebnf$1"], "postprocess":  d => {
-          return {
-            type: 'assertion',
-            children: d.flat(Number.MAX_SAFE_INTEGER).map(minToken)
-          };
-        } },
+    {"name": "assertion", "symbols": ["assertion$ebnf$1"], "postprocess": h.assertion},
     {"name": "typecode", "symbols": ["constant"]},
     {"name": "filename", "symbols": ["MATH_SYMBOL"]},
     {"name": "constant", "symbols": ["MATH_SYMBOL"]},
@@ -217,9 +213,9 @@ var grammar = {
     {"name": "_$ebnf$1$subexpression$1", "symbols": ["comment", "_"]},
     {"name": "_$ebnf$1", "symbols": ["_$ebnf$1$subexpression$1"], "postprocess": id},
     {"name": "_$ebnf$1", "symbols": [], "postprocess": function(d) {return null;}},
-    {"name": "_", "symbols": ["whitespace", "_$ebnf$1"], "postprocess": d => d.filter((item) => item !== null)},
-    {"name": "whitespace", "symbols": [(lexer.has("WHITESPACE") ? {type: "WHITESPACE"} : WHITESPACE)], "postprocess": d => minToken(d[0])},
-    {"name": "comment", "symbols": [(lexer.has("_COMMENT") ? {type: "_COMMENT"} : _COMMENT)], "postprocess": d => minToken(d[0])}
+    {"name": "_", "symbols": ["whitespace", "_$ebnf$1"], "postprocess": h._},
+    {"name": "whitespace", "symbols": [(lexer.has("WHITESPACE") ? {type: "WHITESPACE"} : WHITESPACE)], "postprocess": h.whitespace},
+    {"name": "comment", "symbols": [(lexer.has("_COMMENT") ? {type: "_COMMENT"} : _COMMENT)], "postprocess": h.comment}
 ]
   , ParserStart: "database"
 }

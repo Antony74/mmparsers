@@ -1,5 +1,6 @@
 @{%
 const { lexer } = require('./lexer');
+const h = require('./mmParseTreeHelpers');
 
 const minToken = (t) => {
   const {type, text} = t;
@@ -181,12 +182,7 @@ proof -> uncompressed_proof | compressed_proof
 uncompressed_proof -> ( ( LABEL | "?" ) _ ):+
 compressed_proof -> "(" _ ( LABEL _ ):* ")" _ ( COMPRESSED_PROOF_BLOCK _ ):+
 
-assertion -> ( MATH_SYMBOL _ ):* {% d => {
-  return {
-    type: 'assertion',
-    children: d.flat(Number.MAX_SAFE_INTEGER).map(minToken)
-  };
-} %}
+assertion -> ( MATH_SYMBOL _ ):* {% h.assertion %}
 
 typecode -> constant
 
@@ -198,7 +194,7 @@ COMPRESSED_PROOF_BLOCK -> %TEXT1 | %TEXT2 | %TEXT3
 LABEL ->  %TEXT1 | %TEXT2 | %TEXT3
 MATH_SYMBOL -> %TEXT1 | %TEXT2 | %TEXT3
 
-_ -> whitespace ( comment _ ):? {% d => d.filter((item) => item !== null) %}
+_ -> whitespace ( comment _ ):? {% h._ %}
 
-whitespace -> %WHITESPACE {% d => minToken(d[0]) %}
-comment -> %_COMMENT {% d => minToken(d[0]) %}
+whitespace -> %WHITESPACE {% h.whitespace %}
+comment -> %_COMMENT {% h.comment %}
