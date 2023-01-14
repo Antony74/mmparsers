@@ -114,7 +114,7 @@ var grammar = {
             ]
           }
         } },
-    {"name": "floating_stmt", "symbols": ["LABEL", "_", {"literal":"$f"}, "_", "typecode", "_", "variable", "_", {"literal":"$."}], "postprocess":  d => {
+    {"name": "floating_stmt", "symbols": [(lexer.has("LABEL") ? {type: "LABEL"} : LABEL), "_", {"literal":"$f"}, "_", "typecode", "_", "variable", "_", {"literal":"$."}], "postprocess":  d => {
           d = d.flat(Number.MAX_SAFE_INTEGER);
           return {
             type: 'floating_stmt',
@@ -132,12 +132,12 @@ var grammar = {
           }
         } },
     {"name": "essential_stmt$ebnf$1", "symbols": []},
-    {"name": "essential_stmt$ebnf$1$subexpression$1", "symbols": ["MATH_SYMBOL", "_"]},
+    {"name": "essential_stmt$ebnf$1$subexpression$1", "symbols": [(lexer.has("MATH_SYMBOL") ? {type: "MATH_SYMBOL"} : MATH_SYMBOL), "_"]},
     {"name": "essential_stmt$ebnf$1", "symbols": ["essential_stmt$ebnf$1", "essential_stmt$ebnf$1$subexpression$1"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
-    {"name": "essential_stmt", "symbols": ["LABEL", "_", {"literal":"$e"}, "_", "typecode", "_", "essential_stmt$ebnf$1", {"literal":"$."}]},
+    {"name": "essential_stmt", "symbols": [(lexer.has("LABEL") ? {type: "LABEL"} : LABEL), "_", {"literal":"$e"}, "_", "typecode", "_", "essential_stmt$ebnf$1", {"literal":"$."}]},
     {"name": "assert_stmt", "symbols": ["axiom_stmt"]},
     {"name": "assert_stmt", "symbols": ["provable_stmt"]},
-    {"name": "axiom_stmt", "symbols": ["LABEL", "_", {"literal":"$a"}, "_", "typecode", "_", "assertion", {"literal":"$."}], "postprocess":  d => {
+    {"name": "axiom_stmt", "symbols": [(lexer.has("LABEL") ? {type: "LABEL"} : LABEL), "_", {"literal":"$a"}, "_", "typecode", "_", "assertion", {"literal":"$."}], "postprocess":  d => {
           d = d.flat(1);
           return {
             type: 'axiom_stmt',
@@ -153,7 +153,7 @@ var grammar = {
             ]
           }
         } },
-    {"name": "provable_stmt", "symbols": ["LABEL", "_", {"literal":"$p"}, "_", "typecode", "_", "assertion", {"literal":"$="}, "_", "proof", {"literal":"$."}], "postprocess":  d => {
+    {"name": "provable_stmt", "symbols": [(lexer.has("LABEL") ? {type: "LABEL"} : LABEL), "_", {"literal":"$p"}, "_", "typecode", "_", "assertion", {"literal":"$="}, "_", "proof", {"literal":"$."}], "postprocess":  d => {
           return {
             type: 'provable_stmt',
             children: [
@@ -176,40 +176,31 @@ var grammar = {
         } },
     {"name": "proof", "symbols": ["uncompressed_proof"]},
     {"name": "proof", "symbols": ["compressed_proof"]},
-    {"name": "uncompressed_proof$ebnf$1$subexpression$1$subexpression$1", "symbols": ["LABEL"]},
+    {"name": "uncompressed_proof$ebnf$1$subexpression$1$subexpression$1", "symbols": [(lexer.has("LABEL") ? {type: "LABEL"} : LABEL)]},
     {"name": "uncompressed_proof$ebnf$1$subexpression$1$subexpression$1", "symbols": [{"literal":"?"}]},
     {"name": "uncompressed_proof$ebnf$1$subexpression$1", "symbols": ["uncompressed_proof$ebnf$1$subexpression$1$subexpression$1", "_"]},
     {"name": "uncompressed_proof$ebnf$1", "symbols": ["uncompressed_proof$ebnf$1$subexpression$1"]},
-    {"name": "uncompressed_proof$ebnf$1$subexpression$2$subexpression$1", "symbols": ["LABEL"]},
+    {"name": "uncompressed_proof$ebnf$1$subexpression$2$subexpression$1", "symbols": [(lexer.has("LABEL") ? {type: "LABEL"} : LABEL)]},
     {"name": "uncompressed_proof$ebnf$1$subexpression$2$subexpression$1", "symbols": [{"literal":"?"}]},
     {"name": "uncompressed_proof$ebnf$1$subexpression$2", "symbols": ["uncompressed_proof$ebnf$1$subexpression$2$subexpression$1", "_"]},
     {"name": "uncompressed_proof$ebnf$1", "symbols": ["uncompressed_proof$ebnf$1", "uncompressed_proof$ebnf$1$subexpression$2"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
     {"name": "uncompressed_proof", "symbols": ["uncompressed_proof$ebnf$1"]},
     {"name": "compressed_proof$ebnf$1", "symbols": []},
-    {"name": "compressed_proof$ebnf$1$subexpression$1", "symbols": ["LABEL", "_"]},
+    {"name": "compressed_proof$ebnf$1$subexpression$1", "symbols": [(lexer.has("LABEL") ? {type: "LABEL"} : LABEL), "_"]},
     {"name": "compressed_proof$ebnf$1", "symbols": ["compressed_proof$ebnf$1", "compressed_proof$ebnf$1$subexpression$1"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
-    {"name": "compressed_proof$ebnf$2$subexpression$1", "symbols": ["COMPRESSED_PROOF_BLOCK", "_"]},
+    {"name": "compressed_proof$ebnf$2$subexpression$1", "symbols": [(lexer.has("COMPRESSED_PROOF_BLOCK") ? {type: "COMPRESSED_PROOF_BLOCK"} : COMPRESSED_PROOF_BLOCK), "_"]},
     {"name": "compressed_proof$ebnf$2", "symbols": ["compressed_proof$ebnf$2$subexpression$1"]},
-    {"name": "compressed_proof$ebnf$2$subexpression$2", "symbols": ["COMPRESSED_PROOF_BLOCK", "_"]},
+    {"name": "compressed_proof$ebnf$2$subexpression$2", "symbols": [(lexer.has("COMPRESSED_PROOF_BLOCK") ? {type: "COMPRESSED_PROOF_BLOCK"} : COMPRESSED_PROOF_BLOCK), "_"]},
     {"name": "compressed_proof$ebnf$2", "symbols": ["compressed_proof$ebnf$2", "compressed_proof$ebnf$2$subexpression$2"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
     {"name": "compressed_proof", "symbols": [{"literal":"("}, "_", "compressed_proof$ebnf$1", {"literal":")"}, "_", "compressed_proof$ebnf$2"]},
     {"name": "assertion$ebnf$1", "symbols": []},
-    {"name": "assertion$ebnf$1$subexpression$1", "symbols": ["MATH_SYMBOL", "_"]},
+    {"name": "assertion$ebnf$1$subexpression$1", "symbols": [(lexer.has("MATH_SYMBOL") ? {type: "MATH_SYMBOL"} : MATH_SYMBOL), "_"]},
     {"name": "assertion$ebnf$1", "symbols": ["assertion$ebnf$1", "assertion$ebnf$1$subexpression$1"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
     {"name": "assertion", "symbols": ["assertion$ebnf$1"], "postprocess": h.assertion},
     {"name": "typecode", "symbols": ["constant"]},
-    {"name": "filename", "symbols": ["MATH_SYMBOL"]},
-    {"name": "constant", "symbols": ["MATH_SYMBOL"]},
-    {"name": "variable", "symbols": ["MATH_SYMBOL"]},
-    {"name": "COMPRESSED_PROOF_BLOCK", "symbols": [(lexer.has("TEXT1") ? {type: "TEXT1"} : TEXT1)]},
-    {"name": "COMPRESSED_PROOF_BLOCK", "symbols": [(lexer.has("TEXT2") ? {type: "TEXT2"} : TEXT2)]},
-    {"name": "COMPRESSED_PROOF_BLOCK", "symbols": [(lexer.has("TEXT3") ? {type: "TEXT3"} : TEXT3)]},
-    {"name": "LABEL", "symbols": [(lexer.has("TEXT1") ? {type: "TEXT1"} : TEXT1)]},
-    {"name": "LABEL", "symbols": [(lexer.has("TEXT2") ? {type: "TEXT2"} : TEXT2)]},
-    {"name": "LABEL", "symbols": [(lexer.has("TEXT3") ? {type: "TEXT3"} : TEXT3)]},
-    {"name": "MATH_SYMBOL", "symbols": [(lexer.has("TEXT1") ? {type: "TEXT1"} : TEXT1)]},
-    {"name": "MATH_SYMBOL", "symbols": [(lexer.has("TEXT2") ? {type: "TEXT2"} : TEXT2)]},
-    {"name": "MATH_SYMBOL", "symbols": [(lexer.has("TEXT3") ? {type: "TEXT3"} : TEXT3)]},
+    {"name": "filename", "symbols": [(lexer.has("MATH_SYMBOL") ? {type: "MATH_SYMBOL"} : MATH_SYMBOL)]},
+    {"name": "constant", "symbols": [(lexer.has("MATH_SYMBOL") ? {type: "MATH_SYMBOL"} : MATH_SYMBOL)]},
+    {"name": "variable", "symbols": [(lexer.has("MATH_SYMBOL") ? {type: "MATH_SYMBOL"} : MATH_SYMBOL)]},
     {"name": "_$ebnf$1$subexpression$1", "symbols": ["comment", "_"]},
     {"name": "_$ebnf$1", "symbols": ["_$ebnf$1$subexpression$1"], "postprocess": id},
     {"name": "_$ebnf$1", "symbols": [], "postprocess": function(d) {return null;}},

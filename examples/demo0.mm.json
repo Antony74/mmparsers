@@ -48,7 +48,7 @@
                     "type": "constants",
                     "text": [
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": "0"
                         },
                         {
@@ -56,7 +56,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": "+"
                         },
                         {
@@ -64,7 +64,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": "="
                         },
                         {
@@ -72,7 +72,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": "->"
                         },
                         {
@@ -80,7 +80,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": "("
                         },
                         {
@@ -88,7 +88,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": ")"
                         },
                         {
@@ -96,7 +96,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": "term"
                         },
                         {
@@ -104,7 +104,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": "wff"
                         },
                         {
@@ -112,7 +112,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": "|-"
                         },
                         {
@@ -154,7 +154,7 @@
                     "type": "variables",
                     "text": [
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": "t"
                         },
                         {
@@ -162,7 +162,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": "r"
                         },
                         {
@@ -170,7 +170,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": "s"
                         },
                         {
@@ -178,7 +178,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": "P"
                         },
                         {
@@ -186,7 +186,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": "Q"
                         },
                         {
@@ -217,7 +217,7 @@
             "type": "floating_stmt",
             "children": [
                 {
-                    "type": "TEXT3",
+                    "type": "LABEL",
                     "text": "tt"
                 },
                 {
@@ -236,7 +236,7 @@
                     "type": "statement",
                     "text": [
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": "term"
                         },
                         {
@@ -244,7 +244,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": "t"
                         },
                         {
@@ -267,7 +267,7 @@
             "type": "floating_stmt",
             "children": [
                 {
-                    "type": "TEXT3",
+                    "type": "LABEL",
                     "text": "tr"
                 },
                 {
@@ -286,7 +286,7 @@
                     "type": "statement",
                     "text": [
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": "term"
                         },
                         {
@@ -294,7 +294,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": "r"
                         },
                         {
@@ -317,7 +317,7 @@
             "type": "floating_stmt",
             "children": [
                 {
-                    "type": "TEXT3",
+                    "type": "LABEL",
                     "text": "ts"
                 },
                 {
@@ -336,7 +336,7 @@
                     "type": "statement",
                     "text": [
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": "term"
                         },
                         {
@@ -344,7 +344,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": "s"
                         },
                         {
@@ -367,7 +367,7 @@
             "type": "floating_stmt",
             "children": [
                 {
-                    "type": "TEXT3",
+                    "type": "LABEL",
                     "text": "wp"
                 },
                 {
@@ -386,7 +386,7 @@
                     "type": "statement",
                     "text": [
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": "wff"
                         },
                         {
@@ -394,7 +394,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": "P"
                         },
                         {
@@ -417,7 +417,7 @@
             "type": "floating_stmt",
             "children": [
                 {
-                    "type": "TEXT3",
+                    "type": "LABEL",
                     "text": "wq"
                 },
                 {
@@ -436,7 +436,7 @@
                     "type": "statement",
                     "text": [
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": "wff"
                         },
                         {
@@ -444,7 +444,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": "Q"
                         },
                         {
@@ -475,7 +475,7 @@
             "type": "axiom_stmt",
             "children": [
                 {
-                    "type": "TEXT3",
+                    "type": "LABEL",
                     "text": "tze"
                 },
                 {
@@ -491,7 +491,7 @@
                     "text": " "
                 },
                 {
-                    "type": "TEXT3",
+                    "type": "MATH_SYMBOL",
                     "text": "term"
                 },
                 {
@@ -502,7 +502,7 @@
                     "type": "assertion",
                     "children": [
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": "0"
                         },
                         {
@@ -533,7 +533,7 @@
             "type": "axiom_stmt",
             "children": [
                 {
-                    "type": "TEXT3",
+                    "type": "LABEL",
                     "text": "tpl"
                 },
                 {
@@ -549,7 +549,7 @@
                     "text": " "
                 },
                 {
-                    "type": "TEXT3",
+                    "type": "MATH_SYMBOL",
                     "text": "term"
                 },
                 {
@@ -560,7 +560,7 @@
                     "type": "assertion",
                     "children": [
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": "("
                         },
                         {
@@ -568,7 +568,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": "t"
                         },
                         {
@@ -576,7 +576,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": "+"
                         },
                         {
@@ -584,7 +584,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": "r"
                         },
                         {
@@ -592,7 +592,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": ")"
                         },
                         {
@@ -623,7 +623,7 @@
             "type": "axiom_stmt",
             "children": [
                 {
-                    "type": "TEXT3",
+                    "type": "LABEL",
                     "text": "weq"
                 },
                 {
@@ -639,7 +639,7 @@
                     "text": " "
                 },
                 {
-                    "type": "TEXT3",
+                    "type": "MATH_SYMBOL",
                     "text": "wff"
                 },
                 {
@@ -650,7 +650,7 @@
                     "type": "assertion",
                     "children": [
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": "t"
                         },
                         {
@@ -658,7 +658,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": "="
                         },
                         {
@@ -666,7 +666,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": "r"
                         },
                         {
@@ -697,7 +697,7 @@
             "type": "axiom_stmt",
             "children": [
                 {
-                    "type": "TEXT3",
+                    "type": "LABEL",
                     "text": "wim"
                 },
                 {
@@ -713,7 +713,7 @@
                     "text": " "
                 },
                 {
-                    "type": "TEXT3",
+                    "type": "MATH_SYMBOL",
                     "text": "wff"
                 },
                 {
@@ -724,7 +724,7 @@
                     "type": "assertion",
                     "children": [
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": "("
                         },
                         {
@@ -732,7 +732,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": "P"
                         },
                         {
@@ -740,7 +740,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": "->"
                         },
                         {
@@ -748,7 +748,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": "Q"
                         },
                         {
@@ -756,7 +756,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": ")"
                         },
                         {
@@ -787,7 +787,7 @@
             "type": "axiom_stmt",
             "children": [
                 {
-                    "type": "TEXT3",
+                    "type": "LABEL",
                     "text": "a1"
                 },
                 {
@@ -803,7 +803,7 @@
                     "text": " "
                 },
                 {
-                    "type": "TEXT3",
+                    "type": "MATH_SYMBOL",
                     "text": "|-"
                 },
                 {
@@ -814,7 +814,7 @@
                     "type": "assertion",
                     "children": [
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": "("
                         },
                         {
@@ -822,7 +822,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": "t"
                         },
                         {
@@ -830,7 +830,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": "="
                         },
                         {
@@ -838,7 +838,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": "r"
                         },
                         {
@@ -846,7 +846,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": "->"
                         },
                         {
@@ -854,7 +854,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": "("
                         },
                         {
@@ -862,7 +862,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": "t"
                         },
                         {
@@ -870,7 +870,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": "="
                         },
                         {
@@ -878,7 +878,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": "s"
                         },
                         {
@@ -886,7 +886,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": "->"
                         },
                         {
@@ -894,7 +894,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": "r"
                         },
                         {
@@ -902,7 +902,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": "="
                         },
                         {
@@ -910,7 +910,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": "s"
                         },
                         {
@@ -918,7 +918,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": ")"
                         },
                         {
@@ -926,7 +926,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": ")"
                         },
                         {
@@ -957,7 +957,7 @@
             "type": "axiom_stmt",
             "children": [
                 {
-                    "type": "TEXT3",
+                    "type": "LABEL",
                     "text": "a2"
                 },
                 {
@@ -973,7 +973,7 @@
                     "text": " "
                 },
                 {
-                    "type": "TEXT3",
+                    "type": "MATH_SYMBOL",
                     "text": "|-"
                 },
                 {
@@ -984,7 +984,7 @@
                     "type": "assertion",
                     "children": [
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": "("
                         },
                         {
@@ -992,7 +992,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": "t"
                         },
                         {
@@ -1000,7 +1000,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": "+"
                         },
                         {
@@ -1008,7 +1008,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": "0"
                         },
                         {
@@ -1016,7 +1016,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": ")"
                         },
                         {
@@ -1024,7 +1024,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": "="
                         },
                         {
@@ -1032,7 +1032,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": "t"
                         },
                         {
@@ -1069,7 +1069,7 @@
                             "type": "essential_stmt",
                             "children": [
                                 {
-                                    "type": "TEXT3",
+                                    "type": "LABEL",
                                     "text": "min"
                                 },
                                 {
@@ -1088,7 +1088,7 @@
                                     "type": "statement",
                                     "text": [
                                         {
-                                            "type": "TEXT3",
+                                            "type": "MATH_SYMBOL",
                                             "text": "|-"
                                         },
                                         {
@@ -1096,7 +1096,7 @@
                                             "text": " "
                                         },
                                         {
-                                            "type": "TEXT3",
+                                            "type": "MATH_SYMBOL",
                                             "text": "P"
                                         },
                                         {
@@ -1119,7 +1119,7 @@
                             "type": "essential_stmt",
                             "children": [
                                 {
-                                    "type": "TEXT3",
+                                    "type": "LABEL",
                                     "text": "maj"
                                 },
                                 {
@@ -1138,7 +1138,7 @@
                                     "type": "statement",
                                     "text": [
                                         {
-                                            "type": "TEXT3",
+                                            "type": "MATH_SYMBOL",
                                             "text": "|-"
                                         },
                                         {
@@ -1146,7 +1146,7 @@
                                             "text": " "
                                         },
                                         {
-                                            "type": "TEXT3",
+                                            "type": "MATH_SYMBOL",
                                             "text": "("
                                         },
                                         {
@@ -1154,7 +1154,7 @@
                                             "text": " "
                                         },
                                         {
-                                            "type": "TEXT3",
+                                            "type": "MATH_SYMBOL",
                                             "text": "P"
                                         },
                                         {
@@ -1162,7 +1162,7 @@
                                             "text": " "
                                         },
                                         {
-                                            "type": "TEXT3",
+                                            "type": "MATH_SYMBOL",
                                             "text": "->"
                                         },
                                         {
@@ -1170,7 +1170,7 @@
                                             "text": " "
                                         },
                                         {
-                                            "type": "TEXT3",
+                                            "type": "MATH_SYMBOL",
                                             "text": "Q"
                                         },
                                         {
@@ -1178,7 +1178,7 @@
                                             "text": " "
                                         },
                                         {
-                                            "type": "TEXT3",
+                                            "type": "MATH_SYMBOL",
                                             "text": ")"
                                         },
                                         {
@@ -1209,7 +1209,7 @@
                             "type": "axiom_stmt",
                             "children": [
                                 {
-                                    "type": "TEXT3",
+                                    "type": "LABEL",
                                     "text": "mp"
                                 },
                                 {
@@ -1225,7 +1225,7 @@
                                     "text": " "
                                 },
                                 {
-                                    "type": "TEXT3",
+                                    "type": "MATH_SYMBOL",
                                     "text": "|-"
                                 },
                                 {
@@ -1236,7 +1236,7 @@
                                     "type": "assertion",
                                     "children": [
                                         {
-                                            "type": "TEXT3",
+                                            "type": "MATH_SYMBOL",
                                             "text": "Q"
                                         },
                                         {
@@ -1278,7 +1278,10 @@
         {
             "type": "provable_stmt",
             "children": [
-                {},
+                {
+                    "type": "LABEL",
+                    "text": "th1"
+                },
                 [
                     {
                         "type": "WHITESPACE",
@@ -1296,7 +1299,7 @@
                     }
                 ],
                 {
-                    "type": "TEXT3",
+                    "type": "MATH_SYMBOL",
                     "text": "|-"
                 },
                 [
@@ -1309,7 +1312,7 @@
                     "type": "assertion",
                     "children": [
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": "t"
                         },
                         {
@@ -1317,7 +1320,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": "="
                         },
                         {
@@ -1325,7 +1328,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "MATH_SYMBOL",
                             "text": "t"
                         },
                         {
@@ -1365,7 +1368,7 @@
                     "type": "proof",
                     "children": [
                         {
-                            "type": "TEXT3",
+                            "type": "LABEL",
                             "text": "tt"
                         },
                         {
@@ -1373,7 +1376,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "LABEL",
                             "text": "tze"
                         },
                         {
@@ -1381,7 +1384,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "LABEL",
                             "text": "tpl"
                         },
                         {
@@ -1389,7 +1392,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "LABEL",
                             "text": "tt"
                         },
                         {
@@ -1397,7 +1400,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "LABEL",
                             "text": "weq"
                         },
                         {
@@ -1405,7 +1408,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "LABEL",
                             "text": "tt"
                         },
                         {
@@ -1413,7 +1416,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "LABEL",
                             "text": "tt"
                         },
                         {
@@ -1421,7 +1424,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "LABEL",
                             "text": "weq"
                         },
                         {
@@ -1429,7 +1432,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "LABEL",
                             "text": "tt"
                         },
                         {
@@ -1437,7 +1440,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "LABEL",
                             "text": "a2"
                         },
                         {
@@ -1445,7 +1448,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "LABEL",
                             "text": "tt"
                         },
                         {
@@ -1453,7 +1456,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "LABEL",
                             "text": "tze"
                         },
                         {
@@ -1461,7 +1464,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "LABEL",
                             "text": "tpl"
                         },
                         {
@@ -1469,7 +1472,7 @@
                             "text": "\r\n       "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "LABEL",
                             "text": "tt"
                         },
                         {
@@ -1477,7 +1480,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "LABEL",
                             "text": "weq"
                         },
                         {
@@ -1485,7 +1488,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "LABEL",
                             "text": "tt"
                         },
                         {
@@ -1493,7 +1496,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "LABEL",
                             "text": "tze"
                         },
                         {
@@ -1501,7 +1504,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "LABEL",
                             "text": "tpl"
                         },
                         {
@@ -1509,7 +1512,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "LABEL",
                             "text": "tt"
                         },
                         {
@@ -1517,7 +1520,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "LABEL",
                             "text": "weq"
                         },
                         {
@@ -1525,7 +1528,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "LABEL",
                             "text": "tt"
                         },
                         {
@@ -1533,7 +1536,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "LABEL",
                             "text": "tt"
                         },
                         {
@@ -1541,7 +1544,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "LABEL",
                             "text": "weq"
                         },
                         {
@@ -1549,7 +1552,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "LABEL",
                             "text": "wim"
                         },
                         {
@@ -1557,7 +1560,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "LABEL",
                             "text": "tt"
                         },
                         {
@@ -1565,7 +1568,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "LABEL",
                             "text": "a2"
                         },
                         {
@@ -1573,7 +1576,7 @@
                             "text": "\r\n       "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "LABEL",
                             "text": "tt"
                         },
                         {
@@ -1581,7 +1584,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "LABEL",
                             "text": "tze"
                         },
                         {
@@ -1589,7 +1592,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "LABEL",
                             "text": "tpl"
                         },
                         {
@@ -1597,7 +1600,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "LABEL",
                             "text": "tt"
                         },
                         {
@@ -1605,7 +1608,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "LABEL",
                             "text": "tt"
                         },
                         {
@@ -1613,7 +1616,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "LABEL",
                             "text": "a1"
                         },
                         {
@@ -1621,7 +1624,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "LABEL",
                             "text": "mp"
                         },
                         {
@@ -1629,7 +1632,7 @@
                             "text": " "
                         },
                         {
-                            "type": "TEXT3",
+                            "type": "LABEL",
                             "text": "mp"
                         },
                         {

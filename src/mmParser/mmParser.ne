@@ -112,7 +112,7 @@ hypothesis_stmt -> floating_stmt | essential_stmt {% d => {
 } %}
 
 # Floating (variable-type) hypothesis.
-floating_stmt -> LABEL _ "$f" _ typecode _ variable _ "$." {% d => {
+floating_stmt -> %LABEL _ "$f" _ typecode _ variable _ "$." {% d => {
   d = d.flat(Number.MAX_SAFE_INTEGER);
   return {
     type: 'floating_stmt',
@@ -131,12 +131,12 @@ floating_stmt -> LABEL _ "$f" _ typecode _ variable _ "$." {% d => {
 } %}
 
 # Essential (logical) hypothesis.
-essential_stmt -> LABEL _ "$e" _ typecode _ ( MATH_SYMBOL _ ):* "$."
+essential_stmt -> %LABEL _ "$e" _ typecode _ ( %MATH_SYMBOL _ ):* "$."
 
 assert_stmt -> axiom_stmt | provable_stmt
 
 # Axiomatic assertion.
-axiom_stmt -> LABEL _ "$a" _ typecode _ assertion "$." {% d => {
+axiom_stmt -> %LABEL _ "$a" _ typecode _ assertion "$." {% d => {
   d = d.flat(1);
   return {
     type: 'axiom_stmt',
@@ -154,7 +154,7 @@ axiom_stmt -> LABEL _ "$a" _ typecode _ assertion "$." {% d => {
 } %}
 
 # Provable assertion.
-provable_stmt -> LABEL _ "$p" _ typecode _ assertion "$=" _ proof "$." {% d => {
+provable_stmt -> %LABEL _ "$p" _ typecode _ assertion "$=" _ proof "$." {% d => {
   return {
     type: 'provable_stmt',
     children: [
@@ -179,20 +179,16 @@ provable_stmt -> LABEL _ "$p" _ typecode _ assertion "$=" _ proof "$." {% d => {
 # A proof. Proofs may be interspersed by comments.
 # If '?' is in a proof it's an "incomplete" proof.
 proof -> uncompressed_proof | compressed_proof
-uncompressed_proof -> ( ( LABEL | "?" ) _ ):+
-compressed_proof -> "(" _ ( LABEL _ ):* ")" _ ( COMPRESSED_PROOF_BLOCK _ ):+
+uncompressed_proof -> ( ( %LABEL | "?" ) _ ):+
+compressed_proof -> "(" _ ( %LABEL _ ):* ")" _ ( %COMPRESSED_PROOF_BLOCK _ ):+
 
-assertion -> ( MATH_SYMBOL _ ):* {% h.assertion %}
+assertion -> ( %MATH_SYMBOL _ ):* {% h.assertion %}
 
 typecode -> constant
 
-filename -> MATH_SYMBOL # No whitespace or '$'
-constant -> MATH_SYMBOL
-variable -> MATH_SYMBOL
-
-COMPRESSED_PROOF_BLOCK -> %TEXT1 | %TEXT2 | %TEXT3
-LABEL ->  %TEXT1 | %TEXT2 | %TEXT3
-MATH_SYMBOL -> %TEXT1 | %TEXT2 | %TEXT3
+filename -> %MATH_SYMBOL # No whitespace or '$'
+constant -> %MATH_SYMBOL
+variable -> %MATH_SYMBOL
 
 _ -> whitespace ( comment _ ):? {% h._ %}
 

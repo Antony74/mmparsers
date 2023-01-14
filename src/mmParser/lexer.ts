@@ -29,58 +29,87 @@ const _LETTER_OR_DIGIT = unescapedLiteral('[A-Za-z0-9]');
 /* Whitespace: (' ' | '\t' | '\r' | '\n' | '\f') */
 const _WHITECHAR = unescapedLiteral('[\\x20\\x09\\x0d\\x0a\\x0c]');
 
+/* Define whitespace between tokens. */
+const WHITESPACE = {
+    match: _WHITECHAR.onceOrMore().toRegex(),
+    lineBreaks: true,
+};
+
+/* Comments. $( ... $) and do not nest. */
+const _COMMENT = {
+    match: sequence(
+        literal('$('),
+        nonCapturingGroup(
+            sequence(
+                _WHITECHAR.onceOrMore(),
+                nonCapturingGroup(PRINTABLE_SEQUENCE).exclude(literal('$)'))
+            )
+        ).zeroOrMore(),
+        _WHITECHAR.onceOrMore(),
+        literal('$)')
+    ).toRegex(),
+    lineBreaks: true,
+};
+
 export const mooLexerRules: moo.Rules = {
-    '$.': '$.',
-    '$=': '$=',
-    $a: '$a',
-    $c: '$c',
+    '$.': { match: '$.', next: 'main' },
+    '$=': { match: '$=', next: 'proof' },
+    $a: { match: '$a', next: 'mathSymbol' },
+    $c: { match: '$c', next: 'mathSymbol' },
     $d: '$d',
-    $e: '$e',
-    $f: '$f',
-    $p: '$p',
-    $v: '$v',
+    $e: { match: '$e', next: 'mathSymbol' },
+    $f: { match: '$f', next: 'mathSymbol' },
+    $p: { match: '$p', next: 'mathSymbol' },
+    $v: { match: '$v', next: 'mathSymbol' },
     '$[': '$]',
     '${': '${',
     '$}': '$}',
-    '?' : '?',
-    /* Define whitespace between tokens. */
-    WHITESPACE: {
-        match: _WHITECHAR.onceOrMore().toRegex(),
-        lineBreaks: true,
-    },
-    /* Comments. $( ... $) and do not nest. */
-    _COMMENT: {
-        match: sequence(
-            literal('$('),
-            nonCapturingGroup(
-                sequence(
-                    _WHITECHAR.onceOrMore(),
-                    nonCapturingGroup(PRINTABLE_SEQUENCE).exclude(literal('$)'))
-                )
-            ).zeroOrMore(),
-            _WHITECHAR.onceOrMore(),
-            literal('$)')
-        ).toRegex(),
-        lineBreaks: true,
-    },
-    // Note that COMPRESSED_PROOF_BLOCK, LABEL, and MATH_SYMBOL, are not lexically distinct.
-    // Later on in the process the parser will be able to tell them apart by the context in
-    // which they appear, but the lexer can't tell them apart properly.
-    // TEXT1: this is the spec for a COMPRESSED_PROOF_BLOCK, but it might match a LABEL,
-    // or MATH_SYMBOL instead
-    TEXT1: nonCapturingGroup(sequence(unescapedLiteral('[A-Z]'), literal('?')))
-        .onceOrMore()
-        .toRegex(),
-    // TEXT2: this is the spec for LABEL, but it might match a MATH_SYMBOL instead
-    TEXT2: nonCapturingGroup(
-        sequence(_LETTER_OR_DIGIT, literal('.'), literal('-'), literal('_'))
-    )
-        .onceOrMore()
-        .toRegex(),
-    // TEXT3: a MATH_SYMBOL
-    TEXT3: _PRINTABLE_CHARACTER.exclude(literal('$')).onceOrMore().toRegex(),
+    '?': '?',
+    WHITESPACE,
+    _COMMENT,
 };
 
-console.log(mooLexerRules);
+// Note that COMPRESSED_PROOF_BLOCK, LABEL, and MATH_SYMBOL, are not lexically distinct,
+// so we have to use lexer states to tell them apart.
 
-export const lexer = moo.compile(mooLexerRules);
+const COMPRESSED_PROOF_BLOCK = nonCapturingGroup(
+    sequence(unescapedLiteral('[A-Z]'), literal('?'))
+)
+    .onceOrMore()
+    .toRegex();
+
+const LABEL = nonCapturingGroup(
+    sequence(_LETTER_OR_DIGIT /*literal('.'), literal('-'), literal('_')*/)
+)
+    .onceOrMore()
+    .toRegex();
+
+const MATH_SYMBOL = _PRINTABLE_CHARACTER
+    .exclude(literal('$'))
+    .onceOrMore()
+    .toRegex();
+
+console.log({
+    ...mooLexerRules,
+    COMPRESSED_PROOF_BLOCK,
+    LABEL,
+    MATH_SYMBOL,
+});
+
+export const lexer = moo.states({
+    main: { ...mooLexerRules, LABEL },
+    mathSymbol: { ...mooLexerRules, MATH_SYMBOL },
+    proof: {
+        WHITESPACE,
+        _COMMENT,
+        LABEL: { match: LABEL, next: 'main' },
+        '(': { match: literal('(').toRegex(), next: 'compressedProofLabels' },
+    },
+    compressedProofLabels: {
+        WHITESPACE,
+        _COMMENT,
+        LABEL,
+        ')': { match: literal(')').toRegex(), next: 'compressedProofBlock' },
+    },
+    compressedProofBlock: { ...mooLexerRules, COMPRESSED_PROOF_BLOCK },
+});
