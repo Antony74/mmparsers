@@ -51,7 +51,7 @@ const _COMMENT = {
     lineBreaks: true,
 };
 
-export const mooLexerRules: moo.Rules = {
+const mooLexerRules: moo.Rules = {
     '$.': { match: '$.', next: 'main' },
     '$=': { match: '$=', next: 'proof' },
     $a: { match: '$a', next: 'mathSymbol' },
@@ -89,14 +89,7 @@ const MATH_SYMBOL = _PRINTABLE_CHARACTER
     .onceOrMore()
     .toRegex();
 
-console.log({
-    ...mooLexerRules,
-    COMPRESSED_PROOF_BLOCK,
-    LABEL,
-    MATH_SYMBOL,
-});
-
-export const lexer = moo.states({
+const states = {
     main: { ...mooLexerRules, LABEL },
     mathSymbol: { ...mooLexerRules, MATH_SYMBOL },
     proof: {
@@ -112,4 +105,6 @@ export const lexer = moo.states({
         ')': { match: literal(')').toRegex(), next: 'compressedProofBlock' },
     },
     compressedProofBlock: { ...mooLexerRules, COMPRESSED_PROOF_BLOCK },
-});
+}
+
+export const lexer = moo.states(states);
