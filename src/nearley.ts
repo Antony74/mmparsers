@@ -7,10 +7,10 @@ import nearley from 'nearley';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const grammar = require('nearley/lib/nearley-language-bootstrapped');
 
-const main = async () => {
+const main = async (): Promise<void> => {
     const parser = new nearley.Parser(nearley.Grammar.fromCompiled(grammar));
 
-    const parse = async (text: string) => {
+    const parse = async (text: string): Promise<void> => {
         parser.feed(text);
         parser.finish();
 

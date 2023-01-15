@@ -1,10 +1,14 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
     AssertionNode,
+    AxiomStmtNode,
     CommentNode,
+    FloatingStmtNode,
     isParentNode,
     ProvableStmtNode,
     TreeNode,
     TreeNodeLeaf,
+    Underscore,
     WhitespaceNode,
 } from './mmParseTree';
 
@@ -93,7 +97,7 @@ export const hypothesis_stmt = (d: any) => {
     };
 };
 
-export const floating_stmt = (d: any) => {
+export const floating_stmt = (d: any): FloatingStmtNode => {
     d = d.flat(Number.MAX_SAFE_INTEGER);
     return {
         type: 'floating_stmt',
@@ -111,7 +115,7 @@ export const floating_stmt = (d: any) => {
     };
 };
 
-export const axiom_stmt = (d: any) => {
+export const axiom_stmt = (d: any): AxiomStmtNode => {
     d = d.flat(1);
     return {
         type: 'axiom_stmt',
@@ -157,7 +161,7 @@ export const assertion = (d: any): AssertionNode => {
     };
 };
 
-export const _ = (d: any[]): any /* Underscore */ => {
+export const _ = (d: any[]): Underscore => {
     return {
         type: '_',
         children: d
