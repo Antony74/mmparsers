@@ -3,13 +3,15 @@ import {
     AssertionNode,
     AxiomStmtNode,
     CommentNode,
+    ConstantStmtNode,
     EssentialStmtNode,
     FloatingStmtNode,
     isParentNode,
     ProvableStmtNode,
     TreeNode,
     TreeNodeLeaf,
-    Underscore,
+    UnderscoreNode,
+    VariableStmtNode,
     WhitespaceNode,
 } from './mmParseTree';
 
@@ -30,7 +32,22 @@ export const database = (d: any) => {
     return { type: 'database', children: d.flat(3) };
 };
 
-export const constant_stmt = (d: any) => {
+export const block = (d: any) => {
+    return {
+        type: 'block',
+        children: [
+            minToken(d[0]),
+            d[1],
+            {
+                type: 'statements',
+                children: d[2].flat(3),
+            },
+            minToken(d[3]),
+        ],
+    };
+};
+
+export const constant_stmt = (d: any): ConstantStmtNode => {
     d = d.flat();
     return {
         type: 'constant_stmt',
@@ -49,22 +66,7 @@ export const constant_stmt = (d: any) => {
     };
 };
 
-export const block = (d: any) => {
-    return {
-        type: 'block',
-        children: [
-            minToken(d[0]),
-            d[1],
-            {
-                type: 'statements',
-                children: d[2].flat(3),
-            },
-            minToken(d[3]),
-        ],
-    };
-};
-
-export const variable_stmt = (d: any) => {
+export const variable_stmt = (d: any): VariableStmtNode => {
     d = d.flat(Number.MAX_SAFE_INTEGER);
     return {
         type: 'variable_stmt',
@@ -162,7 +164,7 @@ export const assertion = (d: any): AssertionNode => {
     };
 };
 
-export const _ = (d: any[]): Underscore => {
+export const _ = (d: any[]): UnderscoreNode => {
     return {
         type: '_',
         children: d
