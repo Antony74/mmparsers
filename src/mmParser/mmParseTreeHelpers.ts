@@ -1,26 +1,24 @@
-type Whitespace = { type: 'WHITESPACE'; text: string };
-type Comment = { type: '_COMMENT'; text: string };
-type MathSymbol = { type: 'MATH_SYMBOL'; text: string };
-type Label = { type: 'LABEL'; text: string };
-type Assertion = { type: 'assertion'; children: (MathSymbol | Whitespace)[] };
-type ProvableStmt = { type: 'provable_stmt'; children: any[] }; // no
+import {
+    AssertionNode,
+    CommentNode,
+    isParentNode,
+    ProvableStmtNode,
+    TreeNode,
+    TreeNodeLeaf,
+    WhitespaceNode,
+} from './mmParseTree';
 
-export const minToken = (token: moo.Token & { children?: any[] }): any => {
-    if (Array.isArray(token)) {
-        return token;
-    } else {
-        const { type, text } = token;
-
-        if (!type) {
-            throw new Error('Type missing from token');
-        }
-
-        if (token.children) {
-            return token;
-        }
-
-        return { type, text };
+export const minToken = <T extends TreeNode>(token: T): T | TreeNodeLeaf => {
+    if (!token.type) {
+        throw new Error('Type missing from token');
     }
+
+    if (isParentNode(token)) {
+        return token;
+    }
+
+    const { type, text } = token;
+    return { type, text };
 };
 
 export const database = (d: any) => {
@@ -130,7 +128,7 @@ export const axiom_stmt = (d: any) => {
     };
 };
 
-export const provable_stmt = (d: any): ProvableStmt => {
+export const provable_stmt = (d: any): ProvableStmtNode => {
     return {
         type: 'provable_stmt',
         children: [
@@ -152,7 +150,7 @@ export const provable_stmt = (d: any): ProvableStmt => {
     };
 };
 
-export const assertion = (d: any): Assertion => {
+export const assertion = (d: any): AssertionNode => {
     return {
         type: 'assertion',
         children: d.flat(Number.MAX_SAFE_INTEGER).map(minToken),
@@ -168,5 +166,5 @@ export const _ = (d: any[]): any /* Underscore */ => {
     };
 };
 
-export const whitespace = (d: any): Whitespace => minToken(d[0]);
-export const comment = (d: any): Comment => minToken(d[0]);
+export const whitespace = (d: any): WhitespaceNode => minToken(d[0]);
+export const comment = (d: any): CommentNode => minToken(d[0]);

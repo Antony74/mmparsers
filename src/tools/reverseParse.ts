@@ -1,10 +1,6 @@
-type LeafNode = { type: string; text: string };
-type ParentNode = { type: string; children: (LeafNode | Node)[] };
-type Node = LeafNode | ParentNode;
+import { isParentNode, TreeNode, TreeNodeParent } from '../mmParser/mmParseTree';
 
-const isParentNode = (node: Node): node is ParentNode => 'children' in node;
-
-export const reverseParse = (node: Node): string => {
+export const reverseParse = (node: TreeNode): string => {
     if (isParentNode(node)) {
         return node.children.map(reverseParse).join('');
     } else {
