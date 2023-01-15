@@ -207,7 +207,7 @@
                 },
                 {
                     "type": "variables",
-                    "text": [
+                    "children": [
                         {
                             "type": "MATH_SYMBOL",
                             "text": "t"
@@ -324,7 +324,7 @@
                 },
                 {
                     "type": "statement",
-                    "text": [
+                    "children": [
                         {
                             "type": "MATH_SYMBOL",
                             "text": "term"
@@ -394,7 +394,7 @@
                 },
                 {
                     "type": "statement",
-                    "text": [
+                    "children": [
                         {
                             "type": "MATH_SYMBOL",
                             "text": "term"
@@ -464,7 +464,7 @@
                 },
                 {
                     "type": "statement",
-                    "text": [
+                    "children": [
                         {
                             "type": "MATH_SYMBOL",
                             "text": "term"
@@ -534,7 +534,7 @@
                 },
                 {
                     "type": "statement",
-                    "text": [
+                    "children": [
                         {
                             "type": "MATH_SYMBOL",
                             "text": "wff"
@@ -604,7 +604,7 @@
                 },
                 {
                     "type": "statement",
-                    "text": [
+                    "children": [
                         {
                             "type": "MATH_SYMBOL",
                             "text": "wff"
@@ -1551,7 +1551,7 @@
                                 },
                                 {
                                     "type": "statement",
-                                    "text": [
+                                    "children": [
                                         {
                                             "type": "MATH_SYMBOL",
                                             "text": "|-"
@@ -1626,7 +1626,7 @@
                                 },
                                 {
                                     "type": "statement",
-                                    "text": [
+                                    "children": [
                                         {
                                             "type": "MATH_SYMBOL",
                                             "text": "|-"

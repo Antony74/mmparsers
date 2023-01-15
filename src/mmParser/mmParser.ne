@@ -57,7 +57,7 @@ variable_stmt -> "$v" ( _ variable ):+ _ "$." {% d => {
       d[1],
       {
         type: 'variables',
-        text: d.slice(2, -1).map(h.minToken)
+        children: d.slice(2, -1).map(h.minToken)
       },
       h.minToken(d[d.length - 1])
    ]
@@ -79,7 +79,7 @@ hypothesis_stmt -> floating_stmt | essential_stmt {% d => {
       h.minToken(d[3]),
       {
         type: 'statement',
-        text: d.slice(4, -1).map(h.minToken)
+        children: d.slice(4, -1).map(h.minToken)
       },
       h.minToken(d[d.length - 1])
     ]
@@ -98,7 +98,7 @@ floating_stmt -> %LABEL _ "$f" _ typecode _ variable _ "$." {% d => {
       h.minToken(d[3]),
       {
         type: 'statement',
-        text: d.slice(4, -1).map(h.minToken)
+        children: d.slice(4, -1).map(h.minToken)
       },
       h.minToken(d[d.length - 1])
     ]

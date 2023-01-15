@@ -61,7 +61,7 @@ var grammar = {
               d[1],
               {
                 type: 'variables',
-                text: d.slice(2, -1).map(h.minToken)
+                children: d.slice(2, -1).map(h.minToken)
               },
               h.minToken(d[d.length - 1])
            ]
@@ -83,7 +83,7 @@ var grammar = {
               h.minToken(d[3]),
               {
                 type: 'statement',
-                text: d.slice(4, -1).map(h.minToken)
+                children: d.slice(4, -1).map(h.minToken)
               },
               h.minToken(d[d.length - 1])
             ]
@@ -100,7 +100,7 @@ var grammar = {
               h.minToken(d[3]),
               {
                 type: 'statement',
-                text: d.slice(4, -1).map(h.minToken)
+                children: d.slice(4, -1).map(h.minToken)
               },
               h.minToken(d[d.length - 1])
             ]
