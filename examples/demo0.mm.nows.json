@@ -1,0 +1,859 @@
+{
+    "type": "database",
+    "children": [
+        {
+            "type": "constant_stmt",
+            "children": [
+                {
+                    "type": "$c",
+                    "text": "$c"
+                },
+                {
+                    "type": "constants",
+                    "children": [
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": "0"
+                        },
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": "+"
+                        },
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": "="
+                        },
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": "->"
+                        },
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": "("
+                        },
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": ")"
+                        },
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": "term"
+                        },
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": "wff"
+                        },
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": "|-"
+                        }
+                    ]
+                },
+                {
+                    "type": "$.",
+                    "text": "$."
+                }
+            ]
+        },
+        {
+            "type": "variable_stmt",
+            "children": [
+                {
+                    "type": "$v",
+                    "text": "$v"
+                },
+                {
+                    "type": "variables",
+                    "children": [
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": "t"
+                        },
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": "r"
+                        },
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": "s"
+                        },
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": "P"
+                        },
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": "Q"
+                        }
+                    ]
+                },
+                {
+                    "type": "$.",
+                    "text": "$."
+                }
+            ]
+        },
+        {
+            "type": "floating_stmt",
+            "children": [
+                {
+                    "type": "LABEL",
+                    "text": "tt"
+                },
+                {
+                    "type": "$f",
+                    "text": "$f"
+                },
+                {
+                    "type": "statement",
+                    "children": [
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": "term"
+                        },
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": "t"
+                        }
+                    ]
+                },
+                {
+                    "type": "$.",
+                    "text": "$."
+                }
+            ]
+        },
+        {
+            "type": "floating_stmt",
+            "children": [
+                {
+                    "type": "LABEL",
+                    "text": "tr"
+                },
+                {
+                    "type": "$f",
+                    "text": "$f"
+                },
+                {
+                    "type": "statement",
+                    "children": [
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": "term"
+                        },
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": "r"
+                        }
+                    ]
+                },
+                {
+                    "type": "$.",
+                    "text": "$."
+                }
+            ]
+        },
+        {
+            "type": "floating_stmt",
+            "children": [
+                {
+                    "type": "LABEL",
+                    "text": "ts"
+                },
+                {
+                    "type": "$f",
+                    "text": "$f"
+                },
+                {
+                    "type": "statement",
+                    "children": [
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": "term"
+                        },
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": "s"
+                        }
+                    ]
+                },
+                {
+                    "type": "$.",
+                    "text": "$."
+                }
+            ]
+        },
+        {
+            "type": "floating_stmt",
+            "children": [
+                {
+                    "type": "LABEL",
+                    "text": "wp"
+                },
+                {
+                    "type": "$f",
+                    "text": "$f"
+                },
+                {
+                    "type": "statement",
+                    "children": [
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": "wff"
+                        },
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": "P"
+                        }
+                    ]
+                },
+                {
+                    "type": "$.",
+                    "text": "$."
+                }
+            ]
+        },
+        {
+            "type": "floating_stmt",
+            "children": [
+                {
+                    "type": "LABEL",
+                    "text": "wq"
+                },
+                {
+                    "type": "$f",
+                    "text": "$f"
+                },
+                {
+                    "type": "statement",
+                    "children": [
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": "wff"
+                        },
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": "Q"
+                        }
+                    ]
+                },
+                {
+                    "type": "$.",
+                    "text": "$."
+                }
+            ]
+        },
+        {
+            "type": "axiom_stmt",
+            "children": [
+                {
+                    "type": "LABEL",
+                    "text": "tze"
+                },
+                {
+                    "type": "$a",
+                    "text": "$a"
+                },
+                {
+                    "type": "MATH_SYMBOL",
+                    "text": "term"
+                },
+                {
+                    "type": "assertion",
+                    "children": [
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": "0"
+                        }
+                    ]
+                },
+                {
+                    "type": "$.",
+                    "text": "$."
+                }
+            ]
+        },
+        {
+            "type": "axiom_stmt",
+            "children": [
+                {
+                    "type": "LABEL",
+                    "text": "tpl"
+                },
+                {
+                    "type": "$a",
+                    "text": "$a"
+                },
+                {
+                    "type": "MATH_SYMBOL",
+                    "text": "term"
+                },
+                {
+                    "type": "assertion",
+                    "children": [
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": "("
+                        },
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": "t"
+                        },
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": "+"
+                        },
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": "r"
+                        },
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": ")"
+                        }
+                    ]
+                },
+                {
+                    "type": "$.",
+                    "text": "$."
+                }
+            ]
+        },
+        {
+            "type": "axiom_stmt",
+            "children": [
+                {
+                    "type": "LABEL",
+                    "text": "weq"
+                },
+                {
+                    "type": "$a",
+                    "text": "$a"
+                },
+                {
+                    "type": "MATH_SYMBOL",
+                    "text": "wff"
+                },
+                {
+                    "type": "assertion",
+                    "children": [
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": "t"
+                        },
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": "="
+                        },
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": "r"
+                        }
+                    ]
+                },
+                {
+                    "type": "$.",
+                    "text": "$."
+                }
+            ]
+        },
+        {
+            "type": "axiom_stmt",
+            "children": [
+                {
+                    "type": "LABEL",
+                    "text": "wim"
+                },
+                {
+                    "type": "$a",
+                    "text": "$a"
+                },
+                {
+                    "type": "MATH_SYMBOL",
+                    "text": "wff"
+                },
+                {
+                    "type": "assertion",
+                    "children": [
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": "("
+                        },
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": "P"
+                        },
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": "->"
+                        },
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": "Q"
+                        },
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": ")"
+                        }
+                    ]
+                },
+                {
+                    "type": "$.",
+                    "text": "$."
+                }
+            ]
+        },
+        {
+            "type": "axiom_stmt",
+            "children": [
+                {
+                    "type": "LABEL",
+                    "text": "a1"
+                },
+                {
+                    "type": "$a",
+                    "text": "$a"
+                },
+                {
+                    "type": "MATH_SYMBOL",
+                    "text": "|-"
+                },
+                {
+                    "type": "assertion",
+                    "children": [
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": "("
+                        },
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": "t"
+                        },
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": "="
+                        },
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": "r"
+                        },
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": "->"
+                        },
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": "("
+                        },
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": "t"
+                        },
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": "="
+                        },
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": "s"
+                        },
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": "->"
+                        },
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": "r"
+                        },
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": "="
+                        },
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": "s"
+                        },
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": ")"
+                        },
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": ")"
+                        }
+                    ]
+                },
+                {
+                    "type": "$.",
+                    "text": "$."
+                }
+            ]
+        },
+        {
+            "type": "axiom_stmt",
+            "children": [
+                {
+                    "type": "LABEL",
+                    "text": "a2"
+                },
+                {
+                    "type": "$a",
+                    "text": "$a"
+                },
+                {
+                    "type": "MATH_SYMBOL",
+                    "text": "|-"
+                },
+                {
+                    "type": "assertion",
+                    "children": [
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": "("
+                        },
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": "t"
+                        },
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": "+"
+                        },
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": "0"
+                        },
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": ")"
+                        },
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": "="
+                        },
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": "t"
+                        }
+                    ]
+                },
+                {
+                    "type": "$.",
+                    "text": "$."
+                }
+            ]
+        },
+        {
+            "type": "block",
+            "children": [
+                {
+                    "type": "${",
+                    "text": "${"
+                },
+                {
+                    "type": "statements",
+                    "children": [
+                        {
+                            "type": "essential_stmt",
+                            "children": [
+                                {
+                                    "type": "LABEL",
+                                    "text": "min"
+                                },
+                                {
+                                    "type": "$e",
+                                    "text": "$e"
+                                },
+                                {
+                                    "type": "statement",
+                                    "children": [
+                                        {
+                                            "type": "MATH_SYMBOL",
+                                            "text": "|-"
+                                        },
+                                        {
+                                            "type": "MATH_SYMBOL",
+                                            "text": "P"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "$.",
+                                    "text": "$."
+                                }
+                            ]
+                        },
+                        {
+                            "type": "essential_stmt",
+                            "children": [
+                                {
+                                    "type": "LABEL",
+                                    "text": "maj"
+                                },
+                                {
+                                    "type": "$e",
+                                    "text": "$e"
+                                },
+                                {
+                                    "type": "statement",
+                                    "children": [
+                                        {
+                                            "type": "MATH_SYMBOL",
+                                            "text": "|-"
+                                        },
+                                        {
+                                            "type": "MATH_SYMBOL",
+                                            "text": "("
+                                        },
+                                        {
+                                            "type": "MATH_SYMBOL",
+                                            "text": "P"
+                                        },
+                                        {
+                                            "type": "MATH_SYMBOL",
+                                            "text": "->"
+                                        },
+                                        {
+                                            "type": "MATH_SYMBOL",
+                                            "text": "Q"
+                                        },
+                                        {
+                                            "type": "MATH_SYMBOL",
+                                            "text": ")"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "$.",
+                                    "text": "$."
+                                }
+                            ]
+                        },
+                        {
+                            "type": "axiom_stmt",
+                            "children": [
+                                {
+                                    "type": "LABEL",
+                                    "text": "mp"
+                                },
+                                {
+                                    "type": "$a",
+                                    "text": "$a"
+                                },
+                                {
+                                    "type": "MATH_SYMBOL",
+                                    "text": "|-"
+                                },
+                                {
+                                    "type": "assertion",
+                                    "children": [
+                                        {
+                                            "type": "MATH_SYMBOL",
+                                            "text": "Q"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "$.",
+                                    "text": "$."
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "$}",
+                    "text": "$}"
+                }
+            ]
+        },
+        {
+            "type": "provable_stmt",
+            "children": [
+                {
+                    "type": "LABEL",
+                    "text": "th1"
+                },
+                {
+                    "type": "$p",
+                    "text": "$p"
+                },
+                {
+                    "type": "MATH_SYMBOL",
+                    "text": "|-"
+                },
+                {
+                    "type": "assertion",
+                    "children": [
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": "t"
+                        },
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": "="
+                        },
+                        {
+                            "type": "MATH_SYMBOL",
+                            "text": "t"
+                        }
+                    ]
+                },
+                {
+                    "type": "$=",
+                    "value": "$=",
+                    "text": "$=",
+                    "offset": 1232,
+                    "lineBreaks": 0,
+                    "line": 45,
+                    "col": 21
+                },
+                {
+                    "type": "proof",
+                    "children": [
+                        {
+                            "type": "LABEL",
+                            "text": "tt"
+                        },
+                        {
+                            "type": "LABEL",
+                            "text": "tze"
+                        },
+                        {
+                            "type": "LABEL",
+                            "text": "tpl"
+                        },
+                        {
+                            "type": "LABEL",
+                            "text": "tt"
+                        },
+                        {
+                            "type": "LABEL",
+                            "text": "weq"
+                        },
+                        {
+                            "type": "LABEL",
+                            "text": "tt"
+                        },
+                        {
+                            "type": "LABEL",
+                            "text": "tt"
+                        },
+                        {
+                            "type": "LABEL",
+                            "text": "weq"
+                        },
+                        {
+                            "type": "LABEL",
+                            "text": "tt"
+                        },
+                        {
+                            "type": "LABEL",
+                            "text": "a2"
+                        },
+                        {
+                            "type": "LABEL",
+                            "text": "tt"
+                        },
+                        {
+                            "type": "LABEL",
+                            "text": "tze"
+                        },
+                        {
+                            "type": "LABEL",
+                            "text": "tpl"
+                        },
+                        {
+                            "type": "LABEL",
+                            "text": "tt"
+                        },
+                        {
+                            "type": "LABEL",
+                            "text": "weq"
+                        },
+                        {
+                            "type": "LABEL",
+                            "text": "tt"
+                        },
+                        {
+                            "type": "LABEL",
+                            "text": "tze"
+                        },
+                        {
+                            "type": "LABEL",
+                            "text": "tpl"
+                        },
+                        {
+                            "type": "LABEL",
+                            "text": "tt"
+                        },
+                        {
+                            "type": "LABEL",
+                            "text": "weq"
+                        },
+                        {
+                            "type": "LABEL",
+                            "text": "tt"
+                        },
+                        {
+                            "type": "LABEL",
+                            "text": "tt"
+                        },
+                        {
+                            "type": "LABEL",
+                            "text": "weq"
+                        },
+                        {
+                            "type": "LABEL",
+                            "text": "wim"
+                        },
+                        {
+                            "type": "LABEL",
+                            "text": "tt"
+                        },
+                        {
+                            "type": "LABEL",
+                            "text": "a2"
+                        },
+                        {
+                            "type": "LABEL",
+                            "text": "tt"
+                        },
+                        {
+                            "type": "LABEL",
+                            "text": "tze"
+                        },
+                        {
+                            "type": "LABEL",
+                            "text": "tpl"
+                        },
+                        {
+                            "type": "LABEL",
+                            "text": "tt"
+                        },
+                        {
+                            "type": "LABEL",
+                            "text": "tt"
+                        },
+                        {
+                            "type": "LABEL",
+                            "text": "a1"
+                        },
+                        {
+                            "type": "LABEL",
+                            "text": "mp"
+                        },
+                        {
+                            "type": "LABEL",
+                            "text": "mp"
+                        }
+                    ]
+                },
+                {
+                    "type": "$.",
+                    "text": "$."
+                }
+            ]
+        }
+    ]
+}

@@ -141,5 +141,35 @@ export type Database = {
     (ConstantStmtNode | ChildStatement | WhitespaceNode | CommentNode)[];
 };
 
+export type MMNode =
+    | Database
+    | BlockNode
+    | ProvableStmtNode
+    | AxiomStmtNode
+    | FloatingStmtNode
+    | EssentialStmtNode
+    | VariableStmtNode
+    | ConstantStmtNode
+    | StatementsNode
+    | ProofNode
+    | AssertionNode
+    | StatementNode
+    | VariablesNode
+    | ConstantsNode
+    | UnderscoreNode
+    | WhitespaceNode
+    | CommentNode
+    | MathSymbolNode
+    | LabelNode
+    | $cNode
+    | $vNode
+    | $eNode
+    | $aNode
+    | $pNode
+    | $eqNode
+    | $dotNode
+    | $BlockStartNode
+    | $BlockEndNode;
+
 export const isParentNode = (node: TreeNode): node is TreeNodeParent =>
     'children' in node;
