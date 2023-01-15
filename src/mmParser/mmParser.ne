@@ -6,7 +6,7 @@ const h = require('./mmParseTreeHelpers');
 
 @lexer lexer
 
-database -> ( outermost_scope_stmt ):* {% d => {return {type: 'database', children: d.flat(3)}} %}
+database -> ( outermost_scope_stmt ):* {% h.database %}
 
 outermost_scope_stmt ->
   include_stmt    
@@ -27,7 +27,7 @@ stmt -> block
   | variable_stmt
   | disjoint_stmt
   | hypothesis_stmt {% d => d.flat() %}
-  | assert_stmt {% h.assert_stmt %}
+  | assert_stmt {% d => d.flat() %}
 
 # A block. You can have 0 statements in a block.
 block -> "${" _ ( stmt _ ):* "$}" {% h.block %}

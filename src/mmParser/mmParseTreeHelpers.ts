@@ -23,6 +23,10 @@ export const minToken = (token: moo.Token & { children?: any[] }): any => {
     }
 };
 
+export const database = (d: any) => {
+    return { type: 'database', children: d.flat(3) };
+};
+
 export const constant_stmt = (d: any) => {
     d = d.flat();
     return {
@@ -108,9 +112,6 @@ export const floating_stmt = (d: any) => {
         ],
     };
 };
-
-//export const hypothesis_stmt = (d) => d.flat();
-export const assert_stmt = (d: any) => d.flat();
 
 export const axiom_stmt = (d: any) => {
     d = d.flat(1);
