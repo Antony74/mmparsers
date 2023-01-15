@@ -2,8 +2,10 @@
 import {
     AssertionNode,
     AxiomStmtNode,
+    BlockNode,
     CommentNode,
     ConstantStmtNode,
+    Database,
     EssentialStmtNode,
     FloatingStmtNode,
     isParentNode,
@@ -28,11 +30,11 @@ export const minToken = <T extends TreeNode>(token: T): T | TreeNodeLeaf => {
     return { type, text };
 };
 
-export const database = (d: any) => {
+export const database = (d: any): Database => {
     return { type: 'database', children: d.flat(3) };
 };
 
-export const block = (d: any) => {
+export const block = (d: any): BlockNode => {
     return {
         type: 'block',
         children: [

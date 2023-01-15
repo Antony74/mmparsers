@@ -18,6 +18,8 @@ export type $aNode = { type: '$a'; text: '$a' };
 export type $pNode = { type: '$p'; text: '$p' };
 export type $eqNode = { type: '$='; text: '$=' };
 export type $dotNode = { type: '$.'; text: '$.' };
+export type $BlockStartNode = { type: '${'; text: '${' };
+export type $BlockEndNode = { type: '$}'; text: '$}' };
 
 export type UnderscoreNode = {
     type: '_';
@@ -47,6 +49,20 @@ export type AssertionNode = {
 export type ProofNode = {
     type: 'proof';
     children: (LabelNode | UnderscoreNode)[];
+};
+
+export type ChildStatement =
+    | BlockNode
+    | VariableStmtNode
+    // | DisjointStmtNode
+    | FloatingStmtNode
+    | EssentialStmtNode
+    | AxiomStmtNode
+    | ProvableStmtNode;
+
+export type StatementsNode = {
+    type: 'statements';
+    children: ChildStatement[];
 };
 
 export type ConstantStmtNode = {
@@ -112,6 +128,17 @@ export type ProvableStmtNode = {
         ProofNode,
         $dotNode
     ];
+};
+
+export type BlockNode = {
+    type: 'block';
+    children: [$BlockStartNode, UnderscoreNode, StatementsNode, $BlockEndNode];
+};
+
+export type Database = {
+    type: 'database';
+    children: // IncludeStmtNode |
+    (ConstantStmtNode | ChildStatement | WhitespaceNode | CommentNode)[];
 };
 
 export const isParentNode = (node: TreeNode): node is TreeNodeParent =>
