@@ -2,13 +2,6 @@
 const { lexer } = require('./lexer');
 const h = require('./mmParseTreeHelpers');
 
-const minToken = (t) => {
-  const {type, text} = t;
-  return {type, text};
-};
-
-const popWhitespace = (item) => item.length === 1 ? item[0] : item
-
 %}
 
 @lexer lexer
@@ -27,21 +20,7 @@ outermost_scope_stmt ->
 include_stmt -> "$[" filename "$]"
 
 # Constant symbols declaration.
-constant_stmt -> "$c" _ ( constant _ ):+ "$." {% d => {
-  d = d.flat(Number.MAX_SAFE_INTEGER);
-  return {
-    type: 'constant_stmt',
-    children: [
-      minToken(d[0]),
-      d[1],
-      {
-        type: 'constants',
-        text: d.slice(2, -1).map(minToken)
-      },
-      minToken(d[d.length - 1])
-   ]
-  };
-} %}
+constant_stmt -> "$c" _ ( constant _ ):+ "$." {% h.constant_stmt %}
 
 # A normal statement can occur in any scope.
 stmt -> block
@@ -55,19 +34,15 @@ block -> "${" _ ( stmt _ ):* "$}" {% d => {
   return {
     type: 'block',
     children: [
-      minToken(d[0]),
-      popWhitespace(d[1]),
+      h.minToken(d[0]),
+      d[1],
       {
         type: 'statements',
         children: d[2].flat(3).map((item, index) => {
-          if (index % 2) {
-            return popWhitespace(item);
-          } else {
             return item;
-          }
         })
       },
-      minToken(d[3]),
+      h.minToken(d[3]),
     ]
   };
 } %}
@@ -78,13 +53,13 @@ variable_stmt -> "$v" ( _ variable ):+ _ "$." {% d => {
   return {
     type: 'variable_stmt',
     children: [
-      minToken(d[0]),
+      h.minToken(d[0]),
       d[1],
       {
         type: 'variables',
-        text: d.slice(2, -1).map(minToken)
+        text: d.slice(2, -1).map(h.minToken)
       },
-      minToken(d[d.length - 1])
+      h.minToken(d[d.length - 1])
    ]
   };
 } %}
@@ -98,15 +73,15 @@ hypothesis_stmt -> floating_stmt | essential_stmt {% d => {
   return {
     type: 'essential_stmt',
     children: [
-      minToken(d[0]),
-      minToken(d[1]),
-      minToken(d[2]),
-      minToken(d[3]),
+      h.minToken(d[0]),
+      h.minToken(d[1]),
+      h.minToken(d[2]),
+      h.minToken(d[3]),
       {
         type: 'statement',
-        text: d.slice(4, -1).map(minToken)
+        text: d.slice(4, -1).map(h.minToken)
       },
-      minToken(d[d.length - 1])
+      h.minToken(d[d.length - 1])
     ]
   }
 } %}
@@ -117,15 +92,15 @@ floating_stmt -> %LABEL _ "$f" _ typecode _ variable _ "$." {% d => {
   return {
     type: 'floating_stmt',
     children: [
-      minToken(d[0]),
-      minToken(d[1]),
-      minToken(d[2]),
-      minToken(d[3]),
+      h.minToken(d[0]),
+      h.minToken(d[1]),
+      h.minToken(d[2]),
+      h.minToken(d[3]),
       {
         type: 'statement',
-        text: d.slice(4, -1).map(minToken)
+        text: d.slice(4, -1).map(h.minToken)
       },
-      minToken(d[d.length - 1])
+      h.minToken(d[d.length - 1])
     ]
   }
 } %}
@@ -141,14 +116,14 @@ axiom_stmt -> %LABEL _ "$a" _ typecode _ assertion "$." {% d => {
   return {
     type: 'axiom_stmt',
     children: [
-      minToken(d[0]), // LABEL
+      h.minToken(d[0]), // LABEL
       d[1],           // _
-      minToken(d[2]), // $a
+      h.minToken(d[2]), // $a
       d[3],           // _
-      minToken(d[4].flat(Number.MAX_SAFE_INTEGER)[0]), // typecode
+      h.minToken(d[4].flat(Number.MAX_SAFE_INTEGER)[0]), // typecode
       d[5],           // _
       d[6],           // assertion
-      minToken(d[7])  // $.
+      h.minToken(d[7])  // $.
     ]
   }
 } %}
@@ -158,20 +133,20 @@ provable_stmt -> %LABEL _ "$p" _ typecode _ assertion "$=" _ proof "$." {% d => 
   return {
     type: 'provable_stmt',
     children: [
-      minToken(d[0]), // label
+      h.minToken(d[0]), // label
       d[1],           // _
-      minToken(d[2]), // $p
+      h.minToken(d[2]), // $p
       d[3],           // _
-      minToken(d[4].flat(Number.MAX_SAFE_INTEGER)[0]),  // typecode
+      h.minToken(d[4].flat(Number.MAX_SAFE_INTEGER)[0]),  // typecode
       d[5],           // _
       d[6],           // assertion
       d[7],           // $=
       d[8],           // _
       {
         type: 'proof',
-        children: d[9].flat(Number.MAX_SAFE_INTEGER).map(minToken)
+        children: d[9].flat(Number.MAX_SAFE_INTEGER).map(h.minToken)
       },       
-      minToken(d[10]) // $.
+      h.minToken(d[10]) // $.
     ]
   }
 } %}
@@ -190,7 +165,9 @@ filename -> %MATH_SYMBOL # No whitespace or '$'
 constant -> %MATH_SYMBOL
 variable -> %MATH_SYMBOL
 
-_ -> whitespace ( comment _ ):? {% h._ %}
+_ -> whitespaceComment {% h._ %}
+
+whitespaceComment -> whitespace ( comment _ ):? 
 
 whitespace -> %WHITESPACE {% h.whitespace %}
 comment -> %_COMMENT {% h.comment %}

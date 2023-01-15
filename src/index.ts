@@ -1,6 +1,7 @@
 import fs from 'fs/promises';
 import path from 'path';
 import nearley from 'nearley';
+import { reverseParse } from './tools/reverseParse';
 
 const grammar = require('./mmParser/mmParser');
 
@@ -22,7 +23,14 @@ const main = async () => {
         }
 
         const result = parser.results[0];
-        await fs.writeFile(`examples/${filename}.json`, JSON.stringify(result, null ,4))
+        await fs.writeFile(
+            `examples/${filename}.json`,
+            JSON.stringify(result, null, 4)
+        );
+
+        // Any change to this file indicates a bad parse
+        await fs.writeFile(`examples/${filename}`, reverseParse(result));
+
         return result;
     };
 
