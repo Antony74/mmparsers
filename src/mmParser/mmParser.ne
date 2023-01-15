@@ -39,13 +39,13 @@ variable_stmt -> "$v" ( _ variable ):+ _ "$." {% h.variable_stmt %}
 # 2 variables, i.e., "variable*" is empty for them.
 disjoint_stmt -> "$d" variable variable ( variable ):* "$."
 
-hypothesis_stmt -> floating_stmt | essential_stmt {% h.hypothesis_stmt %}
+hypothesis_stmt -> floating_stmt | essential_stmt 
 
 # Floating (variable-type) hypothesis.
 floating_stmt -> %LABEL _ "$f" _ typecode _ variable _ "$." {% h.floating_stmt %}
 
 # Essential (logical) hypothesis.
-essential_stmt -> %LABEL _ "$e" _ typecode _ ( %MATH_SYMBOL _ ):* "$."
+essential_stmt -> %LABEL _ "$e" _ typecode _ ( %MATH_SYMBOL _ ):* "$." {% h.essential_stmt %}
 
 assert_stmt -> axiom_stmt | provable_stmt
 

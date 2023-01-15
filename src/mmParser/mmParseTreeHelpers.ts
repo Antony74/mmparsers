@@ -3,6 +3,7 @@ import {
     AssertionNode,
     AxiomStmtNode,
     CommentNode,
+    EssentialStmtNode,
     FloatingStmtNode,
     isParentNode,
     ProvableStmtNode,
@@ -79,7 +80,7 @@ export const variable_stmt = (d: any) => {
     };
 };
 
-export const hypothesis_stmt = (d: any) => {
+export const essential_stmt = (d: any): EssentialStmtNode => {
     d = d.flat(Number.MAX_SAFE_INTEGER);
     return {
         type: 'essential_stmt',
