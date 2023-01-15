@@ -27,83 +27,22 @@ stmt -> block
   | variable_stmt
   | disjoint_stmt
   | hypothesis_stmt {% d => d.flat() %}
-  | assert_stmt {% d => d.flat() %}
+  | assert_stmt {% h.assert_stmt %}
 
 # A block. You can have 0 statements in a block.
-block -> "${" _ ( stmt _ ):* "$}" {% d => {
-  return {
-    type: 'block',
-    children: [
-      h.minToken(d[0]),
-      d[1],
-      {
-        type: 'statements',
-        children: d[2].flat(3).map((item, index) => {
-            return item;
-        })
-      },
-      h.minToken(d[3]),
-    ]
-  };
-} %}
+block -> "${" _ ( stmt _ ):* "$}" {% h.block %}
 
 # Variable symbols declaration.
-variable_stmt -> "$v" ( _ variable ):+ _ "$." {% d => {
-  d = d.flat(Number.MAX_SAFE_INTEGER);
-  return {
-    type: 'variable_stmt',
-    children: [
-      h.minToken(d[0]),
-      d[1],
-      {
-        type: 'variables',
-        children: d.slice(2, -1).map(h.minToken)
-      },
-      h.minToken(d[d.length - 1])
-   ]
-  };
-} %}
+variable_stmt -> "$v" ( _ variable ):+ _ "$." {% h.variable_stmt %}
 
 # Disjoint variables. Simple disjoint statements have
 # 2 variables, i.e., "variable*" is empty for them.
 disjoint_stmt -> "$d" variable variable ( variable ):* "$."
 
-hypothesis_stmt -> floating_stmt | essential_stmt {% d => {
-  d = d.flat(Number.MAX_SAFE_INTEGER);
-  return {
-    type: 'essential_stmt',
-    children: [
-      h.minToken(d[0]),
-      h.minToken(d[1]),
-      h.minToken(d[2]),
-      h.minToken(d[3]),
-      {
-        type: 'statement',
-        children: d.slice(4, -1).map(h.minToken)
-      },
-      h.minToken(d[d.length - 1])
-    ]
-  }
-} %}
+hypothesis_stmt -> floating_stmt | essential_stmt {% h.hypothesis_stmt %}
 
 # Floating (variable-type) hypothesis.
-floating_stmt -> %LABEL _ "$f" _ typecode _ variable _ "$." {% d => {
-  d = d.flat(Number.MAX_SAFE_INTEGER);
-  return {
-    type: 'floating_stmt',
-    children: [
-      h.minToken(d[0]),
-      h.minToken(d[1]),
-      h.minToken(d[2]),
-      h.minToken(d[3]),
-      {
-        type: 'statement',
-        children: d.slice(4, -1).map(h.minToken)
-      },
-      h.minToken(d[d.length - 1])
-    ]
-  }
-} %}
+floating_stmt -> %LABEL _ "$f" _ typecode _ variable _ "$." {% h.floating_stmt %}
 
 # Essential (logical) hypothesis.
 essential_stmt -> %LABEL _ "$e" _ typecode _ ( %MATH_SYMBOL _ ):* "$."
@@ -111,45 +50,10 @@ essential_stmt -> %LABEL _ "$e" _ typecode _ ( %MATH_SYMBOL _ ):* "$."
 assert_stmt -> axiom_stmt | provable_stmt
 
 # Axiomatic assertion.
-axiom_stmt -> %LABEL _ "$a" _ typecode _ assertion "$." {% d => {
-  d = d.flat(1);
-  return {
-    type: 'axiom_stmt',
-    children: [
-      h.minToken(d[0]), // LABEL
-      d[1],           // _
-      h.minToken(d[2]), // $a
-      d[3],           // _
-      h.minToken(d[4].flat(Number.MAX_SAFE_INTEGER)[0]), // typecode
-      d[5],           // _
-      d[6],           // assertion
-      h.minToken(d[7])  // $.
-    ]
-  }
-} %}
+axiom_stmt -> %LABEL _ "$a" _ typecode _ assertion "$." {% h.axiom_stmt %}
 
 # Provable assertion.
-provable_stmt -> %LABEL _ "$p" _ typecode _ assertion "$=" _ proof "$." {% d => {
-  return {
-    type: 'provable_stmt',
-    children: [
-      h.minToken(d[0]), // label
-      d[1],           // _
-      h.minToken(d[2]), // $p
-      d[3],           // _
-      h.minToken(d[4].flat(Number.MAX_SAFE_INTEGER)[0]),  // typecode
-      d[5],           // _
-      d[6],           // assertion
-      d[7],           // $=
-      d[8],           // _
-      {
-        type: 'proof',
-        children: d[9].flat(Number.MAX_SAFE_INTEGER).map(h.minToken)
-      },       
-      h.minToken(d[10]) // $.
-    ]
-  }
-} %}
+provable_stmt -> %LABEL _ "$p" _ typecode _ assertion "$=" _ proof "$." {% h.provable_stmt %}
 
 # A proof. Proofs may be interspersed by comments.
 # If '?' is in a proof it's an "incomplete" proof.
