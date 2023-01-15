@@ -4,6 +4,7 @@
     "scripts": {
         "generate": "npm run generate-mm",
         "generate-mm": "cd src/mmParser && nearleyc mmParser.ne -o mmParser.js && nearley-railroad mmParser.ne -o mmParser.html",
+        "lint": "eslint .",
         "nearley": "ts-node src/nearley.ts",
         "prettier": "prettier --write **/*.ts",
         "start": "ts-node src/index.ts",
@@ -21,6 +22,9 @@
         "@types/jest": "^29.2.5",
         "@types/nearley": "^2.11.2",
         "@types/node": "^18.11.18",
+        "@typescript-eslint/eslint-plugin": "^5.48.1",
+        "@typescript-eslint/parser": "^5.48.1",
+        "eslint": "^8.32.0",
         "jest": "^29.3.1",
         "prettier": "^2.8.1",
         "ts-node": "^10.9.1",

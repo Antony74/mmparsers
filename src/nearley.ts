@@ -4,6 +4,7 @@ import fs from 'fs/promises';
 import path from 'path';
 import nearley from 'nearley';
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const grammar = require('nearley/lib/nearley-language-bootstrapped');
 
 const main = async () => {

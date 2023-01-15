@@ -1,4 +1,4 @@
-import { isParentNode, TreeNode, TreeNodeParent } from '../mmParser/mmParseTree';
+import { isParentNode, TreeNode } from '../mmParser/mmParseTree';
 
 export const reverseParse = (node: TreeNode): string => {
     if (isParentNode(node)) {
