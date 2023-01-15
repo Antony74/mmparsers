@@ -1918,12 +1918,7 @@
                 },
                 {
                     "type": "$=",
-                    "value": "$=",
-                    "text": "$=",
-                    "offset": 1232,
-                    "lineBreaks": 0,
-                    "line": 45,
-                    "col": 21
+                    "text": "$="
                 },
                 {
                     "type": "_",

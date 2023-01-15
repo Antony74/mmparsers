@@ -148,7 +148,7 @@ export const provable_stmt = (d: any): ProvableStmtNode => {
             minToken(d[4].flat(Number.MAX_SAFE_INTEGER)[0]), // typecode
             d[5], // _
             d[6], // assertion
-            d[7], // $=
+            minToken(d[7]), // $=
             d[8], // _
             {
                 type: 'proof',
