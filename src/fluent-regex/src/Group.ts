@@ -23,7 +23,7 @@ const groupWithState = (
 
     if (groupName) {
         if (!groupNameValidator.test(groupName))
-            throw `Invalid group name \'${groupName}\'.\nA group name can contain letters and numbers but must start with a letter.`;
+            throw `Invalid group name '${groupName}'.\nA group name can contain letters and numbers but must start with a letter.`;
     }
 
     const regexStringCallback: RegexStringCallback = (

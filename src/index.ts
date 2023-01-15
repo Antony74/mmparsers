@@ -2,13 +2,15 @@ import fs from 'fs/promises';
 import path from 'path';
 import nearley from 'nearley';
 import { reverseParse } from './tools/reverseParse';
+import { Database } from './mmParser/mmParseTree';
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const grammar = require('./mmParser/mmParser');
 
-const main = async () => {
+const main = async (): Promise<void> => {
     const parser = new nearley.Parser(nearley.Grammar.fromCompiled(grammar));
 
-    const parse = async (text: string) => {
+    const parse = async (text: string): Promise<Database> => {
         parser.feed(text);
         parser.finish();
 
