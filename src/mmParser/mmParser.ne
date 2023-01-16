@@ -37,7 +37,7 @@ variable_stmt -> "$v" ( _ variable ):+ _ "$." {% h.variable_stmt %}
 
 # Disjoint variables. Simple disjoint statements have
 # 2 variables, i.e., "variable*" is empty for them.
-disjoint_stmt -> "$d" variable variable ( variable ):* "$."
+disjoint_stmt -> "$d" _ variable _ variable _ ( variable _ ):* "$."
 
 hypothesis_stmt -> floating_stmt | essential_stmt 
 

@@ -54,7 +54,7 @@ const mooLexerRules: moo.Rules = {
     '$=': { match: '$=', next: 'proof' },
     $a: { match: '$a', next: 'mathSymbol' },
     $c: { match: '$c', next: 'mathSymbol' },
-    $d: '$d',
+    $d: { match: '$d', next: 'mathSymbol' },
     $e: { match: '$e', next: 'mathSymbol' },
     $f: { match: '$f', next: 'mathSymbol' },
     $p: { match: '$p', next: 'mathSymbol' },
