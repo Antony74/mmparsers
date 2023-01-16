@@ -70,9 +70,7 @@ const mooLexerRules: moo.Rules = {
 // Note that COMPRESSED_PROOF_BLOCK, LABEL, and MATH_SYMBOL, are not lexically distinct,
 // so we have to use lexer states to tell them apart.
 
-const COMPRESSED_PROOF_BLOCK = nonCapturingGroup(
-    sequence(unescapedLiteral('[A-Z]'), literal('?'))
-)
+const COMPRESSED_PROOF_BLOCK = unescapedLiteral('[A-Z\\?]')
     .onceOrMore()
     .toRegex();
 
