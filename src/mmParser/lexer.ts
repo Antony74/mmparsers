@@ -24,8 +24,6 @@ const _PRINTABLE_CHARACTER = nonCapturingGroup(
 
 const PRINTABLE_SEQUENCE = _PRINTABLE_CHARACTER.onceOrMore();
 
-const _LETTER_OR_DIGIT = unescapedLiteral('[A-Za-z0-9]');
-
 /* Whitespace: (' ' | '\t' | '\r' | '\n' | '\f') */
 const _WHITECHAR = unescapedLiteral('[\\x20\\x09\\x0d\\x0a\\x0c]');
 
@@ -78,11 +76,7 @@ const COMPRESSED_PROOF_BLOCK = nonCapturingGroup(
     .onceOrMore()
     .toRegex();
 
-const LABEL = nonCapturingGroup(
-    sequence(_LETTER_OR_DIGIT /*literal('.'), literal('-'), literal('_')*/)
-)
-    .onceOrMore()
-    .toRegex();
+const LABEL = unescapedLiteral('[A-Za-z0-9\\.\\-_]').onceOrMore().toRegex();
 
 const MATH_SYMBOL = _PRINTABLE_CHARACTER
     .exclude(literal('$'))
@@ -105,6 +99,6 @@ const states = {
         ')': { match: literal(')').toRegex(), next: 'compressedProofBlock' },
     },
     compressedProofBlock: { ...mooLexerRules, COMPRESSED_PROOF_BLOCK },
-}
+};
 
 export const lexer = moo.states(states);
