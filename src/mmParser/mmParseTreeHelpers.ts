@@ -29,7 +29,7 @@ export const minToken = <T extends TreeNode>(token: T): T | TreeNodeLeaf => {
 
 type WSAndTokens = { ws: string[]; tokens: TreeNode[] };
 
-const emptyWsAndTokens = {ws: [], tokens: []};
+const emptyWsAndTokens = {tokens: []};
 
 export const commentsToTokensReducer = (acc: any, value: any): WSAndTokens => {
     if (value.type) {

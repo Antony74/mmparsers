@@ -21,7 +21,6 @@
                     "children": [
                         {
                             "type": "MATH_SYMBOL",
-                            "ws": [],
                             "text": "0"
                         },
                         {
@@ -87,7 +86,6 @@
                     "children": [
                         {
                             "type": "MATH_SYMBOL",
-                            "ws": [],
                             "text": "t"
                         },
                         {
@@ -137,7 +135,6 @@
                     "children": [
                         {
                             "type": "MATH_SYMBOL",
-                            "ws": [],
                             "text": "term"
                         },
                         {
@@ -170,7 +167,6 @@
                     "children": [
                         {
                             "type": "MATH_SYMBOL",
-                            "ws": [],
                             "text": "term"
                         },
                         {
@@ -203,7 +199,6 @@
                     "children": [
                         {
                             "type": "MATH_SYMBOL",
-                            "ws": [],
                             "text": "term"
                         },
                         {
@@ -236,7 +231,6 @@
                     "children": [
                         {
                             "type": "MATH_SYMBOL",
-                            "ws": [],
                             "text": "wff"
                         },
                         {
@@ -269,7 +263,6 @@
                     "children": [
                         {
                             "type": "MATH_SYMBOL",
-                            "ws": [],
                             "text": "wff"
                         },
                         {
@@ -308,7 +301,6 @@
                     "children": [
                         {
                             "type": "MATH_SYMBOL",
-                            "ws": [],
                             "text": "0"
                         }
                     ]
@@ -342,7 +334,6 @@
                     "children": [
                         {
                             "type": "MATH_SYMBOL",
-                            "ws": [],
                             "text": "("
                         },
                         {
@@ -396,7 +387,6 @@
                     "children": [
                         {
                             "type": "MATH_SYMBOL",
-                            "ws": [],
                             "text": "t"
                         },
                         {
@@ -440,7 +430,6 @@
                     "children": [
                         {
                             "type": "MATH_SYMBOL",
-                            "ws": [],
                             "text": "("
                         },
                         {
@@ -494,7 +483,6 @@
                     "children": [
                         {
                             "type": "MATH_SYMBOL",
-                            "ws": [],
                             "text": "("
                         },
                         {
@@ -598,7 +586,6 @@
                     "children": [
                         {
                             "type": "MATH_SYMBOL",
-                            "ws": [],
                             "text": "("
                         },
                         {
@@ -666,7 +653,6 @@
                                     "children": [
                                         {
                                             "type": "MATH_SYMBOL",
-                                            "ws": [],
                                             "text": "|-"
                                         },
                                         {
@@ -699,7 +685,6 @@
                                     "children": [
                                         {
                                             "type": "MATH_SYMBOL",
-                                            "ws": [],
                                             "text": "|-"
                                         },
                                         {
@@ -758,7 +743,6 @@
                                     "children": [
                                         {
                                             "type": "MATH_SYMBOL",
-                                            "ws": [],
                                             "text": "Q"
                                         }
                                     ]
@@ -801,7 +785,6 @@
                     "children": [
                         {
                             "type": "MATH_SYMBOL",
-                            "ws": [],
                             "text": "t"
                         },
                         {
@@ -825,7 +808,6 @@
                     "children": [
                         {
                             "type": "LABEL",
-                            "ws": [],
                             "text": "tt"
                         },
                         {
