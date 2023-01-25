@@ -3,7 +3,6 @@ import path from 'path';
 import nearley from 'nearley';
 import { reverseParse } from './tools/reverseParse';
 import { Database } from './mmParser/mmParseTree';
-import { stripWhitespace } from './tools/stripWhitespace';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const grammar = require('./mmParser/mmParser');
@@ -34,16 +33,11 @@ const main = async (): Promise<void> => {
         // Any change to this file indicates a bad parse
         await fs.writeFile(`examples/${filename}`, reverseParse(result));
 
-        await fs.writeFile(
-            `examples/${filename}.nows.json`,
-            JSON.stringify(stripWhitespace(result), null, 4)
-        );
-
         return result;
     };
 
-    const filepath = path.join(__dirname, '..', 'examples', 'demo0.mm');
-    // const filepath = '/set.mm/set.mm';
+    // const filepath = path.join(__dirname, '..', 'examples', 'demo0.mm');
+    const filepath = '/set.mm/set.mm';
     const parsedFilePath = path.parse(filepath);
     const filename = `${parsedFilePath.name}${parsedFilePath.ext}`;
     const text = await fs.readFile(filepath, { encoding: 'utf-8' });

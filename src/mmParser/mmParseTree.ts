@@ -1,54 +1,57 @@
-export type TreeNodeLeaf = { type: string; text: string };
+export type TreeNodeLeaf = { type: string; text: string; ws?: string[] };
 
 export type TreeNodeParent = {
     type: string;
+    ws?: string[];
     children: (TreeNodeLeaf | TreeNodeParent)[];
 };
 
 export type TreeNode = TreeNodeLeaf | TreeNodeParent;
 
-export type WhitespaceNode = { type: 'WHITESPACE'; text: string };
-export type CommentNode = { type: '_COMMENT'; text: string };
-export type MathSymbolNode = { type: 'MATH_SYMBOL'; text: string };
-export type LabelNode = { type: 'LABEL'; text: string };
-export type $cNode = { type: '$c'; text: '$c' };
-export type $vNode = { type: '$v'; text: '$v' };
-export type $eNode = { type: '$e'; text: '$e' };
-export type $aNode = { type: '$a'; text: '$a' };
-export type $pNode = { type: '$p'; text: '$p' };
-export type $eqNode = { type: '$='; text: '$=' };
-export type $dotNode = { type: '$.'; text: '$.' };
-export type $BlockStartNode = { type: '${'; text: '${' };
-export type $BlockEndNode = { type: '$}'; text: '$}' };
-
-export type UnderscoreNode = {
-    type: '_';
-    children: (WhitespaceNode | CommentNode)[];
+export type MathSymbolNode = {
+    type: 'MATH_SYMBOL';
+    ws?: string[];
+    text: string;
 };
+export type LabelNode = { type: 'LABEL'; ws?: string[]; text: string };
+export type $cNode = { type: '$c'; ws?: string[]; text: '$c' };
+export type $vNode = { type: '$v'; ws?: string[]; text: '$v' };
+export type $eNode = { type: '$e'; ws?: string[]; text: '$e' };
+export type $aNode = { type: '$a'; ws?: string[]; text: '$a' };
+export type $pNode = { type: '$p'; ws?: string[]; text: '$p' };
+export type $eqNode = { type: '$='; ws?: string[]; text: '$=' };
+export type $dotNode = { type: '$.'; ws?: string[]; text: '$.' };
+export type $BlockStartNode = { type: '${'; ws?: string[]; text: '${' };
+export type $BlockEndNode = { type: '$}'; ws?: string[]; text: '$}' };
 
 export type ConstantsNode = {
     type: 'constants';
-    children: (MathSymbolNode | UnderscoreNode)[];
+    children: MathSymbolNode[];
+    ws?: string[];
 };
 
 export type VariablesNode = {
     type: 'variables';
-    children: (MathSymbolNode | UnderscoreNode)[];
+    children: MathSymbolNode[];
+    ws?: string[];
 };
 
 export type StatementNode = {
     type: 'statement';
-    children: (MathSymbolNode | UnderscoreNode)[];
+    children: MathSymbolNode[];
+    ws?: string[];
 };
 
 export type AssertionNode = {
     type: 'assertion';
-    children: (MathSymbolNode | UnderscoreNode)[];
+    children: MathSymbolNode[];
+    ws?: string[];
 };
 
 export type ProofNode = {
     type: 'proof';
-    children: (LabelNode | UnderscoreNode)[];
+    children: LabelNode[];
+    ws?: string[];
 };
 
 export type ChildStatement =
@@ -63,82 +66,64 @@ export type ChildStatement =
 export type StatementsNode = {
     type: 'statements';
     children: ChildStatement[];
+    ws?: string[];
 };
 
 export type ConstantStmtNode = {
     type: 'constant_stmt';
-    children: [$cNode, UnderscoreNode, ConstantsNode, $dotNode];
+    children: [$cNode, ConstantsNode, $dotNode];
+    ws?: string[];
 };
 
 export type VariableStmtNode = {
     type: 'variable_stmt';
-    children: [$vNode, UnderscoreNode, VariablesNode, $dotNode];
+    children: [$vNode, VariablesNode, $dotNode];
+    ws?: string[];
 };
 
 export type EssentialStmtNode = {
     type: 'essential_stmt';
-    children: [
-        LabelNode,
-        UnderscoreNode,
-        $eNode,
-        UnderscoreNode,
-        StatementNode,
-        $dotNode
-    ];
+    children: [LabelNode, $eNode, StatementNode, $dotNode];
+    ws?: string[];
 };
 
 export type FloatingStmtNode = {
     type: 'floating_stmt';
-    children: [
-        LabelNode,
-        UnderscoreNode,
-        MathSymbolNode,
-        UnderscoreNode,
-        StatementNode,
-        $dotNode
-    ];
+    children: [LabelNode, MathSymbolNode, StatementNode, $dotNode];
+    ws?: string[];
 };
 
 export type AxiomStmtNode = {
     type: 'axiom_stmt';
-    children: [
-        LabelNode,
-        UnderscoreNode,
-        $aNode,
-        UnderscoreNode,
-        MathSymbolNode,
-        UnderscoreNode,
-        AssertionNode,
-        $dotNode
-    ];
+    children: [LabelNode, $aNode, MathSymbolNode, AssertionNode, $dotNode];
+    ws?: string[];
 };
 
 export type ProvableStmtNode = {
     type: 'provable_stmt';
     children: [
         LabelNode,
-        UnderscoreNode,
         $pNode,
-        UnderscoreNode,
         MathSymbolNode,
-        UnderscoreNode,
         AssertionNode,
         $eqNode,
-        UnderscoreNode,
         ProofNode,
         $dotNode
     ];
+    ws?: string[];
 };
 
 export type BlockNode = {
     type: 'block';
-    children: [$BlockStartNode, UnderscoreNode, StatementsNode, $BlockEndNode];
+    children: [$BlockStartNode, StatementsNode, $BlockEndNode];
+    ws?: string[];
 };
 
 export type Database = {
     type: 'database';
     children: // IncludeStmtNode |
-    (ConstantStmtNode | ChildStatement | WhitespaceNode | CommentNode)[];
+    (ConstantStmtNode | ChildStatement)[];
+    ws?: string[];
 };
 
 export type MMNode =
@@ -156,9 +141,6 @@ export type MMNode =
     | StatementNode
     | VariablesNode
     | ConstantsNode
-    | UnderscoreNode
-    | WhitespaceNode
-    | CommentNode
     | MathSymbolNode
     | LabelNode
     | $cNode
