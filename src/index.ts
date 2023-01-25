@@ -36,8 +36,8 @@ const main = async (): Promise<void> => {
         return result;
     };
 
-    // const filepath = path.join(__dirname, '..', 'examples', 'demo0.mm');
-    const filepath = '/set.mm/set.mm';
+    const filepath = path.join(__dirname, '..', 'examples', 'demo0.mm');
+//    const filepath = '/set.mm/set.mm';
     const parsedFilePath = path.parse(filepath);
     const filename = `${parsedFilePath.name}${parsedFilePath.ext}`;
     const text = await fs.readFile(filepath, { encoding: 'utf-8' });
