@@ -1,38 +1,14 @@
 {
     "type": "database",
     "children": [
-        {
-            "type": "_COMMENT",
-            "text": "$( demo0.mm  1-Jan-04 $)"
-        },
-        {
-            "type": "WHITESPACE",
-            "text": "\r\n\r\n"
-        },
-        {
-            "type": "_COMMENT",
-            "text": "$(\r\n                           ~~ PUBLIC DOMAIN ~~\r\nThis work is waived of all rights, including copyright, according to the CC0\r\nPublic Domain Dedication.  http://creativecommons.org/publicdomain/zero/1.0/\r\n\r\nNorman Megill - email: nm at alum.mit.edu\r\n\r\n$)"
-        },
-        {
-            "type": "WHITESPACE",
-            "text": "\r\n\r\n\r\n"
-        },
-        {
-            "type": "_COMMENT",
-            "text": "$( This file is the introductory formal system example described\r\n   in Chapter 2 of the Meamath book. $)"
-        },
-        {
-            "type": "WHITESPACE",
-            "text": "\r\n\r\n"
-        },
-        {
-            "type": "_COMMENT",
-            "text": "$( Declare the constant symbols we will use $)"
-        },
-        {
-            "type": "WHITESPACE",
-            "text": "\r\n    "
-        },
+        "$( demo0.mm  1-Jan-04 $)",
+        "\r\n\r\n",
+        "$(\r\n                           ~~ PUBLIC DOMAIN ~~\r\nThis work is waived of all rights, including copyright, according to the CC0\r\nPublic Domain Dedication.  http://creativecommons.org/publicdomain/zero/1.0/\r\n\r\nNorman Megill - email: nm at alum.mit.edu\r\n\r\n$)",
+        "\r\n\r\n\r\n",
+        "$( This file is the introductory formal system example described\r\n   in Chapter 2 of the Meamath book. $)",
+        "\r\n\r\n",
+        "$( Declare the constant symbols we will use $)",
+        "\r\n    ",
         {
             "type": "constant_stmt",
             "children": [
@@ -45,120 +21,48 @@
                     "children": [
                         {
                             "type": "MATH_SYMBOL",
+                            "ws": [],
                             "text": "0"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "MATH_SYMBOL",
+                            "ws": [" "],
                             "text": "+"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "MATH_SYMBOL",
+                            "ws": [" "],
                             "text": "="
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "MATH_SYMBOL",
+                            "ws": [" "],
                             "text": "->"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "MATH_SYMBOL",
+                            "ws": [" "],
                             "text": "("
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "MATH_SYMBOL",
+                            "ws": [" "],
                             "text": ")"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "MATH_SYMBOL",
+                            "ws": [" "],
                             "text": "term"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "MATH_SYMBOL",
+                            "ws": [" "],
                             "text": "wff"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "MATH_SYMBOL",
+                            "ws": [" "],
                             "text": "|-"
-                        },
-                        {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
                         }
                     ]
                 },
@@ -168,18 +72,9 @@
                 }
             ]
         },
-        {
-            "type": "WHITESPACE",
-            "text": "\r\n"
-        },
-        {
-            "type": "_COMMENT",
-            "text": "$( Declare the metavariables we will use $)"
-        },
-        {
-            "type": "WHITESPACE",
-            "text": "\r\n    "
-        },
+        "\r\n",
+        "$( Declare the metavariables we will use $)",
+        "\r\n    ",
         {
             "type": "variable_stmt",
             "children": [
@@ -192,68 +87,28 @@
                     "children": [
                         {
                             "type": "MATH_SYMBOL",
+                            "ws": [],
                             "text": "t"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "MATH_SYMBOL",
+                            "ws": [" "],
                             "text": "r"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "MATH_SYMBOL",
+                            "ws": [" "],
                             "text": "s"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "MATH_SYMBOL",
+                            "ws": [" "],
                             "text": "P"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "MATH_SYMBOL",
+                            "ws": [" "],
                             "text": "Q"
-                        },
-                        {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
                         }
                     ]
                 },
@@ -263,18 +118,9 @@
                 }
             ]
         },
-        {
-            "type": "WHITESPACE",
-            "text": "\r\n"
-        },
-        {
-            "type": "_COMMENT",
-            "text": "$( Specify properties of the metavariables $)"
-        },
-        {
-            "type": "WHITESPACE",
-            "text": "\r\n    "
-        },
+        "\r\n",
+        "$( Specify properties of the metavariables $)",
+        "\r\n    ",
         {
             "type": "floating_stmt",
             "children": [
@@ -291,29 +137,13 @@
                     "children": [
                         {
                             "type": "MATH_SYMBOL",
+                            "ws": [],
                             "text": "term"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "MATH_SYMBOL",
+                            "ws": [" "],
                             "text": "t"
-                        },
-                        {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
                         }
                     ]
                 },
@@ -323,10 +153,7 @@
                 }
             ]
         },
-        {
-            "type": "WHITESPACE",
-            "text": "\r\n    "
-        },
+        "\r\n    ",
         {
             "type": "floating_stmt",
             "children": [
@@ -343,29 +170,13 @@
                     "children": [
                         {
                             "type": "MATH_SYMBOL",
+                            "ws": [],
                             "text": "term"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "MATH_SYMBOL",
+                            "ws": [" "],
                             "text": "r"
-                        },
-                        {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
                         }
                     ]
                 },
@@ -375,10 +186,7 @@
                 }
             ]
         },
-        {
-            "type": "WHITESPACE",
-            "text": "\r\n    "
-        },
+        "\r\n    ",
         {
             "type": "floating_stmt",
             "children": [
@@ -395,29 +203,13 @@
                     "children": [
                         {
                             "type": "MATH_SYMBOL",
+                            "ws": [],
                             "text": "term"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "MATH_SYMBOL",
+                            "ws": [" "],
                             "text": "s"
-                        },
-                        {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
                         }
                     ]
                 },
@@ -427,10 +219,7 @@
                 }
             ]
         },
-        {
-            "type": "WHITESPACE",
-            "text": "\r\n    "
-        },
+        "\r\n    ",
         {
             "type": "floating_stmt",
             "children": [
@@ -447,29 +236,13 @@
                     "children": [
                         {
                             "type": "MATH_SYMBOL",
+                            "ws": [],
                             "text": "wff"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "MATH_SYMBOL",
+                            "ws": [" "],
                             "text": "P"
-                        },
-                        {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
                         }
                     ]
                 },
@@ -479,10 +252,7 @@
                 }
             ]
         },
-        {
-            "type": "WHITESPACE",
-            "text": "\r\n    "
-        },
+        "\r\n    ",
         {
             "type": "floating_stmt",
             "children": [
@@ -499,29 +269,13 @@
                     "children": [
                         {
                             "type": "MATH_SYMBOL",
+                            "ws": [],
                             "text": "wff"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "MATH_SYMBOL",
+                            "ws": [" "],
                             "text": "Q"
-                        },
-                        {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
                         }
                     ]
                 },
@@ -531,18 +285,9 @@
                 }
             ]
         },
-        {
-            "type": "WHITESPACE",
-            "text": "\r\n"
-        },
-        {
-            "type": "_COMMENT",
-            "text": "$( Define \"term\" (part 1) $)"
-        },
-        {
-            "type": "WHITESPACE",
-            "text": "\r\n    "
-        },
+        "\r\n",
+        "$( Define \"term\" (part 1) $)",
+        "\r\n    ",
         {
             "type": "axiom_stmt",
             "children": [
@@ -563,16 +308,8 @@
                     "children": [
                         {
                             "type": "MATH_SYMBOL",
+                            "ws": [],
                             "text": "0"
-                        },
-                        {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
                         }
                     ]
                 },
@@ -582,18 +319,9 @@
                 }
             ]
         },
-        {
-            "type": "WHITESPACE",
-            "text": "\r\n"
-        },
-        {
-            "type": "_COMMENT",
-            "text": "$( Define \"term\" (part 2) $)"
-        },
-        {
-            "type": "WHITESPACE",
-            "text": "\r\n    "
-        },
+        "\r\n",
+        "$( Define \"term\" (part 2) $)",
+        "\r\n    ",
         {
             "type": "axiom_stmt",
             "children": [
@@ -614,68 +342,28 @@
                     "children": [
                         {
                             "type": "MATH_SYMBOL",
+                            "ws": [],
                             "text": "("
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "MATH_SYMBOL",
+                            "ws": [" "],
                             "text": "t"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "MATH_SYMBOL",
+                            "ws": [" "],
                             "text": "+"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "MATH_SYMBOL",
+                            "ws": [" "],
                             "text": "r"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "MATH_SYMBOL",
+                            "ws": [" "],
                             "text": ")"
-                        },
-                        {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
                         }
                     ]
                 },
@@ -685,18 +373,9 @@
                 }
             ]
         },
-        {
-            "type": "WHITESPACE",
-            "text": "\r\n"
-        },
-        {
-            "type": "_COMMENT",
-            "text": "$( Define \"wff\" (part 1) $)"
-        },
-        {
-            "type": "WHITESPACE",
-            "text": "\r\n    "
-        },
+        "\r\n",
+        "$( Define \"wff\" (part 1) $)",
+        "\r\n    ",
         {
             "type": "axiom_stmt",
             "children": [
@@ -717,42 +396,18 @@
                     "children": [
                         {
                             "type": "MATH_SYMBOL",
+                            "ws": [],
                             "text": "t"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "MATH_SYMBOL",
+                            "ws": [" "],
                             "text": "="
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "MATH_SYMBOL",
+                            "ws": [" "],
                             "text": "r"
-                        },
-                        {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
                         }
                     ]
                 },
@@ -762,18 +417,9 @@
                 }
             ]
         },
-        {
-            "type": "WHITESPACE",
-            "text": "\r\n"
-        },
-        {
-            "type": "_COMMENT",
-            "text": "$( Define \"wff\" (part 2) $)"
-        },
-        {
-            "type": "WHITESPACE",
-            "text": "\r\n    "
-        },
+        "\r\n",
+        "$( Define \"wff\" (part 2) $)",
+        "\r\n    ",
         {
             "type": "axiom_stmt",
             "children": [
@@ -794,68 +440,28 @@
                     "children": [
                         {
                             "type": "MATH_SYMBOL",
+                            "ws": [],
                             "text": "("
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "MATH_SYMBOL",
+                            "ws": [" "],
                             "text": "P"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "MATH_SYMBOL",
+                            "ws": [" "],
                             "text": "->"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "MATH_SYMBOL",
+                            "ws": [" "],
                             "text": "Q"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "MATH_SYMBOL",
+                            "ws": [" "],
                             "text": ")"
-                        },
-                        {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
                         }
                     ]
                 },
@@ -865,18 +471,9 @@
                 }
             ]
         },
-        {
-            "type": "WHITESPACE",
-            "text": "\r\n"
-        },
-        {
-            "type": "_COMMENT",
-            "text": "$( State axiom a1 $)"
-        },
-        {
-            "type": "WHITESPACE",
-            "text": "\r\n    "
-        },
+        "\r\n",
+        "$( State axiom a1 $)",
+        "\r\n    ",
         {
             "type": "axiom_stmt",
             "children": [
@@ -897,198 +494,78 @@
                     "children": [
                         {
                             "type": "MATH_SYMBOL",
+                            "ws": [],
                             "text": "("
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "MATH_SYMBOL",
+                            "ws": [" "],
                             "text": "t"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "MATH_SYMBOL",
+                            "ws": [" "],
                             "text": "="
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "MATH_SYMBOL",
+                            "ws": [" "],
                             "text": "r"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "MATH_SYMBOL",
+                            "ws": [" "],
                             "text": "->"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "MATH_SYMBOL",
+                            "ws": [" "],
                             "text": "("
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "MATH_SYMBOL",
+                            "ws": [" "],
                             "text": "t"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "MATH_SYMBOL",
+                            "ws": [" "],
                             "text": "="
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "MATH_SYMBOL",
+                            "ws": [" "],
                             "text": "s"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "MATH_SYMBOL",
+                            "ws": [" "],
                             "text": "->"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "MATH_SYMBOL",
+                            "ws": [" "],
                             "text": "r"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "MATH_SYMBOL",
+                            "ws": [" "],
                             "text": "="
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "MATH_SYMBOL",
+                            "ws": [" "],
                             "text": "s"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "MATH_SYMBOL",
+                            "ws": [" "],
                             "text": ")"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "MATH_SYMBOL",
+                            "ws": [" "],
                             "text": ")"
-                        },
-                        {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
                         }
                     ]
                 },
@@ -1098,18 +575,9 @@
                 }
             ]
         },
-        {
-            "type": "WHITESPACE",
-            "text": "\r\n"
-        },
-        {
-            "type": "_COMMENT",
-            "text": "$( State axiom a2 $)"
-        },
-        {
-            "type": "WHITESPACE",
-            "text": "\r\n    "
-        },
+        "\r\n",
+        "$( State axiom a2 $)",
+        "\r\n    ",
         {
             "type": "axiom_stmt",
             "children": [
@@ -1130,94 +598,38 @@
                     "children": [
                         {
                             "type": "MATH_SYMBOL",
+                            "ws": [],
                             "text": "("
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "MATH_SYMBOL",
+                            "ws": [" "],
                             "text": "t"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "MATH_SYMBOL",
+                            "ws": [" "],
                             "text": "+"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "MATH_SYMBOL",
+                            "ws": [" "],
                             "text": "0"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "MATH_SYMBOL",
+                            "ws": [" "],
                             "text": ")"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "MATH_SYMBOL",
+                            "ws": [" "],
                             "text": "="
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "MATH_SYMBOL",
+                            "ws": [" "],
                             "text": "t"
-                        },
-                        {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
                         }
                     ]
                 },
@@ -1227,10 +639,7 @@
                 }
             ]
         },
-        {
-            "type": "WHITESPACE",
-            "text": "\r\n    "
-        },
+        "\r\n    ",
         {
             "type": "block",
             "children": [
@@ -1257,29 +666,13 @@
                                     "children": [
                                         {
                                             "type": "MATH_SYMBOL",
+                                            "ws": [],
                                             "text": "|-"
                                         },
                                         {
-                                            "type": "_",
-                                            "children": [
-                                                {
-                                                    "type": "WHITESPACE",
-                                                    "text": " "
-                                                }
-                                            ]
-                                        },
-                                        {
                                             "type": "MATH_SYMBOL",
+                                            "ws": [" "],
                                             "text": "P"
-                                        },
-                                        {
-                                            "type": "_",
-                                            "children": [
-                                                {
-                                                    "type": "WHITESPACE",
-                                                    "text": " "
-                                                }
-                                            ]
                                         }
                                     ]
                                 },
@@ -1289,15 +682,7 @@
                                 }
                             ]
                         },
-                        {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": "\r\n       "
-                                }
-                            ]
-                        },
+                        "\r\n       ",
                         {
                             "type": "essential_stmt",
                             "children": [
@@ -1314,81 +699,33 @@
                                     "children": [
                                         {
                                             "type": "MATH_SYMBOL",
+                                            "ws": [],
                                             "text": "|-"
                                         },
                                         {
-                                            "type": "_",
-                                            "children": [
-                                                {
-                                                    "type": "WHITESPACE",
-                                                    "text": " "
-                                                }
-                                            ]
-                                        },
-                                        {
                                             "type": "MATH_SYMBOL",
+                                            "ws": [" "],
                                             "text": "("
                                         },
                                         {
-                                            "type": "_",
-                                            "children": [
-                                                {
-                                                    "type": "WHITESPACE",
-                                                    "text": " "
-                                                }
-                                            ]
-                                        },
-                                        {
                                             "type": "MATH_SYMBOL",
+                                            "ws": [" "],
                                             "text": "P"
                                         },
                                         {
-                                            "type": "_",
-                                            "children": [
-                                                {
-                                                    "type": "WHITESPACE",
-                                                    "text": " "
-                                                }
-                                            ]
-                                        },
-                                        {
                                             "type": "MATH_SYMBOL",
+                                            "ws": [" "],
                                             "text": "->"
                                         },
                                         {
-                                            "type": "_",
-                                            "children": [
-                                                {
-                                                    "type": "WHITESPACE",
-                                                    "text": " "
-                                                }
-                                            ]
-                                        },
-                                        {
                                             "type": "MATH_SYMBOL",
+                                            "ws": [" "],
                                             "text": "Q"
                                         },
                                         {
-                                            "type": "_",
-                                            "children": [
-                                                {
-                                                    "type": "WHITESPACE",
-                                                    "text": " "
-                                                }
-                                            ]
-                                        },
-                                        {
                                             "type": "MATH_SYMBOL",
+                                            "ws": [" "],
                                             "text": ")"
-                                        },
-                                        {
-                                            "type": "_",
-                                            "children": [
-                                                {
-                                                    "type": "WHITESPACE",
-                                                    "text": " "
-                                                }
-                                            ]
                                         }
                                     ]
                                 },
@@ -1398,28 +735,9 @@
                                 }
                             ]
                         },
-                        {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": "\r\n"
-                                },
-                                {
-                                    "type": "_COMMENT",
-                                    "text": "$( Define the modus ponens inference rule $)"
-                                },
-                                {
-                                    "type": "_",
-                                    "children": [
-                                        {
-                                            "type": "WHITESPACE",
-                                            "text": "\r\n       "
-                                        }
-                                    ]
-                                }
-                            ]
-                        },
+                        "\r\n",
+                        "$( Define the modus ponens inference rule $)",
+                        "\r\n       ",
                         {
                             "type": "axiom_stmt",
                             "children": [
@@ -1440,16 +758,8 @@
                                     "children": [
                                         {
                                             "type": "MATH_SYMBOL",
+                                            "ws": [],
                                             "text": "Q"
-                                        },
-                                        {
-                                            "type": "_",
-                                            "children": [
-                                                {
-                                                    "type": "WHITESPACE",
-                                                    "text": " "
-                                                }
-                                            ]
                                         }
                                     ]
                                 },
@@ -1459,15 +769,7 @@
                                 }
                             ]
                         },
-                        {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": "\r\n    "
-                                }
-                            ]
-                        }
+                        "\r\n    "
                     ]
                 },
                 {
@@ -1476,18 +778,9 @@
                 }
             ]
         },
-        {
-            "type": "WHITESPACE",
-            "text": "\r\n"
-        },
-        {
-            "type": "_COMMENT",
-            "text": "$( Prove a theorem $)"
-        },
-        {
-            "type": "WHITESPACE",
-            "text": "\r\n    "
-        },
+        "\r\n",
+        "$( Prove a theorem $)",
+        "\r\n    ",
         {
             "type": "provable_stmt",
             "children": [
@@ -1508,42 +801,18 @@
                     "children": [
                         {
                             "type": "MATH_SYMBOL",
+                            "ws": [],
                             "text": "t"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "MATH_SYMBOL",
+                            "ws": [" "],
                             "text": "="
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "MATH_SYMBOL",
+                            "ws": [" "],
                             "text": "t"
-                        },
-                        {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
                         }
                     ]
                 },
@@ -1556,445 +825,193 @@
                     "children": [
                         {
                             "type": "LABEL",
+                            "ws": [],
                             "text": "tt"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "LABEL",
+                            "ws": [" "],
                             "text": "tze"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "LABEL",
+                            "ws": [" "],
                             "text": "tpl"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "LABEL",
+                            "ws": [" "],
                             "text": "tt"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "LABEL",
+                            "ws": [" "],
                             "text": "weq"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "LABEL",
+                            "ws": [" "],
                             "text": "tt"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "LABEL",
+                            "ws": [" "],
                             "text": "tt"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "LABEL",
+                            "ws": [" "],
                             "text": "weq"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "LABEL",
+                            "ws": [" "],
                             "text": "tt"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "LABEL",
+                            "ws": [" "],
                             "text": "a2"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "LABEL",
+                            "ws": [" "],
                             "text": "tt"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "LABEL",
+                            "ws": [" "],
                             "text": "tze"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "LABEL",
+                            "ws": [" "],
                             "text": "tpl"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": "\r\n       "
-                                }
-                            ]
-                        },
-                        {
                             "type": "LABEL",
+                            "ws": [
+                                "\r",
+                                "\n",
+                                " ",
+                                " ",
+                                " ",
+                                " ",
+                                " ",
+                                " ",
+                                " "
+                            ],
                             "text": "tt"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "LABEL",
+                            "ws": [" "],
                             "text": "weq"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "LABEL",
+                            "ws": [" "],
                             "text": "tt"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "LABEL",
+                            "ws": [" "],
                             "text": "tze"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "LABEL",
+                            "ws": [" "],
                             "text": "tpl"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "LABEL",
+                            "ws": [" "],
                             "text": "tt"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "LABEL",
+                            "ws": [" "],
                             "text": "weq"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "LABEL",
+                            "ws": [" "],
                             "text": "tt"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "LABEL",
+                            "ws": [" "],
                             "text": "tt"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "LABEL",
+                            "ws": [" "],
                             "text": "weq"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "LABEL",
+                            "ws": [" "],
                             "text": "wim"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "LABEL",
+                            "ws": [" "],
                             "text": "tt"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "LABEL",
+                            "ws": [" "],
                             "text": "a2"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": "\r\n       "
-                                }
-                            ]
-                        },
-                        {
                             "type": "LABEL",
+                            "ws": [
+                                "\r",
+                                "\n",
+                                " ",
+                                " ",
+                                " ",
+                                " ",
+                                " ",
+                                " ",
+                                " "
+                            ],
                             "text": "tt"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "LABEL",
+                            "ws": [" "],
                             "text": "tze"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "LABEL",
+                            "ws": [" "],
                             "text": "tpl"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "LABEL",
+                            "ws": [" "],
                             "text": "tt"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "LABEL",
+                            "ws": [" "],
                             "text": "tt"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "LABEL",
+                            "ws": [" "],
                             "text": "a1"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "LABEL",
+                            "ws": [" "],
                             "text": "mp"
                         },
                         {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": " "
-                                }
-                            ]
-                        },
-                        {
                             "type": "LABEL",
+                            "ws": [" "],
                             "text": "mp"
-                        },
-                        {
-                            "type": "_",
-                            "children": [
-                                {
-                                    "type": "WHITESPACE",
-                                    "text": "\r\n     "
-                                }
-                            ]
                         }
                     ]
                 },
@@ -2004,9 +1021,6 @@
                 }
             ]
         },
-        {
-            "type": "WHITESPACE",
-            "text": "\r\n\r\n"
-        }
+        "\r\n\r\n"
     ]
 }

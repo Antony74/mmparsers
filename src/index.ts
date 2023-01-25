@@ -31,7 +31,7 @@ const main = async (): Promise<void> => {
         );
 
         // Any change to this file indicates a bad parse
-        await fs.writeFile(`examples/${filename}`, reverseParse(result));
+        // await fs.writeFile(`examples/${filename}`, reverseParse(result));
 
         return result;
     };

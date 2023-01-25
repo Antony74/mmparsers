@@ -27,6 +27,19 @@ export const minToken = <T extends TreeNode>(token: T): T | TreeNodeLeaf => {
     return { type, text };
 };
 
+type WSAndTokens = { ws: string[]; tokens: TreeNode[] };
+
+const emptyWsAndTokens = {ws: [], tokens: []};
+
+export const commentsToTokensReducer = (acc: any, value: any): WSAndTokens => {
+    if (value.type) {
+        const {type, text} = minToken(value);
+        return { ws: [], tokens: [...acc.tokens, { type, ws: acc.ws, text }] };
+    } else {
+        return { ws: [...acc.ws, ...value], tokens: acc.tokens };
+    }
+};
+
 export const database = (d: any): Database => {
     return { type: 'database', children: d.flat(3) };
 };
@@ -58,7 +71,7 @@ export const constant_stmt = (d: any): ConstantStmtNode => {
                 children: d
                     .slice(2, -1)
                     .flat(Number.MAX_SAFE_INTEGER)
-                    .map(minToken),
+                    .reduce(commentsToTokensReducer, emptyWsAndTokens).tokens,
             },
             minToken(d[d.length - 1]),
         ],
@@ -74,7 +87,7 @@ export const variable_stmt = (d: any): VariableStmtNode => {
             //            d[1],
             {
                 type: 'variables',
-                children: d.slice(2, -1).map(minToken),
+                children: d.slice(2, -1).reduce(commentsToTokensReducer, emptyWsAndTokens).tokens,
             },
             minToken(d[d.length - 1]),
         ],
@@ -92,7 +105,7 @@ export const essential_stmt = (d: any): EssentialStmtNode => {
             //            minToken(d[3]),
             {
                 type: 'statement',
-                children: d.slice(4, -1).map(minToken),
+                children: d.slice(4, -1).reduce(commentsToTokensReducer, emptyWsAndTokens).tokens,
             },
             minToken(d[d.length - 1]),
         ],
@@ -110,7 +123,7 @@ export const floating_stmt = (d: any): FloatingStmtNode => {
             //            minToken(d[3]),
             {
                 type: 'statement',
-                children: d.slice(4, -1).map(minToken),
+                children: d.slice(4, -1).reduce(commentsToTokensReducer, emptyWsAndTokens).tokens,
             },
             minToken(d[d.length - 1]),
         ],
@@ -149,7 +162,7 @@ export const provable_stmt = (d: any): ProvableStmtNode => {
             //            d[8], // _
             {
                 type: 'proof',
-                children: d[9].flat(Number.MAX_SAFE_INTEGER).map(minToken),
+                children: d[9].flat(Number.MAX_SAFE_INTEGER).reduce(commentsToTokensReducer, emptyWsAndTokens).tokens,
             },
             minToken(d[10]), // $.
         ],
@@ -159,26 +172,13 @@ export const provable_stmt = (d: any): ProvableStmtNode => {
 export const assertion = (d: any): AssertionNode => {
     return {
         type: 'assertion',
-        children: d.flat(Number.MAX_SAFE_INTEGER).map(minToken),
+        children: d.flat(Number.MAX_SAFE_INTEGER).reduce(commentsToTokensReducer, emptyWsAndTokens).tokens,
     };
 };
 
-type WhitespaceNode = { type: 'WHITESPACE'; text: string };
-type CommentNode = { type: '_COMMENT'; text: string };
-
-type UnderscoreNode = {
-    type: '_';
-    children: (WhitespaceNode | CommentNode)[];
+export const _ = (d: any[]): string[] => {
+    return d.flat(Number.MAX_SAFE_INTEGER).filter((item) => item !== null);
 };
 
-export const _ = (d: any[]): UnderscoreNode => {
-    return {
-        type: '_',
-        children: d
-            .flat(Number.MAX_SAFE_INTEGER)
-            .filter((item) => item !== null),
-    };
-};
-
-export const whitespace = (d: any): WhitespaceNode => minToken(d[0]);
-export const comment = (d: any): CommentNode => minToken(d[0]);
+export const whitespace = (d: any): [string] => d[0].text;
+export const comment = (d: any): [string] => d[0].text;
