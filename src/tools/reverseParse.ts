@@ -1,9 +1,11 @@
 import { isParentNode, TreeNode } from '../mmParser/mmParseTree';
 
 export const reverseParse = (node: TreeNode): string => {
+    const ws = (node.ws ?? []).join('');
+
     if (isParentNode(node)) {
-        return node.children.map(reverseParse).join('');
+        return ws + node.children.map(reverseParse).join('');
     } else {
-        return node.text;
+        return ws + node.text;
     }
 };
