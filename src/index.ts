@@ -1,5 +1,6 @@
 import fs from 'fs/promises';
 import path from 'path';
+import prettier from 'prettier';
 import { reverseParse } from './tools/reverseParse';
 import { Database } from './mmParser/mmParseTree';
 import { createMmParser } from './mmParser';
@@ -14,6 +15,7 @@ const main = async (): Promise<void> => {
         await fs.writeFile(
             `examples/${filename}.json`,
             JSON.stringify(result, null, 4)
+            // prettier.format(JSON.stringify(result), { parser: 'json' })
         );
 
         // Any change to this file indicates a bad parse
