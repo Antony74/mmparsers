@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import nearley from 'nearley';
+import { BlockNodeFacade, createBlockNodeFacade, createProvableStmtNodeFacade, ProvableStmtNodeFacade } from './facade';
 import {
     TreeNode,
     TreeNodeLeaf,
@@ -22,13 +23,13 @@ export type MmParser = {
 
 type ParserEvents = {
     database: (d: any) => Database;
-    block: (d: any) => BlockNode;
+    block: (d: any) => BlockNodeFacade;
     constant_stmt: (d: any) => ConstantStmtNode;
     variable_stmt: (d: any) => VariableStmtNode;
     essential_stmt: (d: any) => EssentialStmtNode;
     floating_stmt: (d: any) => FloatingStmtNode;
     axiom_stmt: (d: any) => AxiomStmtNode;
-    provable_stmt: (d: any) => ProvableStmtNode;
+    provable_stmt: (d: any) => ProvableStmtNodeFacade;
     assertion: (d: any) => AssertionNode;
     _: (d: any[]) => string[];
     whitespace: (d: any) => [string];
@@ -53,7 +54,7 @@ export const parserEvents: ParserEvents = {
             return null as unknown as Database;
         }
     },
-    block(d: any): BlockNode {
+    block(d: any): BlockNodeFacade {
         return getParserEvents().block(d);
     },
     constant_stmt(d: any): ConstantStmtNode {
@@ -71,7 +72,7 @@ export const parserEvents: ParserEvents = {
     axiom_stmt(d: any): AxiomStmtNode {
         return getParserEvents().axiom_stmt(d);
     },
-    provable_stmt(d: any): ProvableStmtNode {
+    provable_stmt(d: any): ProvableStmtNodeFacade {
         return getParserEvents().provable_stmt(d);
     },
     assertion(d: any): AssertionNode {
@@ -123,8 +124,8 @@ export const createMmParser = (): MmParser => {
             return { type: 'database', children: d.flat(3) };
         },
 
-        block: (d: any): BlockNode => {
-            return {
+        block: (d: any): BlockNodeFacade => {
+            const blockNode: BlockNode = {
                 type: 'block',
                 children: [
                     minToken(d[0]),
@@ -136,6 +137,7 @@ export const createMmParser = (): MmParser => {
                     minToken(d[3]),
                 ],
             };
+            return createBlockNodeFacade(blockNode);
         },
 
         constant_stmt: (d: any): ConstantStmtNode => {
@@ -236,8 +238,8 @@ export const createMmParser = (): MmParser => {
             };
         },
 
-        provable_stmt: (d: any): ProvableStmtNode => {
-            return {
+        provable_stmt: (d: any): ProvableStmtNodeFacade => {
+            const provableStmtNode: ProvableStmtNode = {
                 type: 'provable_stmt',
                 children: [
                     minToken(d[0]), // label
@@ -259,6 +261,7 @@ export const createMmParser = (): MmParser => {
                     minToken(d[10]), // $.
                 ],
             };
+            return createProvableStmtNodeFacade(provableStmtNode);
         },
 
         assertion: (d: any): AssertionNode => {
