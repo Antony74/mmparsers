@@ -1,30 +1,16 @@
 import fs from 'fs/promises';
 import path from 'path';
-import nearley from 'nearley';
 import { reverseParse } from './tools/reverseParse';
 import { Database } from './mmParser/mmParseTree';
-
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const grammar = require('./mmParser/mmParser');
+import { createMmParser } from './mmParser';
 
 const main = async (): Promise<void> => {
-    const parser = new nearley.Parser(nearley.Grammar.fromCompiled(grammar));
+    const parser = createMmParser();
 
     const parse = async (text: string): Promise<Database> => {
         parser.feed(text);
-        parser.finish();
+        const result = parser.finish();
 
-        if (parser.results.length > 1) {
-            await fs.writeFile(
-                'ambiguous.json',
-                JSON.stringify(parser.results, null, 4)
-            );
-            throw new Error('Ambiguous');
-        } else if (parser.results.length < 1) {
-            throw new Error('No results');
-        }
-
-        const result = parser.results[0];
         await fs.writeFile(
             `examples/${filename}.json`,
             JSON.stringify(result, null, 4)
@@ -37,7 +23,7 @@ const main = async (): Promise<void> => {
     };
 
     const filepath = path.join(__dirname, '..', 'examples', 'demo0.mm');
-//    const filepath = '/set.mm/set.mm';
+    //    const filepath = '/set.mm/set.mm';
     const parsedFilePath = path.parse(filepath);
     const filename = `${parsedFilePath.name}${parsedFilePath.ext}`;
     const text = await fs.readFile(filepath, { encoding: 'utf-8' });
