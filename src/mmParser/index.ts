@@ -239,6 +239,7 @@ export const createMmParser = (): MmParser => {
         },
 
         provable_stmt: (d: any): ProvableStmtNodeFacade => {
+            console.log(d[0].text);
             const provableStmtNode: ProvableStmtNode = {
                 type: 'provable_stmt',
                 children: [
