@@ -5,59 +5,95 @@ import { v4 as uuidv4 } from 'uuid';
 import { BlockNode, ProvableStmtNode } from './mmParseTree';
 
 export type BlockNodeFacade = {
-    type: 'block';
+    type: 'block_facade';
     uuid: string;
 };
 
 export type ProvableStmtNodeFacade = {
-    type: 'provable_stmt';
+    type: 'provable_stmt_facade';
     uuid: string;
 };
 
-const blockNodeMap = new Map<string, BlockNode>();
-const provableStmtNodeMap = new Map<string, ProvableStmtNode>();
-
-export const createBlockNodeFacade = (
-    blockNode: BlockNode
-): BlockNodeFacade => {
-    const blockNodeFacade: BlockNodeFacade = { type: 'block', uuid: uuidv4() };
-    blockNodeMap.set(blockNodeFacade.uuid, blockNode);
-    return blockNodeFacade;
+export type FacadeHelper = {
+    createBlockNodeFacade: (blockNode: BlockNode) => BlockNodeFacade;
+    createProvableStmtNodeFacade: (
+        provableStmtNode: ProvableStmtNode
+    ) => ProvableStmtNodeFacade;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    removeFacades: (parentNode: any) => any 
 };
 
-export const restoreBlockNode = (
-    blockNodeFacade: BlockNodeFacade
-): BlockNode => {
-    const blockNode = blockNodeMap.get(blockNodeFacade.uuid);
+export const createFacadeHelper = (): FacadeHelper => {
+    const blockNodeMap = new Map<string, BlockNode>();
+    const provableStmtNodeMap = new Map<string, ProvableStmtNode>();
 
-    if (blockNode === undefined) {
-        throw new Error('BlockNode not found');
-    }
-
-    blockNodeMap.delete(blockNodeFacade.uuid);
-    return blockNode;
-};
-
-export const createProvableStmtNodeFacade = (
-    provableStmtNode: ProvableStmtNode
-): ProvableStmtNodeFacade => {
-    const provableStmtNodeFacade: ProvableStmtNodeFacade = {
-        type: 'provable_stmt',
-        uuid: uuidv4(),
+    const createBlockNodeFacade = (blockNode: BlockNode): BlockNodeFacade => {
+        const blockNodeFacade: BlockNodeFacade = {
+            type: 'block_facade',
+            uuid: uuidv4(),
+        };
+        blockNodeMap.set(blockNodeFacade.uuid, blockNode);
+        return blockNodeFacade;
     };
-    provableStmtNodeMap.set(provableStmtNodeFacade.uuid, provableStmtNode);
-    return provableStmtNodeFacade;
-};
 
-export const restoreProvableStmtNode = (
-    provableStmtNodeFacade: ProvableStmtNodeFacade
-): ProvableStmtNode => {
-    const provableStmtNode = provableStmtNodeMap.get(provableStmtNodeFacade.uuid);
+    const restoreBlockNode = (blockNodeFacade: BlockNodeFacade): BlockNode => {
+        console.log(`restore block node ${blockNodeFacade.uuid}`);
+        const blockNode = blockNodeMap.get(blockNodeFacade.uuid);
 
-    if (provableStmtNode === undefined) {
-        throw new Error('ProvableStmtNode not found');
-    }
+        if (blockNode === undefined) {
+            throw new Error('BlockNode not found');
+        }
 
-    provableStmtNodeMap.delete(provableStmtNodeFacade.uuid);
-    return provableStmtNode;
+        return blockNode;
+    };
+
+    const createProvableStmtNodeFacade = (
+        provableStmtNode: ProvableStmtNode
+    ): ProvableStmtNodeFacade => {
+        const provableStmtNodeFacade: ProvableStmtNodeFacade = {
+            type: 'provable_stmt_facade',
+            uuid: uuidv4(),
+        };
+        provableStmtNodeMap.set(provableStmtNodeFacade.uuid, provableStmtNode);
+        return provableStmtNodeFacade;
+    };
+
+    const restoreProvableStmtNode = (
+        provableStmtNodeFacade: ProvableStmtNodeFacade
+    ): ProvableStmtNode => {
+        const provableStmtNode = provableStmtNodeMap.get(
+            provableStmtNodeFacade.uuid
+        );
+
+        if (provableStmtNode === undefined) {
+            throw new Error('ProvableStmtNode not found');
+        }
+
+        return provableStmtNode;
+    };
+
+    // type MMNodeWithFacade = MMNode | BlockNodeFacade | ProvableStmtNodeFacade;
+
+    /* eslint-disable @typescript-eslint/no-explicit-any */
+    const removeFacades = (parentNode: any): any => {
+        return {
+            ...parentNode,
+            children: parentNode.children.map((node: any) => {
+                switch (node.type) {
+                    case 'block_facade':
+                        return restoreBlockNode(node);
+                    case 'provable_stmt_facade':
+                        return restoreProvableStmtNode(node);
+                    default:
+                        return node;
+                }
+            }),
+        };
+    };
+
+    return {
+        createBlockNodeFacade,
+        createProvableStmtNodeFacade,
+        removeFacades,
+    };
 };

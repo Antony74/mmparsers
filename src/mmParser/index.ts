@@ -1,6 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import nearley from 'nearley';
-import { BlockNodeFacade, createBlockNodeFacade, createProvableStmtNodeFacade, ProvableStmtNodeFacade } from './facade';
+import {
+    BlockNodeFacade,
+    createFacadeHelper,
+    ProvableStmtNodeFacade,
+} from './facade';
 import {
     TreeNode,
     TreeNodeLeaf,
@@ -22,7 +26,7 @@ export type MmParser = {
 };
 
 type ParserEvents = {
-    database: (d: any) => Database;
+    database: (d: any) => void;
     block: (d: any) => BlockNodeFacade;
     constant_stmt: (d: any) => ConstantStmtNode;
     variable_stmt: (d: any) => VariableStmtNode;
@@ -47,11 +51,9 @@ const getParserEvents = (): ParserEvents => {
 };
 
 export const parserEvents: ParserEvents = {
-    database(d: any): Database {
+    database(d: any): void {
         if (currentParserEvents) {
-            return getParserEvents().database(d);
-        } else {
-            return null as unknown as Database;
+            getParserEvents().database(d);
         }
     },
     block(d: any): BlockNodeFacade {
@@ -119,12 +121,18 @@ const commentsToTokensReducer = (acc: any, value: any): WSAndTokens => {
 };
 
 export const createMmParser = (): MmParser => {
+    const facadeHelper = createFacadeHelper();
+    let database: Database = { type: 'database', children: [] };
+
     const events: ParserEvents | null = {
-        database: (d: any): Database => {
-            return { type: 'database', children: d.flat(3) };
+        database: (d: any): null => {
+            console.log('database');
+            database = { type: 'database', children: d.flat(3) };
+            return null;
         },
 
         block: (d: any): BlockNodeFacade => {
+            console.log('block');
             const blockNode: BlockNode = {
                 type: 'block',
                 children: [
@@ -137,10 +145,11 @@ export const createMmParser = (): MmParser => {
                     minToken(d[3]),
                 ],
             };
-            return createBlockNodeFacade(blockNode);
+            return facadeHelper.createBlockNodeFacade(blockNode);
         },
 
         constant_stmt: (d: any): ConstantStmtNode => {
+            console.log('constant_stmt');
             d = d.flat();
             return {
                 type: 'constant_stmt',
@@ -161,6 +170,7 @@ export const createMmParser = (): MmParser => {
         },
 
         variable_stmt: (d: any): VariableStmtNode => {
+            console.log('variable_stmt');
             d = d.flat(Number.MAX_SAFE_INTEGER);
             return {
                 type: 'variable_stmt',
@@ -180,6 +190,7 @@ export const createMmParser = (): MmParser => {
         },
 
         essential_stmt: (d: any): EssentialStmtNode => {
+            console.log('essential_stmt');
             d = d.flat(Number.MAX_SAFE_INTEGER);
             return {
                 type: 'essential_stmt',
@@ -201,6 +212,7 @@ export const createMmParser = (): MmParser => {
         },
 
         floating_stmt: (d: any): FloatingStmtNode => {
+            console.log('floating_stmt');
             d = d.flat(Number.MAX_SAFE_INTEGER);
             return {
                 type: 'floating_stmt',
@@ -222,6 +234,7 @@ export const createMmParser = (): MmParser => {
         },
 
         axiom_stmt: (d: any): AxiomStmtNode => {
+            console.log('axiom_stmt');
             d = d.flat(1);
             return {
                 type: 'axiom_stmt',
@@ -239,7 +252,7 @@ export const createMmParser = (): MmParser => {
         },
 
         provable_stmt: (d: any): ProvableStmtNodeFacade => {
-            console.log(d[0].text);
+            console.log(`provable_stmt ${d[0].text}`);
             const provableStmtNode: ProvableStmtNode = {
                 type: 'provable_stmt',
                 children: [
@@ -262,10 +275,11 @@ export const createMmParser = (): MmParser => {
                     minToken(d[10]), // $.
                 ],
             };
-            return createProvableStmtNodeFacade(provableStmtNode);
+            return facadeHelper.createProvableStmtNodeFacade(provableStmtNode);
         },
 
         assertion: (d: any): AssertionNode => {
+            console.log('assertion');
             return {
                 type: 'assertion',
                 children: d
@@ -275,13 +289,20 @@ export const createMmParser = (): MmParser => {
         },
 
         _: (d: any[]): string[] => {
+            //            console.log('_');
             return d
                 .flat(Number.MAX_SAFE_INTEGER)
                 .filter((item) => item !== null);
         },
 
-        whitespace: (d: any): [string] => d[0].text,
-        comment: (d: any): [string] => d[0].text,
+        whitespace: (d: any): [string] => {
+            //            console.log('whitespace');
+            return d[0].text;
+        },
+        comment: (d: any): [string] => {
+            //           console.log('comment');
+            return d[0].text;
+        },
     };
 
     // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -302,7 +323,7 @@ export const createMmParser = (): MmParser => {
                 throw new Error('No results');
             }
 
-            return parser.results[0];
+            return facadeHelper.removeFacades(database);
         },
     };
 
