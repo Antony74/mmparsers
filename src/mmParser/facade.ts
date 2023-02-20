@@ -37,9 +37,6 @@ export const createFacadeHelper = (): FacadeHelper => {
     };
 
     const restoreBlockNode = (blockNodeFacade: BlockNodeFacade): BlockNode => {
-        console.log(
-            `restore block node ${JSON.stringify(blockNodeFacade, null, 4)}`
-        );
         const blockNode = blockNodeMap.get(blockNodeFacade.uuid);
 
         if (blockNode === undefined) {

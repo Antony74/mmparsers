@@ -14,8 +14,7 @@ const main = async (): Promise<void> => {
 
         await fs.writeFile(
             `examples/${filename}.json`,
-            JSON.stringify(result, null, 4)
-            // prettier.format(JSON.stringify(result), { parser: 'json' })
+            prettier.format(JSON.stringify(result), { parser: 'json' })
         );
 
         // Any change to this file indicates a bad parse
@@ -25,7 +24,7 @@ const main = async (): Promise<void> => {
     };
 
     const filepath = path.join(__dirname, '..', 'examples', 'demo0.mm');
-//    const filepath = '/set.mm/set.mm';
+    //    const filepath = '/set.mm/set.mm';
     const parsedFilePath = path.parse(filepath);
     const filename = `${parsedFilePath.name}${parsedFilePath.ext}`;
     const text = await fs.readFile(filepath, { encoding: 'utf-8' });
