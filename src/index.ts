@@ -19,13 +19,13 @@ const main = async (): Promise<void> => {
         );
 
         // Any change to this file indicates a bad parse
-        // await fs.writeFile(`examples/${filename}`, reverseParse(result));
+        await fs.writeFile(`examples/${filename}`, reverseParse(result));
 
         return result;
     };
 
     const filepath = path.join(__dirname, '..', 'examples', 'demo0.mm');
-    //    const filepath = '/set.mm/set.mm';
+//    const filepath = '/set.mm/set.mm';
     const parsedFilePath = path.parse(filepath);
     const filename = `${parsedFilePath.name}${parsedFilePath.ext}`;
     const text = await fs.readFile(filepath, { encoding: 'utf-8' });

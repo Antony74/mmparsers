@@ -1,16 +1,18 @@
 {
     "type": "database",
     "children": [
-        "$( demo0.mm  1-Jan-04 $)",
-        "\r\n\r\n",
-        "$(\r\n                           ~~ PUBLIC DOMAIN ~~\r\nThis work is waived of all rights, including copyright, according to the CC0\r\nPublic Domain Dedication.  http://creativecommons.org/publicdomain/zero/1.0/\r\n\r\nNorman Megill - email: nm at alum.mit.edu\r\n\r\n$)",
-        "\r\n\r\n\r\n",
-        "$( This file is the introductory formal system example described\r\n   in Chapter 2 of the Meamath book. $)",
-        "\r\n\r\n",
-        "$( Declare the constant symbols we will use $)",
-        "\r\n    ",
         {
             "type": "constant_stmt",
+            "ws": [
+                "$( demo0.mm  1-Jan-04 $)",
+                "\r\n\r\n",
+                "$(\r\n                           ~~ PUBLIC DOMAIN ~~\r\nThis work is waived of all rights, including copyright, according to the CC0\r\nPublic Domain Dedication.  http://creativecommons.org/publicdomain/zero/1.0/\r\n\r\nNorman Megill - email: nm at alum.mit.edu\r\n\r\n$)",
+                "\r\n\r\n\r\n",
+                "$( This file is the introductory formal system example described\r\n   in Chapter 2 of the Meamath book. $)",
+                "\r\n\r\n",
+                "$( Declare the constant symbols we will use $)",
+                "\r\n    "
+            ],
             "children": [
                 {
                     "type": "$c",
@@ -87,11 +89,13 @@
                 }
             ]
         },
-        "\r\n",
-        "$( Declare the metavariables we will use $)",
-        "\r\n    ",
         {
             "type": "variable_stmt",
+            "ws": [
+                "\r\n",
+                "$( Declare the metavariables we will use $)",
+                "\r\n    "
+            ],
             "children": [
                 {
                     "type": "$v",
@@ -140,11 +144,13 @@
                 }
             ]
         },
-        "\r\n",
-        "$( Specify properties of the metavariables $)",
-        "\r\n    ",
         {
             "type": "floating_stmt",
+            "ws": [
+                "\r\n",
+                "$( Specify properties of the metavariables $)",
+                "\r\n    "
+            ],
             "children": [
                 {
                     "type": "LABEL",
@@ -176,9 +182,11 @@
                 }
             ]
         },
-        "\r\n    ",
         {
             "type": "floating_stmt",
+            "ws": [
+                "\r\n    "
+            ],
             "children": [
                 {
                     "type": "LABEL",
@@ -210,9 +218,11 @@
                 }
             ]
         },
-        "\r\n    ",
         {
             "type": "floating_stmt",
+            "ws": [
+                "\r\n    "
+            ],
             "children": [
                 {
                     "type": "LABEL",
@@ -244,9 +254,11 @@
                 }
             ]
         },
-        "\r\n    ",
         {
             "type": "floating_stmt",
+            "ws": [
+                "\r\n    "
+            ],
             "children": [
                 {
                     "type": "LABEL",
@@ -278,9 +290,11 @@
                 }
             ]
         },
-        "\r\n    ",
         {
             "type": "floating_stmt",
+            "ws": [
+                "\r\n    "
+            ],
             "children": [
                 {
                     "type": "LABEL",
@@ -312,11 +326,13 @@
                 }
             ]
         },
-        "\r\n",
-        "$( Define \"term\" (part 1) $)",
-        "\r\n    ",
         {
             "type": "axiom_stmt",
+            "ws": [
+                "\r\n",
+                "$( Define \"term\" (part 1) $)",
+                "\r\n    "
+            ],
             "children": [
                 {
                     "type": "LABEL",
@@ -345,11 +361,13 @@
                 }
             ]
         },
-        "\r\n",
-        "$( Define \"term\" (part 2) $)",
-        "\r\n    ",
         {
             "type": "axiom_stmt",
+            "ws": [
+                "\r\n",
+                "$( Define \"term\" (part 2) $)",
+                "\r\n    "
+            ],
             "children": [
                 {
                     "type": "LABEL",
@@ -406,11 +424,13 @@
                 }
             ]
         },
-        "\r\n",
-        "$( Define \"wff\" (part 1) $)",
-        "\r\n    ",
         {
             "type": "axiom_stmt",
+            "ws": [
+                "\r\n",
+                "$( Define \"wff\" (part 1) $)",
+                "\r\n    "
+            ],
             "children": [
                 {
                     "type": "LABEL",
@@ -453,11 +473,13 @@
                 }
             ]
         },
-        "\r\n",
-        "$( Define \"wff\" (part 2) $)",
-        "\r\n    ",
         {
             "type": "axiom_stmt",
+            "ws": [
+                "\r\n",
+                "$( Define \"wff\" (part 2) $)",
+                "\r\n    "
+            ],
             "children": [
                 {
                     "type": "LABEL",
@@ -514,11 +536,13 @@
                 }
             ]
         },
-        "\r\n",
-        "$( State axiom a1 $)",
-        "\r\n    ",
         {
             "type": "axiom_stmt",
+            "ws": [
+                "\r\n",
+                "$( State axiom a1 $)",
+                "\r\n    "
+            ],
             "children": [
                 {
                     "type": "LABEL",
@@ -645,11 +669,13 @@
                 }
             ]
         },
-        "\r\n",
-        "$( State axiom a2 $)",
-        "\r\n    ",
         {
             "type": "axiom_stmt",
+            "ws": [
+                "\r\n",
+                "$( State axiom a2 $)",
+                "\r\n    "
+            ],
             "children": [
                 {
                     "type": "LABEL",
@@ -720,7 +746,6 @@
                 }
             ]
         },
-        "\r\n    ",
         {
             "type": "block",
             "children": [
@@ -764,9 +789,11 @@
                                 }
                             ]
                         },
-                        "\r\n       ",
                         {
                             "type": "essential_stmt",
+                            "ws": [
+                                "\r\n       "
+                            ],
                             "children": [
                                 {
                                     "type": "LABEL",
@@ -826,11 +853,13 @@
                                 }
                             ]
                         },
-                        "\r\n",
-                        "$( Define the modus ponens inference rule $)",
-                        "\r\n       ",
                         {
                             "type": "axiom_stmt",
+                            "ws": [
+                                "\r\n",
+                                "$( Define the modus ponens inference rule $)",
+                                "\r\n       "
+                            ],
                             "children": [
                                 {
                                     "type": "LABEL",
@@ -858,8 +887,7 @@
                                     "text": "$."
                                 }
                             ]
-                        },
-                        "\r\n    "
+                        }
                     ]
                 },
                 {
@@ -868,9 +896,6 @@
                 }
             ]
         },
-        "\r\n",
-        "$( Prove a theorem $)",
-        "\r\n    ",
         {
             "type": "provable_stmt",
             "children": [
@@ -1007,15 +1032,7 @@
                         {
                             "type": "LABEL",
                             "ws": [
-                                "\r",
-                                "\n",
-                                " ",
-                                " ",
-                                " ",
-                                " ",
-                                " ",
-                                " ",
-                                " "
+                                "\r\n       "
                             ],
                             "text": "tt"
                         },
@@ -1106,15 +1123,7 @@
                         {
                             "type": "LABEL",
                             "ws": [
-                                "\r",
-                                "\n",
-                                " ",
-                                " ",
-                                " ",
-                                " ",
-                                " ",
-                                " ",
-                                " "
+                                "\r\n       "
                             ],
                             "text": "tt"
                         },
@@ -1174,7 +1183,6 @@
                     "text": "$."
                 }
             ]
-        },
-        "\r\n\r\n"
+        }
     ]
 }

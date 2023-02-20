@@ -100,6 +100,10 @@ const minToken = <T extends TreeNode>(token: T): T | TreeNodeLeaf => {
         return token;
     }
 
+    if ((token as any).uuid) {
+        return token;
+    }
+
     const { type, text } = token;
     return { type, text };
 };
@@ -110,13 +114,17 @@ const emptyWsAndTokens = { tokens: [] };
 
 const commentsToTokensReducer = (acc: any, value: any): WSAndTokens => {
     if (value.type) {
-        const { type, text } = minToken(value);
+        const token = minToken(value);
+        const type = token.type;
         return {
             ws: [],
-            tokens: [...acc.tokens, { type, ws: acc.ws, text }],
+            tokens: [...acc.tokens, { type, ws: acc.ws, ...token }],
         };
     } else {
-        return { ws: [...acc.ws, ...value], tokens: acc.tokens };
+        return {
+            ws: acc.ws ? [...acc.ws, value] : [value],
+            tokens: acc.tokens,
+        };
     }
 };
 
@@ -127,7 +135,12 @@ export const createMmParser = (): MmParser => {
     const events: ParserEvents | null = {
         database: (d: any): null => {
             console.log('database');
-            database = { type: 'database', children: d.flat(3) };
+            database = {
+                type: 'database',
+                children: d
+                    .flat(3)
+                    .reduce(commentsToTokensReducer, emptyWsAndTokens).tokens,
+            };
             return null;
         },
 
@@ -140,7 +153,10 @@ export const createMmParser = (): MmParser => {
                     //            d[1],
                     {
                         type: 'statements',
-                        children: d[2].flat(3),
+                        children: d[2]
+                            .flat(3)
+                            .reduce(commentsToTokensReducer, emptyWsAndTokens)
+                            .tokens,
                     },
                     minToken(d[3]),
                 ],

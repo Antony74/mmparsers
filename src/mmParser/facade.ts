@@ -20,7 +20,7 @@ export type FacadeHelper = {
         provableStmtNode: ProvableStmtNode
     ) => ProvableStmtNodeFacade;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    removeFacades: (parentNode: any) => any 
+    removeFacades: (parentNode: any) => any;
 };
 
 export const createFacadeHelper = (): FacadeHelper => {
@@ -37,7 +37,9 @@ export const createFacadeHelper = (): FacadeHelper => {
     };
 
     const restoreBlockNode = (blockNodeFacade: BlockNodeFacade): BlockNode => {
-        console.log(`restore block node ${blockNodeFacade.uuid}`);
+        console.log(
+            `restore block node ${JSON.stringify(blockNodeFacade, null, 4)}`
+        );
         const blockNode = blockNodeMap.get(blockNodeFacade.uuid);
 
         if (blockNode === undefined) {

@@ -1,5 +1,6 @@
 import fs from 'fs/promises';
 import path from 'path';
+import prettier from 'prettier';
 import { createMmParser } from '../../src/mmParser';
 import { Database } from '../../src/mmParser/mmParseTree';
 import { reverseParse } from '../../src/tools/reverseParse';
@@ -36,6 +37,8 @@ mmFiles.forEach(async (url) => {
             const parser = createMmParser();
             parser.feed(text);
             database = parser.finish();
+            const jsonPath = path.join(__dirname, '../../examples', `${filename}.json`);
+            await fs.writeFile(jsonPath, prettier.format(JSON.stringify(database), { parser: 'json' }));
         });
 
         it('should reverse parse', () => {
