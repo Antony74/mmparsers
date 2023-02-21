@@ -128,6 +128,14 @@ const commentsToTokensReducer = (acc: any, value: any): WSAndTokens => {
     }
 };
 
+const combine = <T extends TreeNode>(ws: string | string[], token: T): T => {
+    if (Array.isArray(ws)) {
+        return { ws, ...token };
+    } else {
+        return { ws: [ws], ...token };
+    }
+};
+
 export const createMmParser = (): MmParser => {
     const facadeHelper = createFacadeHelper();
     let database: Database = { type: 'database', children: [] };
@@ -167,20 +175,21 @@ export const createMmParser = (): MmParser => {
         constant_stmt: (d: any): ConstantStmtNode => {
             console.log('constant_stmt');
             d = d.flat();
+
+            const constants = d
+                .slice(2, -1)
+                .flat(Number.MAX_SAFE_INTEGER)
+                .reduce(commentsToTokensReducer, emptyWsAndTokens);
+
             return {
                 type: 'constant_stmt',
                 children: [
-                    minToken(d[0]),
-                    //            d[1],
-                    {
+                    minToken(d[0]), // $c
+                    combine(d[1], {
                         type: 'constants',
-                        children: d
-                            .slice(2, -1)
-                            .flat(Number.MAX_SAFE_INTEGER)
-                            .reduce(commentsToTokensReducer, emptyWsAndTokens)
-                            .tokens,
-                    },
-                    minToken(d[d.length - 1]),
+                        children: constants.tokens,
+                    }),
+                    combine(constants.ws, minToken(d[d.length - 1])), // $.
                 ],
             };
         },
@@ -192,14 +201,13 @@ export const createMmParser = (): MmParser => {
                 type: 'variable_stmt',
                 children: [
                     minToken(d[0]),
-                    //            d[1],
-                    {
+                    combine(d[1], {
                         type: 'variables',
                         children: d
                             .slice(2, -1)
                             .reduce(commentsToTokensReducer, emptyWsAndTokens)
                             .tokens,
-                    },
+                    }),
                     minToken(d[d.length - 1]),
                 ],
             };

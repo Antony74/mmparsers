@@ -16,6 +16,7 @@
       "children": [
         { "type": "$c", "text": "$c" },
         {
+          "ws": [" "],
           "type": "constants",
           "children": [
             { "type": "MATH_SYMBOL", "text": "0" },
@@ -29,7 +30,7 @@
             { "type": "MATH_SYMBOL", "ws": [" "], "text": "|-" }
           ]
         },
-        { "type": "$.", "text": "$." }
+        { "ws": [" "], "type": "$.", "text": "$." }
       ]
     },
     {
@@ -38,6 +39,7 @@
       "children": [
         { "type": "$v", "text": "$v" },
         {
+          "ws": [" "],
           "type": "variables",
           "children": [
             { "type": "MATH_SYMBOL", "text": "t" },
