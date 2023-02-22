@@ -47,6 +47,7 @@ export type AssertionNode = {
     type: 'assertion';
     children: MathSymbolNode[];
     ws?: string[];
+    trailingWs?: string[];
 };
 
 export type ProofNode = {

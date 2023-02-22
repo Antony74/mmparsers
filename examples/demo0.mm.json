@@ -146,13 +146,14 @@
       "ws": ["\r\n", "$( Define \"term\" (part 1) $)", "\r\n    "],
       "children": [
         { "type": "LABEL", "text": "tze" },
-        { "type": "$a", "text": "$a" },
-        { "type": "MATH_SYMBOL", "text": "term" },
+        { "ws": [" "], "type": "$a", "text": "$a" },
+        { "ws": [" "], "type": "MATH_SYMBOL", "text": "term" },
         {
+          "ws": [" "],
           "type": "assertion",
           "children": [{ "type": "MATH_SYMBOL", "text": "0" }]
         },
-        { "type": "$.", "text": "$." }
+        { "ws": [" "], "type": "$.", "text": "$." }
       ]
     },
     {
@@ -160,9 +161,10 @@
       "ws": ["\r\n", "$( Define \"term\" (part 2) $)", "\r\n    "],
       "children": [
         { "type": "LABEL", "text": "tpl" },
-        { "type": "$a", "text": "$a" },
-        { "type": "MATH_SYMBOL", "text": "term" },
+        { "ws": [" "], "type": "$a", "text": "$a" },
+        { "ws": [" "], "type": "MATH_SYMBOL", "text": "term" },
         {
+          "ws": [" "],
           "type": "assertion",
           "children": [
             { "type": "MATH_SYMBOL", "text": "(" },
@@ -172,7 +174,7 @@
             { "type": "MATH_SYMBOL", "ws": [" "], "text": ")" }
           ]
         },
-        { "type": "$.", "text": "$." }
+        { "ws": [" "], "type": "$.", "text": "$." }
       ]
     },
     {
@@ -180,9 +182,10 @@
       "ws": ["\r\n", "$( Define \"wff\" (part 1) $)", "\r\n    "],
       "children": [
         { "type": "LABEL", "text": "weq" },
-        { "type": "$a", "text": "$a" },
-        { "type": "MATH_SYMBOL", "text": "wff" },
+        { "ws": [" "], "type": "$a", "text": "$a" },
+        { "ws": [" "], "type": "MATH_SYMBOL", "text": "wff" },
         {
+          "ws": [" "],
           "type": "assertion",
           "children": [
             { "type": "MATH_SYMBOL", "text": "t" },
@@ -190,7 +193,7 @@
             { "type": "MATH_SYMBOL", "ws": [" "], "text": "r" }
           ]
         },
-        { "type": "$.", "text": "$." }
+        { "ws": [" "], "type": "$.", "text": "$." }
       ]
     },
     {
@@ -198,9 +201,10 @@
       "ws": ["\r\n", "$( Define \"wff\" (part 2) $)", "\r\n    "],
       "children": [
         { "type": "LABEL", "text": "wim" },
-        { "type": "$a", "text": "$a" },
-        { "type": "MATH_SYMBOL", "text": "wff" },
+        { "ws": [" "], "type": "$a", "text": "$a" },
+        { "ws": [" "], "type": "MATH_SYMBOL", "text": "wff" },
         {
+          "ws": [" "],
           "type": "assertion",
           "children": [
             { "type": "MATH_SYMBOL", "text": "(" },
@@ -210,7 +214,7 @@
             { "type": "MATH_SYMBOL", "ws": [" "], "text": ")" }
           ]
         },
-        { "type": "$.", "text": "$." }
+        { "ws": [" "], "type": "$.", "text": "$." }
       ]
     },
     {
@@ -218,9 +222,10 @@
       "ws": ["\r\n", "$( State axiom a1 $)", "\r\n    "],
       "children": [
         { "type": "LABEL", "text": "a1" },
-        { "type": "$a", "text": "$a" },
-        { "type": "MATH_SYMBOL", "text": "|-" },
+        { "ws": [" "], "type": "$a", "text": "$a" },
+        { "ws": [" "], "type": "MATH_SYMBOL", "text": "|-" },
         {
+          "ws": [" "],
           "type": "assertion",
           "children": [
             { "type": "MATH_SYMBOL", "text": "(" },
@@ -240,7 +245,7 @@
             { "type": "MATH_SYMBOL", "ws": [" "], "text": ")" }
           ]
         },
-        { "type": "$.", "text": "$." }
+        { "ws": [" "], "type": "$.", "text": "$." }
       ]
     },
     {
@@ -248,9 +253,10 @@
       "ws": ["\r\n", "$( State axiom a2 $)", "\r\n    "],
       "children": [
         { "type": "LABEL", "text": "a2" },
-        { "type": "$a", "text": "$a" },
-        { "type": "MATH_SYMBOL", "text": "|-" },
+        { "ws": [" "], "type": "$a", "text": "$a" },
+        { "ws": [" "], "type": "MATH_SYMBOL", "text": "|-" },
         {
+          "ws": [" "],
           "type": "assertion",
           "children": [
             { "type": "MATH_SYMBOL", "text": "(" },
@@ -262,7 +268,7 @@
             { "type": "MATH_SYMBOL", "ws": [" "], "text": "t" }
           ]
         },
-        { "type": "$.", "text": "$." }
+        { "ws": [" "], "type": "$.", "text": "$." }
       ]
     },
     {
@@ -316,13 +322,14 @@
               ],
               "children": [
                 { "type": "LABEL", "text": "mp" },
-                { "type": "$a", "text": "$a" },
-                { "type": "MATH_SYMBOL", "text": "|-" },
+                { "ws": ["  "], "type": "$a", "text": "$a" },
+                { "ws": [" "], "type": "MATH_SYMBOL", "text": "|-" },
                 {
+                  "ws": [" "],
                   "type": "assertion",
                   "children": [{ "type": "MATH_SYMBOL", "text": "Q" }]
                 },
-                { "type": "$.", "text": "$." }
+                { "ws": [" "], "type": "$.", "text": "$." }
               ]
             }
           ]
@@ -342,7 +349,8 @@
             { "type": "MATH_SYMBOL", "text": "t" },
             { "type": "MATH_SYMBOL", "ws": [" "], "text": "=" },
             { "type": "MATH_SYMBOL", "ws": [" "], "text": "t" }
-          ]
+          ],
+          "trailingWs": [" "]
         },
         { "type": "$=", "text": "$=" },
         {
@@ -387,5 +395,6 @@
         { "type": "$.", "text": "$." }
       ]
     }
-  ]
+  ],
+  "trailingWs": ["\r\n\r\n"]
 }

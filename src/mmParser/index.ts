@@ -264,17 +264,20 @@ export const createMmParser = (): MmParser => {
         axiom_stmt: (d: any): AxiomStmtNode => {
             console.log('axiom_stmt');
             d = d.flat(1);
+            const assertion = d[6];
+            const trailingWs = assertion.trailingWs;
+            delete assertion.trailingWs;
             return {
                 type: 'axiom_stmt',
                 children: [
                     minToken(d[0]), // LABEL
-                    //            d[1], // _
-                    minToken(d[2]), // $a
-                    //            d[3], // _
-                    minToken(d[4].flat(Number.MAX_SAFE_INTEGER)[0]), // typecode
-                    //            d[5], // _
-                    d[6], // assertion
-                    minToken(d[7]), // $.
+                    combine(d[1], minToken(d[2])), // $a
+                    combine(
+                        d[3],
+                        minToken(d[4].flat(Number.MAX_SAFE_INTEGER)[0]) // typecode
+                    ),
+                    combine(d[5], d[6]), // assertion
+                    combine(trailingWs, minToken(d[7])), // $.
                 ],
             };
         },
@@ -308,11 +311,15 @@ export const createMmParser = (): MmParser => {
 
         assertion: (d: any): AssertionNode => {
             console.log('assertion');
+
+            const symbols = d
+                .flat(Number.MAX_SAFE_INTEGER)
+                .reduce(commentsToTokensReducer, emptyWsAndTokens);
+
             return {
                 type: 'assertion',
-                children: d
-                    .flat(Number.MAX_SAFE_INTEGER)
-                    .reduce(commentsToTokensReducer, emptyWsAndTokens).tokens,
+                children: symbols.tokens,
+                trailingWs: symbols.ws,
             };
         },
 
