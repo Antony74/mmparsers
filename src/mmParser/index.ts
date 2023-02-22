@@ -197,18 +197,20 @@ export const createMmParser = (): MmParser => {
         variable_stmt: (d: any): VariableStmtNode => {
             console.log('variable_stmt');
             d = d.flat(Number.MAX_SAFE_INTEGER);
+
+            const variables = d
+                .slice(2, -1)
+                .reduce(commentsToTokensReducer, emptyWsAndTokens);
+
             return {
                 type: 'variable_stmt',
                 children: [
-                    minToken(d[0]),
+                    minToken(d[0]), // $v
                     combine(d[1], {
                         type: 'variables',
-                        children: d
-                            .slice(2, -1)
-                            .reduce(commentsToTokensReducer, emptyWsAndTokens)
-                            .tokens,
+                        children: variables.tokens,
                     }),
-                    minToken(d[d.length - 1]),
+                    combine(variables.ws, minToken(d[d.length - 1])), // $.
                 ],
             };
         },
@@ -238,21 +240,20 @@ export const createMmParser = (): MmParser => {
         floating_stmt: (d: any): FloatingStmtNode => {
             console.log('floating_stmt');
             d = d.flat(Number.MAX_SAFE_INTEGER);
+            const statements = d
+                .slice(4, -1)
+                .reduce(commentsToTokensReducer, emptyWsAndTokens);
+
             return {
                 type: 'floating_stmt',
                 children: [
-                    minToken(d[0]),
-                    //            minToken(d[1]),
-                    minToken(d[2]),
-                    //            minToken(d[3]),
-                    {
+                    minToken(d[0]), // LABEL
+                    combine(d[1], minToken(d[2])), // $f
+                    combine(d[3], {
                         type: 'statement',
-                        children: d
-                            .slice(4, -1)
-                            .reduce(commentsToTokensReducer, emptyWsAndTokens)
-                            .tokens,
-                    },
-                    minToken(d[d.length - 1]),
+                        children: statements.tokens,
+                    }),
+                    combine(statements.ws, minToken(d[d.length - 1])), // $.
                 ],
             };
         },

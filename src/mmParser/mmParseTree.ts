@@ -16,6 +16,7 @@ export type MathSymbolNode = {
 export type LabelNode = { type: 'LABEL'; ws?: string[]; text: string };
 export type $cNode = { type: '$c'; ws?: string[]; text: '$c' };
 export type $vNode = { type: '$v'; ws?: string[]; text: '$v' };
+export type $fNode = { type: '$f'; ws?: string[]; text: '$f' };
 export type $eNode = { type: '$e'; ws?: string[]; text: '$e' };
 export type $aNode = { type: '$a'; ws?: string[]; text: '$a' };
 export type $pNode = { type: '$p'; ws?: string[]; text: '$p' };
@@ -89,7 +90,7 @@ export type EssentialStmtNode = {
 
 export type FloatingStmtNode = {
     type: 'floating_stmt';
-    children: [LabelNode, MathSymbolNode, StatementNode, $dotNode];
+    children: [LabelNode, $fNode, StatementNode, $dotNode];
     ws?: string[];
 };
 
