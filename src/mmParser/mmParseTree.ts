@@ -125,9 +125,10 @@ export type Database = {
     children: // IncludeStmtNode |
     (ConstantStmtNode | ChildStatement)[];
     ws?: string[];
+    trailingWs?: string[];
 };
 
-export type MMNode =
+export type MMNodeParent =
     | Database
     | BlockNode
     | ProvableStmtNode
@@ -141,11 +142,14 @@ export type MMNode =
     | AssertionNode
     | StatementNode
     | VariablesNode
-    | ConstantsNode
+    | ConstantsNode;
+
+export type MMNodeLeaf =
     | MathSymbolNode
     | LabelNode
     | $cNode
     | $vNode
+    | $fNode
     | $eNode
     | $aNode
     | $pNode
@@ -154,5 +158,10 @@ export type MMNode =
     | $BlockStartNode
     | $BlockEndNode;
 
-export const isParentNode = (node: TreeNode): node is TreeNodeParent =>
+export type MMNode = MMNodeLeaf | MMNodeParent;
+
+export const isGenericParentNode = (node: TreeNode): node is TreeNodeParent =>
+    'children' in node;
+
+export const isParentNode = (node: MMNode): node is MMNodeParent =>
     'children' in node;

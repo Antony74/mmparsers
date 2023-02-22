@@ -1,10 +1,16 @@
-import { isParentNode, TreeNode } from '../mmParser/mmParseTree';
+import { isParentNode, MMNode } from '../mmParser/mmParseTree';
 
-export const reverseParse = (node: TreeNode): string => {
+export const reverseParse = (node: MMNode): string => {
     const ws = (node.ws ?? []).join('');
 
     if (isParentNode(node)) {
-        return ws + node.children.map(reverseParse).join('');
+        const text = ws + node.children.map(reverseParse).join('');
+        if (node.type === 'database') {
+            const trailingWs = (node.trailingWs ?? []).join('');
+            return text + trailingWs;
+        } else {
+            return text;
+        }
     } else {
         return ws + node.text;
     }

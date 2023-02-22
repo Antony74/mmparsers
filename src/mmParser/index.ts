@@ -8,7 +8,7 @@ import {
 import {
     TreeNode,
     TreeNodeLeaf,
-    isParentNode,
+    isGenericParentNode,
     Database,
     BlockNode,
     ConstantStmtNode,
@@ -96,7 +96,7 @@ const minToken = <T extends TreeNode>(token: T): T | TreeNodeLeaf => {
         throw new Error('Type missing from token');
     }
 
-    if (isParentNode(token)) {
+    if (isGenericParentNode(token)) {
         return token;
     }
 
@@ -143,11 +143,14 @@ export const createMmParser = (): MmParser => {
     const events: ParserEvents | null = {
         database: (d: any): null => {
             console.log('database');
+            const db = d
+                .flat(3)
+                .reduce(commentsToTokensReducer, emptyWsAndTokens);
+
             database = {
                 type: 'database',
-                children: d
-                    .flat(3)
-                    .reduce(commentsToTokensReducer, emptyWsAndTokens).tokens,
+                children: db.tokens,
+                trailingWs: db.ws,
             };
             return null;
         },
