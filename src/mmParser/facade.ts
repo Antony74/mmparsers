@@ -6,11 +6,13 @@ import { BlockNode, ProvableStmtNode } from './mmParseTree';
 
 export type BlockNodeFacade = {
     type: 'block_facade';
+    ws?: string[];
     uuid: string;
 };
 
 export type ProvableStmtNodeFacade = {
     type: 'provable_stmt_facade';
+    ws?: string[];
     uuid: string;
 };
 
@@ -43,7 +45,10 @@ export const createFacadeHelper = (): FacadeHelper => {
             throw new Error('BlockNode not found');
         }
 
-        return blockNode;
+        return {
+            ws: [...(blockNodeFacade.ws ?? []), ...(blockNode.ws ?? [])],
+            ...blockNode,
+        };
     };
 
     const createProvableStmtNodeFacade = (
@@ -68,7 +73,13 @@ export const createFacadeHelper = (): FacadeHelper => {
             throw new Error('ProvableStmtNode not found');
         }
 
-        return provableStmtNode;
+        return {
+            ws: [
+                ...(provableStmtNodeFacade.ws ?? []),
+                ...(provableStmtNode.ws ?? []),
+            ],
+            ...provableStmtNode,
+        };
     };
 
     // type MMNodeWithFacade = MMNode | BlockNodeFacade | ProvableStmtNodeFacade;

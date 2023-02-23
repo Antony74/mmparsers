@@ -157,21 +157,23 @@ export const createMmParser = (): MmParser => {
 
         block: (d: any): BlockNodeFacade => {
             console.log('block');
+
+            const statements = d[2]
+                .flat(3)
+                .reduce(commentsToTokensReducer, emptyWsAndTokens);
+
             const blockNode: BlockNode = {
                 type: 'block',
                 children: [
-                    minToken(d[0]),
-                    //            d[1],
-                    {
+                    minToken(d[0]), // ${
+                    combine(d[1], {
                         type: 'statements',
-                        children: d[2]
-                            .flat(3)
-                            .reduce(commentsToTokensReducer, emptyWsAndTokens)
-                            .tokens,
-                    },
-                    minToken(d[3]),
+                        children: statements.tokens,
+                    }),
+                    combine(statements.ws, minToken(d[3])), // $}
                 ],
             };
+
             return facadeHelper.createBlockNodeFacade(blockNode);
         },
 

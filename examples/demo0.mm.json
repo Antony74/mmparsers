@@ -272,10 +272,12 @@
       ]
     },
     {
+      "ws": ["\r\n    "],
       "type": "block",
       "children": [
         { "type": "${", "text": "${" },
         {
+          "ws": ["\r\n       "],
           "type": "statements",
           "children": [
             {
@@ -334,10 +336,11 @@
             }
           ]
         },
-        { "type": "$}", "text": "$}" }
+        { "ws": ["\r\n    "], "type": "$}", "text": "$}" }
       ]
     },
     {
+      "ws": ["\r\n", "$( Prove a theorem $)", "\r\n    "],
       "type": "provable_stmt",
       "children": [
         { "type": "LABEL", "text": "th1" },
