@@ -2,7 +2,7 @@
 
 import { v4 as uuidv4 } from 'uuid';
 
-import { BlockNode, ProvableStmtNode } from './mmParseTree';
+import { BlockNode, MMNode, ProvableStmtNode } from './mmParseTree';
 
 export type BlockNodeFacade = {
     type: 'block_facade';
@@ -82,13 +82,13 @@ export const createFacadeHelper = (): FacadeHelper => {
         };
     };
 
-    // type MMNodeWithFacade = MMNode | BlockNodeFacade | ProvableStmtNodeFacade;
+    type MMNodeWithFacade = MMNode | BlockNodeFacade | ProvableStmtNodeFacade;
 
-    /* eslint-disable @typescript-eslint/no-explicit-any */
-    const removeFacades = (parentNode: any): any => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const removeFacades = (parentNode: any): MMNode => {
         return {
             ...parentNode,
-            children: parentNode.children.map((node: any) => {
+            children: parentNode.children.map((node: MMNodeWithFacade) => {
                 switch (node.type) {
                     case 'block_facade':
                         return restoreBlockNode(node);
