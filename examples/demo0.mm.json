@@ -346,9 +346,10 @@
       "type": "provable_stmt",
       "children": [
         { "type": "LABEL", "text": "th1" },
-        { "type": "$p", "text": "$p" },
-        { "type": "MATH_SYMBOL", "text": "|-" },
+        { "ws": [" "], "type": "$p", "text": "$p" },
+        { "ws": [" "], "type": "MATH_SYMBOL", "text": "|-" },
         {
+          "ws": [" "],
           "type": "assertion",
           "children": [
             { "type": "MATH_SYMBOL", "text": "t" },
@@ -357,8 +358,9 @@
           ],
           "trailingWs": [" "]
         },
-        { "type": "$=", "text": "$=" },
+        { "ws": [" "], "type": "$=", "text": "$=" },
         {
+          "ws": ["\r\n  ", "$( Here is its proof: $)", "\r\n       "],
           "type": "proof",
           "children": [
             { "type": "LABEL", "text": "tt" },
@@ -397,7 +399,7 @@
             { "type": "LABEL", "ws": [" "], "text": "mp" }
           ]
         },
-        { "type": "$.", "text": "$." }
+        { "ws": ["\r\n     "], "type": "$.", "text": "$." }
       ]
     }
   ],

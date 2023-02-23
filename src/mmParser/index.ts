@@ -284,26 +284,27 @@ export const createMmParser = (): MmParser => {
 
         provable_stmt: (d: any): ProvableStmtNodeFacade => {
             console.log(`provable_stmt ${d[0].text}`);
+
+            const proof = d[9]
+                .flat(Number.MAX_SAFE_INTEGER)
+                .reduce(commentsToTokensReducer, emptyWsAndTokens);
+
             const provableStmtNode: ProvableStmtNode = {
                 type: 'provable_stmt',
                 children: [
                     minToken(d[0]), // label
-                    //          d[1], // _
-                    minToken(d[2]), // $p
-                    //            d[3], // _
-                    minToken(d[4].flat(Number.MAX_SAFE_INTEGER)[0]), // typecode
-                    //            d[5], // _
-                    d[6], // assertion
-                    minToken(d[7]), // $=
-                    //            d[8], // _
-                    {
+                    combine(d[1], minToken(d[2])), // $p
+                    combine(
+                        d[3],
+                        minToken(d[4].flat(Number.MAX_SAFE_INTEGER)[0]) // typecode
+                    ),
+                    combine(d[5], d[6]), // assertion
+                    combine(d[6].trailingWs, minToken(d[7])), // $=
+                    combine(d[8], {
                         type: 'proof',
-                        children: d[9]
-                            .flat(Number.MAX_SAFE_INTEGER)
-                            .reduce(commentsToTokensReducer, emptyWsAndTokens)
-                            .tokens,
-                    },
-                    minToken(d[10]), // $.
+                        children: proof.tokens,
+                    }),
+                    combine(proof.ws, minToken(d[10])), // $.
                 ],
             };
             return facadeHelper.createProvableStmtNodeFacade(provableStmtNode);
