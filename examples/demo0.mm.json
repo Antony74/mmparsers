@@ -284,15 +284,16 @@
               "type": "essential_stmt",
               "children": [
                 { "type": "LABEL", "text": "min" },
-                { "type": "$e", "text": "$e" },
+                { "ws": [" "], "type": "$e", "text": "$e" },
                 {
+                  "ws": [" "],
                   "type": "statement",
                   "children": [
                     { "type": "MATH_SYMBOL", "text": "|-" },
                     { "type": "MATH_SYMBOL", "ws": [" "], "text": "P" }
                   ]
                 },
-                { "type": "$.", "text": "$." }
+                { "ws": [" "], "type": "$.", "text": "$." }
               ]
             },
             {
@@ -300,8 +301,9 @@
               "ws": ["\r\n       "],
               "children": [
                 { "type": "LABEL", "text": "maj" },
-                { "type": "$e", "text": "$e" },
+                { "ws": [" "], "type": "$e", "text": "$e" },
                 {
+                  "ws": [" "],
                   "type": "statement",
                   "children": [
                     { "type": "MATH_SYMBOL", "text": "|-" },
@@ -312,7 +314,7 @@
                     { "type": "MATH_SYMBOL", "ws": [" "], "text": ")" }
                   ]
                 },
-                { "type": "$.", "text": "$." }
+                { "ws": [" "], "type": "$.", "text": "$." }
               ]
             },
             {

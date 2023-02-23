@@ -223,21 +223,19 @@ export const createMmParser = (): MmParser => {
         essential_stmt: (d: any): EssentialStmtNode => {
             console.log('essential_stmt');
             d = d.flat(Number.MAX_SAFE_INTEGER);
+            const statements = d
+                .slice(4, -1)
+                .reduce(commentsToTokensReducer, emptyWsAndTokens);
             return {
                 type: 'essential_stmt',
                 children: [
-                    minToken(d[0]),
-                    //            minToken(d[1]),
-                    minToken(d[2]),
-                    //            minToken(d[3]),
-                    {
+                    minToken(d[0]), // LABEL
+                    combine(d[1], minToken(d[2])), // $e
+                    combine(d[3], {
                         type: 'statement',
-                        children: d
-                            .slice(4, -1)
-                            .reduce(commentsToTokensReducer, emptyWsAndTokens)
-                            .tokens,
-                    },
-                    minToken(d[d.length - 1]),
+                        children: statements.tokens,
+                    }),
+                    combine(statements.ws, minToken(d[d.length - 1])), // $.
                 ],
             };
         },
