@@ -1,0 +1,375 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Database",
+  "definitions": {
+    "Database": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "const": "database" },
+        "children": {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              { "$ref": "#/definitions/ConstantStmtNode" },
+              { "$ref": "#/definitions/ChildStatement" }
+            ]
+          }
+        },
+        "ws": { "type": "array", "items": { "type": "string" } },
+        "trailingWs": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["type", "children"],
+      "additionalProperties": false
+    },
+    "ConstantStmtNode": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "const": "constant_stmt" },
+        "children": {
+          "type": "array",
+          "minItems": 3,
+          "items": [
+            { "$ref": "#/definitions/%24cNode" },
+            { "$ref": "#/definitions/ConstantsNode" },
+            { "$ref": "#/definitions/%24dotNode" }
+          ],
+          "maxItems": 3
+        },
+        "ws": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["type", "children"],
+      "additionalProperties": false
+    },
+    "$cNode": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "const": "$c" },
+        "ws": { "type": "array", "items": { "type": "string" } },
+        "text": { "type": "string", "const": "$c" }
+      },
+      "required": ["type", "text"],
+      "additionalProperties": false
+    },
+    "ConstantsNode": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "const": "constants" },
+        "children": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/MathSymbolNode" }
+        },
+        "ws": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["type", "children"],
+      "additionalProperties": false
+    },
+    "MathSymbolNode": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "const": "MATH_SYMBOL" },
+        "ws": { "type": "array", "items": { "type": "string" } },
+        "text": { "type": "string" }
+      },
+      "required": ["type", "text"],
+      "additionalProperties": false
+    },
+    "$dotNode": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "const": "$." },
+        "ws": { "type": "array", "items": { "type": "string" } },
+        "text": { "type": "string", "const": "$." }
+      },
+      "required": ["type", "text"],
+      "additionalProperties": false
+    },
+    "ChildStatement": {
+      "anyOf": [
+        { "$ref": "#/definitions/BlockNode" },
+        { "$ref": "#/definitions/VariableStmtNode" },
+        { "$ref": "#/definitions/FloatingStmtNode" },
+        { "$ref": "#/definitions/EssentialStmtNode" },
+        { "$ref": "#/definitions/AxiomStmtNode" },
+        { "$ref": "#/definitions/ProvableStmtNode" }
+      ]
+    },
+    "BlockNode": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "const": "block" },
+        "children": {
+          "type": "array",
+          "minItems": 3,
+          "items": [
+            { "$ref": "#/definitions/%24BlockStartNode" },
+            { "$ref": "#/definitions/StatementsNode" },
+            { "$ref": "#/definitions/%24BlockEndNode" }
+          ],
+          "maxItems": 3
+        },
+        "ws": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["type", "children"],
+      "additionalProperties": false
+    },
+    "$BlockStartNode": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "const": "${" },
+        "ws": { "type": "array", "items": { "type": "string" } },
+        "text": { "type": "string", "const": "${" }
+      },
+      "required": ["type", "text"],
+      "additionalProperties": false
+    },
+    "StatementsNode": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "const": "statements" },
+        "children": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/ChildStatement" }
+        },
+        "ws": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["type", "children"],
+      "additionalProperties": false
+    },
+    "$BlockEndNode": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "const": "$}" },
+        "ws": { "type": "array", "items": { "type": "string" } },
+        "text": { "type": "string", "const": "$}" }
+      },
+      "required": ["type", "text"],
+      "additionalProperties": false
+    },
+    "VariableStmtNode": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "const": "variable_stmt" },
+        "children": {
+          "type": "array",
+          "minItems": 3,
+          "items": [
+            { "$ref": "#/definitions/%24vNode" },
+            { "$ref": "#/definitions/VariablesNode" },
+            { "$ref": "#/definitions/%24dotNode" }
+          ],
+          "maxItems": 3
+        },
+        "ws": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["type", "children"],
+      "additionalProperties": false
+    },
+    "$vNode": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "const": "$v" },
+        "ws": { "type": "array", "items": { "type": "string" } },
+        "text": { "type": "string", "const": "$v" }
+      },
+      "required": ["type", "text"],
+      "additionalProperties": false
+    },
+    "VariablesNode": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "const": "variables" },
+        "children": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/MathSymbolNode" }
+        },
+        "ws": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["type", "children"],
+      "additionalProperties": false
+    },
+    "FloatingStmtNode": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "const": "floating_stmt" },
+        "children": {
+          "type": "array",
+          "minItems": 4,
+          "items": [
+            { "$ref": "#/definitions/LabelNode" },
+            { "$ref": "#/definitions/%24fNode" },
+            { "$ref": "#/definitions/StatementNode" },
+            { "$ref": "#/definitions/%24dotNode" }
+          ],
+          "maxItems": 4
+        },
+        "ws": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["type", "children"],
+      "additionalProperties": false
+    },
+    "LabelNode": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "const": "LABEL" },
+        "ws": { "type": "array", "items": { "type": "string" } },
+        "text": { "type": "string" }
+      },
+      "required": ["type", "text"],
+      "additionalProperties": false
+    },
+    "$fNode": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "const": "$f" },
+        "ws": { "type": "array", "items": { "type": "string" } },
+        "text": { "type": "string", "const": "$f" }
+      },
+      "required": ["type", "text"],
+      "additionalProperties": false
+    },
+    "StatementNode": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "const": "statement" },
+        "children": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/MathSymbolNode" }
+        },
+        "ws": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["type", "children"],
+      "additionalProperties": false
+    },
+    "EssentialStmtNode": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "const": "essential_stmt" },
+        "children": {
+          "type": "array",
+          "minItems": 4,
+          "items": [
+            { "$ref": "#/definitions/LabelNode" },
+            { "$ref": "#/definitions/%24eNode" },
+            { "$ref": "#/definitions/StatementNode" },
+            { "$ref": "#/definitions/%24dotNode" }
+          ],
+          "maxItems": 4
+        },
+        "ws": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["type", "children"],
+      "additionalProperties": false
+    },
+    "$eNode": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "const": "$e" },
+        "ws": { "type": "array", "items": { "type": "string" } },
+        "text": { "type": "string", "const": "$e" }
+      },
+      "required": ["type", "text"],
+      "additionalProperties": false
+    },
+    "AxiomStmtNode": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "const": "axiom_stmt" },
+        "children": {
+          "type": "array",
+          "minItems": 5,
+          "items": [
+            { "$ref": "#/definitions/LabelNode" },
+            { "$ref": "#/definitions/%24aNode" },
+            { "$ref": "#/definitions/MathSymbolNode" },
+            { "$ref": "#/definitions/AssertionNode" },
+            { "$ref": "#/definitions/%24dotNode" }
+          ],
+          "maxItems": 5
+        },
+        "ws": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["type", "children"],
+      "additionalProperties": false
+    },
+    "$aNode": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "const": "$a" },
+        "ws": { "type": "array", "items": { "type": "string" } },
+        "text": { "type": "string", "const": "$a" }
+      },
+      "required": ["type", "text"],
+      "additionalProperties": false
+    },
+    "AssertionNode": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "const": "assertion" },
+        "children": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/MathSymbolNode" }
+        },
+        "ws": { "type": "array", "items": { "type": "string" } },
+        "trailingWs": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["type", "children"],
+      "additionalProperties": false
+    },
+    "ProvableStmtNode": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "const": "provable_stmt" },
+        "children": {
+          "type": "array",
+          "minItems": 7,
+          "items": [
+            { "$ref": "#/definitions/LabelNode" },
+            { "$ref": "#/definitions/%24pNode" },
+            { "$ref": "#/definitions/MathSymbolNode" },
+            { "$ref": "#/definitions/AssertionNode" },
+            { "$ref": "#/definitions/%24eqNode" },
+            { "$ref": "#/definitions/ProofNode" },
+            { "$ref": "#/definitions/%24dotNode" }
+          ],
+          "maxItems": 7
+        },
+        "ws": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["type", "children"],
+      "additionalProperties": false
+    },
+    "$pNode": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "const": "$p" },
+        "ws": { "type": "array", "items": { "type": "string" } },
+        "text": { "type": "string", "const": "$p" }
+      },
+      "required": ["type", "text"],
+      "additionalProperties": false
+    },
+    "$eqNode": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "const": "$=" },
+        "ws": { "type": "array", "items": { "type": "string" } },
+        "text": { "type": "string", "const": "$=" }
+      },
+      "required": ["type", "text"],
+      "additionalProperties": false
+    },
+    "ProofNode": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "const": "proof" },
+        "children": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/LabelNode" }
+        },
+        "ws": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["type", "children"],
+      "additionalProperties": false
+    }
+  }
+}
