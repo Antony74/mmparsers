@@ -2,29 +2,31 @@ import fs from 'fs/promises';
 import path from 'path';
 import prettier from 'prettier';
 import * as tsj from 'ts-json-schema-generator';
+import Ajv, { ValidateFunction } from 'ajv';
 import { createMmParser } from '../../src/mmParser';
 import { Database } from '../../src/mmParser/mmParseTree';
 import { reverseParse } from '../../src/tools/reverseParse';
-
 const mmFiles = [
     'https://raw.githubusercontent.com/metamath/set.mm/develop/demo0.mm',
     //    'https://raw.githubusercontent.com/david-a-wheeler/metamath-test/master/demo0-includer.mm',
     //    'https://raw.githubusercontent.com/metamath/set.mm/develop/set.mm',
 ];
 
-let schema: tsj.Schema;
+let validateFn: ValidateFunction;
 
 beforeAll(async () => {
     const tsPath = path.join(__dirname, '../../src/mmParser/mmParseTree.ts');
     const schemaGenerator = tsj.createGenerator({
         path: tsPath,
     });
-    schema = schemaGenerator.createSchema('Database');
+    const schema = schemaGenerator.createSchema('Database');
     const schemaString = prettier.format(JSON.stringify(schema), {
         parser: 'json',
     });
     const schemaPath = path.join(__dirname, '../../schemas/mmSchema.json');
     await fs.writeFile(schemaPath, schemaString);
+    const ajv = new Ajv();
+    validateFn = ajv.compile(schema);
 });
 
 mmFiles.forEach(async (url) => {
@@ -74,6 +76,9 @@ mmFiles.forEach(async (url) => {
             expect(text).toEqual(reverseParseText);
         });
 
-        // it('should conform to the schema');
+        it('should conform to the schema', () => {
+            const result = validateFn(database);
+            expect(result).toEqual(true);
+        });
     });
 });
