@@ -12,6 +12,7 @@ const mmFiles = [
     //    'https://raw.githubusercontent.com/metamath/set.mm/develop/set.mm',
 ];
 
+let ajv: Ajv;
 let validateFn: ValidateFunction;
 
 beforeAll(async () => {
@@ -25,7 +26,7 @@ beforeAll(async () => {
     });
     const schemaPath = path.join(__dirname, '../../schemas/mmSchema.json');
     await fs.writeFile(schemaPath, schemaString);
-    const ajv = new Ajv();
+    ajv = new Ajv();
     validateFn = ajv.compile(schema);
 });
 
@@ -78,6 +79,12 @@ mmFiles.forEach(async (url) => {
 
         it('should conform to the schema', () => {
             const result = validateFn(database);
+            const errorDump = JSON.stringify(validateFn.errors, null, 4);
+            const errorText = ajv.errorsText(validateFn.errors);
+            if (validateFn.errors) {
+                console.error(errorDump);
+                console.error(errorText);
+            }
             expect(result).toEqual(true);
         });
     });
