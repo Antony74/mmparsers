@@ -17,7 +17,7 @@ var grammar = {
     {"name": "outermost_scope_stmt", "symbols": ["stmt"], "postprocess": d => d.flat()},
     {"name": "outermost_scope_stmt", "symbols": ["whitespace"]},
     {"name": "outermost_scope_stmt", "symbols": ["comment"]},
-    {"name": "include_stmt", "symbols": [{"literal":"$["}, "_", "filename", "_", {"literal":"$]"}]},
+    {"name": "include_stmt", "symbols": [{"literal":"$["}, "_", "filename", "_", {"literal":"$]"}], "postprocess": e.include_stmt},
     {"name": "constant_stmt$ebnf$1$subexpression$1", "symbols": ["constant", "_"]},
     {"name": "constant_stmt$ebnf$1", "symbols": ["constant_stmt$ebnf$1$subexpression$1"]},
     {"name": "constant_stmt$ebnf$1$subexpression$2", "symbols": ["constant", "_"]},

@@ -24,6 +24,8 @@ export type $eqNode = { type: '$='; ws?: string[]; text: '$=' };
 export type $dotNode = { type: '$.'; ws?: string[]; text: '$.' };
 export type $BlockStartNode = { type: '${'; ws?: string[]; text: '${' };
 export type $BlockEndNode = { type: '$}'; ws?: string[]; text: '$}' };
+export type $IncludeStmtStartNode = { type: '$['; ws?: string[]; text: '$[' };
+export type $IncludeStmtEndNode = { type: '$]'; ws?: string[]; text: '$]' };
 
 export type ConstantsNode = {
     type: 'constants';
@@ -115,6 +117,12 @@ export type ProvableStmtNode = {
     ws?: string[];
 };
 
+export type IncludeStmtNode = {
+    type: 'include_stmt';
+    children: [$IncludeStmtStartNode, MathSymbolNode, $IncludeStmtEndNode];
+    ws?: string[];
+};
+
 export type BlockNode = {
     type: 'block';
     children: [$BlockStartNode, StatementsNode, $BlockEndNode];
@@ -123,8 +131,7 @@ export type BlockNode = {
 
 export type Database = {
     type: 'database';
-    children: // IncludeStmtNode |
-    (ConstantStmtNode | ChildStatement)[];
+    children: (IncludeStmtNode | ConstantStmtNode | ChildStatement)[];
     ws?: string[];
     trailingWs?: string[];
 };

@@ -18,6 +18,7 @@ import {
     AxiomStmtNode,
     ProvableStmtNode,
     AssertionNode,
+    IncludeStmtNode,
 } from './mmParseTree';
 
 export type MmParser = {
@@ -35,6 +36,7 @@ type ParserEvents = {
     axiom_stmt: (d: any) => AxiomStmtNode;
     provable_stmt: (d: any) => ProvableStmtNodeFacade;
     assertion: (d: any) => AssertionNode;
+    include_stmt: (d: any) => IncludeStmtNode;
     _: (d: any[]) => string[];
     whitespace: (d: any) => [string];
     comment: (d: any) => [string];
@@ -79,6 +81,9 @@ export const parserEvents: ParserEvents = {
     },
     assertion(d: any): AssertionNode {
         return getParserEvents().assertion(d);
+    },
+    include_stmt(d: any): IncludeStmtNode {
+        return getParserEvents().include_stmt(d);
     },
     _(d: any[]): string[] {
         return getParserEvents()._(d);
@@ -321,6 +326,20 @@ export const createMmParser = (): MmParser => {
                 type: 'assertion',
                 children: symbols.tokens,
                 trailingWs: symbols.ws,
+            };
+        },
+
+        include_stmt: (d: any): IncludeStmtNode => {
+            console.log('include_stmt');
+            d = d.flat(1);
+
+            return {
+                type: 'include_stmt',
+                children: [
+                    minToken(d[0]),
+                    combine(d[1], minToken(d[2])),
+                    combine(d[3], minToken(d[4])),
+                ],
             };
         },
 

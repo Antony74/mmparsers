@@ -10,6 +10,7 @@
           "type": "array",
           "items": {
             "anyOf": [
+              { "$ref": "#/definitions/IncludeStmtNode" },
               { "$ref": "#/definitions/ConstantStmtNode" },
               { "$ref": "#/definitions/ChildStatement" }
             ]
@@ -19,6 +20,55 @@
         "trailingWs": { "type": "array", "items": { "type": "string" } }
       },
       "required": ["type", "children"],
+      "additionalProperties": false
+    },
+    "IncludeStmtNode": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "const": "include_stmt" },
+        "children": {
+          "type": "array",
+          "minItems": 3,
+          "items": [
+            { "$ref": "#/definitions/%24IncludeStmtStartNode" },
+            { "$ref": "#/definitions/MathSymbolNode" },
+            { "$ref": "#/definitions/%24IncludeStmtEndNode" }
+          ],
+          "maxItems": 3
+        },
+        "ws": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["type", "children"],
+      "additionalProperties": false
+    },
+    "$IncludeStmtStartNode": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "const": "$[" },
+        "ws": { "type": "array", "items": { "type": "string" } },
+        "text": { "type": "string", "const": "$[" }
+      },
+      "required": ["type", "text"],
+      "additionalProperties": false
+    },
+    "MathSymbolNode": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "const": "MATH_SYMBOL" },
+        "ws": { "type": "array", "items": { "type": "string" } },
+        "text": { "type": "string" }
+      },
+      "required": ["type", "text"],
+      "additionalProperties": false
+    },
+    "$IncludeStmtEndNode": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "const": "$]" },
+        "ws": { "type": "array", "items": { "type": "string" } },
+        "text": { "type": "string", "const": "$]" }
+      },
+      "required": ["type", "text"],
       "additionalProperties": false
     },
     "ConstantStmtNode": {
@@ -61,16 +111,6 @@
         "ws": { "type": "array", "items": { "type": "string" } }
       },
       "required": ["type", "children"],
-      "additionalProperties": false
-    },
-    "MathSymbolNode": {
-      "type": "object",
-      "properties": {
-        "type": { "type": "string", "const": "MATH_SYMBOL" },
-        "ws": { "type": "array", "items": { "type": "string" } },
-        "text": { "type": "string" }
-      },
-      "required": ["type", "text"],
       "additionalProperties": false
     },
     "$dotNode": {
