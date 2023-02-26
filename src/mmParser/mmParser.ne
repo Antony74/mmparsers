@@ -16,7 +16,7 @@ outermost_scope_stmt ->
 
 # File inclusion command; process file as a database.
 # Databases should NOT have a comment in the filename.
-include_stmt -> "$[" filename "$]"
+include_stmt -> "$[" _ filename _ "$]"
 
 # Constant symbols declaration.
 constant_stmt -> "$c" _ ( constant _ ):+ "$." {% e.constant_stmt %}

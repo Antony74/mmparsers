@@ -1,0 +1,108 @@
+{
+  "type": "database",
+  "children": [
+    {
+      "ws": [
+        "$( demo0-includer.mm  1-Jan-04 $)",
+        "\n\n",
+        "$(\n                      PUBLIC DOMAIN DEDICATION\n\nThis file is placed in the public domain per the Creative Commons Public\nDomain Dedication. http://creativecommons.org/licenses/publicdomain/\n\nNorman Megill - email: nm at alum.mit.edu\n\n$)",
+        "\n\n\n",
+        [
+          {
+            "type": "$[",
+            "value": "$[",
+            "text": "$[",
+            "offset": 277,
+            "lineBreaks": 0,
+            "line": 14,
+            "col": 1
+          },
+          [" "],
+          [
+            {
+              "type": "MATH_SYMBOL",
+              "value": "demo0-includee.mm",
+              "text": "demo0-includee.mm",
+              "offset": 280,
+              "lineBreaks": 0,
+              "line": 14,
+              "col": 4
+            }
+          ],
+          [" "],
+          {
+            "type": "$]",
+            "value": "$]",
+            "text": "$]",
+            "offset": 298,
+            "lineBreaks": 0,
+            "line": 14,
+            "col": 22
+          }
+        ],
+        "\n\n",
+        "$( Prove a theorem $)",
+        "\n    "
+      ],
+      "type": "provable_stmt",
+      "children": [
+        { "type": "LABEL", "text": "th1" },
+        { "ws": [" "], "type": "$p", "text": "$p" },
+        { "ws": [" "], "type": "MATH_SYMBOL", "text": "|-" },
+        {
+          "ws": [" "],
+          "type": "assertion",
+          "children": [
+            { "type": "MATH_SYMBOL", "text": "t" },
+            { "type": "MATH_SYMBOL", "ws": [" "], "text": "=" },
+            { "type": "MATH_SYMBOL", "ws": [" "], "text": "t" }
+          ],
+          "trailingWs": [" "]
+        },
+        { "ws": [" "], "type": "$=", "text": "$=" },
+        {
+          "ws": ["\n  ", "$( Here is its proof: $)", "\n       "],
+          "type": "proof",
+          "children": [
+            { "type": "LABEL", "text": "tt" },
+            { "type": "LABEL", "ws": [" "], "text": "tze" },
+            { "type": "LABEL", "ws": [" "], "text": "tpl" },
+            { "type": "LABEL", "ws": [" "], "text": "tt" },
+            { "type": "LABEL", "ws": [" "], "text": "weq" },
+            { "type": "LABEL", "ws": [" "], "text": "tt" },
+            { "type": "LABEL", "ws": [" "], "text": "tt" },
+            { "type": "LABEL", "ws": [" "], "text": "weq" },
+            { "type": "LABEL", "ws": [" "], "text": "tt" },
+            { "type": "LABEL", "ws": [" "], "text": "a2" },
+            { "type": "LABEL", "ws": [" "], "text": "tt" },
+            { "type": "LABEL", "ws": [" "], "text": "tze" },
+            { "type": "LABEL", "ws": [" "], "text": "tpl" },
+            { "type": "LABEL", "ws": ["\n       "], "text": "tt" },
+            { "type": "LABEL", "ws": [" "], "text": "weq" },
+            { "type": "LABEL", "ws": [" "], "text": "tt" },
+            { "type": "LABEL", "ws": [" "], "text": "tze" },
+            { "type": "LABEL", "ws": [" "], "text": "tpl" },
+            { "type": "LABEL", "ws": [" "], "text": "tt" },
+            { "type": "LABEL", "ws": [" "], "text": "weq" },
+            { "type": "LABEL", "ws": [" "], "text": "tt" },
+            { "type": "LABEL", "ws": [" "], "text": "tt" },
+            { "type": "LABEL", "ws": [" "], "text": "weq" },
+            { "type": "LABEL", "ws": [" "], "text": "wim" },
+            { "type": "LABEL", "ws": [" "], "text": "tt" },
+            { "type": "LABEL", "ws": [" "], "text": "a2" },
+            { "type": "LABEL", "ws": ["\n       "], "text": "tt" },
+            { "type": "LABEL", "ws": [" "], "text": "tze" },
+            { "type": "LABEL", "ws": [" "], "text": "tpl" },
+            { "type": "LABEL", "ws": [" "], "text": "tt" },
+            { "type": "LABEL", "ws": [" "], "text": "tt" },
+            { "type": "LABEL", "ws": [" "], "text": "a1" },
+            { "type": "LABEL", "ws": [" "], "text": "mp" },
+            { "type": "LABEL", "ws": [" "], "text": "mp" }
+          ]
+        },
+        { "ws": ["\n     "], "type": "$.", "text": "$." }
+      ]
+    }
+  ],
+  "trailingWs": ["\n\n"]
+}

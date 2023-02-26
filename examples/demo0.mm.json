@@ -5,13 +5,13 @@
       "type": "constant_stmt",
       "ws": [
         "$( demo0.mm  1-Jan-04 $)",
-        "\r\n\r\n",
-        "$(\r\n                           ~~ PUBLIC DOMAIN ~~\r\nThis work is waived of all rights, including copyright, according to the CC0\r\nPublic Domain Dedication.  http://creativecommons.org/publicdomain/zero/1.0/\r\n\r\nNorman Megill - email: nm at alum.mit.edu\r\n\r\n$)",
-        "\r\n\r\n\r\n",
-        "$( This file is the introductory formal system example described\r\n   in Chapter 2 of the Meamath book. $)",
-        "\r\n\r\n",
+        "\n\n",
+        "$(\n                           ~~ PUBLIC DOMAIN ~~\nThis work is waived of all rights, including copyright, according to the CC0\nPublic Domain Dedication.  http://creativecommons.org/publicdomain/zero/1.0/\n\nNorman Megill - email: nm at alum.mit.edu\n\n$)",
+        "\n\n\n",
+        "$( This file is the introductory formal system example described\n   in Chapter 2 of the Meamath book. $)",
+        "\n\n",
         "$( Declare the constant symbols we will use $)",
-        "\r\n    "
+        "\n    "
       ],
       "children": [
         { "type": "$c", "text": "$c" },
@@ -35,7 +35,7 @@
     },
     {
       "type": "variable_stmt",
-      "ws": ["\r\n", "$( Declare the metavariables we will use $)", "\r\n    "],
+      "ws": ["\n", "$( Declare the metavariables we will use $)", "\n    "],
       "children": [
         { "type": "$v", "text": "$v" },
         {
@@ -54,11 +54,7 @@
     },
     {
       "type": "floating_stmt",
-      "ws": [
-        "\r\n",
-        "$( Specify properties of the metavariables $)",
-        "\r\n    "
-      ],
+      "ws": ["\n", "$( Specify properties of the metavariables $)", "\n    "],
       "children": [
         { "type": "LABEL", "text": "tt" },
         { "ws": [" "], "type": "$f", "text": "$f" },
@@ -75,7 +71,7 @@
     },
     {
       "type": "floating_stmt",
-      "ws": ["\r\n    "],
+      "ws": ["\n    "],
       "children": [
         { "type": "LABEL", "text": "tr" },
         { "ws": [" "], "type": "$f", "text": "$f" },
@@ -92,7 +88,7 @@
     },
     {
       "type": "floating_stmt",
-      "ws": ["\r\n    "],
+      "ws": ["\n    "],
       "children": [
         { "type": "LABEL", "text": "ts" },
         { "ws": [" "], "type": "$f", "text": "$f" },
@@ -109,7 +105,7 @@
     },
     {
       "type": "floating_stmt",
-      "ws": ["\r\n    "],
+      "ws": ["\n    "],
       "children": [
         { "type": "LABEL", "text": "wp" },
         { "ws": [" "], "type": "$f", "text": "$f" },
@@ -126,7 +122,7 @@
     },
     {
       "type": "floating_stmt",
-      "ws": ["\r\n    "],
+      "ws": ["\n    "],
       "children": [
         { "type": "LABEL", "text": "wq" },
         { "ws": [" "], "type": "$f", "text": "$f" },
@@ -143,7 +139,7 @@
     },
     {
       "type": "axiom_stmt",
-      "ws": ["\r\n", "$( Define \"term\" (part 1) $)", "\r\n    "],
+      "ws": ["\n", "$( Define \"term\" (part 1) $)", "\n    "],
       "children": [
         { "type": "LABEL", "text": "tze" },
         { "ws": [" "], "type": "$a", "text": "$a" },
@@ -158,7 +154,7 @@
     },
     {
       "type": "axiom_stmt",
-      "ws": ["\r\n", "$( Define \"term\" (part 2) $)", "\r\n    "],
+      "ws": ["\n", "$( Define \"term\" (part 2) $)", "\n    "],
       "children": [
         { "type": "LABEL", "text": "tpl" },
         { "ws": [" "], "type": "$a", "text": "$a" },
@@ -179,7 +175,7 @@
     },
     {
       "type": "axiom_stmt",
-      "ws": ["\r\n", "$( Define \"wff\" (part 1) $)", "\r\n    "],
+      "ws": ["\n", "$( Define \"wff\" (part 1) $)", "\n    "],
       "children": [
         { "type": "LABEL", "text": "weq" },
         { "ws": [" "], "type": "$a", "text": "$a" },
@@ -198,7 +194,7 @@
     },
     {
       "type": "axiom_stmt",
-      "ws": ["\r\n", "$( Define \"wff\" (part 2) $)", "\r\n    "],
+      "ws": ["\n", "$( Define \"wff\" (part 2) $)", "\n    "],
       "children": [
         { "type": "LABEL", "text": "wim" },
         { "ws": [" "], "type": "$a", "text": "$a" },
@@ -219,7 +215,7 @@
     },
     {
       "type": "axiom_stmt",
-      "ws": ["\r\n", "$( State axiom a1 $)", "\r\n    "],
+      "ws": ["\n", "$( State axiom a1 $)", "\n    "],
       "children": [
         { "type": "LABEL", "text": "a1" },
         { "ws": [" "], "type": "$a", "text": "$a" },
@@ -250,7 +246,7 @@
     },
     {
       "type": "axiom_stmt",
-      "ws": ["\r\n", "$( State axiom a2 $)", "\r\n    "],
+      "ws": ["\n", "$( State axiom a2 $)", "\n    "],
       "children": [
         { "type": "LABEL", "text": "a2" },
         { "ws": [" "], "type": "$a", "text": "$a" },
@@ -272,12 +268,12 @@
       ]
     },
     {
-      "ws": ["\r\n    "],
+      "ws": ["\n    "],
       "type": "block",
       "children": [
         { "type": "${", "text": "${" },
         {
-          "ws": ["\r\n       "],
+          "ws": ["\n       "],
           "type": "statements",
           "children": [
             {
@@ -298,7 +294,7 @@
             },
             {
               "type": "essential_stmt",
-              "ws": ["\r\n       "],
+              "ws": ["\n       "],
               "children": [
                 { "type": "LABEL", "text": "maj" },
                 { "ws": [" "], "type": "$e", "text": "$e" },
@@ -320,9 +316,9 @@
             {
               "type": "axiom_stmt",
               "ws": [
-                "\r\n",
+                "\n",
                 "$( Define the modus ponens inference rule $)",
-                "\r\n       "
+                "\n       "
               ],
               "children": [
                 { "type": "LABEL", "text": "mp" },
@@ -338,11 +334,11 @@
             }
           ]
         },
-        { "ws": ["\r\n    "], "type": "$}", "text": "$}" }
+        { "ws": ["\n    "], "type": "$}", "text": "$}" }
       ]
     },
     {
-      "ws": ["\r\n", "$( Prove a theorem $)", "\r\n    "],
+      "ws": ["\n", "$( Prove a theorem $)", "\n    "],
       "type": "provable_stmt",
       "children": [
         { "type": "LABEL", "text": "th1" },
@@ -360,7 +356,7 @@
         },
         { "ws": [" "], "type": "$=", "text": "$=" },
         {
-          "ws": ["\r\n  ", "$( Here is its proof: $)", "\r\n       "],
+          "ws": ["\n  ", "$( Here is its proof: $)", "\n       "],
           "type": "proof",
           "children": [
             { "type": "LABEL", "text": "tt" },
@@ -376,7 +372,7 @@
             { "type": "LABEL", "ws": [" "], "text": "tt" },
             { "type": "LABEL", "ws": [" "], "text": "tze" },
             { "type": "LABEL", "ws": [" "], "text": "tpl" },
-            { "type": "LABEL", "ws": ["\r\n       "], "text": "tt" },
+            { "type": "LABEL", "ws": ["\n       "], "text": "tt" },
             { "type": "LABEL", "ws": [" "], "text": "weq" },
             { "type": "LABEL", "ws": [" "], "text": "tt" },
             { "type": "LABEL", "ws": [" "], "text": "tze" },
@@ -389,7 +385,7 @@
             { "type": "LABEL", "ws": [" "], "text": "wim" },
             { "type": "LABEL", "ws": [" "], "text": "tt" },
             { "type": "LABEL", "ws": [" "], "text": "a2" },
-            { "type": "LABEL", "ws": ["\r\n       "], "text": "tt" },
+            { "type": "LABEL", "ws": ["\n       "], "text": "tt" },
             { "type": "LABEL", "ws": [" "], "text": "tze" },
             { "type": "LABEL", "ws": [" "], "text": "tpl" },
             { "type": "LABEL", "ws": [" "], "text": "tt" },
@@ -399,9 +395,9 @@
             { "type": "LABEL", "ws": [" "], "text": "mp" }
           ]
         },
-        { "ws": ["\r\n     "], "type": "$.", "text": "$." }
+        { "ws": ["\n     "], "type": "$.", "text": "$." }
       ]
     }
   ],
-  "trailingWs": ["\r\n\r\n"]
+  "trailingWs": ["\n\n"]
 }

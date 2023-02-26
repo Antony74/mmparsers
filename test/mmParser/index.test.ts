@@ -8,7 +8,7 @@ import { Database } from '../../src/mmParser/mmParseTree';
 import { reverseParse } from '../../src/tools/reverseParse';
 const mmFiles = [
     'https://raw.githubusercontent.com/metamath/set.mm/develop/demo0.mm',
-    //    'https://raw.githubusercontent.com/david-a-wheeler/metamath-test/master/demo0-includer.mm',
+    'https://raw.githubusercontent.com/david-a-wheeler/metamath-test/master/demo0-includer.mm',
     //    'https://raw.githubusercontent.com/metamath/set.mm/develop/set.mm',
 ];
 
