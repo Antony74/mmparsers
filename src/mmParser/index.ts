@@ -336,9 +336,9 @@ export const createMmParser = (): MmParser => {
             return {
                 type: 'include_stmt',
                 children: [
-                    minToken(d[0]),
-                    combine(d[1], minToken(d[2])),
-                    combine(d[3], minToken(d[4])),
+                    minToken(d[0]), // $[
+                    combine(d[1], minToken(d[2])), // MATH_SYMBOL
+                    combine(d[3], minToken(d[4])), // $]
                 ],
             };
         },
