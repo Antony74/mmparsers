@@ -1,13 +1,3 @@
-export type TreeNodeLeaf = { type: string; text: string; ws?: string[] };
-
-export type TreeNodeParent = {
-    type: string;
-    ws?: string[];
-    children: (TreeNodeLeaf | TreeNodeParent)[];
-};
-
-export type TreeNode = TreeNodeLeaf | TreeNodeParent;
-
 export type MathSymbolNode = {
     type: 'MATH_SYMBOL';
     ws?: string[];
@@ -168,8 +158,3 @@ export type MMNodeLeaf =
 
 export type MMNode = MMNodeLeaf | MMNodeParent;
 
-export const isGenericParentNode = (node: TreeNode): node is TreeNodeParent =>
-    'children' in node;
-
-export const isParentNode = (node: MMNode): node is MMNodeParent =>
-    'children' in node;

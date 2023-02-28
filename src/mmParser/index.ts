@@ -1,14 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import nearley from 'nearley';
 import {
+    isParentNode,
+    TreeNode,
+    TreeNodeLeaf,
+} from '../utils/genericParseTree';
+import {
     BlockNodeFacade,
     createFacadeHelper,
     ProvableStmtNodeFacade,
 } from './facade';
 import {
-    TreeNode,
-    TreeNodeLeaf,
-    isGenericParentNode,
     Database,
     BlockNode,
     ConstantStmtNode,
@@ -101,7 +103,7 @@ const minToken = <T extends TreeNode>(token: T): T | TreeNodeLeaf => {
         throw new Error('Type missing from token');
     }
 
-    if (isGenericParentNode(token)) {
+    if (isParentNode(token)) {
         return token;
     }
 
@@ -294,6 +296,10 @@ export const createMmParser = (): MmParser => {
                 .flat(Number.MAX_SAFE_INTEGER)
                 .reduce(commentsToTokensReducer, emptyWsAndTokens);
 
+            const assertion = d[6];
+            const trailingWs = assertion.trailingWs;
+            delete assertion.trailingWs;
+
             const provableStmtNode: ProvableStmtNode = {
                 type: 'provable_stmt',
                 children: [
@@ -303,8 +309,8 @@ export const createMmParser = (): MmParser => {
                         d[3],
                         minToken(d[4].flat(Number.MAX_SAFE_INTEGER)[0]) // typecode
                     ),
-                    combine(d[5], d[6]), // assertion
-                    combine(d[6].trailingWs, minToken(d[7])), // $=
+                    combine(d[5], assertion), // assertion
+                    combine(trailingWs, minToken(d[7])), // $=
                     combine(d[8], {
                         type: 'proof',
                         children: proof.tokens,

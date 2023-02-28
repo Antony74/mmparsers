@@ -29,8 +29,7 @@
             { "type": "MATH_SYMBOL", "text": "t" },
             { "type": "MATH_SYMBOL", "ws": [" "], "text": "=" },
             { "type": "MATH_SYMBOL", "ws": [" "], "text": "t" }
-          ],
-          "trailingWs": [" "]
+          ]
         },
         { "ws": [" "], "type": "$=", "text": "$=" },
         {

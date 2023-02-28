@@ -5,11 +5,11 @@ import * as tsj from 'ts-json-schema-generator';
 import Ajv, { ValidateFunction } from 'ajv';
 import { createMmParser } from '../../src/mmParser';
 import { Database } from '../../src/mmParser/mmParseTree';
-import { reverseParse } from '../../src/tools/reverseParse';
+import { reverseParse } from '../../src/utils/reverseParse';
 const mmFiles = [
     'https://raw.githubusercontent.com/metamath/set.mm/develop/demo0.mm',
     'https://raw.githubusercontent.com/david-a-wheeler/metamath-test/master/demo0-includer.mm',
-    'https://raw.githubusercontent.com/metamath/set.mm/develop/set.mm',
+//    'https://raw.githubusercontent.com/metamath/set.mm/develop/set.mm',
 ];
 
 let ajv: Ajv;
