@@ -19,7 +19,7 @@
     "dependencies": {
         "@types/moo": "^0.5.5",
         "@types/uuid": "^9.0.0",
-        "fluent-regex-fun": "github:Antony74/fluent-regex-fun",
+        "fluent-regex-fun": "^1.0.0",
         "moo": "^0.5.2",
         "nearley": "^2.20.1",
         "rxjs": "^7.8.0",
