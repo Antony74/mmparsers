@@ -1,7 +1,7 @@
 import fs from 'fs/promises';
 import path from 'path';
 import prettier from 'prettier';
-import { reverseParse } from './tools/reverseParse';
+import { reverseParse } from './utils/reverseParse';
 import { Database } from './mmParser/mmParseTree';
 import { createMmParser } from './mmParser';
 

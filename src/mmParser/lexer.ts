@@ -10,12 +10,9 @@
 //
 
 import moo from 'moo';
-import {
-    literal,
-    nonCapturingGroup,
-    sequence,
-    unescapedLiteral,
-} from '../fluent-regex/src/Regex';
+import { Regex } from 'fluent-regex-fun';
+
+const { literal, nonCapturingGroup, sequence, unescapedLiteral } = Regex;
 
 /* ASCII non-whitespace printable characters */
 const _PRINTABLE_CHARACTER = nonCapturingGroup(
