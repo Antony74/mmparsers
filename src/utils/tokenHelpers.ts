@@ -25,18 +25,20 @@ export type WSAndTokens = { ws?: string[]; tokens: TreeNode[] };
 
 export const emptyWsAndTokens: WSAndTokens = { tokens: [] };
 
-export const commentsToTokensReducer = (acc: any, value: any): WSAndTokens => {
-    if (value.type) {
-        const token = minToken(value);
-        const type = token.type;
-        return {
-            ws: [],
-            tokens: [...acc.tokens, { type, ws: acc.ws, ...token }],
-        };
-    } else {
+export const commentsToTokensReducer = (
+    acc: WSAndTokens,
+    value: TreeNodeWithUuid | string
+): WSAndTokens => {
+    if (typeof value === 'string') {
         return {
             ws: acc.ws ? [...acc.ws, value] : [value],
             tokens: acc.tokens,
+        };
+    } else {
+        const token = minToken(value);
+        return {
+            ws: [],
+            tokens: [...acc.tokens, { ws: acc.ws, ...token }],
         };
     }
 };

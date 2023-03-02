@@ -2,7 +2,6 @@
   "type": "database",
   "children": [
     {
-      "type": "constant_stmt",
       "ws": [
         "$( demo0.mm  1-Jan-04 $)",
         "\n\n",
@@ -13,6 +12,7 @@
         "$( Declare the constant symbols we will use $)",
         "\n    "
       ],
+      "type": "constant_stmt",
       "children": [
         { "type": "$c", "text": "$c" },
         {
@@ -20,22 +20,22 @@
           "type": "constants",
           "children": [
             { "type": "MATH_SYMBOL", "text": "0" },
-            { "type": "MATH_SYMBOL", "ws": [" "], "text": "+" },
-            { "type": "MATH_SYMBOL", "ws": [" "], "text": "=" },
-            { "type": "MATH_SYMBOL", "ws": [" "], "text": "->" },
-            { "type": "MATH_SYMBOL", "ws": [" "], "text": "(" },
-            { "type": "MATH_SYMBOL", "ws": [" "], "text": ")" },
-            { "type": "MATH_SYMBOL", "ws": [" "], "text": "term" },
-            { "type": "MATH_SYMBOL", "ws": [" "], "text": "wff" },
-            { "type": "MATH_SYMBOL", "ws": [" "], "text": "|-" }
+            { "ws": [" "], "type": "MATH_SYMBOL", "text": "+" },
+            { "ws": [" "], "type": "MATH_SYMBOL", "text": "=" },
+            { "ws": [" "], "type": "MATH_SYMBOL", "text": "->" },
+            { "ws": [" "], "type": "MATH_SYMBOL", "text": "(" },
+            { "ws": [" "], "type": "MATH_SYMBOL", "text": ")" },
+            { "ws": [" "], "type": "MATH_SYMBOL", "text": "term" },
+            { "ws": [" "], "type": "MATH_SYMBOL", "text": "wff" },
+            { "ws": [" "], "type": "MATH_SYMBOL", "text": "|-" }
           ]
         },
         { "ws": [" "], "type": "$.", "text": "$." }
       ]
     },
     {
-      "type": "variable_stmt",
       "ws": ["\n", "$( Declare the metavariables we will use $)", "\n    "],
+      "type": "variable_stmt",
       "children": [
         { "type": "$v", "text": "$v" },
         {
@@ -43,18 +43,18 @@
           "type": "variables",
           "children": [
             { "type": "MATH_SYMBOL", "text": "t" },
-            { "type": "MATH_SYMBOL", "ws": [" "], "text": "r" },
-            { "type": "MATH_SYMBOL", "ws": [" "], "text": "s" },
-            { "type": "MATH_SYMBOL", "ws": [" "], "text": "P" },
-            { "type": "MATH_SYMBOL", "ws": [" "], "text": "Q" }
+            { "ws": [" "], "type": "MATH_SYMBOL", "text": "r" },
+            { "ws": [" "], "type": "MATH_SYMBOL", "text": "s" },
+            { "ws": [" "], "type": "MATH_SYMBOL", "text": "P" },
+            { "ws": [" "], "type": "MATH_SYMBOL", "text": "Q" }
           ]
         },
         { "ws": [" "], "type": "$.", "text": "$." }
       ]
     },
     {
-      "type": "floating_stmt",
       "ws": ["\n", "$( Specify properties of the metavariables $)", "\n    "],
+      "type": "floating_stmt",
       "children": [
         { "type": "LABEL", "text": "tt" },
         { "ws": [" "], "type": "$f", "text": "$f" },
@@ -63,15 +63,15 @@
           "type": "statement",
           "children": [
             { "type": "MATH_SYMBOL", "text": "term" },
-            { "type": "MATH_SYMBOL", "ws": [" "], "text": "t" }
+            { "ws": [" "], "type": "MATH_SYMBOL", "text": "t" }
           ]
         },
         { "ws": [" "], "type": "$.", "text": "$." }
       ]
     },
     {
-      "type": "floating_stmt",
       "ws": ["\n    "],
+      "type": "floating_stmt",
       "children": [
         { "type": "LABEL", "text": "tr" },
         { "ws": [" "], "type": "$f", "text": "$f" },
@@ -80,15 +80,15 @@
           "type": "statement",
           "children": [
             { "type": "MATH_SYMBOL", "text": "term" },
-            { "type": "MATH_SYMBOL", "ws": [" "], "text": "r" }
+            { "ws": [" "], "type": "MATH_SYMBOL", "text": "r" }
           ]
         },
         { "ws": [" "], "type": "$.", "text": "$." }
       ]
     },
     {
-      "type": "floating_stmt",
       "ws": ["\n    "],
+      "type": "floating_stmt",
       "children": [
         { "type": "LABEL", "text": "ts" },
         { "ws": [" "], "type": "$f", "text": "$f" },
@@ -97,15 +97,15 @@
           "type": "statement",
           "children": [
             { "type": "MATH_SYMBOL", "text": "term" },
-            { "type": "MATH_SYMBOL", "ws": [" "], "text": "s" }
+            { "ws": [" "], "type": "MATH_SYMBOL", "text": "s" }
           ]
         },
         { "ws": [" "], "type": "$.", "text": "$." }
       ]
     },
     {
-      "type": "floating_stmt",
       "ws": ["\n    "],
+      "type": "floating_stmt",
       "children": [
         { "type": "LABEL", "text": "wp" },
         { "ws": [" "], "type": "$f", "text": "$f" },
@@ -114,15 +114,15 @@
           "type": "statement",
           "children": [
             { "type": "MATH_SYMBOL", "text": "wff" },
-            { "type": "MATH_SYMBOL", "ws": [" "], "text": "P" }
+            { "ws": [" "], "type": "MATH_SYMBOL", "text": "P" }
           ]
         },
         { "ws": [" "], "type": "$.", "text": "$." }
       ]
     },
     {
-      "type": "floating_stmt",
       "ws": ["\n    "],
+      "type": "floating_stmt",
       "children": [
         { "type": "LABEL", "text": "wq" },
         { "ws": [" "], "type": "$f", "text": "$f" },
@@ -131,15 +131,15 @@
           "type": "statement",
           "children": [
             { "type": "MATH_SYMBOL", "text": "wff" },
-            { "type": "MATH_SYMBOL", "ws": [" "], "text": "Q" }
+            { "ws": [" "], "type": "MATH_SYMBOL", "text": "Q" }
           ]
         },
         { "ws": [" "], "type": "$.", "text": "$." }
       ]
     },
     {
-      "type": "axiom_stmt",
       "ws": ["\n", "$( Define \"term\" (part 1) $)", "\n    "],
+      "type": "axiom_stmt",
       "children": [
         { "type": "LABEL", "text": "tze" },
         { "ws": [" "], "type": "$a", "text": "$a" },
@@ -153,8 +153,8 @@
       ]
     },
     {
-      "type": "axiom_stmt",
       "ws": ["\n", "$( Define \"term\" (part 2) $)", "\n    "],
+      "type": "axiom_stmt",
       "children": [
         { "type": "LABEL", "text": "tpl" },
         { "ws": [" "], "type": "$a", "text": "$a" },
@@ -164,18 +164,18 @@
           "type": "assertion",
           "children": [
             { "type": "MATH_SYMBOL", "text": "(" },
-            { "type": "MATH_SYMBOL", "ws": [" "], "text": "t" },
-            { "type": "MATH_SYMBOL", "ws": [" "], "text": "+" },
-            { "type": "MATH_SYMBOL", "ws": [" "], "text": "r" },
-            { "type": "MATH_SYMBOL", "ws": [" "], "text": ")" }
+            { "ws": [" "], "type": "MATH_SYMBOL", "text": "t" },
+            { "ws": [" "], "type": "MATH_SYMBOL", "text": "+" },
+            { "ws": [" "], "type": "MATH_SYMBOL", "text": "r" },
+            { "ws": [" "], "type": "MATH_SYMBOL", "text": ")" }
           ]
         },
         { "ws": [" "], "type": "$.", "text": "$." }
       ]
     },
     {
-      "type": "axiom_stmt",
       "ws": ["\n", "$( Define \"wff\" (part 1) $)", "\n    "],
+      "type": "axiom_stmt",
       "children": [
         { "type": "LABEL", "text": "weq" },
         { "ws": [" "], "type": "$a", "text": "$a" },
@@ -185,16 +185,16 @@
           "type": "assertion",
           "children": [
             { "type": "MATH_SYMBOL", "text": "t" },
-            { "type": "MATH_SYMBOL", "ws": [" "], "text": "=" },
-            { "type": "MATH_SYMBOL", "ws": [" "], "text": "r" }
+            { "ws": [" "], "type": "MATH_SYMBOL", "text": "=" },
+            { "ws": [" "], "type": "MATH_SYMBOL", "text": "r" }
           ]
         },
         { "ws": [" "], "type": "$.", "text": "$." }
       ]
     },
     {
-      "type": "axiom_stmt",
       "ws": ["\n", "$( Define \"wff\" (part 2) $)", "\n    "],
+      "type": "axiom_stmt",
       "children": [
         { "type": "LABEL", "text": "wim" },
         { "ws": [" "], "type": "$a", "text": "$a" },
@@ -204,18 +204,18 @@
           "type": "assertion",
           "children": [
             { "type": "MATH_SYMBOL", "text": "(" },
-            { "type": "MATH_SYMBOL", "ws": [" "], "text": "P" },
-            { "type": "MATH_SYMBOL", "ws": [" "], "text": "->" },
-            { "type": "MATH_SYMBOL", "ws": [" "], "text": "Q" },
-            { "type": "MATH_SYMBOL", "ws": [" "], "text": ")" }
+            { "ws": [" "], "type": "MATH_SYMBOL", "text": "P" },
+            { "ws": [" "], "type": "MATH_SYMBOL", "text": "->" },
+            { "ws": [" "], "type": "MATH_SYMBOL", "text": "Q" },
+            { "ws": [" "], "type": "MATH_SYMBOL", "text": ")" }
           ]
         },
         { "ws": [" "], "type": "$.", "text": "$." }
       ]
     },
     {
-      "type": "axiom_stmt",
       "ws": ["\n", "$( State axiom a1 $)", "\n    "],
+      "type": "axiom_stmt",
       "children": [
         { "type": "LABEL", "text": "a1" },
         { "ws": [" "], "type": "$a", "text": "$a" },
@@ -225,28 +225,28 @@
           "type": "assertion",
           "children": [
             { "type": "MATH_SYMBOL", "text": "(" },
-            { "type": "MATH_SYMBOL", "ws": [" "], "text": "t" },
-            { "type": "MATH_SYMBOL", "ws": [" "], "text": "=" },
-            { "type": "MATH_SYMBOL", "ws": [" "], "text": "r" },
-            { "type": "MATH_SYMBOL", "ws": [" "], "text": "->" },
-            { "type": "MATH_SYMBOL", "ws": [" "], "text": "(" },
-            { "type": "MATH_SYMBOL", "ws": [" "], "text": "t" },
-            { "type": "MATH_SYMBOL", "ws": [" "], "text": "=" },
-            { "type": "MATH_SYMBOL", "ws": [" "], "text": "s" },
-            { "type": "MATH_SYMBOL", "ws": [" "], "text": "->" },
-            { "type": "MATH_SYMBOL", "ws": [" "], "text": "r" },
-            { "type": "MATH_SYMBOL", "ws": [" "], "text": "=" },
-            { "type": "MATH_SYMBOL", "ws": [" "], "text": "s" },
-            { "type": "MATH_SYMBOL", "ws": [" "], "text": ")" },
-            { "type": "MATH_SYMBOL", "ws": [" "], "text": ")" }
+            { "ws": [" "], "type": "MATH_SYMBOL", "text": "t" },
+            { "ws": [" "], "type": "MATH_SYMBOL", "text": "=" },
+            { "ws": [" "], "type": "MATH_SYMBOL", "text": "r" },
+            { "ws": [" "], "type": "MATH_SYMBOL", "text": "->" },
+            { "ws": [" "], "type": "MATH_SYMBOL", "text": "(" },
+            { "ws": [" "], "type": "MATH_SYMBOL", "text": "t" },
+            { "ws": [" "], "type": "MATH_SYMBOL", "text": "=" },
+            { "ws": [" "], "type": "MATH_SYMBOL", "text": "s" },
+            { "ws": [" "], "type": "MATH_SYMBOL", "text": "->" },
+            { "ws": [" "], "type": "MATH_SYMBOL", "text": "r" },
+            { "ws": [" "], "type": "MATH_SYMBOL", "text": "=" },
+            { "ws": [" "], "type": "MATH_SYMBOL", "text": "s" },
+            { "ws": [" "], "type": "MATH_SYMBOL", "text": ")" },
+            { "ws": [" "], "type": "MATH_SYMBOL", "text": ")" }
           ]
         },
         { "ws": [" "], "type": "$.", "text": "$." }
       ]
     },
     {
-      "type": "axiom_stmt",
       "ws": ["\n", "$( State axiom a2 $)", "\n    "],
+      "type": "axiom_stmt",
       "children": [
         { "type": "LABEL", "text": "a2" },
         { "ws": [" "], "type": "$a", "text": "$a" },
@@ -256,12 +256,12 @@
           "type": "assertion",
           "children": [
             { "type": "MATH_SYMBOL", "text": "(" },
-            { "type": "MATH_SYMBOL", "ws": [" "], "text": "t" },
-            { "type": "MATH_SYMBOL", "ws": [" "], "text": "+" },
-            { "type": "MATH_SYMBOL", "ws": [" "], "text": "0" },
-            { "type": "MATH_SYMBOL", "ws": [" "], "text": ")" },
-            { "type": "MATH_SYMBOL", "ws": [" "], "text": "=" },
-            { "type": "MATH_SYMBOL", "ws": [" "], "text": "t" }
+            { "ws": [" "], "type": "MATH_SYMBOL", "text": "t" },
+            { "ws": [" "], "type": "MATH_SYMBOL", "text": "+" },
+            { "ws": [" "], "type": "MATH_SYMBOL", "text": "0" },
+            { "ws": [" "], "type": "MATH_SYMBOL", "text": ")" },
+            { "ws": [" "], "type": "MATH_SYMBOL", "text": "=" },
+            { "ws": [" "], "type": "MATH_SYMBOL", "text": "t" }
           ]
         },
         { "ws": [" "], "type": "$.", "text": "$." }
@@ -286,15 +286,15 @@
                   "type": "statement",
                   "children": [
                     { "type": "MATH_SYMBOL", "text": "|-" },
-                    { "type": "MATH_SYMBOL", "ws": [" "], "text": "P" }
+                    { "ws": [" "], "type": "MATH_SYMBOL", "text": "P" }
                   ]
                 },
                 { "ws": [" "], "type": "$.", "text": "$." }
               ]
             },
             {
-              "type": "essential_stmt",
               "ws": ["\n       "],
+              "type": "essential_stmt",
               "children": [
                 { "type": "LABEL", "text": "maj" },
                 { "ws": [" "], "type": "$e", "text": "$e" },
@@ -303,23 +303,23 @@
                   "type": "statement",
                   "children": [
                     { "type": "MATH_SYMBOL", "text": "|-" },
-                    { "type": "MATH_SYMBOL", "ws": [" "], "text": "(" },
-                    { "type": "MATH_SYMBOL", "ws": [" "], "text": "P" },
-                    { "type": "MATH_SYMBOL", "ws": [" "], "text": "->" },
-                    { "type": "MATH_SYMBOL", "ws": [" "], "text": "Q" },
-                    { "type": "MATH_SYMBOL", "ws": [" "], "text": ")" }
+                    { "ws": [" "], "type": "MATH_SYMBOL", "text": "(" },
+                    { "ws": [" "], "type": "MATH_SYMBOL", "text": "P" },
+                    { "ws": [" "], "type": "MATH_SYMBOL", "text": "->" },
+                    { "ws": [" "], "type": "MATH_SYMBOL", "text": "Q" },
+                    { "ws": [" "], "type": "MATH_SYMBOL", "text": ")" }
                   ]
                 },
                 { "ws": [" "], "type": "$.", "text": "$." }
               ]
             },
             {
-              "type": "axiom_stmt",
               "ws": [
                 "\n",
                 "$( Define the modus ponens inference rule $)",
                 "\n       "
               ],
+              "type": "axiom_stmt",
               "children": [
                 { "type": "LABEL", "text": "mp" },
                 { "ws": ["  "], "type": "$a", "text": "$a" },
@@ -349,8 +349,8 @@
           "type": "assertion",
           "children": [
             { "type": "MATH_SYMBOL", "text": "t" },
-            { "type": "MATH_SYMBOL", "ws": [" "], "text": "=" },
-            { "type": "MATH_SYMBOL", "ws": [" "], "text": "t" }
+            { "ws": [" "], "type": "MATH_SYMBOL", "text": "=" },
+            { "ws": [" "], "type": "MATH_SYMBOL", "text": "t" }
           ]
         },
         { "ws": [" "], "type": "$=", "text": "$=" },
@@ -359,39 +359,39 @@
           "type": "proof",
           "children": [
             { "type": "LABEL", "text": "tt" },
-            { "type": "LABEL", "ws": [" "], "text": "tze" },
-            { "type": "LABEL", "ws": [" "], "text": "tpl" },
-            { "type": "LABEL", "ws": [" "], "text": "tt" },
-            { "type": "LABEL", "ws": [" "], "text": "weq" },
-            { "type": "LABEL", "ws": [" "], "text": "tt" },
-            { "type": "LABEL", "ws": [" "], "text": "tt" },
-            { "type": "LABEL", "ws": [" "], "text": "weq" },
-            { "type": "LABEL", "ws": [" "], "text": "tt" },
-            { "type": "LABEL", "ws": [" "], "text": "a2" },
-            { "type": "LABEL", "ws": [" "], "text": "tt" },
-            { "type": "LABEL", "ws": [" "], "text": "tze" },
-            { "type": "LABEL", "ws": [" "], "text": "tpl" },
-            { "type": "LABEL", "ws": ["\n       "], "text": "tt" },
-            { "type": "LABEL", "ws": [" "], "text": "weq" },
-            { "type": "LABEL", "ws": [" "], "text": "tt" },
-            { "type": "LABEL", "ws": [" "], "text": "tze" },
-            { "type": "LABEL", "ws": [" "], "text": "tpl" },
-            { "type": "LABEL", "ws": [" "], "text": "tt" },
-            { "type": "LABEL", "ws": [" "], "text": "weq" },
-            { "type": "LABEL", "ws": [" "], "text": "tt" },
-            { "type": "LABEL", "ws": [" "], "text": "tt" },
-            { "type": "LABEL", "ws": [" "], "text": "weq" },
-            { "type": "LABEL", "ws": [" "], "text": "wim" },
-            { "type": "LABEL", "ws": [" "], "text": "tt" },
-            { "type": "LABEL", "ws": [" "], "text": "a2" },
-            { "type": "LABEL", "ws": ["\n       "], "text": "tt" },
-            { "type": "LABEL", "ws": [" "], "text": "tze" },
-            { "type": "LABEL", "ws": [" "], "text": "tpl" },
-            { "type": "LABEL", "ws": [" "], "text": "tt" },
-            { "type": "LABEL", "ws": [" "], "text": "tt" },
-            { "type": "LABEL", "ws": [" "], "text": "a1" },
-            { "type": "LABEL", "ws": [" "], "text": "mp" },
-            { "type": "LABEL", "ws": [" "], "text": "mp" }
+            { "ws": [" "], "type": "LABEL", "text": "tze" },
+            { "ws": [" "], "type": "LABEL", "text": "tpl" },
+            { "ws": [" "], "type": "LABEL", "text": "tt" },
+            { "ws": [" "], "type": "LABEL", "text": "weq" },
+            { "ws": [" "], "type": "LABEL", "text": "tt" },
+            { "ws": [" "], "type": "LABEL", "text": "tt" },
+            { "ws": [" "], "type": "LABEL", "text": "weq" },
+            { "ws": [" "], "type": "LABEL", "text": "tt" },
+            { "ws": [" "], "type": "LABEL", "text": "a2" },
+            { "ws": [" "], "type": "LABEL", "text": "tt" },
+            { "ws": [" "], "type": "LABEL", "text": "tze" },
+            { "ws": [" "], "type": "LABEL", "text": "tpl" },
+            { "ws": ["\n       "], "type": "LABEL", "text": "tt" },
+            { "ws": [" "], "type": "LABEL", "text": "weq" },
+            { "ws": [" "], "type": "LABEL", "text": "tt" },
+            { "ws": [" "], "type": "LABEL", "text": "tze" },
+            { "ws": [" "], "type": "LABEL", "text": "tpl" },
+            { "ws": [" "], "type": "LABEL", "text": "tt" },
+            { "ws": [" "], "type": "LABEL", "text": "weq" },
+            { "ws": [" "], "type": "LABEL", "text": "tt" },
+            { "ws": [" "], "type": "LABEL", "text": "tt" },
+            { "ws": [" "], "type": "LABEL", "text": "weq" },
+            { "ws": [" "], "type": "LABEL", "text": "wim" },
+            { "ws": [" "], "type": "LABEL", "text": "tt" },
+            { "ws": [" "], "type": "LABEL", "text": "a2" },
+            { "ws": ["\n       "], "type": "LABEL", "text": "tt" },
+            { "ws": [" "], "type": "LABEL", "text": "tze" },
+            { "ws": [" "], "type": "LABEL", "text": "tpl" },
+            { "ws": [" "], "type": "LABEL", "text": "tt" },
+            { "ws": [" "], "type": "LABEL", "text": "tt" },
+            { "ws": [" "], "type": "LABEL", "text": "a1" },
+            { "ws": [" "], "type": "LABEL", "text": "mp" },
+            { "ws": [" "], "type": "LABEL", "text": "mp" }
           ]
         },
         { "ws": ["\n     "], "type": "$.", "text": "$." }
