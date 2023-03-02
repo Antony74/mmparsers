@@ -1,7 +1,10 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { isParentNode, TreeNode, TreeNodeLeaf } from "./genericParseTree";
+import { isParentNode, TreeNode, TreeNodeLeaf } from './genericParseTree';
 
-export const minToken = <T extends TreeNode>(token: T): T | TreeNodeLeaf => {
+type TreeNodeWithUuid = TreeNode & { uuid?: string };
+
+export const minToken = <T extends TreeNodeWithUuid>(
+    token: T
+): T | TreeNodeLeaf => {
     if (!token.type) {
         throw new Error('Type missing from token');
     }
@@ -10,7 +13,7 @@ export const minToken = <T extends TreeNode>(token: T): T | TreeNodeLeaf => {
         return token;
     }
 
-    if ((token as any).uuid) {
+    if (token.uuid) {
         return token;
     }
 
