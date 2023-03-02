@@ -18,26 +18,11 @@ import {
     AssertionNode,
     IncludeStmtNode,
 } from './mmParseTree';
+import { ParserEvents } from './parserEventsInterface';
 
 export type MmParser = {
     feed: (chunk: string) => void;
     finish(): Database;
-};
-
-type ParserEvents = {
-    database: (d: any) => void;
-    block: (d: any) => BlockNodeFacade;
-    constant_stmt: (d: any) => ConstantStmtNode;
-    variable_stmt: (d: any) => VariableStmtNode;
-    essential_stmt: (d: any) => EssentialStmtNode;
-    floating_stmt: (d: any) => FloatingStmtNode;
-    axiom_stmt: (d: any) => AxiomStmtNode;
-    provable_stmt: (d: any) => ProvableStmtNodeFacade;
-    assertion: (d: any) => AssertionNode;
-    include_stmt: (d: any) => IncludeStmtNode;
-    _: (d: any[]) => string[];
-    whitespace: (d: any) => [string];
-    comment: (d: any) => [string];
 };
 
 let currentParserEvents: ParserEvents | null;
