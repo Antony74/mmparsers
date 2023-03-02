@@ -1,10 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import nearley from 'nearley';
-import {
-    isParentNode,
-    TreeNode,
-    TreeNodeLeaf,
-} from '../utils/genericParseTree';
+import { commentsToTokensReducer, emptyWsAndTokens, minToken, combineWsAndToken } from '../utils/tokenHelpers';
 import {
     BlockNodeFacade,
     createFacadeHelper,
@@ -98,51 +94,6 @@ export const parserEvents: ParserEvents = {
     },
 };
 
-const minToken = <T extends TreeNode>(token: T): T | TreeNodeLeaf => {
-    if (!token.type) {
-        throw new Error('Type missing from token');
-    }
-
-    if (isParentNode(token)) {
-        return token;
-    }
-
-    if ((token as any).uuid) {
-        return token;
-    }
-
-    const { type, text } = token;
-    return { type, text };
-};
-
-type WSAndTokens = { ws: string[]; tokens: TreeNode[] };
-
-const emptyWsAndTokens = { tokens: [] };
-
-const commentsToTokensReducer = (acc: any, value: any): WSAndTokens => {
-    if (value.type) {
-        const token = minToken(value);
-        const type = token.type;
-        return {
-            ws: [],
-            tokens: [...acc.tokens, { type, ws: acc.ws, ...token }],
-        };
-    } else {
-        return {
-            ws: acc.ws ? [...acc.ws, value] : [value],
-            tokens: acc.tokens,
-        };
-    }
-};
-
-const combine = <T extends TreeNode>(ws: string | string[], token: T): T => {
-    if (Array.isArray(ws)) {
-        return { ws, ...token };
-    } else {
-        return { ws: [ws], ...token };
-    }
-};
-
 export const createMmParser = (): MmParser => {
     const facadeHelper = createFacadeHelper();
     let database: Database = { type: 'database', children: [] };
@@ -173,11 +124,11 @@ export const createMmParser = (): MmParser => {
                 type: 'block',
                 children: [
                     minToken(d[0]), // ${
-                    combine(d[1], {
+                    combineWsAndToken(d[1], {
                         type: 'statements',
                         children: statements.tokens,
                     }),
-                    combine(statements.ws, minToken(d[3])), // $}
+                    combineWsAndToken(statements.ws, minToken(d[3])), // $}
                 ],
             };
 
@@ -197,11 +148,11 @@ export const createMmParser = (): MmParser => {
                 type: 'constant_stmt',
                 children: [
                     minToken(d[0]), // $c
-                    combine(d[1], {
+                    combineWsAndToken(d[1], {
                         type: 'constants',
                         children: constants.tokens,
                     }),
-                    combine(constants.ws, minToken(d[d.length - 1])), // $.
+                    combineWsAndToken(constants.ws, minToken(d[d.length - 1])), // $.
                 ],
             };
         },
@@ -218,11 +169,11 @@ export const createMmParser = (): MmParser => {
                 type: 'variable_stmt',
                 children: [
                     minToken(d[0]), // $v
-                    combine(d[1], {
+                    combineWsAndToken(d[1], {
                         type: 'variables',
                         children: variables.tokens,
                     }),
-                    combine(variables.ws, minToken(d[d.length - 1])), // $.
+                    combineWsAndToken(variables.ws, minToken(d[d.length - 1])), // $.
                 ],
             };
         },
@@ -237,12 +188,12 @@ export const createMmParser = (): MmParser => {
                 type: 'essential_stmt',
                 children: [
                     minToken(d[0]), // LABEL
-                    combine(d[1], minToken(d[2])), // $e
-                    combine(d[3], {
+                    combineWsAndToken(d[1], minToken(d[2])), // $e
+                    combineWsAndToken(d[3], {
                         type: 'statement',
                         children: statements.tokens,
                     }),
-                    combine(statements.ws, minToken(d[d.length - 1])), // $.
+                    combineWsAndToken(statements.ws, minToken(d[d.length - 1])), // $.
                 ],
             };
         },
@@ -258,12 +209,12 @@ export const createMmParser = (): MmParser => {
                 type: 'floating_stmt',
                 children: [
                     minToken(d[0]), // LABEL
-                    combine(d[1], minToken(d[2])), // $f
-                    combine(d[3], {
+                    combineWsAndToken(d[1], minToken(d[2])), // $f
+                    combineWsAndToken(d[3], {
                         type: 'statement',
                         children: statements.tokens,
                     }),
-                    combine(statements.ws, minToken(d[d.length - 1])), // $.
+                    combineWsAndToken(statements.ws, minToken(d[d.length - 1])), // $.
                 ],
             };
         },
@@ -278,13 +229,13 @@ export const createMmParser = (): MmParser => {
                 type: 'axiom_stmt',
                 children: [
                     minToken(d[0]), // LABEL
-                    combine(d[1], minToken(d[2])), // $a
-                    combine(
+                    combineWsAndToken(d[1], minToken(d[2])), // $a
+                    combineWsAndToken(
                         d[3],
                         minToken(d[4].flat(Number.MAX_SAFE_INTEGER)[0]) // typecode
                     ),
-                    combine(d[5], d[6]), // assertion
-                    combine(trailingWs, minToken(d[7])), // $.
+                    combineWsAndToken(d[5], d[6]), // assertion
+                    combineWsAndToken(trailingWs, minToken(d[7])), // $.
                 ],
             };
         },
@@ -304,18 +255,18 @@ export const createMmParser = (): MmParser => {
                 type: 'provable_stmt',
                 children: [
                     minToken(d[0]), // label
-                    combine(d[1], minToken(d[2])), // $p
-                    combine(
+                    combineWsAndToken(d[1], minToken(d[2])), // $p
+                    combineWsAndToken(
                         d[3],
                         minToken(d[4].flat(Number.MAX_SAFE_INTEGER)[0]) // typecode
                     ),
-                    combine(d[5], assertion), // assertion
-                    combine(trailingWs, minToken(d[7])), // $=
-                    combine(d[8], {
+                    combineWsAndToken(d[5], assertion), // assertion
+                    combineWsAndToken(trailingWs, minToken(d[7])), // $=
+                    combineWsAndToken(d[8], {
                         type: 'proof',
                         children: proof.tokens,
                     }),
-                    combine(proof.ws, minToken(d[10])), // $.
+                    combineWsAndToken(proof.ws, minToken(d[10])), // $.
                 ],
             };
             return facadeHelper.createProvableStmtNodeFacade(provableStmtNode);
@@ -343,8 +294,8 @@ export const createMmParser = (): MmParser => {
                 type: 'include_stmt',
                 children: [
                     minToken(d[0]), // $[
-                    combine(d[1], minToken(d[2])), // MATH_SYMBOL
-                    combine(d[3], minToken(d[4])), // $]
+                    combineWsAndToken(d[1], minToken(d[2])), // MATH_SYMBOL
+                    combineWsAndToken(d[3], minToken(d[4])), // $]
                 ],
             };
         },
