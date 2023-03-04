@@ -1,6 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import nearley from 'nearley';
-import { commentsToTokensReducer, emptyWsAndTokens, minToken, combineWsAndToken } from '../utils/tokenHelpers';
+import { performanceInfoWrapObject } from '../utils/performanceInfo';
+import {
+    commentsToTokensReducer,
+    emptyWsAndTokens,
+    minToken,
+    combineWsAndToken,
+} from '../utils/tokenHelpers';
 import {
     BlockNodeFacade,
     createFacadeHelper,
@@ -18,7 +24,7 @@ import {
     AssertionNode,
     IncludeStmtNode,
 } from './mmParseTree';
-import { ParserEvents, setParserEvents } from './parserEvents';
+import { setParserEvents } from './parserEvents';
 
 export type MmParser = {
     feed: (chunk: string) => void;
@@ -29,7 +35,7 @@ export const createMmParser = (): MmParser => {
     const facadeHelper = createFacadeHelper();
     let database: Database = { type: 'database', children: [] };
 
-    const events: ParserEvents | null = {
+    const events = performanceInfoWrapObject({
         database: (d: any): null => {
             console.log('database');
             const db = d
@@ -246,7 +252,7 @@ export const createMmParser = (): MmParser => {
             //           console.log('comment');
             return d[0].text;
         },
-    };
+    });
 
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const grammar = require('./mmParser');
@@ -260,6 +266,8 @@ export const createMmParser = (): MmParser => {
             setParserEvents(null);
         },
         finish: (): Database => {
+            console.log(events.report());
+
             if (parser.results.length > 1) {
                 throw new Error('Ambiguous');
             } else if (parser.results.length < 1) {
