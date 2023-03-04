@@ -18,65 +18,11 @@ import {
     AssertionNode,
     IncludeStmtNode,
 } from './mmParseTree';
-import { ParserEvents } from './parserEventsInterface';
+import { ParserEvents, setParserEvents } from './parserEvents';
 
 export type MmParser = {
     feed: (chunk: string) => void;
     finish(): Database;
-};
-
-let currentParserEvents: ParserEvents | null;
-
-const getParserEvents = (): ParserEvents => {
-    if (!currentParserEvents) {
-        throw new Error('Unexpect call to getParserEvents');
-    }
-
-    return currentParserEvents;
-};
-
-export const parserEvents: ParserEvents = {
-    database(d: any): void {
-        if (currentParserEvents) {
-            getParserEvents().database(d);
-        }
-    },
-    block(d: any): BlockNodeFacade {
-        return getParserEvents().block(d);
-    },
-    constant_stmt(d: any): ConstantStmtNode {
-        return getParserEvents().constant_stmt(d);
-    },
-    variable_stmt(d: any): VariableStmtNode {
-        return getParserEvents().variable_stmt(d);
-    },
-    essential_stmt(d: any): EssentialStmtNode {
-        return getParserEvents().essential_stmt(d);
-    },
-    floating_stmt(d: any): FloatingStmtNode {
-        return getParserEvents().floating_stmt(d);
-    },
-    axiom_stmt(d: any): AxiomStmtNode {
-        return getParserEvents().axiom_stmt(d);
-    },
-    provable_stmt(d: any): ProvableStmtNodeFacade {
-        return getParserEvents().provable_stmt(d);
-    },
-    assertion(d: any): AssertionNode {
-        return getParserEvents().assertion(d);
-    },
-    include_stmt(d: any): IncludeStmtNode {
-        return getParserEvents().include_stmt(d);
-    },
-    _(d: any[]): string[] {
-        return getParserEvents()._(d);
-    },
-    whitespace(d: any): [string] {
-        return getParserEvents().whitespace(d);
-    },
-    comment(d: any): [string] {
-        return getParserEvents().comment(d);
-    },
 };
 
 export const createMmParser = (): MmParser => {
@@ -309,9 +255,9 @@ export const createMmParser = (): MmParser => {
 
     const hook = {
         feed: (chunk: string): void => {
-            currentParserEvents = events;
+            setParserEvents(events);
             parser.feed(chunk);
-            currentParserEvents = null;
+            setParserEvents(null);
         },
         finish: (): Database => {
             if (parser.results.length > 1) {

@@ -1,6 +1,6 @@
 @{%
 const { lexer } = require('./lexer');
-const e = require('./index').parserEvents;
+const e = require('./parserEvents').parserEvents;
 %}
 
 @lexer lexer

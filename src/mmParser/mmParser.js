@@ -4,7 +4,7 @@
 function id(x) { return x[0]; }
 
 const { lexer } = require('./lexer');
-const e = require('./index').parserEvents;
+const e = require('./parserEvents').parserEvents;
 var grammar = {
     Lexer: lexer,
     ParserRules: [
