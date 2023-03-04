@@ -6,8 +6,8 @@ export const performanceInfoWrap = <
     FN extends (...args: Parameters<FN>) => ReturnType<FN>
 >(
     name: string,
-    fn: (...args: Parameters<FN>) => ReturnType<FN>
-): ((...args: Parameters<FN>) => ReturnType<FN>) => {
+    fn: FN
+): ((...args: Parameters<FN>) => ReturnType<FN>) & { report: () => string } => {
     let callCount = 0;
     let callTime = 0;
     const wrappedFn = (...args: Parameters<FN>): ReturnType<FN> => {
@@ -21,8 +21,7 @@ export const performanceInfoWrap = <
     };
     return Object.assign(wrappedFn, {
         report: () => {
-            const seconds = (callTime / 1000
-            ).toFixed(2);
+            const seconds = (callTime / 1000).toFixed(2);
             return `${name} called ${callCount} time(s) taking ${seconds} seconds`;
         },
     });
