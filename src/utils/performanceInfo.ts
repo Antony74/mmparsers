@@ -26,7 +26,7 @@ export const performanceInfoWrapFn = <
     return Object.assign(wrappedFn, {
         report: () => {
             const seconds = (callTime / 1000).toFixed(2);
-            const paddedCallCount = `${callCount}`.padStart(3);
+            const paddedCallCount = `${callCount}`.padStart(5);
             return [
                 name.padEnd(15),
                 callCount === 1

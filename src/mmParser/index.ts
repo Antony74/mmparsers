@@ -268,7 +268,7 @@ export const createMmParser = (): MmParser => {
             if (parser.results.length > 1) {
                 throw new Error('Ambiguous');
             } else if (parser.results.length < 1) {
-                throw new Error('No results');
+//                throw new Error('No results');
             }
 
             return facadeHelper.removeFacades(database);
