@@ -33,20 +33,24 @@ export type MmParser = {
 
 export const createMmParser = (): MmParser => {
     const facadeHelper = createFacadeHelper();
-    let database: Database = { type: 'database', children: [] };
+    let unprocessedDatabaseRecord: any = [];
+
+    // Delay processing the database record, as it gets called a lot and is expensive
+    const processDatabaseRecord = (): Database => {
+        const db = unprocessedDatabaseRecord
+            .flat(3)
+            .reduce(commentsToTokensReducer, emptyWsAndTokens);
+
+        return {
+            type: 'database',
+            children: db.tokens,
+            trailingWs: db.ws,
+        };
+    };
 
     const events = performanceInfoWrapObject({
         database: (d: any): null => {
-            // console.log('database');
-            const db = d
-                .flat(3)
-                .reduce(commentsToTokensReducer, emptyWsAndTokens);
-
-            database = {
-                type: 'database',
-                children: db.tokens,
-                trailingWs: db.ws,
-            };
+            unprocessedDatabaseRecord = d;
             return null;
         },
 
@@ -268,10 +272,10 @@ export const createMmParser = (): MmParser => {
             if (parser.results.length > 1) {
                 throw new Error('Ambiguous');
             } else if (parser.results.length < 1) {
-//                throw new Error('No results');
+                // throw new Error('No results');
             }
 
-            return facadeHelper.removeFacades(database);
+            return facadeHelper.removeFacades(processDatabaseRecord());
         },
     };
 
