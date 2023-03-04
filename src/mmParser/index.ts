@@ -37,7 +37,7 @@ export const createMmParser = (): MmParser => {
 
     const events = performanceInfoWrapObject({
         database: (d: any): null => {
-            console.log('database');
+            // console.log('database');
             const db = d
                 .flat(3)
                 .reduce(commentsToTokensReducer, emptyWsAndTokens);
@@ -51,7 +51,7 @@ export const createMmParser = (): MmParser => {
         },
 
         block: (d: any): BlockNodeFacade => {
-            console.log('block');
+            // console.log('block');
 
             const statements = d[2]
                 .flat(3)
@@ -73,7 +73,7 @@ export const createMmParser = (): MmParser => {
         },
 
         constant_stmt: (d: any): ConstantStmtNode => {
-            console.log('constant_stmt');
+            // console.log('constant_stmt');
             d = d.flat();
 
             const constants = d
@@ -95,7 +95,7 @@ export const createMmParser = (): MmParser => {
         },
 
         variable_stmt: (d: any): VariableStmtNode => {
-            console.log('variable_stmt');
+            // console.log('variable_stmt');
             d = d.flat(Number.MAX_SAFE_INTEGER);
 
             const variables = d
@@ -116,7 +116,7 @@ export const createMmParser = (): MmParser => {
         },
 
         essential_stmt: (d: any): EssentialStmtNode => {
-            console.log('essential_stmt');
+            // console.log('essential_stmt');
             d = d.flat(Number.MAX_SAFE_INTEGER);
             const statements = d
                 .slice(4, -1)
@@ -136,7 +136,7 @@ export const createMmParser = (): MmParser => {
         },
 
         floating_stmt: (d: any): FloatingStmtNode => {
-            console.log('floating_stmt');
+            // console.log('floating_stmt');
             d = d.flat(Number.MAX_SAFE_INTEGER);
             const statements = d
                 .slice(4, -1)
@@ -157,7 +157,7 @@ export const createMmParser = (): MmParser => {
         },
 
         axiom_stmt: (d: any): AxiomStmtNode => {
-            console.log('axiom_stmt');
+            // console.log('axiom_stmt');
             d = d.flat(1);
             const assertion = d[6];
             const trailingWs = assertion.trailingWs;
@@ -210,7 +210,7 @@ export const createMmParser = (): MmParser => {
         },
 
         assertion: (d: any): AssertionNode => {
-            console.log('assertion');
+            // console.log('assertion');
 
             const symbols = d
                 .flat(Number.MAX_SAFE_INTEGER)
@@ -224,7 +224,7 @@ export const createMmParser = (): MmParser => {
         },
 
         include_stmt: (d: any): IncludeStmtNode => {
-            console.log('include_stmt');
+            // console.log('include_stmt');
             d = d.flat(1);
 
             return {
@@ -238,18 +238,15 @@ export const createMmParser = (): MmParser => {
         },
 
         _: (d: any[]): string[] => {
-            //            console.log('_');
             return d
                 .flat(Number.MAX_SAFE_INTEGER)
                 .filter((item) => item !== null);
         },
 
         whitespace: (d: any): [string] => {
-            //            console.log('whitespace');
             return d[0].text;
         },
         comment: (d: any): [string] => {
-            //           console.log('comment');
             return d[0].text;
         },
     });
