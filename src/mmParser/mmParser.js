@@ -40,7 +40,7 @@ var grammar = {
     {"name": "disjoint_stmt$ebnf$1", "symbols": []},
     {"name": "disjoint_stmt$ebnf$1$subexpression$1", "symbols": ["variable", "_"]},
     {"name": "disjoint_stmt$ebnf$1", "symbols": ["disjoint_stmt$ebnf$1", "disjoint_stmt$ebnf$1$subexpression$1"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
-    {"name": "disjoint_stmt", "symbols": [{"literal":"$d"}, "_", "variable", "_", "variable", "_", "disjoint_stmt$ebnf$1", {"literal":"$."}]},
+    {"name": "disjoint_stmt", "symbols": [{"literal":"$d"}, "_", "variable", "_", "variable", "_", "disjoint_stmt$ebnf$1", {"literal":"$."}], "postprocess": e.disjoint_stmt},
     {"name": "hypothesis_stmt", "symbols": ["floating_stmt"]},
     {"name": "hypothesis_stmt", "symbols": ["essential_stmt"]},
     {"name": "floating_stmt", "symbols": [(lexer.has("LABEL") ? {type: "LABEL"} : LABEL), "_", {"literal":"$f"}, "_", "typecode", "_", "variable", "_", {"literal":"$."}], "postprocess": e.floating_stmt},

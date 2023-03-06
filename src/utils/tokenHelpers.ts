@@ -6,6 +6,7 @@ export const minToken = <T extends TreeNodeWithUuid>(
     token: T
 ): T | TreeNodeLeaf => {
     if (!token.type) {
+        console.log(token);
         throw new Error('Type missing from token');
     }
 

@@ -6,6 +6,7 @@ export type MathSymbolNode = {
 export type LabelNode = { type: 'LABEL'; ws?: string[]; text: string };
 export type $cNode = { type: '$c'; ws?: string[]; text: '$c' };
 export type $vNode = { type: '$v'; ws?: string[]; text: '$v' };
+export type $dNode = { type: '$d'; ws?: string[]; text: '$d' };
 export type $fNode = { type: '$f'; ws?: string[]; text: '$f' };
 export type $eNode = { type: '$e'; ws?: string[]; text: '$e' };
 export type $aNode = { type: '$a'; ws?: string[]; text: '$a' };
@@ -51,7 +52,7 @@ export type ProofNode = {
 export type ChildStatement =
     | BlockNode
     | VariableStmtNode
-    // | DisjointStmtNode
+    | DisjointStmtNode
     | FloatingStmtNode
     | EssentialStmtNode
     | AxiomStmtNode
@@ -72,6 +73,12 @@ export type ConstantStmtNode = {
 export type VariableStmtNode = {
     type: 'variable_stmt';
     children: [$vNode, VariablesNode, $dotNode];
+    ws?: string[];
+};
+
+export type DisjointStmtNode = {
+    type: 'disjoint_stmt';
+    children: [$dNode, VariablesNode, $dotNode];
     ws?: string[];
 };
 
@@ -157,4 +164,3 @@ export type MMNodeLeaf =
     | $BlockEndNode;
 
 export type MMNode = MMNodeLeaf | MMNodeParent;
-

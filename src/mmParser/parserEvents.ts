@@ -2,6 +2,7 @@
 import { BlockNodeFacade, ProvableStmtNodeFacade } from './facade';
 import {
     ConstantStmtNode,
+    DisjointStmtNode,
     VariableStmtNode,
     EssentialStmtNode,
     FloatingStmtNode,
@@ -15,6 +16,7 @@ export type ParserEvents = {
     block: (d: any) => BlockNodeFacade;
     constant_stmt: (d: any) => ConstantStmtNode;
     variable_stmt: (d: any) => VariableStmtNode;
+    disjoint_stmt: (d: any) => DisjointStmtNode;
     essential_stmt: (d: any) => EssentialStmtNode;
     floating_stmt: (d: any) => FloatingStmtNode;
     axiom_stmt: (d: any) => AxiomStmtNode;
@@ -54,6 +56,9 @@ export const parserEvents: ParserEvents = {
     },
     variable_stmt(d: any): VariableStmtNode {
         return getParserEvents().variable_stmt(d);
+    },
+    disjoint_stmt(d: any): DisjointStmtNode {
+        return getParserEvents().disjoint_stmt(d);
     },
     essential_stmt(d: any): EssentialStmtNode {
         return getParserEvents().essential_stmt(d);

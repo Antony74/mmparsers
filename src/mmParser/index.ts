@@ -23,6 +23,7 @@ import {
     ProvableStmtNode,
     AssertionNode,
     IncludeStmtNode,
+    DisjointStmtNode,
 } from './mmParseTree';
 import { setParserEvents } from './parserEvents';
 
@@ -110,6 +111,27 @@ export const createMmParser = (): MmParser => {
                 type: 'variable_stmt',
                 children: [
                     minToken(d[0]), // $v
+                    combineWsAndToken(d[1], {
+                        type: 'variables',
+                        children: variables.tokens,
+                    }),
+                    combineWsAndToken(variables.ws, minToken(d[d.length - 1])), // $.
+                ],
+            };
+        },
+
+        disjoint_stmt: (d: any): DisjointStmtNode => {
+            // console.log('variable_stmt');
+            d = d.flat(Number.MAX_SAFE_INTEGER);
+
+            const variables = d
+                .slice(2, -1)
+                .reduce(commentsToTokensReducer, emptyWsAndTokens);
+
+            return {
+                type: 'disjoint_stmt',
+                children: [
+                    minToken(d[0]), // $d
                     combineWsAndToken(d[1], {
                         type: 'variables',
                         children: variables.tokens,
