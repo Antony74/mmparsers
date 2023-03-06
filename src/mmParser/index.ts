@@ -66,10 +66,13 @@ export const createMmParser = (): MmParser => {
                 type: 'block',
                 children: [
                     minToken(d[0]), // ${
-                    combineWsAndToken(d[1], {
-                        type: 'statements',
-                        children: statements.tokens,
-                    }),
+                    combineWsAndToken(
+                        d[1],
+                        facadeHelper.removeFacades({
+                            type: 'statements',
+                            children: statements.tokens,
+                        })
+                    ),
                     combineWsAndToken(statements.ws, minToken(d[3])), // $}
                 ],
             };

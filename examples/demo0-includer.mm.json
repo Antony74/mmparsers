@@ -4,9 +4,9 @@
     {
       "ws": [
         "$( demo0-includer.mm  1-Jan-04 $)",
-        "\n\n",
-        "$(\n                      PUBLIC DOMAIN DEDICATION\n\nThis file is placed in the public domain per the Creative Commons Public\nDomain Dedication. http://creativecommons.org/licenses/publicdomain/\n\nNorman Megill - email: nm at alum.mit.edu\n\n$)",
-        "\n\n\n"
+        "\r\n\r\n",
+        "$(\r\n                      PUBLIC DOMAIN DEDICATION\r\n\r\nThis file is placed in the public domain per the Creative Commons Public\r\nDomain Dedication. http://creativecommons.org/licenses/publicdomain/\r\n\r\nNorman Megill - email: nm at alum.mit.edu\r\n\r\n$)",
+        "\r\n\r\n\r\n"
       ],
       "type": "include_stmt",
       "children": [
@@ -16,7 +16,7 @@
       ]
     },
     {
-      "ws": ["\n\n", "$( Prove a theorem $)", "\n    "],
+      "ws": ["\r\n\r\n", "$( Prove a theorem $)", "\r\n    "],
       "type": "provable_stmt",
       "children": [
         { "type": "LABEL", "text": "th1" },
@@ -33,7 +33,7 @@
         },
         { "ws": [" "], "type": "$=", "text": "$=" },
         {
-          "ws": ["\n  ", "$( Here is its proof: $)", "\n       "],
+          "ws": ["\r\n  ", "$( Here is its proof: $)", "\r\n       "],
           "type": "proof",
           "children": [
             { "type": "LABEL", "text": "tt" },
@@ -49,7 +49,7 @@
             { "ws": [" "], "type": "LABEL", "text": "tt" },
             { "ws": [" "], "type": "LABEL", "text": "tze" },
             { "ws": [" "], "type": "LABEL", "text": "tpl" },
-            { "ws": ["\n       "], "type": "LABEL", "text": "tt" },
+            { "ws": ["\r\n       "], "type": "LABEL", "text": "tt" },
             { "ws": [" "], "type": "LABEL", "text": "weq" },
             { "ws": [" "], "type": "LABEL", "text": "tt" },
             { "ws": [" "], "type": "LABEL", "text": "tze" },
@@ -62,7 +62,7 @@
             { "ws": [" "], "type": "LABEL", "text": "wim" },
             { "ws": [" "], "type": "LABEL", "text": "tt" },
             { "ws": [" "], "type": "LABEL", "text": "a2" },
-            { "ws": ["\n       "], "type": "LABEL", "text": "tt" },
+            { "ws": ["\r\n       "], "type": "LABEL", "text": "tt" },
             { "ws": [" "], "type": "LABEL", "text": "tze" },
             { "ws": [" "], "type": "LABEL", "text": "tpl" },
             { "ws": [" "], "type": "LABEL", "text": "tt" },
@@ -72,9 +72,9 @@
             { "ws": [" "], "type": "LABEL", "text": "mp" }
           ]
         },
-        { "ws": ["\n     "], "type": "$.", "text": "$." }
+        { "ws": ["\r\n     "], "type": "$.", "text": "$." }
       ]
     }
   ],
-  "trailingWs": ["\n\n"]
+  "trailingWs": ["\r\n\r\n"]
 }

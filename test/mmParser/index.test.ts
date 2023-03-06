@@ -9,15 +9,15 @@ import { reverseParse } from '../../src/utils/reverseParse';
 const mmFiles = [
     'https://raw.githubusercontent.com/metamath/set.mm/develop/demo0.mm',
     'https://raw.githubusercontent.com/david-a-wheeler/metamath-test/master/demo0-includer.mm',
-//    'https://raw.githubusercontent.com/metamath/set.mm/develop/set.mm',
+    'https://raw.githubusercontent.com/metamath/set.mm/develop/set.mm',
 ];
 
 let ajv: Ajv;
 let validateFn: ValidateFunction;
 
-beforeAll(async () => {
-    jest.setTimeout(60 * 1000);
+jest.setTimeout(60 * 1000);
 
+beforeAll(async () => {
     const tsPathWithinRepo = 'src/mmParser/mmParseTree.ts';
     const tsPath = path.join(__dirname, '../..', tsPathWithinRepo);
     const schemaGenerator = tsj.createGenerator({
