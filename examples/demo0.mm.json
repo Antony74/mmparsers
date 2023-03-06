@@ -356,7 +356,7 @@
         { "ws": [" "], "type": "$=", "text": "$=" },
         {
           "ws": ["\n  ", "$( Here is its proof: $)", "\n       "],
-          "type": "proof",
+          "type": "uncompressed_proof",
           "children": [
             { "type": "LABEL", "text": "tt" },
             { "ws": [" "], "type": "LABEL", "text": "tze" },

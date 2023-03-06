@@ -229,7 +229,7 @@ export const createMmParser = (): MmParser => {
                     combineWsAndToken(d[5], assertion), // assertion
                     combineWsAndToken(trailingWs, minToken(d[7])), // $=
                     combineWsAndToken(d[8], {
-                        type: 'proof',
+                        type: 'uncompressed_proof',
                         children: proof.tokens,
                     }),
                     combineWsAndToken(proof.ws, minToken(d[10])), // $.

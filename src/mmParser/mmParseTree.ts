@@ -17,6 +17,14 @@ export type $BlockStartNode = { type: '${'; ws?: string[]; text: '${' };
 export type $BlockEndNode = { type: '$}'; ws?: string[]; text: '$}' };
 export type $IncludeStmtStartNode = { type: '$['; ws?: string[]; text: '$[' };
 export type $IncludeStmtEndNode = { type: '$]'; ws?: string[]; text: '$]' };
+export type OpenBracketNode = { type: '$('; ws?: string[]; text: '$(' };
+export type CloseBracketNode = { type: '$)'; ws?: string[]; text: '$)' };
+
+export type CompressedProofBlockNode = {
+    type: 'COMPRESSED_PROOF_BLOCK';
+    ws?: string[];
+    text: string;
+};
 
 export type ConstantsNode = {
     type: 'constants';
@@ -43,11 +51,34 @@ export type AssertionNode = {
     trailingWs?: string[];
 };
 
-export type ProofNode = {
-    type: 'proof';
+export type UncompressedProofNode = {
+    type: 'uncompressed_proof';
     children: LabelNode[];
     ws?: string[];
 };
+
+export type CompressedProofNode = {
+    type: 'compressed_proof';
+    children: [
+        OpenBracketNode,
+        LabelsNode,
+        CloseBracketNode,
+        CompressedProofBlocksNode
+    ];
+    ws?: string[];
+};
+
+export type LabelsNode = {
+    type: 'labels';
+    children: LabelNode[];
+    ws?: string[];
+};
+
+export type CompressedProofBlocksNode = {
+    type: 'compressed_proof_blocks',
+    children: CompressedProofBlockNode[]
+    ws?: string[];
+}
 
 export type ChildStatement =
     | BlockNode
@@ -108,7 +139,7 @@ export type ProvableStmtNode = {
         MathSymbolNode,
         AssertionNode,
         $eqNode,
-        ProofNode,
+        UncompressedProofNode | CompressedProofNode,
         $dotNode
     ];
     ws?: string[];
@@ -143,7 +174,8 @@ export type MMNodeParent =
     | VariableStmtNode
     | ConstantStmtNode
     | StatementsNode
-    | ProofNode
+    | CompressedProofNode
+    | UncompressedProofNode
     | AssertionNode
     | StatementNode
     | VariablesNode

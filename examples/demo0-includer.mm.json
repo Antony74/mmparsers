@@ -34,7 +34,7 @@
         { "ws": [" "], "type": "$=", "text": "$=" },
         {
           "ws": ["\r\n  ", "$( Here is its proof: $)", "\r\n       "],
-          "type": "proof",
+          "type": "uncompressed_proof",
           "children": [
             { "type": "LABEL", "text": "tt" },
             { "ws": [" "], "type": "LABEL", "text": "tze" },
