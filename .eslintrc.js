@@ -6,5 +6,6 @@ module.exports = {
     root: true,
     rules: {
         '@typescript-eslint/explicit-function-return-type': 'warn',
+        '@typescript-eslint/no-non-null-assertion': 'off'
     },
 };
