@@ -1,6 +1,13 @@
 import { Json, JsonWriter } from './jsonWriter';
+import { createValidatingJsonWriter } from './validatingJsonWriter';
 
 export const createStringJsonWriter = (
+    writeFn: (s: string) => unknown
+): JsonWriter => {
+    return createValidatingJsonWriter(createRawStringJsonWriter(writeFn));
+};
+
+const createRawStringJsonWriter = (
     writeFn: (s: string) => unknown
 ): JsonWriter => {
     const stack: ('}' | ']')[] = [];

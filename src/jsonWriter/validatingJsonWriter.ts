@@ -1,13 +1,13 @@
 import { Json, JsonWriter } from './jsonWriter';
 
 enum JsonType {
-    array,
-    object,
-    name,
-    eof,
+    array = 'array',
+    object = 'object',
+    name = 'name',
+    eof = 'eof',
 }
 
-export const createJsonValidatingWriter = (
+export const createValidatingJsonWriter = (
     rawWriter: JsonWriter
 ): JsonWriter => {
     const stack: JsonType[] = [];
@@ -22,6 +22,7 @@ export const createJsonValidatingWriter = (
                 );
             }
 
+            stack.push(JsonType.name);
             rawWriter.name(s);
             return writer;
         },
@@ -39,6 +40,10 @@ export const createJsonValidatingWriter = (
                 throw new Error(
                     'validatingJsonWriter.value: no additional values can be added beyond end of file'
                 );
+            }
+
+            if (top === JsonType.name) {
+                stack.pop();
             }
 
             if (!stack.length) {

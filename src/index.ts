@@ -4,6 +4,7 @@ import { createStringJsonWriter } from './jsonWriter/stringJsonWriter';
 const main = async (): Promise<void> => {
     const writeStream = fs.createWriteStream('output.json');
     const jsonWriter = createStringJsonWriter((s) => writeStream.write(s));
+
     jsonWriter
         .beginObject()
         .name('Sherlock')
