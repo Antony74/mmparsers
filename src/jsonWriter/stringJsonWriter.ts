@@ -7,42 +7,63 @@ export const createStringJsonWriter = (
     return createValidatingJsonWriter(createRawStringJsonWriter(writeFn));
 };
 
+type JsonStackTypes = '}' | ']' | 'name' | ',';
+
 const createRawStringJsonWriter = (
     writeFn: (s: string) => unknown
 ): JsonWriter => {
-    const stack: ('}' | ']')[] = [];
-    let commaNeeded = false;
+    const stack: JsonStackTypes[] = [];
+    const stackTop = (): JsonStackTypes | undefined =>
+        stack.length ? stack[stack.length - 1] : undefined;
+    const writeCommaIfNeeded = (): boolean => {
+        if (stackTop() === ',') {
+            writeFn(',');
+            return true;
+        }
+        return false;
+    };
 
     const jsonWriter: JsonWriter = {
         name: (s: string): JsonWriter => {
-            if (commaNeeded) {
-                writeFn(',');
-                commaNeeded = false;
-            }
+            writeCommaIfNeeded();
             writeFn(`"${s}":`);
+            stack.push('name');
             return jsonWriter;
         },
         value: (j: Json): JsonWriter => {
-            if (commaNeeded) {
-                writeFn(',');
-            }
+            writeCommaIfNeeded();
             writeFn(JSON.stringify(j));
-            commaNeeded = true;
+            if (stackTop() === 'name') {
+                stack.pop();
+            }
+            if (stackTop() !== ',') {
+                stack.push(',');
+            }
             return jsonWriter;
         },
         beginArray: (): JsonWriter => {
+            writeCommaIfNeeded();
             writeFn('[');
             stack.push(']');
             return jsonWriter;
         },
         beginObject: (): JsonWriter => {
+            writeCommaIfNeeded();
             writeFn('{');
             stack.push('}');
             return jsonWriter;
         },
         close: (): JsonWriter => {
+            if (stackTop() === ',') {
+                stack.pop();
+            }
+            if (stackTop() === 'name') {
+                stack.pop();
+            }
+            if (stackTop() === ',') {
+                stack.pop();
+            }
             writeFn(stack.pop()!);
-            commaNeeded = false;
             return jsonWriter;
         },
     };
