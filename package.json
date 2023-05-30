@@ -23,7 +23,8 @@
         "moo": "^0.5.2",
         "nearley": "^2.20.1",
         "rxjs": "^7.8.0",
-        "uuid": "^9.0.0"
+        "uuid": "^9.0.0",
+        "xstate": "^4.37.2"
     },
     "devDependencies": {
         "@babel/preset-env": "^7.20.2",

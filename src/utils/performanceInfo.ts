@@ -46,7 +46,7 @@ interface Accumlator<T> {
 
 export const performanceInfoWrapObject = <T extends object>(
     obj: T
-): T & WithReportFn => {
+): T & WithReportFn => {    
     const accumlated: Accumlator<T> = Object.keys(obj).reduce(
         (acc: Accumlator<T>, name): Accumlator<T> => {
             if (typeof (obj as any)[name] === 'function') {
