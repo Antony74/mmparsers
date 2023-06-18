@@ -1,16 +1,11 @@
-import { interpret, EventObject, StateMachine, StateSchema } from 'xstate';
-import { TokenStream } from './tokenStream';
+import { interpret } from 'xstate';
 import { Token } from 'moo';
 
-type TokenEventObject = Omit<EventObject, 'type'> & {
-    line: number;
-    col: number;
-    type: string;
-};
+import { TokenStream } from './tokenStream';
+import fsm from './fsm';
+import { TokenEventObject } from './TokenEventObject';
 
-export const createFsmParserValidator = (
-    fsm: StateMachine<unknown, StateSchema<unknown>, TokenEventObject>
-): TokenStream => {
+export const createFsmParserValidator = (): TokenStream => {
     const actor = interpret(fsm);
     actor.subscribe((state) => console.log(state.value));
     actor.onTransition((state, event: TokenEventObject) => {
@@ -29,9 +24,7 @@ export const createFsmParserValidator = (
 
     const hook = {
         onToken: (token: Token): void => {
-            if (token === undefined) {
-                return;
-            }
+            console.log(`onToken ${token.type}`)
 
             const { type } = token;
 
@@ -39,8 +32,8 @@ export const createFsmParserValidator = (
                 throw new Error(`Token encountered without type ${token}`);
             }
 
-            const tokenWithType: TokenEventObject = { ...token, type };
-            actor.send(tokenWithType);
+            const tokenEventObject: TokenEventObject = { ...token, type };
+            actor.send(tokenEventObject);
         },
     };
 

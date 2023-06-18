@@ -14,7 +14,7 @@ interface StreamOptions {
 }
 
 export interface FlushableWriteStream {
-    write: (chunk : unknown) => void;
+    write: (chunk: unknown) => void;
     flush: () => Promise<unknown>;
 }
 
@@ -37,9 +37,13 @@ export const createFlushableWriteStream = (
             });
         },
         flush: (): Promise<unknown> => {
-            return new Promise((resolve) => {
-                written = resolve;
-            });
+            if (outstandingWrites <= 0) {
+                return Promise.resolve();
+            } else {
+                return new Promise((resolve) => {
+                    written = resolve;
+                });
+            }
         },
     };
 };

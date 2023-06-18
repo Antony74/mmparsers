@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { lexer } from './lexer';
 import { JsonWriter } from '../jsonWriter/jsonWriter';
-import { createTokensToJson } from './tokensToJson';
+import { createFsmParserValidator } from './fsmParserValidator';
 
 export type MmParser = {
     feed: (chunk: string) => void;
@@ -9,7 +9,8 @@ export type MmParser = {
 };
 
 export const createMmParser = (writer: JsonWriter): MmParser => {
-    const tokenStream = createTokensToJson(writer);
+    writer;
+    const tokenStream = createFsmParserValidator();
 
     const hook = {
         feed: (chunk: string): void => {

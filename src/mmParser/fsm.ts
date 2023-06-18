@@ -1,6 +1,7 @@
 import { createMachine } from 'xstate';
+import { TokenEventObject } from './TokenEventObject';
 
-const fsm = createMachine({
+const fsm = createMachine<unknown, TokenEventObject>({
     id: 'mmParser',
     initial: 'outermost_scope_stmt',
     predictableActionArguments: true,
