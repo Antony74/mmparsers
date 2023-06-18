@@ -13,7 +13,11 @@ const fsm = createMachine<unknown, TokenEventObject>({
                 WHITESPACE: 'outermost_scope_stmt',
             },
         },
-        $c: { on: { '$.': 'outermost_scope_stmt' }, initial: '$c', states: {} },
+        $c: {
+            on: { '$.': 'outermost_scope_stmt' },
+            initial: '$c',
+            states: { $c: { on: {} } },
+        },
     },
 });
 
