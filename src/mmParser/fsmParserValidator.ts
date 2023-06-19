@@ -2,11 +2,11 @@ import { interpret } from 'xstate';
 import { Token } from 'moo';
 
 import { TokenStream } from './tokenStream';
-import fsm from './fsm';
+import mmStateMachine from './mmStateMachine';
 import { TokenEventObject } from './TokenEventObject';
 
 export const createFsmParserValidator = (): TokenStream => {
-    const actor = interpret(fsm);
+    const actor = interpret(mmStateMachine);
     actor.subscribe((state) => {
         console.log(state._event.name);
     });

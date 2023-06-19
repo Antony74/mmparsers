@@ -1,7 +1,7 @@
 import { createMachine } from 'xstate';
 import { TokenEventObject } from './TokenEventObject';
 
-const fsm = createMachine<unknown, TokenEventObject>({
+const mmStateMachine = createMachine<unknown, TokenEventObject>({
     id: 'mmParser',
     initial: 'outermost_scope_stmt',
     predictableActionArguments: true,
@@ -24,4 +24,4 @@ const fsm = createMachine<unknown, TokenEventObject>({
     },
 });
 
-export default fsm;
+export default mmStateMachine;
