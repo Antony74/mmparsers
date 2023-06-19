@@ -1,5 +1,5 @@
-import { Token } from "moo";
+import { TokenEventObject } from './TokenEventObject';
 
 export interface TokenStream {
-    onToken(token: Token): void;
+    onToken(token: TokenEventObject): void;
 }

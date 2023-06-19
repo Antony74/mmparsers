@@ -25,17 +25,9 @@ export const createFsmParserValidator = (): TokenStream => {
     actor.start();
 
     const hook = {
-        onToken: (token: Token): void => {
+        onToken: (token: TokenEventObject): void => {
             console.log(`onToken ${token.type}`);
-
-            const { type } = token;
-
-            if (type === undefined) {
-                throw new Error(`Token encountered without type ${token}`);
-            }
-
-            const tokenEventObject: TokenEventObject = { ...token, type };
-            actor.send(tokenEventObject);
+            actor.send(token);
         },
     };
 

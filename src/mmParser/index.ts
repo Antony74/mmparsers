@@ -22,7 +22,13 @@ export const createMmParser = (writer: JsonWriter): MmParser => {
                     break;
                 }
 
-                tokenStream.onToken(token);
+                const { type } = token;
+
+                if (type === undefined) {
+                    throw new Error('Token encountered without type');
+                }
+
+                tokenStream.onToken({ ...token, type });
             }
         },
         finish: (): void => {},
