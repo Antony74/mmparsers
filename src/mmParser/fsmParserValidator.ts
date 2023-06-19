@@ -7,7 +7,9 @@ import { TokenEventObject } from './TokenEventObject';
 
 export const createFsmParserValidator = (): TokenStream => {
     const actor = interpret(fsm);
-    actor.subscribe((state) => console.log(state.value));
+    actor.subscribe((state) => {
+        console.log(state._event.name);
+    });
     actor.onTransition((state, event: TokenEventObject) => {
         console.log(JSON.stringify({ state, event }));
         console.log();
@@ -24,7 +26,7 @@ export const createFsmParserValidator = (): TokenStream => {
 
     const hook = {
         onToken: (token: Token): void => {
-            console.log(`onToken ${token.type}`)
+            console.log(`onToken ${token.type}`);
 
             const { type } = token;
 

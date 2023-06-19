@@ -13,6 +13,9 @@ const fsm = createMachine<unknown, TokenEventObject>({
                 WHITESPACE: 'outermost_scope_stmt',
             },
         },
+        _COMMENT: {
+            on: { WHITESPACE: 'outermost_scope_stmt' },
+        },
         $c: {
             on: { '$.': 'outermost_scope_stmt' },
             initial: '$c',
