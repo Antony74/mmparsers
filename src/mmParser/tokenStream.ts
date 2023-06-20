@@ -1,5 +1,5 @@
 import { TokenEventObject } from './TokenEventObject';
 
 export interface TokenStream {
-    onToken(token: TokenEventObject): void;
+    onToken(token: TokenEventObject): string[];
 }

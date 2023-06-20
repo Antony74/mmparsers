@@ -1,33 +1,55 @@
 import { interpret } from 'xstate';
-import { Token } from 'moo';
 
 import { TokenStream } from './tokenStream';
 import mmStateMachine from './mmStateMachine';
 import { TokenEventObject } from './TokenEventObject';
+import { arraysEqual } from '../utils/arraysEqual';
 
-export const createFsmParserValidator = (): TokenStream => {
+// This only exists to check (via unit testing) that our state machine
+// implmentation does not diverge from xstate.  Thus we can trust
+// the xstate diagrams.
+
+const stateValueToPath = (stateValue: string | object): string[] => {
+    if (typeof(stateValue) === 'string') {
+        return [stateValue];
+    } else {
+        const keys = Object.keys(stateValue);
+        const values = Object.values(stateValue);
+        if (keys.length !== 1) {
+            throw new Error('Expected exactly one key');
+        }
+        if (values.length !== 1) {
+            throw new Error('Expected exactly one value');
+        }  
+        return [keys[0], ...stateValueToPath(values[0])];
+    }
+}
+
+export const createFsmParserValidator = (
+    nextTokenStream: TokenStream
+): TokenStream => {
     const actor = interpret(mmStateMachine);
-    actor.subscribe((state) => {
-        console.log(state._event.name);
-    });
     actor.onTransition((state, event: TokenEventObject) => {
-        console.log(JSON.stringify({ state, event }));
-        console.log();
         if (state.event.type === 'xstate.init') {
             return;
         }
-        if (!state.changed) {
+
+        const nextState = nextTokenStream.onToken(event);
+        const path = stateValueToPath(state.value);
+
+        if (!arraysEqual(nextState, path)) {
             throw new Error(
-                `In state ${state.value}, unexpected token ${event.type}, line ${event.line} col ${event.col}`
+                `nextState ${JSON.stringify(nextState)} has diverged from xstate ${JSON.stringify(path)}`
             );
         }
     });
     actor.start();
 
     const hook = {
-        onToken: (token: TokenEventObject): void => {
+        onToken: (token: TokenEventObject): string[] => {
             console.log(`onToken ${token.type}`);
             actor.send(token);
+            return [];
         },
     };
 
