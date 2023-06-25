@@ -1,32 +1,24 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { StateMachine, StateNode, StateNodesConfig } from 'xstate';
-
 import { TokenStream } from './tokenStream';
 import { TokenEventObject } from './TokenEventObject';
-
-type Machine = StateMachine<unknown, any, TokenEventObject>;
-//type Nodes = StateNodesConfig<unknown, any, TokenEventObject>;
-//type Node = StateNode<unknown, any, TokenEventObject>;
+import { MachineConfig, MachineStates } from './mmStateMachine';
 
 export const createRecursiveFiniteStateMachine = (
-    stateMachine: Machine
+    stateMachine: MachineConfig
 ): TokenStream => {
-    let state: string[] = [(stateMachine.initial ?? '').toString()];
+    const stack: MachineStates[] = [stateMachine.states];
+    const top = (): MachineStates => {
+        return stack[stack.length - 1];
+    };
+
+    let state: string = (stateMachine.initial ?? '').toString();
 
     const hook = {
-        onToken: (token: TokenEventObject): string[] => {
-            const nodes = stateMachine.getFromRelativePath(state);
-            const node = nodes[nodes.length - 1];
+        onToken: (token: TokenEventObject): string => {
+            const nodes = top();
+            const node = nodes[state];
             const transition = node.on[token.type];
             if (node.on[token.type]) {
-                if (transition.length !== 1) {
-                    throw new Error(`Why do we not have exactly one transistion?`);
-                }
-                const target = transition[0].target;
-                if (!target || target.length !== 1) {
-                    throw new Error(`Why do we not have exactly one target?`);
-                }
-                state = target[0].path;
+                state = transition;
                 return state;
             } else {
                 throw new Error(

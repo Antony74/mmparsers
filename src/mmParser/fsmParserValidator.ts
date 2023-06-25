@@ -3,14 +3,13 @@ import { interpret } from 'xstate';
 import { TokenStream } from './tokenStream';
 import mmStateMachine from './mmStateMachine';
 import { TokenEventObject } from './TokenEventObject';
-import { arraysEqual } from '../utils/arraysEqual';
 
 // This only exists to check (via unit testing) that our state machine
 // implmentation does not diverge from xstate.  Thus we can trust
 // the xstate diagrams.
 
 const stateValueToPath = (stateValue: string | object): string[] => {
-    if (typeof(stateValue) === 'string') {
+    if (typeof stateValue === 'string') {
         return [stateValue];
     } else {
         const keys = Object.keys(stateValue);
@@ -20,10 +19,10 @@ const stateValueToPath = (stateValue: string | object): string[] => {
         }
         if (values.length !== 1) {
             throw new Error('Expected exactly one value');
-        }  
+        }
         return [keys[0], ...stateValueToPath(values[0])];
     }
-}
+};
 
 export const createFsmParserValidator = (
     nextTokenStream: TokenStream
@@ -37,19 +36,21 @@ export const createFsmParserValidator = (
         const nextState = nextTokenStream.onToken(event);
         const path = stateValueToPath(state.value);
 
-        if (!arraysEqual(nextState, path)) {
+        if (nextState !== path[path.length - 1]) {
             throw new Error(
-                `nextState ${JSON.stringify(nextState)} has diverged from xstate ${JSON.stringify(path)}`
+                `nextState ${JSON.stringify(
+                    nextState
+                )} has diverged from xstate ${JSON.stringify(path)}`
             );
         }
     });
     actor.start();
 
-    const hook = {
-        onToken: (token: TokenEventObject): string[] => {
+    const hook: TokenStream = {
+        onToken: (token: TokenEventObject): string => {
             console.log(`onToken ${token.type}`);
             actor.send(token);
-            return [];
+            return '';
         },
     };
 

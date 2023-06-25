@@ -1,8 +1,18 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { MachineConfig, createMachine } from 'xstate';
+import { createMachine } from 'xstate';
 import { TokenEventObject } from './TokenEventObject';
 
-const mmMachineConfig: MachineConfig<unknown, any, TokenEventObject> = {
+export type MachineState = { on: { [key: string]: string }, initial?: string, states?: MachineStates };
+
+export type MachineStates = { [key: string]: MachineState };
+
+export type MachineConfig = {
+    id: string;
+    initial: string;
+    predictableActionArguments: boolean;
+    states: MachineStates;
+};
+
+export const mmMachineConfig: MachineConfig = {
     id: 'mmParser',
     initial: 'outermost_scope_stmt',
     predictableActionArguments: true,

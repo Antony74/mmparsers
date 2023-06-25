@@ -3,7 +3,7 @@ import { lexer } from './lexer';
 import { JsonWriter } from '../jsonWriter/jsonWriter';
 import { createFsmParserValidator } from './fsmParserValidator';
 import { createRecursiveFiniteStateMachine } from './recursiveFiniteStateMachine';
-import mmStateMachine from './mmStateMachine';
+import { mmMachineConfig } from './mmStateMachine';
 
 export type MmParser = {
     feed: (chunk: string) => void;
@@ -13,7 +13,7 @@ export type MmParser = {
 export const createMmParser = (writer: JsonWriter): MmParser => {
     writer;
     const tokenStream = createFsmParserValidator(
-        createRecursiveFiniteStateMachine(mmStateMachine)
+        createRecursiveFiniteStateMachine(mmMachineConfig)
     );
 
     const hook = {
