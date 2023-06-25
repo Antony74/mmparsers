@@ -1,0 +1,54 @@
+database ::= outermost-scope-stmt*
+
+outermost-scope-stmt ::=
+  include-stmt | constant-stmt | stmt
+
+/* File inclusion command; process file as a database.
+   Databases should NOT have a comment in the filename. */
+include-stmt ::= '$[' filename '$]'
+
+/* Constant symbols declaration. */
+constant-stmt ::= '$c' constant+ '$.'
+
+/* A normal statement can occur in any scope. */
+stmt ::= block | variable-stmt | disjoint-stmt |
+  hypothesis-stmt | assert-stmt
+
+/* A block. You can have 0 statements in a block. */
+block ::= '${' stmt* '$}'
+
+/* Variable symbols declaration. */
+variable-stmt ::= '$v' variable+ '$.'
+
+/* Disjoint variables. Simple disjoint statements have
+   2 variables, i.e., "variable*" is empty for them. */
+disjoint-stmt ::= '$d' variable variable variable* '$.'
+
+hypothesis-stmt ::= floating-stmt | essential-stmt
+
+/* Floating (variable-type) hypothesis. */
+floating-stmt ::= LABEL '$f' typecode variable '$.'
+
+/* Essential (logical) hypothesis. */
+essential-stmt ::= LABEL '$e' typecode MATH-SYMBOL* '$.'
+
+assert-stmt ::= axiom-stmt | provable-stmt
+
+/* Axiomatic assertion. */
+axiom-stmt ::= LABEL '$a' typecode MATH-SYMBOL* '$.'
+
+/* Provable assertion. */
+provable-stmt ::= LABEL '$p' typecode MATH-SYMBOL*
+  '$=' proof '$.'
+
+/* A proof. Proofs may be interspersed by comments.
+   If '?' is in a proof it's an "incomplete" proof. */
+proof ::= uncompressed-proof | compressed-proof
+uncompressed-proof ::= (LABEL | '?')+
+compressed-proof ::= '(' LABEL* ')' COMPRESSED-PROOF-BLOCK+
+
+typecode ::= constant
+
+filename ::= MATH-SYMBOL /* No whitespace or '$' */
+constant ::= MATH-SYMBOL
+variable ::= MATH-SYMBOL
