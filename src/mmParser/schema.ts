@@ -12,13 +12,11 @@ import {
     $pNode,
     $vNode,
     AssertionNode,
-    BlockNode,
-    ChildStatement,
     ConstantsNode,
     FloatingStmtNode,
     LabelNode,
     MathSymbolNode,
-    ProofNode,
+    UncompressedProofNode,
     StatementNode,
     VariablesNode,
 } from './mmParseTree';
@@ -128,8 +126,8 @@ export const statementNodeSchema: JSONSchemaType<StatementNode> =
 export const assertionNodeSchema: JSONSchemaType<AssertionNode> =
     parentNodeTrailingSchema('assertion', mathSymbolNodeSchema);
 
-export const proofNodeSchema: JSONSchemaType<ProofNode> = parentNodeSchema(
-    'proof',
+export const proofNodeSchema: JSONSchemaType<UncompressedProofNode> = parentNodeSchema(
+    'uncompressed_proof',
     labelNodeSchema
 );
 

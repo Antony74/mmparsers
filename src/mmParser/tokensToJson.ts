@@ -1,6 +1,7 @@
 import { Token } from 'moo';
 import { JsonWriter } from '../jsonWriter/jsonWriter';
 import { TokenStream } from './tokenStream';
+import { TokenEventObject } from './TokenEventObject';
 
 export const createTokensToJson = (writer: JsonWriter): TokenStream => {
     let ws: string[] = [];
@@ -35,8 +36,8 @@ export const createTokensToJson = (writer: JsonWriter): TokenStream => {
         ws = [];
     };
 
-    const hook = {
-        onToken: (token: Token): void => {
+    const hook: TokenStream = {
+        onToken: (token: TokenEventObject): string => {
             switch (token.type) {
                 case 'WHITESPACE':
                 case '_COMMENT':
@@ -99,6 +100,7 @@ export const createTokensToJson = (writer: JsonWriter): TokenStream => {
                 default:
                     throw new Error(`Unrecognised token ${token.type}`);
             }
+            return '';
         },
     };
     return hook;

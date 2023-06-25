@@ -2,10 +2,7 @@
     "name": "mmparsers",
     "version": "1.0.0",
     "scripts": {
-        "generate": "npm run generate-mm",
-        "generate-mm": "cd src/mmParser && nearleyc mmParser.ne -o mmParser.js && nearley-railroad mmParser.ne -o mmParser.html",
         "lint": "eslint .",
-        "nearley": "ts-node src/nearley.ts",
         "prettier": "prettier --write **/*.ts",
         "start": "ts-node src/index.ts",
         "test": "jest"
@@ -18,19 +15,13 @@
     "license": "MIT",
     "dependencies": {
         "@types/moo": "^0.5.5",
-        "@types/uuid": "^9.0.0",
         "fluent-regex-fun": "^1.0.0",
-        "moo": "^0.5.2",
-        "nearley": "^2.20.1",
-        "rxjs": "^7.8.0",
-        "uuid": "^9.0.0",
-        "xstate": "^4.37.2"
+        "moo": "^0.5.2"
     },
     "devDependencies": {
         "@babel/preset-env": "^7.20.2",
         "@babel/preset-typescript": "^7.18.6",
         "@types/jest": "^29.2.5",
-        "@types/nearley": "^2.11.2",
         "@types/node": "^18.11.18",
         "@typescript-eslint/eslint-plugin": "^5.48.1",
         "@typescript-eslint/parser": "^5.48.1",
@@ -40,7 +31,8 @@
         "prettier": "^2.8.1",
         "ts-json-schema-generator": "^1.2.0",
         "ts-node": "^10.9.1",
-        "typescript": "^4.9.4"
+        "typescript": "^4.9.4",
+        "xstate": "^4.37.2"
     },
     "prettier": {
         "tabWidth": 4,
