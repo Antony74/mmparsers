@@ -11,12 +11,12 @@ const obtainBnfText = async (): Promise<string[]> => {
     const parserFilename = path.join(
         __dirname,
         '../../examples',
-        'metamath-parser.bnf'
+        'metamath-parser-original.ebnf'
     );
     const lexerFilename = path.join(
         __dirname,
         '../../examples',
-        'metamath-lexer.bnf'
+        'metamath-lexer-original.ebnf'
     );
 
     const filenames = [parserFilename, lexerFilename];
