@@ -2,8 +2,6 @@ import path from 'path';
 import fs from 'fs/promises';
 import fetch from 'node-fetch';
 
-import { Grammars } from 'ebnf';
-
 const mmTexUrl =
     'https://raw.githubusercontent.com/metamath/metamath-book/master/metamath.tex';
 
@@ -52,8 +50,4 @@ const obtainBnfText = async (): Promise<string[]> => {
     return verbatim;
 };
 
-const main = async (): Promise<void> => {
-    const [parserText, lexerText] = await obtainBnfText();
-};
-
-main();
+obtainBnfText();
