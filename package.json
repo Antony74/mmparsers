@@ -4,6 +4,7 @@
     "scripts": {
         "lint": "eslint .",
         "prettier": "prettier --write **/*.ts",
+        "ebnf": "ts-node src/ebnf.ts",
         "fetch-metamath.ebnf": "ts-node src/ebnf/fetch-metamath.ebnf.ts",
         "start": "ts-node src/index.ts",
         "test": "jest"
