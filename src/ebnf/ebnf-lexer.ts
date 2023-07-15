@@ -6,8 +6,8 @@ import { objectMap } from '../utils/objectMap';
 
 const { literal, nonCapturingGroup, sequence } = Regex;
 
-const rules: { [key: string]: RegExp } = {
-    Comment: /\/\*/,
+const rules: { [key: string]: { match: RegExp; lineBreaks?: boolean } } = {
+    Comment: { match: /\/\*/ },
     //  '/*' ( [^*] | '*'+ [^*/] )* '*'* '*/'
     // Comment: sequence(
     //     literal('/*'),
@@ -17,10 +17,15 @@ const rules: { [key: string]: RegExp } = {
     //     literal('*/')
     // ).toRegexString(),
     // #x9 | #xA | #xD | #x20
-    S: unescapedLiteral('[\\x20\\x09\\x0d\\x0a]').toRegex(),
+    S: {
+        match: unescapedLiteral('[\\x20\\x09\\x0d\\x0a]').toRegex(),
+        lineBreaks: true,
+    },
 };
 
-const stringRules = objectMap(rules, (rule) => rule.source);
+const stringRules = objectMap(rules, (rule): moo.Rule => {
+    return { ...rule, match: rule.match.source };
+});
 
 console.log(JSON.stringify(stringRules, null, 4));
 
