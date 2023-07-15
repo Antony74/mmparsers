@@ -1,4 +1,3 @@
-import { Token } from 'moo';
 import { JsonWriter } from '../jsonWriter/jsonWriter';
 import { TokenStream } from './tokenStream';
 import { TokenEventObject } from './TokenEventObject';

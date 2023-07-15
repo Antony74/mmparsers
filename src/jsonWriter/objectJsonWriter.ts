@@ -1,9 +1,8 @@
-import { JsonComposite } from "./jsonWriter";
+import { JsonComposite, JsonWriter } from "./jsonWriter";
 
-export const createJsonWriter = (): any => {
+export const createJsonWriter = (): Partial<JsonWriter> => {
     const stack: JsonComposite[] = [];
-    const top = (): JsonComposite => stack[stack.length - 1];
-    const name = '';
+//    const top = (): JsonComposite => stack[stack.length - 1];
 
     // name
     // value
@@ -11,17 +10,12 @@ export const createJsonWriter = (): any => {
     // beginArray
     // close
 
-    return {
-        beginObject: (): void => {
+    const jsonWriter = {
+        beginObject: (): JsonWriter => {
             stack.push({});
+            return jsonWriter;
         },
-        arrayAdd: (item: Json): void => {
-            const t = top();
-            if (Array.isArray(t)) {
-                t.push(item);
-            } else {
-                throw new Error(`Can't arrayAdd, not an array`);
-            }
-        },
-    };
+    } as JsonWriter;
+
+    return jsonWriter;
 };
