@@ -1,12 +1,22 @@
 import moo from 'moo';
 import { not, Regex } from 'fluent-regex-fun';
-import { unescapedLiteral } from 'fluent-regex-fun/dist/Regex';
+import {
+    nonCapturingGroup,
+    unescapedLiteral,
+} from 'fluent-regex-fun/dist/Regex';
 import { objectMap } from '../utils/objectMap';
 
 const { literal, sequence } = Regex;
 
 const rules: { [key: string]: { match: RegExp; lineBreaks?: boolean } } = {
-    //  '/*' ( [^*] | '*'+ [^*/] )* '*'* '*/'
+    // Name - (Char* ':' Char*)
+    NCName: {
+        match: nonCapturingGroup(unescapedLiteral('[\\x21-\\xD7FF]'))
+            .exclude(unescapedLiteral('[\\/\\*\\:\\=]'))
+            .onceOrMore()
+            .toRegex(),
+    },
+    // '/*' ( [^*] | '*'+ [^*/] )* '*'* '*/'
     Comment: {
         match: sequence(
             literal('/*'),
@@ -16,7 +26,9 @@ const rules: { [key: string]: { match: RegExp; lineBreaks?: boolean } } = {
     },
     // #x9 | #xA | #xD | #x20
     S: {
-        match: unescapedLiteral('[\\x20\\x09\\x0d\\x0a]').toRegex(),
+        match: unescapedLiteral('[\\x20\\x09\\x0d\\x0a]')
+            .onceOrMore()
+            .toRegex(),
         lineBreaks: true,
     },
 };
