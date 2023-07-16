@@ -1,14 +1,23 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { JsonWriter } from '../jsonWriter/jsonWriter';
 import { createParserValidator } from '../validating-fsm/parserValidator';
-import { MachineConfig, createValidatingFSM } from '../validating-fsm'
+import { MachineConfig, createValidatingFSM } from '../validating-fsm';
 
 export type Parser = {
     feed: (chunk: string) => void;
     finish(): void;
 };
 
-export const createParser = (writer: JsonWriter, lexer: moo.Lexer, machineConfig: MachineConfig): Parser => {
+// Eventually the tokens will be recorded as whitespace/comments rather than ignored,
+// and which tokens they are can be determined automatically as they are orphaned by the ebnf,
+// but for now:
+const ignoreTokens: Record<string, boolean> = { S: true };
+
+export const createParser = (
+    writer: JsonWriter,
+    lexer: moo.Lexer,
+    machineConfig: MachineConfig,
+): Parser => {
     writer;
     const tokenStream = createParserValidator(
         createValidatingFSM(machineConfig),
@@ -31,7 +40,9 @@ export const createParser = (writer: JsonWriter, lexer: moo.Lexer, machineConfig
                     throw new Error('Token encountered without type');
                 }
 
-                tokenStream.onToken({ ...token, type });
+                if (!ignoreTokens[type]) {
+                    tokenStream.onToken({ ...token, type });
+                }
             }
         },
         finish: (): void => {},
