@@ -13,7 +13,7 @@ export type MmParser = {
 export const createMmParser = (writer: JsonWriter): MmParser => {
     writer;
     const tokenStream = createFsmParserValidator(
-        createRecursiveFiniteStateMachine(mmMachineConfig)
+        createRecursiveFiniteStateMachine(mmMachineConfig),
     );
 
     const hook = {

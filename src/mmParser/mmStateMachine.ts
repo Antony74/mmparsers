@@ -1,7 +1,11 @@
 import { createMachine } from 'xstate';
 import { TokenEventObject } from './TokenEventObject';
 
-export type MachineState = { on: { [key: string]: string }, initial?: string, states?: MachineStates };
+export type MachineState = {
+    on: { [key: string]: string };
+    initial?: string;
+    states?: MachineStates;
+};
 
 export type MachineStates = { [key: string]: MachineState };
 

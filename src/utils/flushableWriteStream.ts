@@ -20,7 +20,7 @@ export interface FlushableWriteStream {
 
 export const createFlushableWriteStream = (
     path: fs.PathLike,
-    options?: BufferEncoding | StreamOptions
+    options?: BufferEncoding | StreamOptions,
 ): FlushableWriteStream => {
     let outstandingWrites = 0;
     let written: (value?: unknown) => void;

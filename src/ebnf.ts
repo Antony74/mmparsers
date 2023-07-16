@@ -9,7 +9,7 @@ const main = async (): Promise<void> => {
     const text = await fsp.readFile(filename, { encoding: 'utf-8' });
     lexer.reset(text);
     let token;
-    while(token = lexer.next()) {
+    while ((token = lexer.next())) {
         console.log(token);
     }
 };

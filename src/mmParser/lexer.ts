@@ -16,7 +16,7 @@ const { literal, nonCapturingGroup, sequence, unescapedLiteral } = Regex;
 
 /* ASCII non-whitespace printable characters */
 const _PRINTABLE_CHARACTER = nonCapturingGroup(
-    unescapedLiteral('[\\x21-\\x7e]')
+    unescapedLiteral('[\\x21-\\x7e]'),
 );
 
 const PRINTABLE_SEQUENCE = _PRINTABLE_CHARACTER.onceOrMore();
@@ -37,11 +37,11 @@ const _COMMENT = {
         nonCapturingGroup(
             sequence(
                 _WHITECHAR.onceOrMore(),
-                nonCapturingGroup(PRINTABLE_SEQUENCE).exclude(literal('$)'))
-            )
+                nonCapturingGroup(PRINTABLE_SEQUENCE).exclude(literal('$)')),
+            ),
         ).zeroOrMore(),
         _WHITECHAR.onceOrMore(),
-        literal('$)')
+        literal('$)'),
     ).toRegex(),
     lineBreaks: true,
 };

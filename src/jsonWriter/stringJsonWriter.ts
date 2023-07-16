@@ -2,7 +2,7 @@ import { Json, JsonWriter } from './jsonWriter';
 import { createValidatingJsonWriter } from './validatingJsonWriter';
 
 export const createStringJsonWriter = (
-    writeFn: (s: string) => unknown
+    writeFn: (s: string) => unknown,
 ): JsonWriter => {
     return createValidatingJsonWriter(createRawStringJsonWriter(writeFn));
 };
@@ -10,7 +10,7 @@ export const createStringJsonWriter = (
 type JsonStackTypes = '}' | ']' | 'name' | ',';
 
 const createRawStringJsonWriter = (
-    writeFn: (s: string) => unknown
+    writeFn: (s: string) => unknown,
 ): JsonWriter => {
     const stack: JsonStackTypes[] = [];
     const stackTop = (): JsonStackTypes | undefined =>

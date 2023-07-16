@@ -1,8 +1,8 @@
-import { JsonComposite, JsonWriter } from "./jsonWriter";
+import { JsonComposite, JsonWriter } from './jsonWriter';
 
 export const createJsonWriter = (): Partial<JsonWriter> => {
     const stack: JsonComposite[] = [];
-//    const top = (): JsonComposite => stack[stack.length - 1];
+    //    const top = (): JsonComposite => stack[stack.length - 1];
 
     // name
     // value

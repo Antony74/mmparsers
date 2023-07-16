@@ -8,7 +8,7 @@ enum JsonType {
 }
 
 export const createValidatingJsonWriter = (
-    rawWriter: JsonWriter
+    rawWriter: JsonWriter,
 ): JsonWriter => {
     const stack: JsonType[] = [];
     const stackTop = (): JsonType | undefined =>
@@ -18,7 +18,7 @@ export const createValidatingJsonWriter = (
         name: (s: string): JsonWriter => {
             if (stackTop() !== JsonType.object) {
                 throw new Error(
-                    'validatingJsonWriter.name: Only an object can have named properties'
+                    'validatingJsonWriter.name: Only an object can have named properties',
                 );
             }
 
@@ -32,13 +32,13 @@ export const createValidatingJsonWriter = (
 
             if (top === JsonType.object) {
                 throw new Error(
-                    'validatingJsonWriter.value: Values inside an object must be named'
+                    'validatingJsonWriter.value: Values inside an object must be named',
                 );
             }
 
             if (top === JsonType.eof) {
                 throw new Error(
-                    'validatingJsonWriter.value: no additional values can be added beyond end of file'
+                    'validatingJsonWriter.value: no additional values can be added beyond end of file',
                 );
             }
 
@@ -59,13 +59,13 @@ export const createValidatingJsonWriter = (
 
             if (top === JsonType.object) {
                 throw new Error(
-                    'validatingJsonWriter.beginArray: Values inside an object must be named'
+                    'validatingJsonWriter.beginArray: Values inside an object must be named',
                 );
             }
 
             if (top === JsonType.eof) {
                 throw new Error(
-                    'validatingJsonWriter.value: no additional arrays can be added beyond end of file'
+                    'validatingJsonWriter.value: no additional arrays can be added beyond end of file',
                 );
             }
 
@@ -79,13 +79,13 @@ export const createValidatingJsonWriter = (
 
             if (top === JsonType.object) {
                 throw new Error(
-                    'validatingJsonWriter.beginObject: Values inside an object must be named'
+                    'validatingJsonWriter.beginObject: Values inside an object must be named',
                 );
             }
 
             if (top === JsonType.eof) {
                 throw new Error(
-                    'validatingJsonWriter.beginObject: no additional objects can be added beyond end of file'
+                    'validatingJsonWriter.beginObject: no additional objects can be added beyond end of file',
                 );
             }
 
@@ -98,7 +98,7 @@ export const createValidatingJsonWriter = (
             const top = stackTop();
             if (top !== JsonType.array && top !== JsonType.object) {
                 throw new Error(
-                    'validatingJsonWriter.close: Only arrays and objects can be closed'
+                    'validatingJsonWriter.close: Only arrays and objects can be closed',
                 );
             }
 

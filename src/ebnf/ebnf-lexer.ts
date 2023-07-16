@@ -1,12 +1,8 @@
 import moo from 'moo';
 import { not, Regex } from 'fluent-regex-fun';
-import {
-    nonCapturingGroup,
-    unescapedLiteral,
-} from 'fluent-regex-fun/dist/Regex';
 import { objectMap } from '../utils/objectMap';
 
-const { literal, sequence } = Regex;
+const { literal, nonCapturingGroup, or, sequence, unescapedLiteral } = Regex;
 
 const rules: { [key: string]: { match: RegExp; lineBreaks?: boolean } } = {
     // Name - (Char* ':' Char*)
@@ -21,7 +17,7 @@ const rules: { [key: string]: { match: RegExp; lineBreaks?: boolean } } = {
         match: sequence(
             literal('/*'),
             not(literal('*')).zeroOrMore(),
-            literal('*/')
+            literal('*/'),
         ).toRegex(),
     },
     // #x9 | #xA | #xD | #x20
@@ -38,10 +34,17 @@ const rules: { [key: string]: { match: RegExp; lineBreaks?: boolean } } = {
     '(': { match: literal('(').toRegex() },
     ')': { match: literal(')').toRegex() },
     StringLiteral: {
-        match: sequence(
-            literal(`'`),
-            not(literal(`'`)).zeroOrMore(),
-            literal(`'`)
+        match: or(
+            sequence(
+                literal(`'`),
+                not(literal(`'`)).zeroOrMore(),
+                literal(`'`),
+            ),
+            sequence(
+                literal(`"`),
+                not(literal(`"`)).zeroOrMore(),
+                literal(`"`),
+            ),
         ).toRegex(),
     },
 };

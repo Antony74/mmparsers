@@ -25,7 +25,7 @@ const stateValueToPath = (stateValue: string | object): string[] => {
 };
 
 export const createFsmParserValidator = (
-    nextTokenStream: TokenStream
+    nextTokenStream: TokenStream,
 ): TokenStream => {
     const actor = interpret(mmStateMachine);
     actor.onTransition((state, event: TokenEventObject) => {
@@ -39,8 +39,8 @@ export const createFsmParserValidator = (
         if (nextState !== path[path.length - 1]) {
             throw new Error(
                 `nextState ${JSON.stringify(
-                    nextState
-                )} has diverged from xstate ${JSON.stringify(path)}`
+                    nextState,
+                )} has diverged from xstate ${JSON.stringify(path)}`,
             );
         }
     });

@@ -57,7 +57,7 @@ const leafNodeFixedTextSchema = <Type extends string>(t: Type) => {
 
 const parentNodeSchema = <Type extends string, Items>(
     t: Type,
-    items: Items
+    items: Items,
 ) => {
     return {
         type: 'object',
@@ -72,7 +72,7 @@ const parentNodeSchema = <Type extends string, Items>(
 
 const parentNodeTrailingSchema = <Type extends string, Items>(
     t: Type,
-    items: Items
+    items: Items,
 ) => {
     const base = parentNodeSchema(t, items);
     return { ...base, properties: { ...base.properties, trailingWs: ws } };
@@ -126,10 +126,8 @@ export const statementNodeSchema: JSONSchemaType<StatementNode> =
 export const assertionNodeSchema: JSONSchemaType<AssertionNode> =
     parentNodeTrailingSchema('assertion', mathSymbolNodeSchema);
 
-export const proofNodeSchema: JSONSchemaType<UncompressedProofNode> = parentNodeSchema(
-    'uncompressed_proof',
-    labelNodeSchema
-);
+export const proofNodeSchema: JSONSchemaType<UncompressedProofNode> =
+    parentNodeSchema('uncompressed_proof', labelNodeSchema);
 
 export const floatingStmtNodeSchema: JSONSchemaType<FloatingStmtNode> = {
     type: 'object',

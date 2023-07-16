@@ -7,7 +7,7 @@ describe('stringJsonWriter', () => {
     it('produces json', async () => {
         const outputFilename = path.join(
             __dirname,
-            '../output/stringJsonWriter.json'
+            '../output/stringJsonWriter.json',
         );
 
         const writeStream = fs.createWriteStream(outputFilename);

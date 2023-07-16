@@ -16,7 +16,7 @@ export const createTokensToJson = (writer: JsonWriter): TokenStream => {
     const beginDoubleBlock = (
         outerName: string,
         tokenName: string,
-        innerName: string
+        innerName: string,
     ): void => {
         writer
             .beginObject()

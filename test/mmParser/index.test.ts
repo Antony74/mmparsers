@@ -9,7 +9,7 @@ import { reverseParse } from '../../src/utils/reverseParse';
 const mmFiles = [
     'https://raw.githubusercontent.com/metamath/set.mm/develop/demo0.mm',
     'https://raw.githubusercontent.com/david-a-wheeler/metamath-test/master/demo0-includer.mm',
-//    'https://raw.githubusercontent.com/metamath/set.mm/develop/set.mm',
+    //    'https://raw.githubusercontent.com/metamath/set.mm/develop/set.mm',
 ];
 
 let ajv: Ajv;
@@ -76,13 +76,13 @@ mmFiles.forEach(async (url) => {
             const jsonPath = path.join(
                 __dirname,
                 '../../examples',
-                `${filename}.json`
+                `${filename}.json`,
             );
 
             // Save the json file
             await fs.writeFile(
                 jsonPath,
-                prettier.format(JSON.stringify(database), { parser: 'json' })
+                prettier.format(JSON.stringify(database), { parser: 'json' }),
             );
         });
 

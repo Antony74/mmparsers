@@ -3,7 +3,7 @@ import { TokenEventObject } from './TokenEventObject';
 import { MachineConfig, MachineStates } from './mmStateMachine';
 
 export const createRecursiveFiniteStateMachine = (
-    stateMachine: MachineConfig
+    stateMachine: MachineConfig,
 ): TokenStream => {
     const stack: MachineStates[] = [stateMachine.states];
     const top = (): MachineStates => {
@@ -22,7 +22,7 @@ export const createRecursiveFiniteStateMachine = (
                 return state;
             } else {
                 throw new Error(
-                    `In state ${state}, unexpected token ${token.type}, line ${token.line} col ${token.col}`
+                    `In state ${state}, unexpected token ${token.type}, line ${token.line} col ${token.col}`,
                 );
             }
         },

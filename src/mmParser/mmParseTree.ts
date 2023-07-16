@@ -63,7 +63,7 @@ export type CompressedProofNode = {
         OpenBracketNode,
         LabelsNode,
         CloseBracketNode,
-        CompressedProofBlocksNode
+        CompressedProofBlocksNode,
     ];
     ws?: string[];
 };
@@ -75,10 +75,10 @@ export type LabelsNode = {
 };
 
 export type CompressedProofBlocksNode = {
-    type: 'compressed_proof_blocks',
-    children: CompressedProofBlockNode[]
+    type: 'compressed_proof_blocks';
+    children: CompressedProofBlockNode[];
     ws?: string[];
-}
+};
 
 export type ChildStatement =
     | BlockNode
@@ -140,7 +140,7 @@ export type ProvableStmtNode = {
         AssertionNode,
         $eqNode,
         UncompressedProofNode | CompressedProofNode,
-        $dotNode
+        $dotNode,
     ];
     ws?: string[];
 };

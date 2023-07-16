@@ -7,10 +7,10 @@
 type WithReportFn = { report: () => string };
 
 export const performanceInfoWrapFn = <
-    FN extends (...args: Parameters<FN>) => ReturnType<FN>
+    FN extends (...args: Parameters<FN>) => ReturnType<FN>,
 >(
     name: string,
-    fn: FN
+    fn: FN,
 ): ((...args: Parameters<FN>) => ReturnType<FN>) & WithReportFn => {
     let callCount = 0;
     let callTime = 0;
@@ -45,14 +45,14 @@ interface Accumlator<T> {
 }
 
 export const performanceInfoWrapObject = <T extends object>(
-    obj: T
-): T & WithReportFn => {    
+    obj: T,
+): T & WithReportFn => {
     const accumlated: Accumlator<T> = Object.keys(obj).reduce(
         (acc: Accumlator<T>, name): Accumlator<T> => {
             if (typeof (obj as any)[name] === 'function') {
                 const wrappedFn = performanceInfoWrapFn(
                     name,
-                    (obj as any)[name]
+                    (obj as any)[name],
                 );
                 return {
                     reportFunctions: [...acc.reportFunctions, wrappedFn.report],
@@ -65,7 +65,7 @@ export const performanceInfoWrapObject = <T extends object>(
                 };
             }
         },
-        { reportFunctions: [], obj: {} as Partial<T> }
+        { reportFunctions: [], obj: {} as Partial<T> },
     );
 
     return Object.assign(accumlated.obj as T, {
