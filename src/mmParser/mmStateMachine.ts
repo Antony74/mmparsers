@@ -1,20 +1,4 @@
-import { createMachine } from 'xstate';
-import { TokenEventObject } from './TokenEventObject';
-
-export type MachineState = {
-    on: { [key: string]: string };
-    initial?: string;
-    states?: MachineStates;
-};
-
-export type MachineStates = { [key: string]: MachineState };
-
-export type MachineConfig = {
-    id: string;
-    initial: string;
-    predictableActionArguments: boolean;
-    states: MachineStates;
-};
+import { MachineConfig } from "../validating-fsm";
 
 export const mmMachineConfig: MachineConfig = {
     id: 'mmParser',
@@ -39,4 +23,3 @@ export const mmMachineConfig: MachineConfig = {
     },
 };
 
-export default createMachine<unknown, TokenEventObject>(mmMachineConfig);

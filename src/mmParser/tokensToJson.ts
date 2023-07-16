@@ -1,6 +1,5 @@
 import { JsonWriter } from '../jsonWriter/jsonWriter';
-import { TokenStream } from './tokenStream';
-import { TokenEventObject } from './TokenEventObject';
+import { TokenEventObject, TokenStream } from '../validating-fsm';
 
 export const createTokensToJson = (writer: JsonWriter): TokenStream => {
     let ws: string[] = [];
