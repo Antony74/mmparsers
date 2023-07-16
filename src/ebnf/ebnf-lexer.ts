@@ -8,7 +8,7 @@ const rules: { [key: string]: { match: RegExp; lineBreaks?: boolean } } = {
     // Name - (Char* ':' Char*)
     NCName: {
         match: nonCapturingGroup(unescapedLiteral('[\\x21-\\xD7FF]'))
-            .exclude(unescapedLiteral(`[\\/\\*\\:\\=\\']`))
+            .exclude(unescapedLiteral(`[\\/\\*\\:\\=\\'\\"]`))
             .onceOrMore()
             .toRegex(),
     },
@@ -33,20 +33,7 @@ const rules: { [key: string]: { match: RegExp; lineBreaks?: boolean } } = {
     '+': { match: literal('+').toRegex() },
     '(': { match: literal('(').toRegex() },
     ')': { match: literal(')').toRegex() },
-    StringLiteral: {
-        match: or(
-            sequence(
-                literal(`'`),
-                not(literal(`'`)).zeroOrMore(),
-                literal(`'`),
-            ),
-            sequence(
-                literal(`"`),
-                not(literal(`"`)).zeroOrMore(),
-                literal(`"`),
-            ),
-        ).toRegex(),
-    },
+    StringLiteral: { match: unescapedLiteral(`'[^']*'|"[^"]*"`).toRegex() },
 };
 
 const stringRules = objectMap(rules, (rule): moo.Rule => {
