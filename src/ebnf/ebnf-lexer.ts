@@ -12,7 +12,7 @@ const rules: { [key: string]: { match: RegExp; lineBreaks?: boolean } } = {
     // Name - (Char* ':' Char*)
     NCName: {
         match: nonCapturingGroup(unescapedLiteral('[\\x21-\\xD7FF]'))
-            .exclude(unescapedLiteral('[\\/\\*\\:\\=]'))
+            .exclude(unescapedLiteral(`[\\/\\*\\:\\=\\']`))
             .onceOrMore()
             .toRegex(),
     },
@@ -30,6 +30,19 @@ const rules: { [key: string]: { match: RegExp; lineBreaks?: boolean } } = {
             .onceOrMore()
             .toRegex(),
         lineBreaks: true,
+    },
+    '::=': { match: literal('::=').toRegex() },
+    '*': { match: literal('*').toRegex() },
+    '?': { match: literal('?').toRegex() },
+    '+': { match: literal('+').toRegex() },
+    '(': { match: literal('(').toRegex() },
+    ')': { match: literal(')').toRegex() },
+    StringLiteral: {
+        match: sequence(
+            literal(`'`),
+            not(literal(`'`)).zeroOrMore(),
+            literal(`'`)
+        ).toRegex(),
     },
 };
 
