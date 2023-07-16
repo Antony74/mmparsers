@@ -1,8 +1,5 @@
-import { interpret } from 'xstate';
-
-import { TokenStream } from './tokenStream';
-import mmStateMachine from './mmStateMachine';
-import { TokenEventObject } from './TokenEventObject';
+import { createMachine, interpret } from 'xstate';
+import { TokenStream, TokenEventObject, MachineConfig } from '.';
 
 // This only exists to check (via unit testing) that our state machine
 // implmentation does not diverge from xstate.  Thus we can trust
@@ -24,10 +21,11 @@ const stateValueToPath = (stateValue: string | object): string[] => {
     }
 };
 
-export const createFsmParserValidator = (
+export const createParserValidator = (
     nextTokenStream: TokenStream,
+    machineConfig: MachineConfig,
 ): TokenStream => {
-    const actor = interpret(mmStateMachine);
+    const actor = interpret(createMachine<unknown, TokenEventObject>(machineConfig));
     actor.onTransition((state, event: TokenEventObject) => {
         if (state.event.type === 'xstate.init') {
             return;

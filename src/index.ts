@@ -1,8 +1,10 @@
 import fsp from 'fs/promises';
 import path from 'path';
-import { createMmParser } from './mmParser';
+import { createParser } from './mmParser';
 import { createStringJsonWriter } from './jsonWriter/stringJsonWriter';
 import { createFlushableWriteStream } from './utils/flushableWriteStream';
+import { ebnfMachineConfig } from './ebnf-to-json/ebnf-bootstrap-machine-config';
+import { ebnfLexer } from './ebnf-to-json/ebnf-bootstrap-lexer';
 
 const main = async (): Promise<void> => {
     const filepath = path.join(__dirname, '..', 'examples', 'demo0.mm');
@@ -14,7 +16,7 @@ const main = async (): Promise<void> => {
         writeStream.write(s);
     });
 
-    const parser = createMmParser(writer);
+    const parser = createParser(writer, ebnfLexer, ebnfMachineConfig);
 
     const parse = async (text: string): Promise<void> => {
         try {

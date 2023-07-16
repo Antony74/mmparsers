@@ -45,4 +45,4 @@ const stringRules = objectMap(rules, (rule): moo.Rule => {
 
 console.log(JSON.stringify(stringRules, null, 4));
 
-export const lexer = moo.compile(rules);
+export const ebnfLexer = moo.compile(rules);

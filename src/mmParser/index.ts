@@ -1,19 +1,18 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import { lexer } from './lexer';
 import { JsonWriter } from '../jsonWriter/jsonWriter';
-import { createFsmParserValidator } from './fsmParserValidator';
-import { createRecursiveFiniteStateMachine } from './recursiveFiniteStateMachine';
-import { mmMachineConfig } from './mmStateMachine';
+import { createParserValidator } from '../validating-fsm/parserValidator';
+import { MachineConfig, createValidatingFSM } from '../validating-fsm'
 
-export type MmParser = {
+export type Parser = {
     feed: (chunk: string) => void;
     finish(): void;
 };
 
-export const createMmParser = (writer: JsonWriter): MmParser => {
+export const createParser = (writer: JsonWriter, lexer: moo.Lexer, machineConfig: MachineConfig): Parser => {
     writer;
-    const tokenStream = createFsmParserValidator(
-        createRecursiveFiniteStateMachine(mmMachineConfig),
+    const tokenStream = createParserValidator(
+        createValidatingFSM(machineConfig),
+        machineConfig,
     );
 
     const hook = {
