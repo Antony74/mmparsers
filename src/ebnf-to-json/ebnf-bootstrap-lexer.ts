@@ -28,7 +28,7 @@ const rules: { [key: string]: { match: RegExp; lineBreaks?: boolean } } = {
         lineBreaks: true,
     },
     '::=': { match: literal('::=').toRegex() },
-    '*': { match: literal('*').toRegex() },
+    '**': { match: literal('*').toRegex() },
     '?': { match: literal('?').toRegex() },
     '+': { match: literal('+').toRegex() },
     '(': { match: literal('(').toRegex() },

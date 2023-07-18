@@ -46,7 +46,7 @@ export const createParserValidator = (
 
     const hook: TokenStream = {
         onToken: (token: TokenEventObject): string => {
-            console.log(`onToken ${token.type}`);
+            console.log(`onToken ${token.type} ${token.text}`);
             actor.send(token);
             return '';
         },

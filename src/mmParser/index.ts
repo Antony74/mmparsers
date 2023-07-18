@@ -11,7 +11,7 @@ export type Parser = {
 // Eventually the tokens will be recorded as whitespace/comments rather than ignored,
 // and which tokens they are can be determined automatically as they are orphaned by the ebnf,
 // but for now:
-const ignoreTokens: Record<string, boolean> = { S: true };
+const ignoreTokens: Record<string, boolean> = { S: true, Comment: true };
 
 export const createParser = (
     writer: JsonWriter,

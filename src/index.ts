@@ -7,7 +7,7 @@ import { ebnfMachineConfig } from './ebnf-to-json/ebnf-bootstrap-machine-config'
 import { ebnfLexer } from './ebnf-to-json/ebnf-bootstrap-lexer';
 
 const main = async (): Promise<void> => {
-    const filepath = path.join(__dirname, '..', 'examples', 'demo0.mm');
+    const filepath = path.join(__dirname, 'ebnf-to-json', 'ebnf.ebnf');
     const parsedFilePath = path.parse(filepath);
     const filename = `${parsedFilePath.name}${parsedFilePath.ext}`;
     const text = await fsp.readFile(filepath, { encoding: 'utf-8' });

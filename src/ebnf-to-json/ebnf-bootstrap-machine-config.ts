@@ -7,21 +7,25 @@ export const ebnfMachineConfig: MachineConfig = {
     states: {
         Grammar: {
             on: {
-                NCName: 'NCName',
+                NCName: 'Production',
             },
         },
-        NCName: {
+        Production: {
             on: {
                 '::=': 'Item',
             },
         },
         Item: {
             initial: '::=',
-            on: {},
+            on: { NCName: 'Production' },
             states: {
                 '::=': { on: { NCName: 'Primary' } },
                 Primary: {
-                    on: { '?': 'Primary', '*': 'Primary', '+': 'Primary' },
+                    on: {
+                        '?': 'Primary',
+                        '**': 'Primary',
+                        '+': 'Primary',
+                    },
                 },
             },
         },
