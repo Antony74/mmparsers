@@ -17,14 +17,43 @@ export const ebnfMachineConfig: MachineConfig = {
         },
         Item: {
             initial: '::=',
-            on: { NCName: 'Production' },
+            on: { '::=': 'Item' },
             states: {
-                '::=': { on: { NCName: 'Primary' } },
-                Primary: {
+                '::=': {
                     on: {
-                        '?': 'Primary',
-                        '**': 'Primary',
-                        '+': 'Primary',
+                        NCName: 'NCName',
+                        StringLiteral: 'StringLiteral',
+                        CharClass: 'CharClass',
+                    },
+                },
+                NCName: {
+                    on: {
+                        '?': 'NCName',
+                        '**': 'NCName',
+                        '+': 'NCName',
+                        NCName: 'NCName',
+                        StringLiteral: 'StringLiteral',
+                        CharClass: 'CharClass',
+                    },
+                },
+                StringLiteral: {
+                    on: {
+                        '?': 'StringLiteral',
+                        '**': 'StringLiteral',
+                        '+': 'StringLiteral',
+                        NCName: 'NCName',
+                        StringLiteral: 'StringLiteral',
+                        CharClass: 'CharClass',
+                    },
+                },
+                CharClass: {
+                    on: {
+                        '?': 'CharClass',
+                        '**': 'CharClass',
+                        '+': 'CharClass',
+                        NCName: 'NCName',
+                        StringLiteral: 'StringLiteral',
+                        CharClass: 'CharClass',
                     },
                 },
             },
