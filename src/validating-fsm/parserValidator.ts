@@ -1,5 +1,5 @@
 import { createMachine, interpret } from 'xstate';
-import { TokenStream, TokenEventObject, MachineConfig, StackItem } from './validatingFsm';
+import { TokenStream, TokenEventObject, MachineConfig, StateChange } from './validatingFsm';
 
 // This only exists to check (via unit testing) that our state machine
 // implmentation does not diverge from xstate.  Thus we can trust
@@ -47,7 +47,7 @@ export const createParserValidator = (
     actor.start();
 
     const hook: TokenStream = {
-        onToken: (token: TokenEventObject): readonly StackItem[] => {
+        onToken: (token: TokenEventObject): StateChange[] => {
             console.log(`onToken ${token.type} ${token.text}`);
             actor.send(token);
             return [];

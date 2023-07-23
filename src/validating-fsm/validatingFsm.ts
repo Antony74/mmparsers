@@ -6,7 +6,7 @@ export type TokenEventObject = {
 };
 
 export interface TokenStream {
-    onToken(token: TokenEventObject): readonly StackItem[];
+    onToken(token: TokenEventObject): StateChange[];
 }
 
 export type MachineState = {
@@ -24,7 +24,15 @@ export type MachineConfig = {
     states: MachineStates;
 };
 
-export type StackItem = { states: MachineStates; state: string };
+type StackItem = { states: MachineStates; state: string };
+
+enum StateChangeDirection {
+    up = 'up',
+    down = 'down',
+    across = 'across',
+}
+
+export type StateChange = { direction: StateChangeDirection; state: string };
 
 export const createValidatingFSM = (
     stateMachine: MachineConfig,
@@ -38,8 +46,9 @@ export const createValidatingFSM = (
     };
 
     const hook: TokenStream = {
-        onToken: (token: TokenEventObject): readonly StackItem[] => {
+        onToken: (token: TokenEventObject): StateChange[] => {
             const originalState = top().state;
+            const stateChanges: StateChange[] = [];
 
             while (stack.length) {
                 const stackItem = top();
@@ -50,14 +59,28 @@ export const createValidatingFSM = (
                     stackItem.state = transition;
                     const newNode = stackItem.states[stackItem.state];
                     if (newNode.states) {
+                        const state = newNode.initial!;
                         stack.push({
                             states: newNode.states,
-                            state: newNode.initial!,
+                            state,
+                        });
+                        stateChanges.push({
+                            direction: StateChangeDirection.down,
+                            state,
+                        });
+                    } else {
+                        stateChanges.push({
+                            direction: StateChangeDirection.across,
+                            state: transition,
                         });
                     }
-                    return stack;
+                    return stateChanges;
                 }
                 stack.pop();
+                stateChanges.push({
+                    direction: StateChangeDirection.up,
+                    state: '',
+                });
             }
 
             const msg = [
