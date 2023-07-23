@@ -1,7 +1,11 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { JsonWriter } from '../jsonWriter/jsonWriter';
 import { createParserValidator } from '../validating-fsm/parserValidator';
-import { MachineConfig, createValidatingFSM } from '../validating-fsm';
+
+import {
+    createValidatingFSM,
+    MachineConfig,
+} from '../validating-fsm/validatingFsm';
 
 export type Parser = {
     feed: (chunk: string) => void;

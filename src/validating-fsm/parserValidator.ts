@@ -1,5 +1,5 @@
 import { createMachine, interpret } from 'xstate';
-import { TokenStream, TokenEventObject, MachineConfig, StackItem } from '.';
+import { TokenStream, TokenEventObject, MachineConfig, StackItem } from './validatingFsm';
 
 // This only exists to check (via unit testing) that our state machine
 // implmentation does not diverge from xstate.  Thus we can trust
