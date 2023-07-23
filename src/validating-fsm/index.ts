@@ -6,7 +6,7 @@ export type TokenEventObject = {
 };
 
 export interface TokenStream {
-    onToken(token: TokenEventObject): string;
+    onToken(token: TokenEventObject): readonly StackItem[];
 }
 
 export type MachineState = {
@@ -24,7 +24,7 @@ export type MachineConfig = {
     states: MachineStates;
 };
 
-type StackItem = { states: MachineStates; state: string };
+export type StackItem = { states: MachineStates; state: string };
 
 export const createValidatingFSM = (
     stateMachine: MachineConfig,
@@ -37,10 +37,10 @@ export const createValidatingFSM = (
         return stack[stack.length - 1];
     };
 
-    const hook = {
-        onToken: (token: TokenEventObject): string => {
+    const hook: TokenStream = {
+        onToken: (token: TokenEventObject): readonly StackItem[] => {
             const originalState = top().state;
-            
+
             while (stack.length) {
                 const stackItem = top();
                 const node = stackItem.states[stackItem.state];
@@ -55,7 +55,7 @@ export const createValidatingFSM = (
                             state: newNode.initial!,
                         });
                     }
-                    return top().state;
+                    return stack;
                 }
                 stack.pop();
             }

@@ -1,0 +1,14 @@
+{
+    "type": "Grammar",
+    "children": [
+        {
+            "type": "Production",
+            "children": [
+                { "type": "NCName", "text": "Grammar" },
+                { "type": ":==", "text": ":==" },
+                { "type": "NCName", "text": "Production" },
+                { "type": "**", "text": "*" }
+            ]
+        }
+    ]
+}

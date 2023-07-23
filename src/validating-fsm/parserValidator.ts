@@ -1,5 +1,5 @@
 import { createMachine, interpret } from 'xstate';
-import { TokenStream, TokenEventObject, MachineConfig } from '.';
+import { TokenStream, TokenEventObject, MachineConfig, StackItem } from '.';
 
 // This only exists to check (via unit testing) that our state machine
 // implmentation does not diverge from xstate.  Thus we can trust
@@ -25,7 +25,9 @@ export const createParserValidator = (
     nextTokenStream: TokenStream,
     machineConfig: MachineConfig,
 ): TokenStream => {
-    const actor = interpret(createMachine<unknown, TokenEventObject>(machineConfig));
+    const actor = interpret(
+        createMachine<unknown, TokenEventObject>(machineConfig),
+    );
     actor.onTransition((state, event: TokenEventObject) => {
         if (state.event.type === 'xstate.init') {
             return;
@@ -34,7 +36,7 @@ export const createParserValidator = (
         const nextState = nextTokenStream.onToken(event);
         const path = stateValueToPath(state.value);
 
-        if (nextState !== path[path.length - 1]) {
+        if (nextState[nextState.length - 1].state !== path[path.length - 1]) {
             throw new Error(
                 `nextState ${JSON.stringify(
                     nextState,
@@ -45,10 +47,10 @@ export const createParserValidator = (
     actor.start();
 
     const hook: TokenStream = {
-        onToken: (token: TokenEventObject): string => {
+        onToken: (token: TokenEventObject): readonly StackItem[] => {
             console.log(`onToken ${token.type} ${token.text}`);
             actor.send(token);
-            return '';
+            return [];
         },
     };
 
