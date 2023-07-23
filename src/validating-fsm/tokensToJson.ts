@@ -1,7 +1,12 @@
 import { JsonWriter } from '../jsonWriter/jsonWriter';
-import { TokenEventObject, TokenStream } from './validatingFsm';
+import { TokenEventObject, TokenStateStream } from './validatingFsm';
 
-export const createTokensToJson = (jsonWriter: JsonWriter): TokenStream => {
-    const hook: TokenStream = {onToken: (token: TokenEventObject) => {return []}};
+export const createTokensToJson = (writer: JsonWriter): TokenStateStream => {
+    writer.value({ hello: 'world' });
+    const hook: TokenStateStream = {
+        onToken: (token: TokenEventObject) => {
+            return [];
+        },
+    };
     return hook;
 };

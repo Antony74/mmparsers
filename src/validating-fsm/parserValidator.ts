@@ -1,5 +1,10 @@
 import { createMachine, interpret } from 'xstate';
-import { TokenStream, TokenEventObject, MachineConfig, StateChange } from './validatingFsm';
+import {
+    TokenEventObject,
+    MachineConfig,
+    StateChange,
+    TokenStateStream,
+} from './validatingFsm';
 
 // This only exists to check (via unit testing) that our state machine
 // implmentation does not diverge from xstate.  Thus we can trust
@@ -22,21 +27,22 @@ const stateValueToPath = (stateValue: string | object): string[] => {
 };
 
 export const createParserValidator = (
-    nextTokenStream: TokenStream,
     machineConfig: MachineConfig,
-): TokenStream => {
+): TokenStateStream => {
+    let stateChanges: StateChange[] = [];
+
     const actor = interpret(
         createMachine<unknown, TokenEventObject>(machineConfig),
     );
-    actor.onTransition((state, event: TokenEventObject) => {
+    actor.onTransition((state) => {
         if (state.event.type === 'xstate.init') {
             return;
         }
 
-        const nextState = nextTokenStream.onToken(event);
         const path = stateValueToPath(state.value);
+        const nextState = stateChanges[stateChanges.length - 1].state;
 
-        if (nextState[nextState.length - 1].state !== path[path.length - 1]) {
+        if (nextState !== path[path.length - 1]) {
             throw new Error(
                 `nextState ${JSON.stringify(
                     nextState,
@@ -46,11 +52,14 @@ export const createParserValidator = (
     });
     actor.start();
 
-    const hook: TokenStream = {
-        onToken: (token: TokenEventObject): StateChange[] => {
+    const hook: TokenStateStream = {
+        onToken: (
+            token: TokenEventObject,
+            stateChangesParam: StateChange[],
+        ): void => {
+            stateChanges = stateChangesParam;
             console.log(`onToken ${token.type} ${token.text}`);
             actor.send(token);
-            return [];
         },
     };
 

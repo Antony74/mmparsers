@@ -6,7 +6,7 @@ export type TokenEventObject = {
 };
 
 export interface TokenStream {
-    onToken(token: TokenEventObject): StateChange[];
+    onToken(token: TokenEventObject): void;
 }
 
 export type MachineState = {
@@ -34,8 +34,13 @@ enum StateChangeDirection {
 
 export type StateChange = { direction: StateChangeDirection; state: string };
 
+export interface TokenStateStream {
+    onToken(token: TokenEventObject, stateChanges: StateChange[]): void;
+}
+
 export const createValidatingFSM = (
     stateMachine: MachineConfig,
+    tokenStateStream: TokenStateStream,
 ): TokenStream => {
     const stack: StackItem[] = [
         { states: stateMachine.states, state: stateMachine.initial! },
@@ -46,7 +51,7 @@ export const createValidatingFSM = (
     };
 
     const hook: TokenStream = {
-        onToken: (token: TokenEventObject): StateChange[] => {
+        onToken: (token: TokenEventObject): void => {
             const originalState = top().state;
             const stateChanges: StateChange[] = [];
 
@@ -74,7 +79,10 @@ export const createValidatingFSM = (
                             state: transition,
                         });
                     }
-                    return stateChanges;
+
+                    tokenStateStream.onToken(token, stateChanges);
+
+                    return;
                 }
                 stack.pop();
                 stateChanges.push({
