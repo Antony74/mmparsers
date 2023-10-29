@@ -26,7 +26,7 @@ export type MachineConfig = {
 
 type StackItem = { states: MachineStates; state: string };
 
-enum StateChangeDirection {
+export enum StateChangeDirection {
     up = 'up',
     down = 'down',
     across = 'across',
