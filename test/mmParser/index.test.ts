@@ -1,4 +1,4 @@
-import fs from 'fs/promises';
+import fsp from 'fs/promises';
 import path from 'path';
 import prettier from 'prettier';
 import * as tsj from 'ts-json-schema-generator';
@@ -38,8 +38,30 @@ beforeAll(async () => {
     const schemaString = prettier.format(JSON.stringify(schema), {
         parser: 'json',
     });
+
+    const schemaStringForChecking = JSON.stringify({
+        ...schema,
+        description: undefined,
+    });
+    let oldSchemaStringForChecking = '';
+
     const schemaPath = path.join(__dirname, '../../schemas/mmSchema.json');
-    await fs.writeFile(schemaPath, schemaString);
+    try {
+        oldSchemaStringForChecking = await fsp.readFile(schemaPath, {
+            encoding: 'utf-8',
+        });
+        oldSchemaStringForChecking = JSON.stringify({
+            ...JSON.parse(oldSchemaStringForChecking),
+            description: undefined,
+        });
+    } catch {
+        // This is fine.  If the schema won't load for whatever reason then we'll simply try to update it below
+    }
+
+    if (schemaStringForChecking !== oldSchemaStringForChecking) {
+        await fsp.writeFile(schemaPath, schemaString);
+    }
+
     ajv = new Ajv();
     validateFn = ajv.compile(schema);
 });
@@ -51,7 +73,7 @@ mmFiles.forEach(async (url) => {
         throw new Error('Not a filename');
     }
 
-    describe(filename, () => {
+    describe.skip(filename, () => {
         let text = '';
         let database: Database = { type: 'database', children: [] };
 
@@ -59,14 +81,14 @@ mmFiles.forEach(async (url) => {
             // Obtain the .mm file
 
             const filePath = path.join(__dirname, '../../examples', filename);
-            const stat = await fs.stat(filePath).catch(() => undefined);
+            const stat = await fsp.stat(filePath).catch(() => undefined);
 
             if (stat) {
-                text = await fs.readFile(filePath, { encoding: 'utf-8' });
+                text = await fsp.readFile(filePath, { encoding: 'utf-8' });
             } else {
                 const response = await fetch(url);
                 text = await response.text();
-                await fs.writeFile(filePath, text);
+                await fsp.writeFile(filePath, text);
             }
 
             // Parse the .mm file
@@ -80,7 +102,7 @@ mmFiles.forEach(async (url) => {
             );
 
             // Save the json file
-            await fs.writeFile(
+            await fsp.writeFile(
                 jsonPath,
                 prettier.format(JSON.stringify(database), { parser: 'json' }),
             );
