@@ -13,6 +13,7 @@ const main = async (): Promise<void> => {
     const text = await fsp.readFile(filepath, { encoding: 'utf-8' });
     const writeStream = createFlushableWriteStream(`examples/${filename}.json`);
     const writer = createStringJsonWriter((s) => {
+        console.log(`Writing ${s}`);
         writeStream.write(s);
     });
 

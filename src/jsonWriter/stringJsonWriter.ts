@@ -17,20 +17,25 @@ const createRawStringJsonWriter = (
         stack.length ? stack[stack.length - 1] : undefined;
     const writeCommaIfNeeded = (): boolean => {
         if (stackTop() === ',') {
-            writeFn(',');
+            writeFn(stack.pop()!);
             return true;
         }
         return false;
     };
 
+    const stackString = (): string =>
+        `[${stack.map((v) => `'${v}'`).join(' ')}]`;
+
     const jsonWriter: JsonWriter = {
         name: (s: string): JsonWriter => {
+            console.log(`name '${s}' called with stack ${stackString()}`);
             writeCommaIfNeeded();
             writeFn(`"${s}":`);
             stack.push('name');
             return jsonWriter;
         },
         value: (j: Json): JsonWriter => {
+            console.log(`value '${j}' called with stack ${stackString()}`);
             writeCommaIfNeeded();
             writeFn(JSON.stringify(j));
             if (stackTop() === 'name') {
@@ -42,28 +47,34 @@ const createRawStringJsonWriter = (
             return jsonWriter;
         },
         beginArray: (): JsonWriter => {
+            console.log(`beginArray called with stack ${stackString()}`);
             writeCommaIfNeeded();
             writeFn('[');
             stack.push(']');
             return jsonWriter;
         },
         beginObject: (): JsonWriter => {
+            console.log(`beginObject called with stack ${stackString()}`);
             writeCommaIfNeeded();
             writeFn('{');
             stack.push('}');
             return jsonWriter;
         },
         close: (): JsonWriter => {
+            console.log(`close called with stack ${stackString()}`);
             if (stackTop() === ',') {
                 stack.pop();
             }
             if (stackTop() === 'name') {
                 stack.pop();
             }
-            if (stackTop() === ',') {
-                stack.pop();
-            }
             writeFn(stack.pop()!);
+            if (stackTop() !== ',') {
+                stack.push(',');
+            }
+            return jsonWriter;
+        },
+        finish: (): JsonWriter => {
             return jsonWriter;
         },
     };

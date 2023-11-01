@@ -53,7 +53,9 @@ export const createParser = (
                 }
             }
         },
-        finish: (): void => {},
+        finish: (): void => {
+            writer.finish();
+        },
     };
 
     return hook;

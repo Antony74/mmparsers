@@ -39,10 +39,10 @@ const rules: { [key: string]: { match: RegExp; lineBreaks?: boolean } } = {
     StringLiteral: { match: unescapedLiteral(`'[^']*'|"[^"]*"`).toRegex() },
 };
 
-const stringRules = objectMap(rules, (rule): moo.Rule => {
+export const stringRules = objectMap(rules, (rule): moo.Rule => {
     return { ...rule, match: rule.match.source };
 });
 
-console.log(JSON.stringify(stringRules, null, 4));
+//console.log(JSON.stringify(stringRules, null, 4));
 
 export const ebnfLexer = moo.compile(rules);

@@ -115,6 +115,14 @@ export const createValidatingJsonWriter = (
             rawWriter.close();
             return writer;
         },
+
+        finish: (): JsonWriter => {
+            if (stack.length) {
+                throw new Error(`Incomplete JSON with stack [${stack}]`);
+            }
+
+            return writer;
+        }
     };
     return writer;
 };

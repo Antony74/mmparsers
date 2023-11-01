@@ -58,7 +58,7 @@ export const createParserValidator = (
             stateChangesParam: StateChange[],
         ): void => {
             stateChanges = stateChangesParam;
-            console.log(`onToken ${token.type} ${token.text}`);
+ //           console.log(`onToken ${token.type} ${token.text}`);
             actor.send(token);
         },
     };

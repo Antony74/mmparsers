@@ -10,4 +10,5 @@ export interface JsonWriter {
     beginObject: () => JsonWriter;
     beginArray: () => JsonWriter;
     close: () => JsonWriter;
+    finish: () => JsonWriter;
 }
