@@ -16,7 +16,6 @@ describe('stringJsonWriter', () => {
         jsonWriter
             .beginObject()
             .name('Sherlock')
-            .beginArray()
             .beginObject()
             .name('name')
             .value('Sherlock Holmes')
@@ -25,6 +24,15 @@ describe('stringJsonWriter', () => {
             .value('221B Baker Street')
             .value('London')
             .close()
+            .close()
+            .name('Paddington')
+            .beginObject()
+            .name('name')
+            .value('Paddington Bear')
+            .name('address')
+            .beginArray()
+            .value('32 Windsor Gardens')
+            .value('London')
             .close()
             .close()
             .close();
@@ -36,12 +44,14 @@ describe('stringJsonWriter', () => {
         });
 
         expect(JSON.parse(result)).toEqual({
-            Sherlock: [
-                {
-                    name: 'Sherlock Holmes',
-                    address: ['221B Baker Street', 'London'],
-                },
-            ],
+            Sherlock: {
+                name: 'Sherlock Holmes',
+                address: ['221B Baker Street', 'London'],
+            },
+            Paddington: {
+                name: 'Paddington Bear',
+                address: ['32 Windsor Gardens', 'London'],
+            },
         });
     });
 });

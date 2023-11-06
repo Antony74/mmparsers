@@ -7,7 +7,7 @@ export const createStringJsonWriter = (
     return createValidatingJsonWriter(createRawStringJsonWriter(writeFn));
 };
 
-type JsonStackTypes = '}' | ']' | 'name' | ',';
+type JsonStackTypes = '}' | ']' | ',';
 
 const createRawStringJsonWriter = (
     writeFn: (s: string) => unknown,
@@ -31,16 +31,12 @@ const createRawStringJsonWriter = (
             console.log(`name '${s}' called with stack ${stackString()}`);
             writeCommaIfNeeded();
             writeFn(`"${s}":`);
-            stack.push('name');
             return jsonWriter;
         },
         value: (j: Json): JsonWriter => {
             console.log(`value '${j}' called with stack ${stackString()}`);
             writeCommaIfNeeded();
             writeFn(JSON.stringify(j));
-            if (stackTop() === 'name') {
-                stack.pop();
-            }
             if (stackTop() !== ',') {
                 stack.push(',');
             }
@@ -63,9 +59,6 @@ const createRawStringJsonWriter = (
         close: (): JsonWriter => {
             console.log(`close called with stack ${stackString()}`);
             if (stackTop() === ',') {
-                stack.pop();
-            }
-            if (stackTop() === 'name') {
                 stack.pop();
             }
             writeFn(stack.pop()!);
