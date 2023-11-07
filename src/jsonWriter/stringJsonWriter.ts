@@ -4,12 +4,12 @@ import { createValidatingJsonWriter } from './validatingJsonWriter';
 export const createStringJsonWriter = (
     writeFn: (s: string) => unknown,
 ): JsonWriter => {
-    return createValidatingJsonWriter(createRawStringJsonWriter(writeFn));
+    return createValidatingJsonWriter(createUnvalidatedStringJsonWriter(writeFn));
 };
 
 type JsonStackTypes = '}' | ']' | ',';
 
-const createRawStringJsonWriter = (
+export const createUnvalidatedStringJsonWriter = (
     writeFn: (s: string) => unknown,
 ): JsonWriter => {
     const stack: JsonStackTypes[] = [];

@@ -118,13 +118,7 @@ export const createValidatingJsonWriter = (
 
         finish: (): JsonWriter => {
             if (stack.length) {
-                throw new Error(
-                    `Incomplete JSON with stack ${JSON.stringify(
-                        stack,
-                        null,
-                        2,
-                    )}`,
-                );
+                throw new Error(`Unexpected end of JSON input`);
             }
 
             return writer;
