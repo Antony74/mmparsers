@@ -30,6 +30,7 @@ export const createParser = (
             parserValidator.onToken(token, stateChanges);
             tokensToJson.onToken(token, stateChanges);
         },
+        finish: () => {},
     });
 
     const hook = {
@@ -54,6 +55,8 @@ export const createParser = (
             }
         },
         finish: (): void => {
+            tokensToJson.finish();
+            parserValidator.finish();
             writer.finish();
         },
     };

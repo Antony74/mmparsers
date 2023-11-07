@@ -22,9 +22,9 @@ export const createTokensToJson = (writer: JsonWriter): TokenStateStream => {
             token: TokenEventObject,
             stateChanges: StateChange[],
         ): void => {
-//            console.log(stateChanges);
+            //            console.log(stateChanges);
             stateChanges.forEach((stateChange) => {
-//                console.log(stateChange.direction);
+                //                console.log(stateChange.direction);
 
                 if (
                     stateChange.direction === StateChangeDirection.up ||
@@ -71,6 +71,9 @@ export const createTokensToJson = (writer: JsonWriter): TokenStateStream => {
                         .beginArray();
                 }
             });
+        },
+        finish: () => {
+            writer.close().close().close().close().finish();
         },
     };
 

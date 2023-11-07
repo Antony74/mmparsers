@@ -61,6 +61,9 @@ export const createParserValidator = (
  //           console.log(`onToken ${token.type} ${token.text}`);
             actor.send(token);
         },
+        finish: () => {
+            // Is termination allowed here?
+        }
     };
 
     return hook;

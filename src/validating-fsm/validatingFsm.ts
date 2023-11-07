@@ -7,6 +7,8 @@ export type TokenEventObject = {
 
 export interface TokenStream {
     onToken(token: TokenEventObject): void;
+    finish(): void;
+
 }
 
 export type MachineState = {
@@ -36,6 +38,7 @@ export type StateChange = { direction: StateChangeDirection; state: string };
 
 export interface TokenStateStream {
     onToken(token: TokenEventObject, stateChanges: StateChange[]): void;
+    finish(): void;
 }
 
 export const createValidatingFSM = (
@@ -105,6 +108,10 @@ export const createValidatingFSM = (
 
             throw new Error(msg.join(', '));
         },
+        finish: () => {
+            // Need to check the state machine is in a valid state to terminate
+            tokenStateStream.finish();
+        }
     };
     return hook;
 };

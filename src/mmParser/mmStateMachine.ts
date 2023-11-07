@@ -1,4 +1,4 @@
-import { MachineConfig } from "../validating-fsm";
+import { MachineConfig } from "../validating-fsm/validatingFsm";
 
 export const mmMachineConfig: MachineConfig = {
     id: 'mmParser',

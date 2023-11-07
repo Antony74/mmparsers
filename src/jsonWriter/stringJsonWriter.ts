@@ -23,18 +23,18 @@ const createRawStringJsonWriter = (
         return false;
     };
 
-    const stackString = (): string =>
-        `[${stack.map((v) => `'${v}'`).join(' ')}]`;
+    // const stackString = (): string =>
+    //     `[${stack.map((v) => `'${v}'`).join(' ')}]`;
 
     const jsonWriter: JsonWriter = {
         name: (s: string): JsonWriter => {
-            console.log(`name '${s}' called with stack ${stackString()}`);
+            // console.log(`name '${s}' called with stack ${stackString()}`);
             writeCommaIfNeeded();
             writeFn(`"${s}":`);
             return jsonWriter;
         },
         value: (j: Json): JsonWriter => {
-            console.log(`value '${j}' called with stack ${stackString()}`);
+            // console.log(`value '${j}' called with stack ${stackString()}`);
             writeCommaIfNeeded();
             writeFn(JSON.stringify(j));
             if (stackTop() !== ',') {
@@ -43,21 +43,21 @@ const createRawStringJsonWriter = (
             return jsonWriter;
         },
         beginArray: (): JsonWriter => {
-            console.log(`beginArray called with stack ${stackString()}`);
+            // console.log(`beginArray called with stack ${stackString()}`);
             writeCommaIfNeeded();
             writeFn('[');
             stack.push(']');
             return jsonWriter;
         },
         beginObject: (): JsonWriter => {
-            console.log(`beginObject called with stack ${stackString()}`);
+            // console.log(`beginObject called with stack ${stackString()}`);
             writeCommaIfNeeded();
             writeFn('{');
             stack.push('}');
             return jsonWriter;
         },
         close: (): JsonWriter => {
-            console.log(`close called with stack ${stackString()}`);
+            // console.log(`close called with stack ${stackString()}`);
             if (stackTop() === ',') {
                 stack.pop();
             }

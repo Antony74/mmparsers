@@ -1,5 +1,5 @@
 import { JsonWriter } from '../jsonWriter/jsonWriter';
-import { TokenEventObject, TokenStream } from '../validating-fsm';
+import { TokenStream, TokenEventObject } from '../validating-fsm/validatingFsm';
 
 export const createTokensToJson = (writer: JsonWriter): TokenStream => {
     let ws: string[] = [];
@@ -99,6 +99,9 @@ export const createTokensToJson = (writer: JsonWriter): TokenStream => {
                     throw new Error(`Unrecognised token ${token.type}`);
             }
             return '';
+        },
+        finish: () => {
+            writer.close().close().close().close();
         },
     };
     return hook;
