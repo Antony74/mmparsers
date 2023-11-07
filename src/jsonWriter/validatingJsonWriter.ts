@@ -17,9 +17,7 @@ export const createValidatingJsonWriter = (
     const writer: JsonWriter = {
         name: (s: string): JsonWriter => {
             if (stackTop() !== JsonType.object) {
-                throw new Error(
-                    'validatingJsonWriter.name: Only an object can have named properties',
-                );
+                throw new Error('Unexpected name in JSON');
             }
 
             stack.push(JsonType.name);
@@ -31,14 +29,30 @@ export const createValidatingJsonWriter = (
             const top = stackTop();
 
             if (top === JsonType.object) {
-                throw new Error(
-                    'validatingJsonWriter.value: Values inside an object must be named',
-                );
+                if (typeof j === 'number') {
+                    throw new Error(`Unexpected number in JSON`);
+                } else if (j === true) {
+                    throw new Error(`Unexpected true in JSON`);
+                } else if (j === false) {
+                    throw new Error(`Unexpected false in JSON`);
+                } else if (j === null) {
+                    throw new Error(`Unexpected null in JSON`);
+                } else if (j === undefined) {
+                    throw new Error(`Unexpected undefined in JSON`);
+                } else if (Array.isArray(j)) {
+                    throw new Error(`Unexpected array in JSON`);
+                } else if (typeof j === 'object') {
+                    throw new Error(`Unexpected object in JSON`);
+                } else {
+                    throw new Error(
+                        'validatingJsonWriter.value: Values inside an object must be named',
+                    );
+                }
             }
 
             if (top === JsonType.eof) {
                 throw new Error(
-                    'validatingJsonWriter.value: no additional values can be added beyond end of file',
+                    'Unexpected value after JSON data',
                 );
             }
 
@@ -58,14 +72,12 @@ export const createValidatingJsonWriter = (
             const top = stackTop();
 
             if (top === JsonType.object) {
-                throw new Error(
-                    'validatingJsonWriter.beginArray: Values inside an object must be named',
-                );
+                throw new Error('Unexpected array in JSON');
             }
 
             if (top === JsonType.eof) {
                 throw new Error(
-                    'validatingJsonWriter.value: no additional arrays can be added beyond end of file',
+                    'Unexpected beginArray after JSON data',
                 );
             }
 
@@ -85,7 +97,7 @@ export const createValidatingJsonWriter = (
 
             if (top === JsonType.eof) {
                 throw new Error(
-                    'validatingJsonWriter.beginObject: no additional objects can be added beyond end of file',
+                    'Unexpected beginObject after JSON data',
                 );
             }
 
