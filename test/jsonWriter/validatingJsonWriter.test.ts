@@ -147,4 +147,8 @@ describe('validatingJsonWriter', () => {
             'Unexpected close after JSON data',
         );
     });
+
+    test('Unexpected beginObject in JSON data', () => {
+        checkWriters((writer) => writer.beginObject().beginObject());
+    });
 });

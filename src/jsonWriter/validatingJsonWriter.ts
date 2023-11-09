@@ -44,16 +44,12 @@ export const createValidatingJsonWriter = (
                 } else if (typeof j === 'object') {
                     throw new Error(`Unexpected object in JSON`);
                 } else {
-                    throw new Error(
-                        'validatingJsonWriter.value: Values inside an object must be named',
-                    );
+                    throw new Error('Unexpected something in JSON');
                 }
             }
 
             if (top === JsonType.eof) {
-                throw new Error(
-                    'Unexpected value after JSON data',
-                );
+                throw new Error('Unexpected value after JSON data');
             }
 
             if (top === JsonType.name) {
@@ -76,9 +72,7 @@ export const createValidatingJsonWriter = (
             }
 
             if (top === JsonType.eof) {
-                throw new Error(
-                    'Unexpected beginArray after JSON data',
-                );
+                throw new Error('Unexpected beginArray after JSON data');
             }
 
             stack.push(JsonType.array);
@@ -90,15 +84,11 @@ export const createValidatingJsonWriter = (
             const top = stackTop();
 
             if (top === JsonType.object) {
-                throw new Error(
-                    'validatingJsonWriter.beginObject: Values inside an object must be named',
-                );
+                throw new Error('Unexpected object in JSON');
             }
 
             if (top === JsonType.eof) {
-                throw new Error(
-                    'Unexpected beginObject after JSON data',
-                );
+                throw new Error('Unexpected beginObject after JSON data');
             }
 
             stack.push(JsonType.object);
@@ -109,9 +99,7 @@ export const createValidatingJsonWriter = (
         close: (): JsonWriter => {
             const top = stackTop();
             if (top !== JsonType.array && top !== JsonType.object) {
-                throw new Error(
-                    'validatingJsonWriter.close: Only arrays and objects can be closed',
-                );
+                throw new Error('Unexpected close after JSON data');
             }
 
             stack.pop();
