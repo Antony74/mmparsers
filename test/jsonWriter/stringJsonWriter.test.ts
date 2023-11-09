@@ -1,17 +1,9 @@
-import fs from 'fs';
-import fsp from 'fs/promises';
 import { createStringJsonWriter } from '../../src/jsonWriter/stringJsonWriter';
-import path from 'path';
 
 describe('stringJsonWriter', () => {
     it('produces json', async () => {
-        const outputFilename = path.join(
-            __dirname,
-            '../output/stringJsonWriter.json',
-        );
-
-        const writeStream = fs.createWriteStream(outputFilename);
-        const jsonWriter = createStringJsonWriter((s) => writeStream.write(s));
+        let result = '';
+        const jsonWriter = createStringJsonWriter((s) => (result += s));
 
         jsonWriter
             .beginObject()
@@ -36,12 +28,6 @@ describe('stringJsonWriter', () => {
             .close()
             .close()
             .close();
-
-        await new Promise((resolve) => writeStream.close(resolve));
-
-        const result = await fsp.readFile(outputFilename, {
-            encoding: 'utf-8',
-        });
 
         expect(JSON.parse(result)).toEqual({
             Sherlock: {
