@@ -53,7 +53,6 @@ const checkWriters = (
         .split('token {')
         .join('object');
 
-    console.log(str, overriddenMessage ?? expectedMsg);
     expect(actualMsg).toEqual(overriddenMessage ?? expectedMsg);
 };
 
