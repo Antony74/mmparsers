@@ -1,4 +1,4 @@
-import { MachineConfig } from "../validating-fsm/validatingFsm";
+import { MachineConfig } from '../validating-fsm/validatingFsm';
 
 export const mmMachineConfig: MachineConfig = {
     id: 'mmParser',
@@ -22,4 +22,3 @@ export const mmMachineConfig: MachineConfig = {
         },
     },
 };
-

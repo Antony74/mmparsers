@@ -1,4 +1,4 @@
-import { MachineConfig } from '../validating-fsm/validatingFsm';
+import { MachineConfig } from '../fsm-to-json/validatingFsm';
 
 export const ebnfMachineConfig: MachineConfig = {
     id: 'ebnf',

@@ -1,16 +1,5 @@
-import { JsonWriter } from "../jsonWriter/jsonWriter";
-
-export type TokenEventObject = {
-    type: string;
-    text: string;
-    line?: number;
-    col?: number;
-};
-
-export interface TokenStream {
-    onToken(token: TokenEventObject): void;
-    finish(): void;
-}
+/* eslint-disable @typescript-eslint/no-empty-function */
+import { Actor, State, TokenEventObject } from './fsm-to-json';
 
 export type MachineState = {
     on: { [key: string]: string };
@@ -29,10 +18,7 @@ export type MachineConfig = {
 
 type StackItem = { states: MachineStates; state: string };
 
-export const createValidatingFSM = (
-    stateMachine: MachineConfig,
-    jsonWriter: JsonWriter,
-): TokenStream => {
+export const createValidatingFSM = (stateMachine: MachineConfig): Actor => {
     const stack: StackItem[] = [
         { states: stateMachine.states, state: stateMachine.initial! },
     ];
@@ -41,8 +27,12 @@ export const createValidatingFSM = (
         return stack[stack.length - 1];
     };
 
-    const hook: TokenStream = {
-        onToken: (token: TokenEventObject): void => {
+    let listener: (state: State) => void;
+
+    const actor: Actor = {
+        onTransition: (_listener) => (listener = _listener),
+        start: () => {},
+        send: (token: TokenEventObject): void => {
             const originalState = top().state;
 
             while (stack.length) {
@@ -59,19 +49,20 @@ export const createValidatingFSM = (
                             states: newNode.states,
                             state,
                         });
+                    }
 
-                        jsonWriter.name('children').beginArray();
-                    } else {
-                        jsonWriter.beginObject().name('type').value(token.type);
+                    const value = [...stack]
+                        .reverse()
+                        .reduce(
+                            (acc: string | object, { state }) =>
+                                acc ? { [state]: acc } : state,
+                            '',
+                        );
 
-                        // ideally only do text for leaf nodes
-                        jsonWriter.name('text').value(token.text);
-                        }
-
+                    listener({ value, event: token });
                     return;
                 }
                 stack.pop();
-                jsonWriter.close();
             }
 
             const msg = [
@@ -88,10 +79,6 @@ export const createValidatingFSM = (
 
             throw new Error(msg.join(', '));
         },
-        finish: () => {
-            // Need to check the state machine is in a valid state to terminate
-            jsonWriter.finish();
-        }
     };
-    return hook;
+    return actor;
 };

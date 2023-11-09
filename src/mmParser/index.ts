@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { JsonWriter } from '../jsonWriter/jsonWriter';
-import { createParserValidator } from '../validating-fsm/parserValidator';
 
 import {
     createValidatingFSM,
     MachineConfig,
-} from '../validating-fsm/validatingFsm';
+} from '../fsm-to-json/validatingFsm';
+import { createXStateFSM } from '../fsm-to-json/xStateFsm';
+import { createFsmToJson } from '../fsm-to-json/fsm-to-json';
 
 export type Parser = {
     feed: (chunk: string) => void;
@@ -22,7 +23,16 @@ export const createParser = (
     lexer: moo.Lexer,
     machineConfig: MachineConfig,
 ): Parser => {
-    const tokenStream = createValidatingFSM(machineConfig, writer);
+    const tokenStream1 = createFsmToJson(
+        createXStateFSM(machineConfig),
+        writer,
+        'XState',
+    );
+    const tokenStream2 = createFsmToJson(
+        createValidatingFSM(machineConfig),
+        writer,
+        'Validating',
+    );
 
     const hook = {
         feed: (chunk: string): void => {
@@ -41,13 +51,12 @@ export const createParser = (
                 }
 
                 if (!ignoreTokens[type]) {
-                    tokenStream.onToken({ ...token, type });
+                    tokenStream1.onToken({ ...token, type });
+                    tokenStream2.onToken({ ...token, type });
                 }
             }
         },
-        finish: (): void => {
-            tokenStream.finish();
-        },
+        finish: (): void => {},
     };
 
     return hook;

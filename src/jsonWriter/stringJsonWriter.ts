@@ -4,7 +4,9 @@ import { createValidatingJsonWriter } from './validatingJsonWriter';
 export const createStringJsonWriter = (
     writeFn: (s: string) => unknown,
 ): JsonWriter => {
-    return createValidatingJsonWriter(createUnvalidatedStringJsonWriter(writeFn));
+    return createValidatingJsonWriter(
+        createUnvalidatedStringJsonWriter(writeFn),
+    );
 };
 
 type JsonStackTypes = '}' | ']' | ',';
