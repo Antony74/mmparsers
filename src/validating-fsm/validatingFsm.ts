@@ -1,3 +1,5 @@
+import { JsonWriter } from "../jsonWriter/jsonWriter";
+
 export type TokenEventObject = {
     type: string;
     text: string;
@@ -8,7 +10,6 @@ export type TokenEventObject = {
 export interface TokenStream {
     onToken(token: TokenEventObject): void;
     finish(): void;
-
 }
 
 export type MachineState = {
@@ -28,22 +29,9 @@ export type MachineConfig = {
 
 type StackItem = { states: MachineStates; state: string };
 
-export enum StateChangeDirection {
-    up = 'up',
-    down = 'down',
-    across = 'across',
-}
-
-export type StateChange = { direction: StateChangeDirection; state: string };
-
-export interface TokenStateStream {
-    onToken(token: TokenEventObject, stateChanges: StateChange[]): void;
-    finish(): void;
-}
-
 export const createValidatingFSM = (
     stateMachine: MachineConfig,
-    tokenStateStream: TokenStateStream,
+    jsonWriter: JsonWriter,
 ): TokenStream => {
     const stack: StackItem[] = [
         { states: stateMachine.states, state: stateMachine.initial! },
@@ -56,7 +44,6 @@ export const createValidatingFSM = (
     const hook: TokenStream = {
         onToken: (token: TokenEventObject): void => {
             const originalState = top().state;
-            const stateChanges: StateChange[] = [];
 
             while (stack.length) {
                 const stackItem = top();
@@ -72,26 +59,19 @@ export const createValidatingFSM = (
                             states: newNode.states,
                             state,
                         });
-                        stateChanges.push({
-                            direction: StateChangeDirection.down,
-                            state,
-                        });
-                    } else {
-                        stateChanges.push({
-                            direction: StateChangeDirection.across,
-                            state: transition,
-                        });
-                    }
 
-                    tokenStateStream.onToken(token, stateChanges);
+                        jsonWriter.name('children').beginArray();
+                    } else {
+                        jsonWriter.beginObject().name('type').value(token.type);
+
+                        // ideally only do text for leaf nodes
+                        jsonWriter.name('text').value(token.text);
+                        }
 
                     return;
                 }
                 stack.pop();
-                stateChanges.push({
-                    direction: StateChangeDirection.up,
-                    state: '',
-                });
+                jsonWriter.close();
             }
 
             const msg = [
@@ -110,7 +90,7 @@ export const createValidatingFSM = (
         },
         finish: () => {
             // Need to check the state machine is in a valid state to terminate
-            tokenStateStream.finish();
+            jsonWriter.finish();
         }
     };
     return hook;

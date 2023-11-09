@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { JsonWriter } from '../jsonWriter/jsonWriter';
 import { createParserValidator } from '../validating-fsm/parserValidator';
-import { createTokensToJson } from '../validating-fsm/tokensToJson';
 
 import {
     createValidatingFSM,
@@ -23,15 +22,7 @@ export const createParser = (
     lexer: moo.Lexer,
     machineConfig: MachineConfig,
 ): Parser => {
-    const tokensToJson = createTokensToJson(writer);
-    const parserValidator = createParserValidator(machineConfig);
-    const tokenStream = createValidatingFSM(machineConfig, {
-        onToken: (token, stateChanges) => {
-            parserValidator.onToken(token, stateChanges);
-            tokensToJson.onToken(token, stateChanges);
-        },
-        finish: () => {},
-    });
+    const tokenStream = createValidatingFSM(machineConfig, writer);
 
     const hook = {
         feed: (chunk: string): void => {
@@ -55,9 +46,7 @@ export const createParser = (
             }
         },
         finish: (): void => {
-            tokensToJson.finish();
-            parserValidator.finish();
-            writer.finish();
+            tokenStream.finish();
         },
     };
 
