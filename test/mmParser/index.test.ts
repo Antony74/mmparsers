@@ -3,7 +3,7 @@ import path from 'path';
 import prettier from 'prettier';
 import * as tsj from 'ts-json-schema-generator';
 import Ajv, { ValidateFunction } from 'ajv';
-import { createMmParser } from '../../src/mmParser';
+// import { createMmParser } from '../../src/mmParser';
 import { Database } from '../../src/mmParser/mmParseTree';
 import { reverseParse } from '../../src/utils/reverseParse';
 const mmFiles = [
@@ -75,7 +75,7 @@ mmFiles.forEach(async (url) => {
 
     describe.skip(filename, () => {
         let text = '';
-        let database: Database = { type: 'database', children: [] };
+        const database: Database = { type: 'database', children: [] };
 
         beforeAll(async () => {
             // Obtain the .mm file
@@ -91,21 +91,21 @@ mmFiles.forEach(async (url) => {
                 await fsp.writeFile(filePath, text);
             }
 
-            // Parse the .mm file
-            const parser = createMmParser();
-            parser.feed(text);
-            database = parser.finish();
-            const jsonPath = path.join(
-                __dirname,
-                '../../examples',
-                `${filename}.json`,
-            );
+            // // Parse the .mm file
+            // const parser = createMmParser();
+            // parser.feed(text);
+            // database = parser.finish();
+            // const jsonPath = path.join(
+            //     __dirname,
+            //     '../../examples',
+            //     `${filename}.json`,
+            // );
 
-            // Save the json file
-            await fsp.writeFile(
-                jsonPath,
-                prettier.format(JSON.stringify(database), { parser: 'json' }),
-            );
+            // // Save the json file
+            // await fsp.writeFile(
+            //     jsonPath,
+            //     prettier.format(JSON.stringify(database), { parser: 'json' }),
+            // );
         });
 
         it('should reverse parse', () => {

@@ -1,6 +1,6 @@
 import fsp from 'fs/promises';
 import path from 'path';
-import { createParser } from './mmParser';
+import { createParser } from './fsm-to-json';
 import { createStringJsonWriter } from './jsonWriter/stringJsonWriter';
 import { createFlushableWriteStream } from './utils/flushableWriteStream';
 import { ebnfMachineConfig } from './ebnf-to-json/ebnf-bootstrap-machine-config';

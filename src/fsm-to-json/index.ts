@@ -4,9 +4,9 @@ import { JsonWriter } from '../jsonWriter/jsonWriter';
 import {
     createValidatingFSM,
     MachineConfig,
-} from '../fsm-to-json/validatingFsm';
-import { createXStateFSM } from '../fsm-to-json/xStateFsm';
-import { createFsmToJson } from '../fsm-to-json/fsm-to-json';
+} from './validatingFsm';
+import { createXStateFSM } from './xStateFsm';
+import { createFsmToJson } from './fsm-to-json';
 
 export type Parser = {
     feed: (chunk: string) => void;

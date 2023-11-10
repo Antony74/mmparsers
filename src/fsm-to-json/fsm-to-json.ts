@@ -23,7 +23,6 @@ export type Actor = {
     onTransition: (fn: (state: State) => void) => void;
 };
 
-
 export const createFsmToJson = (
     actor: Actor,
     jsonWriter: JsonWriter,
