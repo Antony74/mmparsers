@@ -117,7 +117,7 @@ export const createValidatingJsonWriter = (
         },
 
         finish: (): JsonWriter => {
-            if (stack.length) {
+            if (stack.length !== 1 && stack[0] !== JsonType.eof) {
                 throw new Error(`Unexpected end of JSON input`);
             }
 

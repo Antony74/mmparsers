@@ -14,7 +14,7 @@ export interface TokenStream {
 
 export type State = {
     value: string | object;
-    event: { type: string };
+    event: TokenEventObject;
 };
 
 export type Actor = {
@@ -43,13 +43,51 @@ export const createFsmToJson = (
     actor: Actor,
     jsonWriter: JsonWriter,
 ): TokenStream => {
+    let oldStack: string[] = [];
+
     actor.onTransition((state: State) => {
+        const newStack = stateValueToPath(state.value);
+
         if (state.event.type === 'xstate.init') {
+            jsonWriter.beginObject();
+            jsonWriter.name('type').value(newStack[0]);
+            jsonWriter.name('children').beginArray();
             return;
         }
 
-        const path = stateValueToPath(state.value);
-        console.log(JSON.stringify(state.value));
+        let divergentPoint = 0;
+        while (
+            oldStack.length < divergentPoint &&
+            newStack.length < divergentPoint &&
+            oldStack[divergentPoint] === newStack[divergentPoint]
+        ) {
+            ++divergentPoint;
+        }
+
+        // Do we need to move up the stack at all?
+        while (oldStack.length > divergentPoint) {
+            jsonWriter.close().close();
+            oldStack.pop();
+            console.log('up');
+        }
+
+        while (oldStack.length < newStack.length) {
+            const type = newStack[oldStack.length];
+            console.log(type);
+            jsonWriter.beginObject();
+            jsonWriter.name('type').value(type);
+            jsonWriter.name('children').beginArray();
+            oldStack.push(type);
+        }
+
+        console.log(state.event.type);
+
+        jsonWriter.beginObject();
+        jsonWriter.name('type').value(state.event.type);
+        jsonWriter.name('text').value(state.event.text);
+        jsonWriter.close();
+
+        oldStack = newStack;
     });
 
     actor.start();
@@ -60,6 +98,11 @@ export const createFsmToJson = (
         },
         finish: () => {
             // Need to check the state machine is in a valid state to terminate
+            while (oldStack.length) {
+                jsonWriter.close().close();
+                oldStack.pop();
+            }
+            jsonWriter.close().close();
             jsonWriter.finish();
         },
     };

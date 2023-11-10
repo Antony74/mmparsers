@@ -1,12 +1,10 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { JsonWriter } from '../jsonWriter/jsonWriter';
 
-import {
-    createValidatingFSM,
-    MachineConfig,
-} from './validatingFsm';
+import { createValidatingFSM, MachineConfig } from './validatingFsm';
 
 import { createFsmToJson } from './fsm-to-json';
+import { createXStateFSM } from './xStateFsm';
 
 export type Parser = {
     feed: (chunk: string) => void;
@@ -24,9 +22,9 @@ export const createParser = (
     writer: JsonWriter,
 ): Parser => {
     const tokenStream = createFsmToJson(
-        createValidatingFSM(machineConfig),
+        //        createValidatingFSM(machineConfig),
+        createXStateFSM(machineConfig),
         writer,
-        'Validating',
     );
 
     const hook = {
@@ -50,7 +48,9 @@ export const createParser = (
                 }
             }
         },
-        finish: (): void => {},
+        finish: (): void => {
+            tokenStream.finish();
+        },
     };
 
     return hook;

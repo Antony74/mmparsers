@@ -1,5 +1,8 @@
 import fsp from 'fs/promises';
 import path from 'path';
+
+import prettier from 'prettier';
+
 import { createParser } from './fsm-to-json';
 import { createStringJsonWriter } from './jsonWriter/stringJsonWriter';
 import { createFlushableWriteStream } from './utils/flushableWriteStream';
@@ -13,30 +16,32 @@ const main = async (): Promise<void> => {
     const text = await fsp.readFile(filepath, { encoding: 'utf-8' });
     const writeStream = createFlushableWriteStream(`examples/${filename}.json`);
     const writer = createStringJsonWriter((s) => {
-        // console.log(`Writing ${s}`);
         writeStream.write(s);
     });
 
     const parser = createParser(ebnfLexer, ebnfMachineConfig, writer);
 
-    const parse = async (text: string): Promise<void> => {
-        try {
-            parser.feed(text);
-            parser.finish();
-        } catch (e) {
-            await writeStream.flush();
-            throw e;
-        }
-        // await fs.writeFile(
-        //     `examples/${filename}.json`,
-        //     prettier.format(JSON.stringify(result), { parser: 'json' })
-        // );
+    try {
+        parser.feed(text);
+        parser.finish();
+    } catch (e) {
+        await writeStream.flush();
+        throw e;
+    }
 
-        // Any change to this file indicates a bad parse
-        //        await fs.writeFile(`examples/${filename}`, reverseParse(result));
-    };
+    await writeStream.flush();
 
-    parse(text);
+    const result = await fsp.readFile(`examples/${filename}.json`, {
+        encoding: 'utf-8',
+    });
+
+    await fsp.writeFile(
+        `examples/${filename}.json`,
+        prettier.format(result, { parser: 'json' }),
+    );
+
+    // Any change to this file indicates a bad parse
+    //        await fs.writeFile(`examples/${filename}`, reverseParse(result));
 };
 
 main();
