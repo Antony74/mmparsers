@@ -19,9 +19,9 @@ export type Parser = {
 const ignoreTokens: Record<string, boolean> = { S: true, Comment: true };
 
 export const createParser = (
-    writer: JsonWriter,
     lexer: moo.Lexer,
     machineConfig: MachineConfig,
+    writer: JsonWriter,
 ): Parser => {
     const tokenStream1 = createFsmToJson(
         createXStateFSM(machineConfig),

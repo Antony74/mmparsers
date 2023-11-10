@@ -17,7 +17,7 @@ const main = async (): Promise<void> => {
         writeStream.write(s);
     });
 
-    const parser = createParser(writer, ebnfLexer, ebnfMachineConfig);
+    const parser = createParser(ebnfLexer, ebnfMachineConfig, writer);
 
     const parse = async (text: string): Promise<void> => {
         try {
