@@ -5,7 +5,7 @@ import {
     createValidatingFSM,
     MachineConfig,
 } from './validatingFsm';
-import { createXStateFSM } from './xStateFsm';
+
 import { createFsmToJson } from './fsm-to-json';
 
 export type Parser = {
@@ -23,12 +23,7 @@ export const createParser = (
     machineConfig: MachineConfig,
     writer: JsonWriter,
 ): Parser => {
-    const tokenStream1 = createFsmToJson(
-        createXStateFSM(machineConfig),
-        writer,
-        'XState',
-    );
-    const tokenStream2 = createFsmToJson(
+    const tokenStream = createFsmToJson(
         createValidatingFSM(machineConfig),
         writer,
         'Validating',
@@ -51,8 +46,7 @@ export const createParser = (
                 }
 
                 if (!ignoreTokens[type]) {
-                    tokenStream1.onToken({ ...token, type });
-                    tokenStream2.onToken({ ...token, type });
+                    tokenStream.onToken({ ...token, type });
                 }
             }
         },

@@ -23,17 +23,33 @@ export type Actor = {
     onTransition: (fn: (state: State) => void) => void;
 };
 
+const stateValueToPath = (stateValue: string | object): string[] => {
+    if (typeof stateValue === 'string') {
+        return [stateValue];
+    } else {
+        const keys = Object.keys(stateValue);
+        const values = Object.values(stateValue);
+        if (keys.length !== 1) {
+            throw new Error('Expected exactly one key');
+        }
+        if (values.length !== 1) {
+            throw new Error('Expected exactly one value');
+        }
+        return [keys[0], ...stateValueToPath(values[0])];
+    }
+};
+
 export const createFsmToJson = (
     actor: Actor,
     jsonWriter: JsonWriter,
-    tag: string,
 ): TokenStream => {
     actor.onTransition((state: State) => {
         if (state.event.type === 'xstate.init') {
             return;
         }
 
-        console.log(JSON.stringify(state.value), tag);
+        const path = stateValueToPath(state.value);
+        console.log(JSON.stringify(state.value));
     });
 
     actor.start();
