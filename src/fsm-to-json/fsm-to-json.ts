@@ -48,6 +48,8 @@ export const createFsmToJson = (
     actor.onTransition((state: State) => {
         const newStack = stateValueToPath(state.value);
 
+        console.log(newStack);
+
         if (state.event.type === 'xstate.init') {
             jsonWriter.beginObject();
             jsonWriter.name('type').value(newStack[0]);
@@ -66,16 +68,16 @@ export const createFsmToJson = (
             ++divergentPoint;
         }
 
+        console.log({ divergentPoint });
+
         // Do we need to move up the stack at all?
         while (oldStack.length > divergentPoint) {
             jsonWriter.close().close();
             oldStack.pop();
-            console.log('up');
         }
 
         while (oldStack.length < newStack.length) {
             const type = newStack[oldStack.length];
-            console.log(type);
             jsonWriter.beginObject();
             jsonWriter.name('type').value(type);
             jsonWriter.name('children').beginArray();
