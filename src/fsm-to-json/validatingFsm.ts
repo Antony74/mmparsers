@@ -30,8 +30,18 @@ export const createValidatingFSM = (stateMachine: MachineConfig): Actor => {
     let listener: (state: State) => void;
 
     const actor: Actor = {
-        onTransition: (_listener) => (listener = _listener),
-        start: () => {},
+        onTransition: (_listener) => {
+            if (listener !== undefined) {
+                throw new Error('This Actor only takes one listener');
+            }
+            listener = _listener;
+        },
+        start: () => {
+            listener({
+                event: { type: 'xstate.init' },
+                value: stateMachine.initial,
+            });
+        },
         send: (token: TokenEventObject): void => {
             const originalState = top().state;
 

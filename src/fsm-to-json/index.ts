@@ -22,8 +22,8 @@ export const createParser = (
     writer: JsonWriter,
 ): Parser => {
     const tokenStream = createFsmToJson(
-        //        createValidatingFSM(machineConfig),
-        createXStateFSM(machineConfig),
+        createValidatingFSM(machineConfig),
+        // createXStateFSM(machineConfig),
         writer,
     );
 

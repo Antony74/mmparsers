@@ -14,7 +14,7 @@ export interface TokenStream {
 
 export type State = {
     value: string | object;
-    event: TokenEventObject;
+    event: TokenEventObject | { type: 'xstate.init' };
 };
 
 export type Actor = {
@@ -55,6 +55,8 @@ export const createFsmToJson = (
             return;
         }
 
+        const event = state.event as TokenEventObject;
+
         let divergentPoint = 0;
         while (
             oldStack.length < divergentPoint &&
@@ -80,11 +82,9 @@ export const createFsmToJson = (
             oldStack.push(type);
         }
 
-        console.log(state.event.type);
-
         jsonWriter.beginObject();
-        jsonWriter.name('type').value(state.event.type);
-        jsonWriter.name('text').value(state.event.text);
+        jsonWriter.name('type').value(event.type);
+        jsonWriter.name('text').value(event.text);
         jsonWriter.close();
 
         oldStack = newStack;
