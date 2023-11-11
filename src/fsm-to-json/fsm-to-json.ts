@@ -1,4 +1,5 @@
 import { JsonWriter } from '../jsonWriter/jsonWriter';
+import { MachineConfig, MachineState } from './validatingFsm';
 
 export type TokenEventObject = {
     type: string;
@@ -41,14 +42,21 @@ const stateValueToPath = (stateValue: string | object): string[] => {
 
 export const createFsmToJson = (
     actor: Actor,
+    machineConfig: MachineConfig,
     jsonWriter: JsonWriter,
 ): TokenStream => {
     let oldStack: string[] = [];
 
     actor.onTransition((state: State) => {
         const newStack = stateValueToPath(state.value);
-
         console.log(newStack);
+
+        let machineState: MachineState;
+        newStack.forEach((stateName) => {
+            machineState = machineState
+                ? machineState.states![stateName]
+                : machineConfig.states[newStack[0]];
+        });
 
         if (state.event.type === 'xstate.init') {
             jsonWriter.beginObject();
