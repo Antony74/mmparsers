@@ -61,8 +61,8 @@ export const createFsmToJson = (
 
         let divergentPoint = 0;
         while (
-            oldStack.length < divergentPoint &&
-            newStack.length < divergentPoint &&
+            oldStack.length > divergentPoint &&
+            newStack.length > divergentPoint &&
             oldStack[divergentPoint] === newStack[divergentPoint]
         ) {
             ++divergentPoint;
