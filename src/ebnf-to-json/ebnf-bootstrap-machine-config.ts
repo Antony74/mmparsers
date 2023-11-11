@@ -20,6 +20,7 @@ export const ebnfMachineConfig: MachineConfig = {
             on: { '::=': 'Item' },
             states: {
                 '::=': {
+                    start: true,
                     on: {
                         NCName: 'NCName',
                         StringLiteral: 'StringLiteral',
@@ -27,6 +28,7 @@ export const ebnfMachineConfig: MachineConfig = {
                     },
                 },
                 NCName: {
+                    delayedWrite: true,
                     on: {
                         '?': 'NCName',
                         '**': 'NCName',

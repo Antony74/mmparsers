@@ -5,6 +5,8 @@ export type MachineState = {
     on: { [key: string]: string };
     initial?: string;
     states?: MachineStates;
+    start?: true;
+    delayedWrite?: true;
 };
 
 export type MachineStates = { [key: string]: MachineState };
