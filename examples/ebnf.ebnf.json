@@ -16,7 +16,12 @@
             { "type": "**", "text": "*" },
             { "type": "NCName", "text": "Production" }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "type": "Item",
+      "children": [
         { "type": "::=", "children": [{ "type": "::=", "text": "::=" }] },
         {
           "type": "NCName",
@@ -36,7 +41,12 @@
             { "type": "NCName", "text": ")" },
             { "type": "NCName", "text": "NCName" }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "type": "Item",
+      "children": [
         { "type": "::=", "children": [{ "type": "::=", "text": "::=" }] },
         {
           "type": "NCName",
@@ -59,7 +69,12 @@
             { "type": "NCName", "text": ")" },
             { "type": "NCName", "text": "Name" }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "type": "Item",
+      "children": [
         { "type": "::=", "children": [{ "type": "::=", "text": "::=" }] },
         {
           "type": "NCName",
@@ -69,7 +84,12 @@
             { "type": "**", "text": "*" },
             { "type": "NCName", "text": "NameStartChar" }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "type": "Item",
+      "children": [
         { "type": "::=", "children": [{ "type": "::=", "text": "::=" }] },
         {
           "type": "StringLiteral",
@@ -153,7 +173,12 @@
         {
           "type": "NCName",
           "children": [{ "type": "NCName", "text": "NameChar" }]
-        },
+        }
+      ]
+    },
+    {
+      "type": "Item",
+      "children": [
         { "type": "::=", "children": [{ "type": "::=", "text": "::=" }] },
         {
           "type": "NCName",
@@ -196,7 +221,12 @@
         {
           "type": "NCName",
           "children": [{ "type": "NCName", "text": "Choice" }]
-        },
+        }
+      ]
+    },
+    {
+      "type": "Item",
+      "children": [
         { "type": "::=", "children": [{ "type": "::=", "text": "::=" }] },
         {
           "type": "NCName",
@@ -217,7 +247,12 @@
             { "type": "**", "text": "*" },
             { "type": "NCName", "text": "SequenceOrDifference" }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "type": "Item",
+      "children": [
         { "type": "::=", "children": [{ "type": "::=", "text": "::=" }] },
         {
           "type": "NCName",
@@ -240,7 +275,12 @@
             { "type": "NCName", "text": "))?" },
             { "type": "NCName", "text": "Item" }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "type": "Item",
+      "children": [
         { "type": "::=", "children": [{ "type": "::=", "text": "::=" }] },
         {
           "type": "NCName",
@@ -270,7 +310,12 @@
             { "type": "**", "text": "*" },
             { "type": "NCName", "text": "Primary" }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "type": "Item",
+      "children": [
         { "type": "::=", "children": [{ "type": "::=", "text": "::=" }] },
         {
           "type": "NCName",
@@ -300,7 +345,12 @@
         {
           "type": "NCName",
           "children": [{ "type": "NCName", "text": "StringLiteral" }]
-        },
+        }
+      ]
+    },
+    {
+      "type": "Item",
+      "children": [
         { "type": "::=", "children": [{ "type": "::=", "text": "::=" }] },
         {
           "type": "StringLiteral",
@@ -336,7 +386,12 @@
         {
           "type": "NCName",
           "children": [{ "type": "NCName", "text": "CharCode" }]
-        },
+        }
+      ]
+    },
+    {
+      "type": "Item",
+      "children": [
         { "type": "::=", "children": [{ "type": "::=", "text": "::=" }] },
         {
           "type": "StringLiteral",
@@ -352,7 +407,12 @@
             { "type": "NCName", "text": "+" },
             { "type": "NCName", "text": "CharClass" }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "type": "Item",
+      "children": [
         { "type": "::=", "children": [{ "type": "::=", "text": "::=" }] },
         {
           "type": "StringLiteral",
@@ -380,10 +440,12 @@
           "type": "StringLiteral",
           "children": [{ "type": "StringLiteral", "text": "']'" }]
         },
-        {
-          "type": "NCName",
-          "children": [{ "type": "NCName", "text": "Char" }]
-        },
+        { "type": "NCName", "children": [{ "type": "NCName", "text": "Char" }] }
+      ]
+    },
+    {
+      "type": "Item",
+      "children": [
         { "type": "::=", "children": [{ "type": "::=", "text": "::=" }] },
         {
           "type": "NCName",
@@ -413,7 +475,12 @@
         {
           "type": "NCName",
           "children": [{ "type": "NCName", "text": "CharRange" }]
-        },
+        }
+      ]
+    },
+    {
+      "type": "Item",
+      "children": [
         { "type": "::=", "children": [{ "type": "::=", "text": "::=" }] },
         {
           "type": "NCName",
@@ -441,7 +508,12 @@
             { "type": "NCName", "text": ")" },
             { "type": "NCName", "text": "CharCodeRange" }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "type": "Item",
+      "children": [
         { "type": "::=", "children": [{ "type": "::=", "text": "::=" }] },
         {
           "type": "NCName",
@@ -457,7 +529,12 @@
             { "type": "NCName", "text": "CharCode" },
             { "type": "NCName", "text": "Link" }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "type": "Item",
+      "children": [
         { "type": "::=", "children": [{ "type": "::=", "text": "::=" }] },
         {
           "type": "StringLiteral",
@@ -468,7 +545,12 @@
           "type": "StringLiteral",
           "children": [{ "type": "StringLiteral", "text": "']'" }]
         },
-        { "type": "NCName", "children": [{ "type": "NCName", "text": "URL" }] },
+        { "type": "NCName", "children": [{ "type": "NCName", "text": "URL" }] }
+      ]
+    },
+    {
+      "type": "Item",
+      "children": [
         { "type": "::=", "children": [{ "type": "::=", "text": "::=" }] },
         {
           "type": "CharClass",
@@ -500,7 +582,12 @@
             { "type": "NCName", "text": "NCName)?" },
             { "type": "NCName", "text": "Whitespace" }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "type": "Item",
+      "children": [
         { "type": "::=", "children": [{ "type": "::=", "text": "::=" }] },
         {
           "type": "NCName",
@@ -510,7 +597,12 @@
             { "type": "NCName", "text": "Comment" },
             { "type": "NCName", "text": "S" }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "type": "Item",
+      "children": [
         { "type": "::=", "children": [{ "type": "::=", "text": "::=" }] },
         {
           "type": "NCName",
@@ -524,7 +616,12 @@
             { "type": "NCName", "text": "#x20" },
             { "type": "NCName", "text": "Comment" }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "type": "Item",
+      "children": [
         { "type": "::=", "children": [{ "type": "::=", "text": "::=" }] },
         {
           "type": "StringLiteral",

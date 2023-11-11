@@ -40,6 +40,8 @@ const stateValueToPath = (stateValue: string | object): string[] => {
     }
 };
 
+type NamedMachineState = MachineState & { name: string };
+
 export const createFsmToJson = (
     actor: Actor,
     machineConfig: MachineConfig,
@@ -51,12 +53,15 @@ export const createFsmToJson = (
         const newStack = stateValueToPath(state.value);
         console.log(newStack);
 
-        let machineState: MachineState;
-        newStack.forEach((stateName) => {
-            machineState = machineState
-                ? machineState.states![stateName]
-                : machineConfig.states[newStack[0]];
-        });
+        const machineState = newStack.reduce(
+            (acc: NamedMachineState | undefined, name) => {
+                const machineState = acc
+                    ? acc.states![name]
+                    : machineConfig.states[newStack[0]];
+                return { ...machineState, name };
+            },
+            undefined,
+        );
 
         if (state.event.type === 'xstate.init') {
             jsonWriter.beginObject();
@@ -80,6 +85,17 @@ export const createFsmToJson = (
 
         // Do we need to move up the stack at all?
         while (oldStack.length > divergentPoint) {
+            jsonWriter.close().close();
+            oldStack.pop();
+        }
+
+        if (
+            machineState &&
+            machineState.start &&
+            newStack.length &&
+            newStack.length === oldStack.length + 1 &&
+            machineState.name === newStack[newStack.length - 1]
+        ) {
             jsonWriter.close().close();
             oldStack.pop();
         }
