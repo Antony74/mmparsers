@@ -50,6 +50,15 @@ export const createValidatingFSM = (stateMachine: MachineConfig): Actor => {
             while (stack.length) {
                 const stackItem = top();
                 const node = stackItem.states[stackItem.state];
+
+                if (!node) {
+                    throw new Error(
+                        `Node '${stackItem.state}' not found in ${Object.keys(
+                            stackItem.states,
+                        )}`,
+                    );
+                }
+
                 const transition = node.on[token.type];
 
                 if (node.on[token.type]) {
@@ -57,6 +66,13 @@ export const createValidatingFSM = (stateMachine: MachineConfig): Actor => {
                     const newNode = stackItem.states[stackItem.state];
                     if (newNode.states) {
                         const state = newNode.initial!;
+
+                        if (!state) {
+                            throw new Error(
+                                `No initial item in '${stackItem.state}'`,
+                            );
+                        }
+
                         stack.push({
                             states: newNode.states,
                             state,
