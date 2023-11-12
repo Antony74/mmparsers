@@ -40,6 +40,13 @@ const stateValueToPath = (stateValue: string | object): string[] => {
     }
 };
 
+const writeToken = (jsonWriter: JsonWriter, event: TokenEventObject): void => {
+    jsonWriter.beginObject();
+    jsonWriter.name('type').value(event.type);
+    jsonWriter.name('text').value(event.text);
+    jsonWriter.close();
+};
+
 type NamedMachineState = MachineState & { name: string };
 
 export const createFsmToJson = (
@@ -48,6 +55,7 @@ export const createFsmToJson = (
     jsonWriter: JsonWriter,
 ): TokenStream => {
     let oldStack: string[] = [];
+    let delayedWriteToken: TokenEventObject | null = null;
 
     actor.onTransition((state: State) => {
         const newStack = stateValueToPath(state.value);
@@ -108,10 +116,16 @@ export const createFsmToJson = (
             oldStack.push(type);
         }
 
-        jsonWriter.beginObject();
-        jsonWriter.name('type').value(event.type);
-        jsonWriter.name('text').value(event.text);
-        jsonWriter.close();
+        if (delayedWriteToken) {
+            writeToken(jsonWriter, delayedWriteToken);
+            delayedWriteToken = null;
+        }
+
+        if (machineState && machineState.delayedWrite) {
+            delayedWriteToken = event;
+        } else {
+            writeToken(jsonWriter, event);
+        }
 
         oldStack = newStack;
     });

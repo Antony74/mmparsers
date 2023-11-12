@@ -13,8 +13,7 @@
           "type": "NCName",
           "children": [
             { "type": "NCName", "text": "Production" },
-            { "type": "**", "text": "*" },
-            { "type": "NCName", "text": "Production" }
+            { "type": "**", "text": "*" }
           ]
         }
       ]
@@ -22,14 +21,20 @@
     {
       "type": "Item",
       "children": [
-        { "type": "::=", "children": [{ "type": "::=", "text": "::=" }] },
         {
-          "type": "NCName",
-          "children": [{ "type": "NCName", "text": "NCName" }]
+          "type": "::=",
+          "children": [
+            { "type": "NCName", "text": "Production" },
+            { "type": "::=", "text": "::=" }
+          ]
         },
+        { "type": "NCName", "children": [] },
         {
           "type": "StringLiteral",
-          "children": [{ "type": "StringLiteral", "text": "'::='" }]
+          "children": [
+            { "type": "NCName", "text": "NCName" },
+            { "type": "StringLiteral", "text": "'::='" }
+          ]
         },
         {
           "type": "NCName",
@@ -38,8 +43,7 @@
             { "type": "NCName", "text": "Choice" },
             { "type": "NCName", "text": "|" },
             { "type": "NCName", "text": "Link" },
-            { "type": "NCName", "text": ")" },
-            { "type": "NCName", "text": "NCName" }
+            { "type": "NCName", "text": ")" }
           ]
         }
       ]
@@ -47,27 +51,34 @@
     {
       "type": "Item",
       "children": [
-        { "type": "::=", "children": [{ "type": "::=", "text": "::=" }] },
+        {
+          "type": "::=",
+          "children": [
+            { "type": "NCName", "text": "NCName" },
+            { "type": "::=", "text": "::=" }
+          ]
+        },
         {
           "type": "NCName",
           "children": [
             { "type": "NCName", "text": "Name" },
             { "type": "NCName", "text": "-" },
-            { "type": "NCName", "text": "(Char" },
-            { "type": "**", "text": "*" }
+            { "type": "NCName", "text": "(Char" }
           ]
         },
         {
           "type": "StringLiteral",
-          "children": [{ "type": "StringLiteral", "text": "':'" }]
+          "children": [
+            { "type": "**", "text": "*" },
+            { "type": "StringLiteral", "text": "':'" }
+          ]
         },
         {
           "type": "NCName",
           "children": [
             { "type": "NCName", "text": "Char" },
             { "type": "**", "text": "*" },
-            { "type": "NCName", "text": ")" },
-            { "type": "NCName", "text": "Name" }
+            { "type": "NCName", "text": ")" }
           ]
         }
       ]
@@ -75,14 +86,19 @@
     {
       "type": "Item",
       "children": [
-        { "type": "::=", "children": [{ "type": "::=", "text": "::=" }] },
+        {
+          "type": "::=",
+          "children": [
+            { "type": "NCName", "text": "Name" },
+            { "type": "::=", "text": "::=" }
+          ]
+        },
         {
           "type": "NCName",
           "children": [
             { "type": "NCName", "text": "NameStartChar" },
             { "type": "NCName", "text": "(NameChar)" },
-            { "type": "**", "text": "*" },
-            { "type": "NCName", "text": "NameStartChar" }
+            { "type": "**", "text": "*" }
           ]
         }
       ]
@@ -90,162 +106,229 @@
     {
       "type": "Item",
       "children": [
-        { "type": "::=", "children": [{ "type": "::=", "text": "::=" }] },
+        {
+          "type": "::=",
+          "children": [
+            { "type": "NCName", "text": "NameStartChar" },
+            { "type": "::=", "text": "::=" }
+          ]
+        },
         {
           "type": "StringLiteral",
           "children": [{ "type": "StringLiteral", "text": "\":\"" }]
         },
-        { "type": "NCName", "children": [{ "type": "NCName", "text": "|" }] },
+        { "type": "NCName", "children": [] },
         {
           "type": "CharClass",
-          "children": [{ "type": "CharClass", "text": "[A-Z]" }]
+          "children": [
+            { "type": "NCName", "text": "|" },
+            { "type": "CharClass", "text": "[A-Z]" }
+          ]
         },
-        { "type": "NCName", "children": [{ "type": "NCName", "text": "|" }] },
+        { "type": "NCName", "children": [] },
         {
           "type": "StringLiteral",
-          "children": [{ "type": "StringLiteral", "text": "\"_\"" }]
+          "children": [
+            { "type": "NCName", "text": "|" },
+            { "type": "StringLiteral", "text": "\"_\"" }
+          ]
         },
-        { "type": "NCName", "children": [{ "type": "NCName", "text": "|" }] },
+        { "type": "NCName", "children": [] },
         {
           "type": "CharClass",
-          "children": [{ "type": "CharClass", "text": "[a-z]" }]
+          "children": [
+            { "type": "NCName", "text": "|" },
+            { "type": "CharClass", "text": "[a-z]" }
+          ]
         },
-        { "type": "NCName", "children": [{ "type": "NCName", "text": "|" }] },
+        { "type": "NCName", "children": [] },
         {
           "type": "CharClass",
-          "children": [{ "type": "CharClass", "text": "[#xC0-#xD6]" }]
+          "children": [
+            { "type": "NCName", "text": "|" },
+            { "type": "CharClass", "text": "[#xC0-#xD6]" }
+          ]
         },
-        { "type": "NCName", "children": [{ "type": "NCName", "text": "|" }] },
+        { "type": "NCName", "children": [] },
         {
           "type": "CharClass",
-          "children": [{ "type": "CharClass", "text": "[#xD8-#xF6]" }]
+          "children": [
+            { "type": "NCName", "text": "|" },
+            { "type": "CharClass", "text": "[#xD8-#xF6]" }
+          ]
         },
-        { "type": "NCName", "children": [{ "type": "NCName", "text": "|" }] },
+        { "type": "NCName", "children": [] },
         {
           "type": "CharClass",
-          "children": [{ "type": "CharClass", "text": "[#xF8-#x2FF]" }]
+          "children": [
+            { "type": "NCName", "text": "|" },
+            { "type": "CharClass", "text": "[#xF8-#x2FF]" }
+          ]
         },
-        { "type": "NCName", "children": [{ "type": "NCName", "text": "|" }] },
+        { "type": "NCName", "children": [] },
         {
           "type": "CharClass",
-          "children": [{ "type": "CharClass", "text": "[#x370-#x37D]" }]
+          "children": [
+            { "type": "NCName", "text": "|" },
+            { "type": "CharClass", "text": "[#x370-#x37D]" }
+          ]
         },
-        { "type": "NCName", "children": [{ "type": "NCName", "text": "|" }] },
+        { "type": "NCName", "children": [] },
         {
           "type": "CharClass",
-          "children": [{ "type": "CharClass", "text": "[#x37F-#x1FFF]" }]
+          "children": [
+            { "type": "NCName", "text": "|" },
+            { "type": "CharClass", "text": "[#x37F-#x1FFF]" }
+          ]
         },
-        { "type": "NCName", "children": [{ "type": "NCName", "text": "|" }] },
+        { "type": "NCName", "children": [] },
         {
           "type": "CharClass",
-          "children": [{ "type": "CharClass", "text": "[#x200C-#x200D]" }]
+          "children": [
+            { "type": "NCName", "text": "|" },
+            { "type": "CharClass", "text": "[#x200C-#x200D]" }
+          ]
         },
-        { "type": "NCName", "children": [{ "type": "NCName", "text": "|" }] },
+        { "type": "NCName", "children": [] },
         {
           "type": "CharClass",
-          "children": [{ "type": "CharClass", "text": "[#x2070-#x218F]" }]
+          "children": [
+            { "type": "NCName", "text": "|" },
+            { "type": "CharClass", "text": "[#x2070-#x218F]" }
+          ]
         },
-        { "type": "NCName", "children": [{ "type": "NCName", "text": "|" }] },
+        { "type": "NCName", "children": [] },
         {
           "type": "CharClass",
-          "children": [{ "type": "CharClass", "text": "[#x2C00-#x2FEF]" }]
+          "children": [
+            { "type": "NCName", "text": "|" },
+            { "type": "CharClass", "text": "[#x2C00-#x2FEF]" }
+          ]
         },
-        { "type": "NCName", "children": [{ "type": "NCName", "text": "|" }] },
+        { "type": "NCName", "children": [] },
         {
           "type": "CharClass",
-          "children": [{ "type": "CharClass", "text": "[#x3001-#xD7FF]" }]
+          "children": [
+            { "type": "NCName", "text": "|" },
+            { "type": "CharClass", "text": "[#x3001-#xD7FF]" }
+          ]
         },
-        { "type": "NCName", "children": [{ "type": "NCName", "text": "|" }] },
+        { "type": "NCName", "children": [] },
         {
           "type": "CharClass",
-          "children": [{ "type": "CharClass", "text": "[#xF900-#xFDCF]" }]
+          "children": [
+            { "type": "NCName", "text": "|" },
+            { "type": "CharClass", "text": "[#xF900-#xFDCF]" }
+          ]
         },
-        { "type": "NCName", "children": [{ "type": "NCName", "text": "|" }] },
+        { "type": "NCName", "children": [] },
         {
           "type": "CharClass",
-          "children": [{ "type": "CharClass", "text": "[#xFDF0-#xFFFD]" }]
+          "children": [
+            { "type": "NCName", "text": "|" },
+            { "type": "CharClass", "text": "[#xFDF0-#xFFFD]" }
+          ]
         },
-        { "type": "NCName", "children": [{ "type": "NCName", "text": "|" }] },
+        { "type": "NCName", "children": [] },
         {
           "type": "CharClass",
-          "children": [{ "type": "CharClass", "text": "[#x10000-#xEFFFF]" }]
+          "children": [
+            { "type": "NCName", "text": "|" },
+            { "type": "CharClass", "text": "[#x10000-#xEFFFF]" }
+          ]
         },
-        {
-          "type": "NCName",
-          "children": [{ "type": "NCName", "text": "NameChar" }]
-        }
+        { "type": "NCName", "children": [] }
       ]
     },
     {
       "type": "Item",
       "children": [
-        { "type": "::=", "children": [{ "type": "::=", "text": "::=" }] },
         {
-          "type": "NCName",
+          "type": "::=",
           "children": [
-            { "type": "NCName", "text": "NameStartChar" },
-            { "type": "NCName", "text": "|" }
+            { "type": "NCName", "text": "NameChar" },
+            { "type": "::=", "text": "::=" }
           ]
         },
         {
-          "type": "StringLiteral",
-          "children": [{ "type": "StringLiteral", "text": "\"-\"" }]
+          "type": "NCName",
+          "children": [{ "type": "NCName", "text": "NameStartChar" }]
         },
-        { "type": "NCName", "children": [{ "type": "NCName", "text": "|" }] },
         {
           "type": "StringLiteral",
-          "children": [{ "type": "StringLiteral", "text": "\".\"" }]
+          "children": [
+            { "type": "NCName", "text": "|" },
+            { "type": "StringLiteral", "text": "\"-\"" }
+          ]
         },
-        { "type": "NCName", "children": [{ "type": "NCName", "text": "|" }] },
+        { "type": "NCName", "children": [] },
+        {
+          "type": "StringLiteral",
+          "children": [
+            { "type": "NCName", "text": "|" },
+            { "type": "StringLiteral", "text": "\".\"" }
+          ]
+        },
+        { "type": "NCName", "children": [] },
         {
           "type": "CharClass",
-          "children": [{ "type": "CharClass", "text": "[0-9]" }]
+          "children": [
+            { "type": "NCName", "text": "|" },
+            { "type": "CharClass", "text": "[0-9]" }
+          ]
         },
         {
           "type": "NCName",
           "children": [
             { "type": "NCName", "text": "|" },
-            { "type": "NCName", "text": "#xB7" },
-            { "type": "NCName", "text": "|" }
+            { "type": "NCName", "text": "#xB7" }
           ]
         },
         {
           "type": "CharClass",
-          "children": [{ "type": "CharClass", "text": "[#x0300-#x036F]" }]
+          "children": [
+            { "type": "NCName", "text": "|" },
+            { "type": "CharClass", "text": "[#x0300-#x036F]" }
+          ]
         },
-        { "type": "NCName", "children": [{ "type": "NCName", "text": "|" }] },
+        { "type": "NCName", "children": [] },
         {
           "type": "CharClass",
-          "children": [{ "type": "CharClass", "text": "[#x203F-#x2040]" }]
+          "children": [
+            { "type": "NCName", "text": "|" },
+            { "type": "CharClass", "text": "[#x203F-#x2040]" }
+          ]
         },
-        {
-          "type": "NCName",
-          "children": [{ "type": "NCName", "text": "Choice" }]
-        }
+        { "type": "NCName", "children": [] }
       ]
     },
     {
       "type": "Item",
       "children": [
-        { "type": "::=", "children": [{ "type": "::=", "text": "::=" }] },
         {
-          "type": "NCName",
+          "type": "::=",
           "children": [
-            { "type": "NCName", "text": "SequenceOrDifference" },
-            { "type": "NCName", "text": "(" }
+            { "type": "NCName", "text": "Choice" },
+            { "type": "::=", "text": "::=" }
           ]
         },
         {
+          "type": "NCName",
+          "children": [{ "type": "NCName", "text": "SequenceOrDifference" }]
+        },
+        {
           "type": "StringLiteral",
-          "children": [{ "type": "StringLiteral", "text": "'|'" }]
+          "children": [
+            { "type": "NCName", "text": "(" },
+            { "type": "StringLiteral", "text": "'|'" }
+          ]
         },
         {
           "type": "NCName",
           "children": [
             { "type": "NCName", "text": "SequenceOrDifference" },
             { "type": "NCName", "text": ")" },
-            { "type": "**", "text": "*" },
-            { "type": "NCName", "text": "SequenceOrDifference" }
+            { "type": "**", "text": "*" }
           ]
         }
       ]
@@ -253,17 +336,23 @@
     {
       "type": "Item",
       "children": [
-        { "type": "::=", "children": [{ "type": "::=", "text": "::=" }] },
         {
-          "type": "NCName",
+          "type": "::=",
           "children": [
-            { "type": "NCName", "text": "(Item" },
-            { "type": "NCName", "text": "(" }
+            { "type": "NCName", "text": "SequenceOrDifference" },
+            { "type": "::=", "text": "::=" }
           ]
         },
         {
+          "type": "NCName",
+          "children": [{ "type": "NCName", "text": "(Item" }]
+        },
+        {
           "type": "StringLiteral",
-          "children": [{ "type": "StringLiteral", "text": "'-'" }]
+          "children": [
+            { "type": "NCName", "text": "(" },
+            { "type": "StringLiteral", "text": "'-'" }
+          ]
         },
         {
           "type": "NCName",
@@ -272,8 +361,7 @@
             { "type": "NCName", "text": "|" },
             { "type": "NCName", "text": "Item" },
             { "type": "**", "text": "*" },
-            { "type": "NCName", "text": "))?" },
-            { "type": "NCName", "text": "Item" }
+            { "type": "NCName", "text": "))?" }
           ]
         }
       ]
@@ -281,42 +369,59 @@
     {
       "type": "Item",
       "children": [
-        { "type": "::=", "children": [{ "type": "::=", "text": "::=" }] },
+        {
+          "type": "::=",
+          "children": [
+            { "type": "NCName", "text": "Item" },
+            { "type": "::=", "text": "::=" }
+          ]
+        },
         {
           "type": "NCName",
+          "children": [{ "type": "NCName", "text": "Primary" }]
+        },
+        {
+          "type": "StringLiteral",
+          "children": [
+            { "type": "NCName", "text": "(" },
+            { "type": "StringLiteral", "text": "'?'" }
+          ]
+        },
+        { "type": "NCName", "children": [] },
+        {
+          "type": "StringLiteral",
+          "children": [
+            { "type": "NCName", "text": "|" },
+            { "type": "StringLiteral", "text": "'*'" }
+          ]
+        },
+        { "type": "NCName", "children": [] },
+        {
+          "type": "StringLiteral",
+          "children": [
+            { "type": "NCName", "text": "|" },
+            { "type": "StringLiteral", "text": "'+'" }
+          ]
+        },
+        {
+          "type": "NCName",
+          "children": [
+            { "type": "NCName", "text": ")" },
+            { "type": "**", "text": "*" }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Item",
+      "children": [
+        {
+          "type": "::=",
           "children": [
             { "type": "NCName", "text": "Primary" },
-            { "type": "NCName", "text": "(" }
+            { "type": "::=", "text": "::=" }
           ]
         },
-        {
-          "type": "StringLiteral",
-          "children": [{ "type": "StringLiteral", "text": "'?'" }]
-        },
-        { "type": "NCName", "children": [{ "type": "NCName", "text": "|" }] },
-        {
-          "type": "StringLiteral",
-          "children": [{ "type": "StringLiteral", "text": "'*'" }]
-        },
-        { "type": "NCName", "children": [{ "type": "NCName", "text": "|" }] },
-        {
-          "type": "StringLiteral",
-          "children": [{ "type": "StringLiteral", "text": "'+'" }]
-        },
-        {
-          "type": "NCName",
-          "children": [
-            { "type": "NCName", "text": ")" },
-            { "type": "**", "text": "*" },
-            { "type": "NCName", "text": "Primary" }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "Item",
-      "children": [
-        { "type": "::=", "children": [{ "type": "::=", "text": "::=" }] },
         {
           "type": "NCName",
           "children": [
@@ -326,32 +431,37 @@
             { "type": "NCName", "text": "|" },
             { "type": "NCName", "text": "CharCode" },
             { "type": "NCName", "text": "|" },
-            { "type": "NCName", "text": "CharClass" },
-            { "type": "NCName", "text": "|" }
+            { "type": "NCName", "text": "CharClass" }
           ]
         },
         {
           "type": "StringLiteral",
-          "children": [{ "type": "StringLiteral", "text": "'('" }]
+          "children": [
+            { "type": "NCName", "text": "|" },
+            { "type": "StringLiteral", "text": "'('" }
+          ]
         },
-        {
-          "type": "NCName",
-          "children": [{ "type": "NCName", "text": "Choice" }]
-        },
+        { "type": "NCName", "children": [] },
         {
           "type": "StringLiteral",
-          "children": [{ "type": "StringLiteral", "text": "')'" }]
+          "children": [
+            { "type": "NCName", "text": "Choice" },
+            { "type": "StringLiteral", "text": "')'" }
+          ]
         },
-        {
-          "type": "NCName",
-          "children": [{ "type": "NCName", "text": "StringLiteral" }]
-        }
+        { "type": "NCName", "children": [] }
       ]
     },
     {
       "type": "Item",
       "children": [
-        { "type": "::=", "children": [{ "type": "::=", "text": "::=" }] },
+        {
+          "type": "::=",
+          "children": [
+            { "type": "NCName", "text": "StringLiteral" },
+            { "type": "::=", "text": "::=" }
+          ]
+        },
         {
           "type": "StringLiteral",
           "children": [{ "type": "StringLiteral", "text": "'\"'" }]
@@ -367,10 +477,13 @@
           "type": "StringLiteral",
           "children": [{ "type": "StringLiteral", "text": "'\"'" }]
         },
-        { "type": "NCName", "children": [{ "type": "NCName", "text": "|" }] },
+        { "type": "NCName", "children": [] },
         {
           "type": "StringLiteral",
-          "children": [{ "type": "StringLiteral", "text": "\"'\"" }]
+          "children": [
+            { "type": "NCName", "text": "|" },
+            { "type": "StringLiteral", "text": "\"'\"" }
+          ]
         },
         {
           "type": "CharClass",
@@ -383,16 +496,19 @@
           "type": "StringLiteral",
           "children": [{ "type": "StringLiteral", "text": "\"'\"" }]
         },
-        {
-          "type": "NCName",
-          "children": [{ "type": "NCName", "text": "CharCode" }]
-        }
+        { "type": "NCName", "children": [] }
       ]
     },
     {
       "type": "Item",
       "children": [
-        { "type": "::=", "children": [{ "type": "::=", "text": "::=" }] },
+        {
+          "type": "::=",
+          "children": [
+            { "type": "NCName", "text": "CharCode" },
+            { "type": "::=", "text": "::=" }
+          ]
+        },
         {
           "type": "StringLiteral",
           "children": [{ "type": "StringLiteral", "text": "'#x'" }]
@@ -401,19 +517,19 @@
           "type": "CharClass",
           "children": [{ "type": "CharClass", "text": "[0-9a-fA-F]" }]
         },
-        {
-          "type": "NCName",
-          "children": [
-            { "type": "NCName", "text": "+" },
-            { "type": "NCName", "text": "CharClass" }
-          ]
-        }
+        { "type": "NCName", "children": [{ "type": "NCName", "text": "+" }] }
       ]
     },
     {
       "type": "Item",
       "children": [
-        { "type": "::=", "children": [{ "type": "::=", "text": "::=" }] },
+        {
+          "type": "::=",
+          "children": [
+            { "type": "NCName", "text": "CharClass" },
+            { "type": "::=", "text": "::=" }
+          ]
+        },
         {
           "type": "StringLiteral",
           "children": [
@@ -432,21 +548,29 @@
             { "type": "NCName", "text": "|" },
             { "type": "NCName", "text": "CharRange" },
             { "type": "NCName", "text": "|" },
-            { "type": "NCName", "text": "CharCodeRange" },
-            { "type": "NCName", "text": ")+" }
+            { "type": "NCName", "text": "CharCodeRange" }
           ]
         },
         {
           "type": "StringLiteral",
-          "children": [{ "type": "StringLiteral", "text": "']'" }]
+          "children": [
+            { "type": "NCName", "text": ")+" },
+            { "type": "StringLiteral", "text": "']'" }
+          ]
         },
-        { "type": "NCName", "children": [{ "type": "NCName", "text": "Char" }] }
+        { "type": "NCName", "children": [] }
       ]
     },
     {
       "type": "Item",
       "children": [
-        { "type": "::=", "children": [{ "type": "::=", "text": "::=" }] },
+        {
+          "type": "::=",
+          "children": [
+            { "type": "NCName", "text": "Char" },
+            { "type": "::=", "text": "::=" }
+          ]
+        },
         {
           "type": "NCName",
           "children": [
@@ -454,166 +578,174 @@
             { "type": "NCName", "text": "|" },
             { "type": "NCName", "text": "#xA" },
             { "type": "NCName", "text": "|" },
-            { "type": "NCName", "text": "#xD" },
-            { "type": "NCName", "text": "|" }
+            { "type": "NCName", "text": "#xD" }
           ]
         },
         {
           "type": "CharClass",
-          "children": [{ "type": "CharClass", "text": "[#x20-#xD7FF]" }]
+          "children": [
+            { "type": "NCName", "text": "|" },
+            { "type": "CharClass", "text": "[#x20-#xD7FF]" }
+          ]
         },
-        { "type": "NCName", "children": [{ "type": "NCName", "text": "|" }] },
+        { "type": "NCName", "children": [] },
         {
           "type": "CharClass",
-          "children": [{ "type": "CharClass", "text": "[#xE000-#xFFFD]" }]
+          "children": [
+            { "type": "NCName", "text": "|" },
+            { "type": "CharClass", "text": "[#xE000-#xFFFD]" }
+          ]
         },
-        { "type": "NCName", "children": [{ "type": "NCName", "text": "|" }] },
+        { "type": "NCName", "children": [] },
         {
           "type": "CharClass",
-          "children": [{ "type": "CharClass", "text": "[#x10000-#x10FFFF]" }]
+          "children": [
+            { "type": "NCName", "text": "|" },
+            { "type": "CharClass", "text": "[#x10000-#x10FFFF]" }
+          ]
         },
-        {
-          "type": "NCName",
-          "children": [{ "type": "NCName", "text": "CharRange" }]
-        }
+        { "type": "NCName", "children": [] }
       ]
     },
     {
       "type": "Item",
       "children": [
-        { "type": "::=", "children": [{ "type": "::=", "text": "::=" }] },
         {
-          "type": "NCName",
-          "children": [{ "type": "NCName", "text": "Char" }]
+          "type": "::=",
+          "children": [
+            { "type": "NCName", "text": "CharRange" },
+            { "type": "::=", "text": "::=" }
+          ]
         },
+        { "type": "NCName", "children": [] },
         {
           "type": "StringLiteral",
-          "children": [{ "type": "StringLiteral", "text": "'-'" }]
+          "children": [
+            { "type": "NCName", "text": "Char" },
+            { "type": "StringLiteral", "text": "'-'" }
+          ]
         },
         {
           "type": "NCName",
           "children": [
             { "type": "NCName", "text": "(" },
-            { "type": "NCName", "text": "Char" },
-            { "type": "NCName", "text": "-" }
+            { "type": "NCName", "text": "Char" }
           ]
         },
         {
           "type": "StringLiteral",
-          "children": [{ "type": "StringLiteral", "text": "']'" }]
-        },
-        {
-          "type": "NCName",
           "children": [
-            { "type": "NCName", "text": ")" },
-            { "type": "NCName", "text": "CharCodeRange" }
+            { "type": "NCName", "text": "-" },
+            { "type": "StringLiteral", "text": "']'" }
           ]
-        }
+        },
+        { "type": "NCName", "children": [{ "type": "NCName", "text": ")" }] }
       ]
     },
     {
       "type": "Item",
       "children": [
-        { "type": "::=", "children": [{ "type": "::=", "text": "::=" }] },
+        {
+          "type": "::=",
+          "children": [
+            { "type": "NCName", "text": "CharCodeRange" },
+            { "type": "::=", "text": "::=" }
+          ]
+        },
+        { "type": "NCName", "children": [] },
+        {
+          "type": "StringLiteral",
+          "children": [
+            { "type": "NCName", "text": "CharCode" },
+            { "type": "StringLiteral", "text": "'-'" }
+          ]
+        },
         {
           "type": "NCName",
           "children": [{ "type": "NCName", "text": "CharCode" }]
-        },
-        {
-          "type": "StringLiteral",
-          "children": [{ "type": "StringLiteral", "text": "'-'" }]
-        },
-        {
-          "type": "NCName",
-          "children": [
-            { "type": "NCName", "text": "CharCode" },
-            { "type": "NCName", "text": "Link" }
-          ]
         }
       ]
     },
     {
       "type": "Item",
       "children": [
-        { "type": "::=", "children": [{ "type": "::=", "text": "::=" }] },
+        {
+          "type": "::=",
+          "children": [
+            { "type": "NCName", "text": "Link" },
+            { "type": "::=", "text": "::=" }
+          ]
+        },
         {
           "type": "StringLiteral",
           "children": [{ "type": "StringLiteral", "text": "'['" }]
         },
-        { "type": "NCName", "children": [{ "type": "NCName", "text": "URL" }] },
+        { "type": "NCName", "children": [] },
         {
           "type": "StringLiteral",
-          "children": [{ "type": "StringLiteral", "text": "']'" }]
+          "children": [
+            { "type": "NCName", "text": "URL" },
+            { "type": "StringLiteral", "text": "']'" }
+          ]
         },
-        { "type": "NCName", "children": [{ "type": "NCName", "text": "URL" }] }
+        { "type": "NCName", "children": [] }
       ]
     },
     {
       "type": "Item",
       "children": [
-        { "type": "::=", "children": [{ "type": "::=", "text": "::=" }] },
+        {
+          "type": "::=",
+          "children": [
+            { "type": "NCName", "text": "URL" },
+            { "type": "::=", "text": "::=" }
+          ]
+        },
         {
           "type": "CharClass",
           "children": [{ "type": "CharClass", "text": "[^#x5D:/?#]" }]
         },
-        { "type": "NCName", "children": [{ "type": "NCName", "text": "+" }] },
+        { "type": "NCName", "children": [] },
         {
           "type": "StringLiteral",
-          "children": [{ "type": "StringLiteral", "text": "'://'" }]
+          "children": [
+            { "type": "NCName", "text": "+" },
+            { "type": "StringLiteral", "text": "'://'" }
+          ]
         },
         {
           "type": "CharClass",
           "children": [{ "type": "CharClass", "text": "[^#x5D#]" }]
         },
-        {
-          "type": "NCName",
-          "children": [
-            { "type": "NCName", "text": "+" },
-            { "type": "NCName", "text": "(" }
-          ]
-        },
+        { "type": "NCName", "children": [{ "type": "NCName", "text": "+" }] },
         {
           "type": "StringLiteral",
-          "children": [{ "type": "StringLiteral", "text": "'#'" }]
+          "children": [
+            { "type": "NCName", "text": "(" },
+            { "type": "StringLiteral", "text": "'#'" }
+          ]
         },
         {
           "type": "NCName",
-          "children": [
-            { "type": "NCName", "text": "NCName)?" },
-            { "type": "NCName", "text": "Whitespace" }
-          ]
+          "children": [{ "type": "NCName", "text": "NCName)?" }]
         }
       ]
     },
     {
       "type": "Item",
       "children": [
-        { "type": "::=", "children": [{ "type": "::=", "text": "::=" }] },
+        {
+          "type": "::=",
+          "children": [
+            { "type": "NCName", "text": "Whitespace" },
+            { "type": "::=", "text": "::=" }
+          ]
+        },
         {
           "type": "NCName",
           "children": [
             { "type": "NCName", "text": "S" },
             { "type": "NCName", "text": "|" },
-            { "type": "NCName", "text": "Comment" },
-            { "type": "NCName", "text": "S" }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "Item",
-      "children": [
-        { "type": "::=", "children": [{ "type": "::=", "text": "::=" }] },
-        {
-          "type": "NCName",
-          "children": [
-            { "type": "NCName", "text": "#x9" },
-            { "type": "NCName", "text": "|" },
-            { "type": "NCName", "text": "#xA" },
-            { "type": "NCName", "text": "|" },
-            { "type": "NCName", "text": "#xD" },
-            { "type": "NCName", "text": "|" },
-            { "type": "NCName", "text": "#x20" },
             { "type": "NCName", "text": "Comment" }
           ]
         }
@@ -622,36 +754,70 @@
     {
       "type": "Item",
       "children": [
-        { "type": "::=", "children": [{ "type": "::=", "text": "::=" }] },
         {
-          "type": "StringLiteral",
-          "children": [{ "type": "StringLiteral", "text": "'/*'" }]
-        },
-        { "type": "NCName", "children": [{ "type": "NCName", "text": "(" }] },
-        {
-          "type": "CharClass",
-          "children": [{ "type": "CharClass", "text": "[^*]" }]
-        },
-        { "type": "NCName", "children": [{ "type": "NCName", "text": "|" }] },
-        {
-          "type": "StringLiteral",
-          "children": [{ "type": "StringLiteral", "text": "'*'" }]
-        },
-        { "type": "NCName", "children": [{ "type": "NCName", "text": "+" }] },
-        {
-          "type": "CharClass",
-          "children": [{ "type": "CharClass", "text": "[^*/]" }]
+          "type": "::=",
+          "children": [
+            { "type": "NCName", "text": "S" },
+            { "type": "::=", "text": "::=" }
+          ]
         },
         {
           "type": "NCName",
           "children": [
-            { "type": "NCName", "text": ")" },
-            { "type": "**", "text": "*" }
+            { "type": "NCName", "text": "#x9" },
+            { "type": "NCName", "text": "|" },
+            { "type": "NCName", "text": "#xA" },
+            { "type": "NCName", "text": "|" },
+            { "type": "NCName", "text": "#xD" },
+            { "type": "NCName", "text": "|" },
+            { "type": "NCName", "text": "#x20" }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Item",
+      "children": [
+        {
+          "type": "::=",
+          "children": [
+            { "type": "NCName", "text": "Comment" },
+            { "type": "::=", "text": "::=" }
           ]
         },
         {
           "type": "StringLiteral",
+          "children": [{ "type": "StringLiteral", "text": "'/*'" }]
+        },
+        { "type": "NCName", "children": [] },
+        {
+          "type": "CharClass",
           "children": [
+            { "type": "NCName", "text": "(" },
+            { "type": "CharClass", "text": "[^*]" }
+          ]
+        },
+        { "type": "NCName", "children": [] },
+        {
+          "type": "StringLiteral",
+          "children": [
+            { "type": "NCName", "text": "|" },
+            { "type": "StringLiteral", "text": "'*'" }
+          ]
+        },
+        { "type": "NCName", "children": [] },
+        {
+          "type": "CharClass",
+          "children": [
+            { "type": "NCName", "text": "+" },
+            { "type": "CharClass", "text": "[^*/]" }
+          ]
+        },
+        { "type": "NCName", "children": [{ "type": "NCName", "text": ")" }] },
+        {
+          "type": "StringLiteral",
+          "children": [
+            { "type": "**", "text": "*" },
             { "type": "StringLiteral", "text": "'*'" },
             { "type": "**", "text": "*" },
             { "type": "StringLiteral", "text": "'*/'" }
