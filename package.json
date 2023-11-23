@@ -16,11 +16,14 @@
     "author": "Antony74",
     "license": "MIT",
     "dependencies": {
+        "@types/graphviz": "^0.0.39",
         "@types/moo": "^0.5.5",
         "@types/node-fetch": "^2.6.4",
         "fluent-regex-fun": "^1.0.0",
+        "graphviz": "^0.0.9",
         "moo": "^0.5.2",
-        "node-fetch": "^2.6.11"
+        "node-fetch": "^2.6.11",
+        "node-graphviz": "^0.1.1"
     },
     "devDependencies": {
         "@babel/preset-env": "^7.22.5",
