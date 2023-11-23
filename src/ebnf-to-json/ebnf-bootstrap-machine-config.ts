@@ -12,52 +12,46 @@ export const ebnfMachineConfig: MachineConfig = {
         },
         Production: {
             on: {
-                '::=': 'Item',
+                '::=': '::=',
             },
         },
-        Item: {
-            initial: '::=',
-            on: { '::=': 'Item' },
-            states: {
-                '::=': {
-                    start: true,
-                    on: {
-                        NCName: 'NCName',
-                        StringLiteral: 'StringLiteral',
-                        CharClass: 'CharClass',
-                    },
-                },
-                NCName: {
-                    delayedWrite: true,
-                    on: {
-                        '?': 'NCName',
-                        '**': 'NCName',
-                        '+': 'NCName',
-                        NCName: 'NCName',
-                        StringLiteral: 'StringLiteral',
-                        CharClass: 'CharClass',
-                    },
-                },
-                StringLiteral: {
-                    on: {
-                        '?': 'StringLiteral',
-                        '**': 'StringLiteral',
-                        '+': 'StringLiteral',
-                        NCName: 'NCName',
-                        StringLiteral: 'StringLiteral',
-                        CharClass: 'CharClass',
-                    },
-                },
-                CharClass: {
-                    on: {
-                        '?': 'CharClass',
-                        '**': 'CharClass',
-                        '+': 'CharClass',
-                        NCName: 'NCName',
-                        StringLiteral: 'StringLiteral',
-                        CharClass: 'CharClass',
-                    },
-                },
+        '::=': {
+            on: {
+                NCName: 'NCName',
+                StringLiteral: 'StringLiteral',
+                CharClass: 'CharClass',
+            },
+        },
+        NCName: {
+            delayedWrite: true,
+            on: {
+                '?': 'NCName',
+                '**': 'NCName',
+                '+': 'NCName',
+                NCName: 'NCName',
+                StringLiteral: 'StringLiteral',
+                CharClass: 'CharClass',
+                '::=': '::=',
+            },
+        },
+        StringLiteral: {
+            on: {
+                '?': 'StringLiteral',
+                '**': 'StringLiteral',
+                '+': 'StringLiteral',
+                NCName: 'NCName',
+                StringLiteral: 'StringLiteral',
+                CharClass: 'CharClass',
+            },
+        },
+        CharClass: {
+            on: {
+                '?': 'CharClass',
+                '**': 'CharClass',
+                '+': 'CharClass',
+                NCName: 'NCName',
+                StringLiteral: 'StringLiteral',
+                CharClass: 'CharClass',
             },
         },
     },
